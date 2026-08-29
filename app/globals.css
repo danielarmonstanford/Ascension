@@ -127,6 +127,10 @@ section { position: relative; }
 .sense-word span { font: 400 clamp(3.5rem, 9vw, 8rem)/.82 var(--display); letter-spacing: -.035em; }
 .sense-2, .sense-5 { justify-content: center; }
 .sense-3, .sense-6 { justify-content: flex-end; }
+.sense-3 { position: relative; min-height: clamp(28rem, 58vw, 48rem); overflow: hidden; isolation: isolate; }
+.sense-3::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--ground) 0%, color-mix(in srgb, var(--ground) 12%, transparent) 48%, transparent 100%); pointer-events: none; }
+.sense-3 .touch-art { z-index: -2; object-fit: cover; object-position: 58% 48%; }
+.sense-3 span { align-self: flex-end; position: relative; z-index: 1; margin: 0 2vw 2.5rem 0; color: var(--deep-ocean); text-shadow: 0 1px 24px rgba(244, 237, 225, .76); }
 .sense-2 span { color: var(--twilight); }
 :root[data-theme="dusk"] .sense-2 span { color: var(--sunset); }
 .sense-4 span { color: var(--burnt-sand); }
@@ -259,6 +263,10 @@ footer div { display: flex; gap: 1.5rem; }
   .sense-intro h2 { font-size: clamp(3.8rem, 18vw, 6rem); }
   .sense-word { min-height: 7rem; }
   .sense-word span { font-size: clamp(3.3rem, 18vw, 5.7rem); }
+  .sense-3 { min-height: 62svh; }
+  .sense-3::after { background: linear-gradient(180deg, var(--ground) 0%, transparent 38%, rgba(244, 237, 225, .24) 100%); }
+  .sense-3 .touch-art { object-position: 53% 48%; }
+  .sense-3 span { margin: 0 var(--gutter) 2rem 0; }
 
   .sight { min-height: 150svh; padding-top: 6rem; padding-bottom: 6rem; }
   .sight-copy { width: 100%; }

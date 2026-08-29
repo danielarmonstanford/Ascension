@@ -57,6 +57,12 @@ SOUND is a core sense, not background decoration. Present it through verified pr
 
 The original Da Nang yoga-wheel photograph is the hero source of truth. Use Cloudinary for responsive crops, formats, and progressive delivery. The homepage must feel finished with optimized still photography alone.
 
+The approved TOUCH illustration is hosted remotely at:
+
+`https://res.cloudinary.com/dno3ruh4b/image/upload/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png`
+
+Use it within the TOUCH story with crops that preserve the receiving body and practitioner’s hand. Do not commit a local duplicate when the Cloudinary source is available.
+
 ### Approved V2 hero master
 
 The sole approved V2 scroll-motion source is:

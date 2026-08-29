@@ -18,6 +18,8 @@ const CREATIVE_WATER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823818/Black_Gold-water-D80_5523_fgh0eu.jpg";
 const CREATIVE_MATERIAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823955/D80_2949-Zen-Indian_hms21t.jpg";
+const TOUCH_ART =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png";
 
 function ThemeControl({ theme, onChange }) {
   return (
@@ -305,6 +307,15 @@ export default function HomePage() {
           <div className="sense-river" aria-label="The six senses of ASCENSION">
             {senses.map((sense, index) => (
               <div className={`sense-word sense-${index + 1}`} key={sense}>
+                {sense === "TOUCH" ? (
+                  <Image
+                    className="touch-art"
+                    src={TOUCH_ART}
+                    alt="An illustration of restorative touch and bodywork"
+                    fill
+                    sizes="(max-width: 700px) 100vw, 52vw"
+                  />
+                ) : null}
                 <span>{sense}</span>
               </div>
             ))}
