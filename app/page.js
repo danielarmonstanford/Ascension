@@ -188,6 +188,35 @@ export default function HomePage() {
           <p className="deposit">Current reservation link requests a $300 deposit. Commercial details require final verification before launch.</p>
         </section>
 
+        <section className="series-positioning" aria-labelledby="series-title">
+          <div className="series-intro">
+            <h2 id="series-title">One idea.<br />Many places.</h2>
+            <p>ASCENSION is not a single retreat. It’s a travelling series of curated editions — each built around wellbeing, movement, sound and place, and each shaped by where it lands.</p>
+          </div>
+          <div className="series-editions" aria-label="ASCENSION series editions">
+            <div className="series-edition series-current">
+              <h3>Da Nang</h3>
+              <p>Edition 01 · January 2027</p>
+              <span>Current primary experience</span>
+            </div>
+            <div className="series-edition">
+              <h3>Montréal</h3>
+              <p>Edition 02 · In planning</p>
+              <span>Follow-up edition</span>
+            </div>
+            <div className="series-edition series-next">
+              <h3>Next</h3>
+              <p>Perhaps your city.</p>
+            </div>
+          </div>
+          <a
+            className="series-inquiry"
+            href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20in%20My%20City&body=City%20%2F%20Country%3A%20%0A%0AI%E2%80%99m%20interested%20as%20a%3A%20Guest%20%2F%20Practitioner%20%2F%20Venue%20or%20Hospitality%20Partner%20%2F%20Sponsor%20%2F%20Local%20Connector%0A%0AName%3A%20%0AOrganization%20(if%20applicable)%3A%20%0A%0AWhy%20ASCENSION%20could%20belong%20here%3A%20"
+          >
+            Request ASCENSION in Your City <span aria-hidden="true">→</span>
+          </a>
+        </section>
+
         <section className="join" aria-labelledby="join-title">
           <ProgressiveMedia poster={DA_NANG_FILM} alt="Da Nang sunset reflected across still water" />
           <div className="join-overlay" aria-hidden="true" />
