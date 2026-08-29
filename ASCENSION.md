@@ -57,6 +57,14 @@ SOUND is a core sense, not background decoration. Present it through verified pr
 
 The original Da Nang yoga-wheel photograph is the hero source of truth. Use Cloudinary for responsive crops, formats, and progressive delivery. The homepage must feel finished with optimized still photography alone.
 
+### Approved V2 hero master
+
+The sole approved V2 scroll-motion source is:
+
+`https://res.cloudinary.com/dno3ruh4b/video/upload/v1788041873/Bodakon_wheel_Yoga_Ascension_qfdctl.mp4`
+
+Do not substitute or regenerate another yoga video, and do not edit the master composition. The sequence is original still → subtle crossfade → approved yoga orbit master → scroll-controlled forward/reverse movement → progressively expanding navigation → release into the normal ASCENSION page. The original still remains the opening poster and colour authority. Hero loading must not preload or couple unrelated lower-page video assets.
+
 Enhancement order:
 
 1. Responsive still image and intentional crop.

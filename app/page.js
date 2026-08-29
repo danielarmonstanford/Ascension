@@ -5,6 +5,8 @@ import Image from "next/image";
 
 const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
+const HERO_MASTER =
+  "https://res.cloudinary.com/dno3ruh4b/video/upload/v1788041873/Bodakon_wheel_Yoga_Ascension_qfdctl.mp4";
 const DA_NANG_VIMEO_ID = "1221665573";
 const DA_NANG_VIDEO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787489954/Screen_Shot_2026-08-23_at_8.59.05_AM_e8jceq.png";
@@ -69,34 +71,171 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
   );
 }
 
-function Hero({ theme, setTheme }) {
+function ScrollHeroMedia({ videoRef, onReady }) {
+  const [posterLoaded, setPosterLoaded] = useState(false);
+  const [ready, setReady] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(true);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReduceMotion(query.matches);
+    updatePreference();
+    query.addEventListener("change", updatePreference);
+    return () => query.removeEventListener("change", updatePreference);
+  }, []);
+
+  const markReady = () => {
+    setReady(true);
+    onReady();
+  };
+
   return (
-    <header className="hero-stage" id="top">
-      <ProgressiveMedia
-        poster={HERO_POSTER}
+    <div className={`progressive-media hero-progressive-media ${ready ? "motion-ready" : ""}`}>
+      <Image
+        src={HERO_POSTER}
         alt="A woman in a yoga wheel pose on a Pacific beach in Da Nang"
+        fill
         priority
+        sizes="100vw"
+        className="media-poster"
+        onLoad={() => setPosterLoaded(true)}
       />
-      <div className="hero-atmosphere" aria-hidden="true" />
-      <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
-        <a className="wordmark" href="#top">ASCENSION</a>
-        <div className="nav-links">
-          <a href="#experience">Experience</a>
-          <a href="#attendance">Attend</a>
-        </div>
-      </nav>
+      {posterLoaded && !reduceMotion ? (
+        <video
+          ref={videoRef}
+          className="media-motion hero-orbit"
+          muted
+          playsInline
+          preload="auto"
+          poster={HERO_POSTER}
+          aria-hidden="true"
+          tabIndex="-1"
+          onLoadedMetadata={(event) => {
+            event.currentTarget.pause();
+            event.currentTarget.currentTime = 0.001;
+          }}
+          onCanPlay={markReady}
+        >
+          <source src={HERO_MASTER} type="video/mp4" />
+        </video>
+      ) : null}
+    </div>
+  );
+}
 
-      <div className="hero-frame">
-        <div className="hero-copy">
-          <h1 className="entrance entrance-title">ASCENSION</h1>
-          <p className="hero-place entrance entrance-place">Da Nang · Vietnam<br />January 12–26, 2027</p>
-          <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
-        </div>
-        <a className="hero-explore entrance entrance-controls" href="#awaken">Explore <span aria-hidden="true">↓</span></a>
-      </div>
+function Hero({ theme, setTheme }) {
+  const scrollRef = useRef(null);
+  const stageRef = useRef(null);
+  const videoRef = useRef(null);
+  const targetProgress = useRef(0);
+  const renderedProgress = useRef(0);
+  const animationFrame = useRef(0);
+  const [motionReady, setMotionReady] = useState(false);
 
-      <div className="hero-theme entrance entrance-controls">
-        <ThemeControl theme={theme} onChange={setTheme} />
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let observedScrollY = window.scrollY;
+    let scrollPoll = 0;
+
+    const measure = () => {
+      if (!scrollRef.current || mediaQuery.matches) return;
+      const rect = scrollRef.current.getBoundingClientRect();
+      const distance = Math.max(scrollRef.current.offsetHeight - window.innerHeight, 1);
+      targetProgress.current = Math.min(1, Math.max(0, -rect.top / distance));
+    };
+
+    const render = () => {
+      animationFrame.current = 0;
+      const difference = targetProgress.current - renderedProgress.current;
+      renderedProgress.current += difference * 0.085;
+
+      if (Math.abs(difference) < 0.0005) {
+        renderedProgress.current = targetProgress.current;
+      }
+
+      const progress = renderedProgress.current;
+      const mediaOpacity = Math.min(1, Math.max(0, (progress - 0.02) / 0.14));
+      stageRef.current?.style.setProperty("--hero-progress", progress.toFixed(4));
+      stageRef.current?.style.setProperty("--hero-media-opacity", mediaOpacity.toFixed(4));
+
+      const video = videoRef.current;
+      if (motionReady && video && Number.isFinite(video.duration) && video.duration > 0) {
+        const nextTime = progress * Math.max(video.duration - 0.04, 0);
+        if (Math.abs(video.currentTime - nextTime) > 0.018) {
+          video.currentTime = nextTime;
+        }
+      }
+
+      if (Math.abs(targetProgress.current - renderedProgress.current) >= 0.0005) {
+        animationFrame.current = window.requestAnimationFrame(render);
+      }
+    };
+
+    const requestRender = () => {
+      measure();
+      if (!animationFrame.current) {
+        animationFrame.current = window.requestAnimationFrame(render);
+      }
+    };
+
+    const pollScrollPosition = () => {
+      if (window.scrollY !== observedScrollY) {
+        observedScrollY = window.scrollY;
+        requestRender();
+      }
+
+      const rect = scrollRef.current?.getBoundingClientRect();
+      const nearHero = rect && rect.bottom > -window.innerHeight && rect.top < window.innerHeight;
+      scrollPoll = window.setTimeout(pollScrollPosition, nearHero ? 80 : 320);
+    };
+
+    requestRender();
+    pollScrollPosition();
+    window.addEventListener("scroll", requestRender, { passive: true });
+    window.addEventListener("wheel", requestRender, { passive: true });
+    window.addEventListener("touchmove", requestRender, { passive: true });
+    document.addEventListener("scroll", requestRender, { passive: true, capture: true });
+    window.addEventListener("resize", requestRender);
+    mediaQuery.addEventListener("change", requestRender);
+
+    return () => {
+      window.removeEventListener("scroll", requestRender);
+      window.removeEventListener("wheel", requestRender);
+      window.removeEventListener("touchmove", requestRender);
+      document.removeEventListener("scroll", requestRender, { capture: true });
+      window.removeEventListener("resize", requestRender);
+      mediaQuery.removeEventListener("change", requestRender);
+      if (animationFrame.current) window.cancelAnimationFrame(animationFrame.current);
+      animationFrame.current = 0;
+      window.clearTimeout(scrollPoll);
+    };
+  }, [motionReady]);
+
+  return (
+    <header className="hero-scroll" id="top" ref={scrollRef}>
+      <div className="hero-stage" ref={stageRef}>
+        <ScrollHeroMedia videoRef={videoRef} onReady={() => setMotionReady(true)} />
+        <div className="hero-atmosphere" aria-hidden="true" />
+        <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
+          <a className="wordmark" href="#top">ASCENSION</a>
+          <div className="nav-links">
+            <a href="#experience">Experience</a>
+            <a href="#attendance">Attend</a>
+          </div>
+        </nav>
+
+        <div className="hero-frame">
+          <div className="hero-copy">
+            <h1 className="entrance entrance-title">ASCENSION</h1>
+            <p className="hero-place entrance entrance-place">Da Nang · Vietnam<br />January 12–26, 2027</p>
+            <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
+          </div>
+          <a className="hero-explore entrance entrance-controls" href="#awaken">Explore <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <div className="hero-theme entrance entrance-controls">
+          <ThemeControl theme={theme} onChange={setTheme} />
+        </div>
       </div>
     </header>
   );
