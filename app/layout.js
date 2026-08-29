@@ -11,7 +11,7 @@ export const metadata = {
     url: "/",
     siteName: "ASCENSION SENSES",
     images: [{
-      url: "https://res.cloudinary.com/dno3ruh4b/image/upload/c_fill,g_face,w_1200,h_630,q_auto,f_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg",
+      url: "https://res.cloudinary.com/dno3ruh4b/image/upload/c_fill,g_auto,w_1200,h_630,q_auto,f_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png",
       width: 1200,
       height: 630
     }],
@@ -21,7 +21,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "ASCENSION SENSES — Da Nang",
     description: "Come back to your senses. January 12–26, 2027.",
-    images: ["https://res.cloudinary.com/dno3ruh4b/image/upload/c_fill,g_face,w_1200,h_630,q_auto,f_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg"]
+    images: ["https://res.cloudinary.com/dno3ruh4b/image/upload/c_fill,g_auto,w_1200,h_630,q_auto,f_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png"]
   }
 };
 

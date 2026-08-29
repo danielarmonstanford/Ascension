@@ -196,7 +196,7 @@ footer div { display: flex; gap: 1.5rem; }
   .nav-links { display: none; }
   .hero-nav { padding-top: calc(1.15rem + env(safe-area-inset-top)); }
   .hero-theme { top: calc(1rem + env(safe-area-inset-top)); }
-  .hero-stage .progressive-media img { object-position: 36% 50%; }
+  .hero-stage .progressive-media img { object-position: 54% 50%; }
   .hero-frame { display: block; padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
   .hero-copy { position: absolute; left: var(--gutter); right: var(--gutter); bottom: calc(7.25rem + env(safe-area-inset-bottom)); padding: 0; }
   .hero-copy h1 { font-size: clamp(4.2rem, 22vw, 6.6rem); line-height: .82; }

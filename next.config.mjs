@@ -6,11 +6,6 @@ const nextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
         pathname: "/dno3ruh4b/image/upload/**"
-      },
-      {
-        protocol: "https",
-        hostname: "i.vimeocdn.com",
-        pathname: "/video/**"
       }
     ]
   }

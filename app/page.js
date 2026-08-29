@@ -4,9 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const HERO_POSTER =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/c_fill,g_face,w_1800,h_1200,q_auto,f_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg";
-const HERO_VIDEO_POSTER =
-  "https://i.vimeocdn.com/video/2194428736-e7f8d686f17ca2337dc92e5365b40b3c70ca10631e8aa53f4fe4531ae6d18356-d_1280x720?region=us";
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
 const HERO_VIMEO_ID = "1221665573";
 const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1787827128/zen_sunset_beach_pool_da_nang_ovllnz.jpg";
@@ -73,8 +71,8 @@ function Hero({ theme, setTheme }) {
   return (
     <header className="hero-stage" id="top">
       <ProgressiveMedia
-        poster={HERO_VIDEO_POSTER}
-        alt="A wide Pacific beach and mountain coastline in Da Nang"
+        poster={HERO_POSTER}
+        alt="A woman in a yoga wheel pose on a Pacific beach in Da Nang"
         priority
         vimeoId={HERO_VIMEO_ID}
       />
@@ -128,7 +126,7 @@ export default function HomePage() {
       <main id="main">
         <section className="awaken" id="awaken" aria-labelledby="awaken-title">
           <div className="awaken-media">
-            <ProgressiveMedia poster={HERO_POSTER} alt="A monumental figure overlooking a coastal city at sunset" />
+            <ProgressiveMedia poster={HERO_POSTER} alt="A woman in a yoga wheel pose on a Pacific beach in Da Nang" />
             <div className="awaken-vignette" aria-hidden="true" />
           </div>
           <div className="awaken-copy">
@@ -173,7 +171,7 @@ export default function HomePage() {
 
         <section className="experience-da-nang" aria-labelledby="experience-title">
           <div className="experience-image">
-            <Image src={HERO_POSTER} alt="A monumental figure overlooking a coastal landscape" fill sizes="(max-width: 760px) 100vw, 60vw" />
+            <Image src={HERO_POSTER} alt="A woman in a yoga wheel pose beside the sea in Da Nang" fill sizes="(max-width: 760px) 100vw, 60vw" />
           </div>
           <div className="experience-words">
             <h2 id="experience-title">Experience<br />Da Nang.</h2>
