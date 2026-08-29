@@ -5,7 +5,9 @@ import Image from "next/image";
 
 const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
-const HERO_VIMEO_ID = "1221665573";
+const DA_NANG_VIMEO_ID = "1221665573";
+const DA_NANG_VIDEO_POSTER =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787489954/Screen_Shot_2026-08-23_at_8.59.05_AM_e8jceq.png";
 const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1787827128/zen_sunset_beach_pool_da_nang_ovllnz.jpg";
 
@@ -74,7 +76,6 @@ function Hero({ theme, setTheme }) {
         poster={HERO_POSTER}
         alt="A woman in a yoga wheel pose on a Pacific beach in Da Nang"
         priority
-        vimeoId={HERO_VIMEO_ID}
       />
       <div className="hero-atmosphere" aria-hidden="true" />
       <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
@@ -136,7 +137,11 @@ export default function HomePage() {
         </section>
 
         <section className="destination" aria-labelledby="destination-title">
-          <ProgressiveMedia poster={DA_NANG_FILM} alt="Sunset over water in Da Nang" />
+          <ProgressiveMedia
+            poster={DA_NANG_VIDEO_POSTER}
+            alt="A bright Pacific beach and mountain coastline in Da Nang"
+            vimeoId={DA_NANG_VIMEO_ID}
+          />
           <div className="destination-overlay" aria-hidden="true" />
           <div className="destination-copy">
             <h2 id="destination-title"><span>CITY.</span><span>SEA.</span><span>MOUNTAIN.</span></h2>
