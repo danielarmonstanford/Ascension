@@ -63,6 +63,12 @@ The approved TOUCH illustration is hosted remotely at:
 
 Use it within the TOUCH story with crops that preserve the receiving body and practitioner’s hand. Do not commit a local duplicate when the Cloudinary source is available.
 
+The approved SOUND illustration is hosted remotely at:
+
+`https://res.cloudinary.com/dno3ruh4b/image/upload/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp`
+
+Use it within the SOUND story with crops that retain the ear and radiating wave geometry. It is a visual listening metaphor, not permission to autoplay audio or imply an unconfirmed sound modality.
+
 ### Approved V2 hero master
 
 The sole approved V2 scroll-motion source is:

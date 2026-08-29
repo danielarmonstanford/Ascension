@@ -20,6 +20,8 @@ const CREATIVE_MATERIAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823955/D80_2949-Zen-Indian_hms21t.jpg";
 const TOUCH_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png";
+const SOUND_ART =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp";
 
 function ThemeControl({ theme, onChange }) {
   return (
@@ -307,6 +309,15 @@ export default function HomePage() {
           <div className="sense-river" aria-label="The six senses of ASCENSION">
             {senses.map((sense, index) => (
               <div className={`sense-word sense-${index + 1}`} key={sense}>
+                {sense === "SOUND" ? (
+                  <Image
+                    className="sound-art"
+                    src={SOUND_ART}
+                    alt="An illustration of an ear surrounded by radiating sound waves"
+                    fill
+                    sizes="100vw"
+                  />
+                ) : null}
                 {sense === "TOUCH" ? (
                   <Image
                     className="touch-art"
