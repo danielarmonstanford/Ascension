@@ -81,9 +81,7 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
   );
 }
 
-function ScrollHeroMedia({ videoRef, onReady }) {
-  const [posterLoaded, setPosterLoaded] = useState(false);
-  const [ready, setReady] = useState(false);
+function ScrollHeroMedia({ videoRef, motionReady, onLoadedMetadata, onCanPlay, onSeeking, onSeeked, onError }) {
   const [reduceMotion, setReduceMotion] = useState(true);
 
   useEffect(() => {
@@ -94,13 +92,8 @@ function ScrollHeroMedia({ videoRef, onReady }) {
     return () => query.removeEventListener("change", updatePreference);
   }, []);
 
-  const markReady = () => {
-    setReady(true);
-    onReady();
-  };
-
   return (
-    <div className={`progressive-media hero-progressive-media ${ready ? "motion-ready" : ""}`}>
+    <div className={`progressive-media hero-progressive-media ${motionReady ? "motion-ready" : ""}`}>
       <Image
         src={HERO_POSTER}
         alt="A woman in a yoga wheel pose on a Pacific beach in Da Nang"
@@ -108,9 +101,8 @@ function ScrollHeroMedia({ videoRef, onReady }) {
         priority
         sizes="100vw"
         className="media-poster"
-        onLoad={() => setPosterLoaded(true)}
       />
-      {posterLoaded && !reduceMotion ? (
+      {!reduceMotion ? (
         <video
           ref={videoRef}
           className="media-motion hero-orbit"
@@ -120,11 +112,11 @@ function ScrollHeroMedia({ videoRef, onReady }) {
           poster={HERO_POSTER}
           aria-hidden="true"
           tabIndex="-1"
-          onLoadedMetadata={(event) => {
-            event.currentTarget.pause();
-            event.currentTarget.currentTime = 0.001;
-          }}
-          onCanPlay={markReady}
+          onLoadedMetadata={onLoadedMetadata}
+          onCanPlay={onCanPlay}
+          onSeeking={onSeeking}
+          onSeeked={onSeeked}
+          onError={onError}
         >
           <source src={HERO_MASTER} type="video/mp4" />
         </video>
@@ -140,7 +132,91 @@ function Hero({ theme, setTheme }) {
   const targetProgress = useRef(0);
   const renderedProgress = useRef(0);
   const animationFrame = useRef(0);
+  const metadataReady = useRef(false);
+  const canPlayReady = useRef(false);
+  const mobileUnlockRequired = useRef(false);
+  const mobileUnlocked = useRef(false);
+  const seekInFlight = useRef(false);
+  const pendingSeekTime = useRef(null);
   const [motionReady, setMotionReady] = useState(false);
+
+  const enableMotionWhenReady = () => {
+    const unlockSatisfied = !mobileUnlockRequired.current || mobileUnlocked.current;
+    if (metadataReady.current && canPlayReady.current && unlockSatisfied) {
+      setMotionReady(true);
+    }
+  };
+
+  const requestVideoTime = (requestedTime) => {
+    const video = videoRef.current;
+    if (!video || video.readyState < HTMLMediaElement.HAVE_METADATA) return;
+    if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+
+    const nextTime = Math.min(Math.max(requestedTime, 0), Math.max(video.duration - 0.04, 0));
+    if (Math.abs(video.currentTime - nextTime) <= 0.018) return;
+
+    if (seekInFlight.current || video.seeking) {
+      pendingSeekTime.current = nextTime;
+      return;
+    }
+
+    seekInFlight.current = true;
+    try {
+      video.currentTime = nextTime;
+    } catch {
+      seekInFlight.current = false;
+      pendingSeekTime.current = nextTime;
+    }
+  };
+
+  useEffect(() => {
+    mobileUnlockRequired.current = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
+    if (!mobileUnlockRequired.current) mobileUnlocked.current = true;
+
+    let unlocking = false;
+    const unlockVideo = () => {
+      const video = videoRef.current;
+      if (!video || mobileUnlocked.current || unlocking) return;
+
+      unlocking = true;
+      video.muted = true;
+      video.playsInline = true;
+      const finishUnlock = () => {
+        video.pause();
+        mobileUnlocked.current = true;
+        unlocking = false;
+        enableMotionWhenReady();
+        window.removeEventListener("pointerdown", unlockVideo);
+        window.removeEventListener("touchstart", unlockVideo);
+        window.removeEventListener("wheel", unlockVideo);
+        window.removeEventListener("scroll", unlockVideo);
+      };
+
+      const playAttempt = video.play();
+      if (playAttempt) {
+        playAttempt.then(finishUnlock).catch(() => {
+          video.pause();
+          unlocking = false;
+        });
+      } else {
+        finishUnlock();
+      }
+    };
+
+    if (mobileUnlockRequired.current) {
+      window.addEventListener("pointerdown", unlockVideo, { passive: true });
+      window.addEventListener("touchstart", unlockVideo, { passive: true });
+      window.addEventListener("wheel", unlockVideo, { passive: true });
+      window.addEventListener("scroll", unlockVideo, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener("pointerdown", unlockVideo);
+      window.removeEventListener("touchstart", unlockVideo);
+      window.removeEventListener("wheel", unlockVideo);
+      window.removeEventListener("scroll", unlockVideo);
+    };
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -170,10 +246,7 @@ function Hero({ theme, setTheme }) {
 
       const video = videoRef.current;
       if (motionReady && video && Number.isFinite(video.duration) && video.duration > 0) {
-        const nextTime = progress * Math.max(video.duration - 0.04, 0);
-        if (Math.abs(video.currentTime - nextTime) > 0.018) {
-          video.currentTime = nextTime;
-        }
+        requestVideoTime(progress * video.duration);
       }
 
       if (Math.abs(targetProgress.current - renderedProgress.current) >= 0.0005) {
@@ -224,7 +297,32 @@ function Hero({ theme, setTheme }) {
   return (
     <header className="hero-scroll" id="top" ref={scrollRef}>
       <div className="hero-stage" ref={stageRef}>
-        <ScrollHeroMedia videoRef={videoRef} onReady={() => setMotionReady(true)} />
+        <ScrollHeroMedia
+          videoRef={videoRef}
+          motionReady={motionReady}
+          onLoadedMetadata={() => {
+            metadataReady.current = true;
+            enableMotionWhenReady();
+          }}
+          onCanPlay={() => {
+            canPlayReady.current = true;
+            enableMotionWhenReady();
+          }}
+          onSeeking={() => {
+            seekInFlight.current = true;
+          }}
+          onSeeked={() => {
+            seekInFlight.current = false;
+            const queuedTime = pendingSeekTime.current;
+            pendingSeekTime.current = null;
+            if (Number.isFinite(queuedTime)) requestVideoTime(queuedTime);
+          }}
+          onError={() => {
+            setMotionReady(false);
+            seekInFlight.current = false;
+            pendingSeekTime.current = null;
+          }}
+        />
         <div className="hero-atmosphere" aria-hidden="true" />
         <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
           <a className="wordmark" href="#top">ASCENSION</a>
