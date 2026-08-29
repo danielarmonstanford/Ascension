@@ -1,0 +1,4 @@
+interface:
+  display_name: "ASCENSION Art Director"
+  short_description: "Reject generic design before ASCENSION ships"
+  default_prompt: "Use $ascension-art-director to review this ASCENSION page and reject generic or off-brand design choices."
