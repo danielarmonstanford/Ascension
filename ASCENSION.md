@@ -67,7 +67,7 @@ The approved SOUND illustration is hosted remotely at:
 
 `https://res.cloudinary.com/dno3ruh4b/image/upload/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp`
 
-Use it within the SOUND story with crops that retain the ear and radiating wave geometry. It is a visual listening metaphor, not permission to autoplay audio or imply an unconfirmed sound modality.
+For the current composition pass, use it as a visual cue within the Your Ascension attendance section, with crops that retain the ear and radiating wave geometry. It remains a visual listening metaphor, not permission to autoplay audio or imply an unconfirmed sound modality.
 
 ### Approved V2 hero master
 

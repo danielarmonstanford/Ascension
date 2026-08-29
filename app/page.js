@@ -309,15 +309,6 @@ export default function HomePage() {
           <div className="sense-river" aria-label="The six senses of ASCENSION">
             {senses.map((sense, index) => (
               <div className={`sense-word sense-${index + 1}`} key={sense}>
-                {sense === "SOUND" ? (
-                  <Image
-                    className="sound-art"
-                    src={SOUND_ART}
-                    alt="An illustration of an ear surrounded by radiating sound waves"
-                    fill
-                    sizes="100vw"
-                  />
-                ) : null}
                 {sense === "TOUCH" ? (
                   <Image
                     className="touch-art"
@@ -387,6 +378,14 @@ export default function HomePage() {
           <div className="attendance-heading">
             <h2 id="attendance-title">Your<br />Ascension.</h2>
             <p>Program costs are separate from accommodation and travel.</p>
+          </div>
+          <div className="attendance-art">
+            <Image
+              src={SOUND_ART}
+              alt="An illustration of an ear surrounded by radiating sound waves"
+              fill
+              sizes="(max-width: 700px) 100vw, 72vw"
+            />
           </div>
           <div className="attendance-options">
             <article>
