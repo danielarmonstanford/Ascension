@@ -12,6 +12,12 @@ const DA_NANG_VIDEO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787489954/Screen_Shot_2026-08-23_at_8.59.05_AM_e8jceq.png";
 const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1787827128/zen_sunset_beach_pool_da_nang_ovllnz.jpg";
+const DA_NANG_PLACE =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg";
+const CREATIVE_WATER =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823818/Black_Gold-water-D80_5523_fgh0eu.jpg";
+const CREATIVE_MATERIAL =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823955/D80_2949-Zen-Indian_hms21t.jpg";
 
 function ThemeControl({ theme, onChange }) {
   return (
@@ -225,11 +231,9 @@ function Hero({ theme, setTheme }) {
         </nav>
 
         <div className="hero-frame">
-          <div className="hero-copy">
-            <h1 className="entrance entrance-title">ASCENSION</h1>
-            <p className="hero-place entrance entrance-place">Da Nang · Vietnam<br />January 12–26, 2027</p>
-            <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
-          </div>
+          <h1 className="hero-title entrance entrance-title">ASCENSION</h1>
+          <p className="hero-place entrance entrance-place">Da Nang · Vietnam<br />January 12–26, 2027</p>
+          <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
           <a className="hero-explore entrance entrance-controls" href="#awaken">Explore <span aria-hidden="true">↓</span></a>
         </div>
 
@@ -265,13 +269,18 @@ export default function HomePage() {
 
       <main id="main">
         <section className="awaken" id="awaken" aria-labelledby="awaken-title">
-          <div className="awaken-media">
-            <ProgressiveMedia poster={HERO_POSTER} alt="A woman in a yoga wheel pose on a Pacific beach in Da Nang" />
-            <div className="awaken-vignette" aria-hidden="true" />
+          <div className="awaken-heading">
+            <p className="awaken-kicker">Awaken</p>
+            <h2 id="awaken-title">Come back to<br />your senses.</h2>
           </div>
-          <div className="awaken-copy">
-            <h2 id="awaken-title">Awaken</h2>
-            <p>The body remembers what the mind forgets.</p>
+          <div className="awaken-facts">
+            <p className="awaken-lead">Fourteen days between city, sea and mountain.</p>
+            <p>ASCENSION is a curated experience of movement, restoration, sound, food, creativity and place in Da Nang, Vietnam.</p>
+            <dl>
+              <div><dt>When</dt><dd>January 12–26, 2027</dd></div>
+              <div><dt>Formats</dt><dd>7-day + 14-day experiences</dd></div>
+            </dl>
+            <a href="#experience">Explore the Experience <span aria-hidden="true">→</span></a>
           </div>
         </section>
 
@@ -303,6 +312,23 @@ export default function HomePage() {
           <p className="sound-note">Sound is always yours to begin. No audio plays without your choice.</p>
         </section>
 
+        <section className="sight" aria-labelledby="sight-title">
+          <div className="sight-copy">
+            <p className="sight-label">Sight</p>
+            <p className="sight-sequence" aria-hidden="true"><span>See</span><span>Make</span><span>Create</span></p>
+            <h2 id="sight-title">See differently.<br />Make something.</h2>
+            <p>ASCENSION invites creativity back into daily life. Through photography, drawing, painting, collage and material exploration, guests respond to what they see, feel and experience in Da Nang.</p>
+            <p>No artistic experience required.</p>
+            <p>This is about noticing, not making “good art.”</p>
+          </div>
+          <div className="sight-table" aria-label="A visual study of place and creative materials">
+            <div className="sight-image sight-landscape"><Image src={DA_NANG_PLACE} alt="Da Nang landscape and architecture" fill sizes="(max-width: 700px) 92vw, 58vw" /></div>
+            <div className="sight-image sight-water"><Image src={CREATIVE_WATER} alt="A portrait beside the sea" fill sizes="(max-width: 700px) 54vw, 24vw" /></div>
+            <div className="sight-image sight-material"><Image src={CREATIVE_MATERIAL} alt="A body moving through a Da Nang landscape" fill sizes="(max-width: 700px) 58vw, 26vw" /></div>
+          </div>
+          <blockquote><strong>Make art.</strong><span>Not because you’re an artist. Because you’re alive.</span></blockquote>
+        </section>
+
         <section className="model" id="experience" aria-labelledby="model-title">
           <div className="model-title-wrap">
             <h2 id="model-title">Not a retreat<br />from life.<br /><em>A return to it.</em></h2>
@@ -315,7 +341,7 @@ export default function HomePage() {
 
         <section className="experience-da-nang" aria-labelledby="experience-title">
           <div className="experience-image">
-            <Image src={HERO_POSTER} alt="A woman in a yoga wheel pose beside the sea in Da Nang" fill sizes="(max-width: 760px) 100vw, 60vw" />
+            <Image src={DA_NANG_PLACE} alt="Da Nang landscape and architecture" fill sizes="(max-width: 760px) 100vw, 60vw" />
           </div>
           <div className="experience-words">
             <h2 id="experience-title">Experience<br />Da Nang.</h2>
