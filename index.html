@@ -1,349 +1,871 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASCENSION — Be Your Greatest Self · MODUS Séance · Da Nang · January 2027</title>
-  <meta name="description" content="ASCENSION: Tết Preparation Retreat. A 7–14 day luxury transformation retreat in Da Nang, Vietnam. Rolfing, sleep science, sound healing, somatic work, and ceremony. January 12–26, 2027.">
-  <link rel="preload" href="/assets/fonts/lovine.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
-  <link rel="canonical" href="https://ascensionsenses.com/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-  <style>
-    @font-face {
-      font-family: 'Lovine';
-      src: url('/assets/fonts/lovine.woff2') format('woff2'),
-           url('/assets/fonts/lovine.woff') format('woff'),
-           url('/assets/fonts/lovine.otf') format('opentype');
-      font-display: swap;
-    }
-    :root {
-      --bg: #08070A;
-      --bg2: #0E0C10;
-      --gold: #D4A84B;
-      --text: #EDEAE4;
-      --muted: #8A8681;
-      --rule: rgba(212,168,75,0.22);
-      --gutter: clamp(1.5rem, 5vw, 5rem);
-      --font-display: 'Lovine', 'Cormorant Garamond', Georgia, serif;
-      --font-ed: 'Cormorant Garamond', Georgia, serif;
-      --font-mono: 'DM Mono', 'Courier New', monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-ed); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASCENSION — Da Nang, Edition 01 · January 12–26, 2027</title>
+<meta name="description" content="ASCENSION is a travelling series of curated experiences across wellbeing, movement, sound and place. Edition 01 unfolds in Da Nang, Vietnam, January 12 to 26, 2027.">
+<meta name="theme-color" content="#F3ECDE">
+<link rel="canonical" href="https://ascensionsenses.com/">
+<link rel="preload" href="/assets/fonts/lovine.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<meta property="og:title" content="ASCENSION — Da Nang, Edition 01">
+<meta property="og:description" content="A travelling series of curated experiences across wellbeing, movement, sound and place. January 12–26, 2027.">
+<!-- DEPLOY STEP: og:image and og:url need absolute URLs, patched at deploy time -->
+<meta property="og:image" content="/assets/images/hero-poster.jpg">
+<meta property="og:url" content="https://ascensionsenses.com/">
+<style>
+@font-face{
+  font-family:'Lovine';
+  src:url('/assets/fonts/lovine.woff2') format('woff2'),
+      url('/assets/fonts/lovine.woff') format('woff'),
+      url('/assets/fonts/lovine.otf') format('opentype');
+  font-display:swap;
+}
+:root{
+  --canvas:#F3ECDE;
+  --canvas2:#ECE3D0;
+  --panel:#FBF7EE;
+  --ink:#211F19;
+  --muted:#6E6656;
+  --gold:#9C6B22;
+  --gold-strong:#7E5416;
+  --rule:rgba(156,107,34,0.22);
+  --tshadow:none;
+  --gutter:clamp(1.25rem,5vw,5rem);
+  --font-display:'Lovine','Cormorant Garamond',Georgia,serif;
+  --font-ed:'Cormorant Garamond',Georgia,serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+  --ease:cubic-bezier(.22,.9,.32,1);
+  --ease-soft:cubic-bezier(.4,0,.2,1);
+}
+:root[data-theme="dark"]{
+  --canvas:#0B0A0D;
+  --canvas2:#121016;
+  --panel:#161319;
+  --ink:#EDEAE4;
+  --muted:#948E82;
+  --gold:#D4A84B;
+  --gold-strong:#E8C878;
+  --rule:rgba(212,168,75,0.22);
+  --tshadow:0 1px 2px rgba(5,5,10,.9),0 3px 14px rgba(5,5,10,.7),0 10px 44px rgba(5,5,10,.75);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+html,body{overflow-x:clip;overflow-x:hidden}
+body{background:var(--canvas);color:var(--ink);font-family:var(--font-ed);font-size:1.05rem;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .4s var(--ease-soft),color .4s var(--ease-soft)}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;top:-48px;left:1rem;background:var(--gold);color:var(--canvas);padding:.75rem 1.25rem;z-index:1000;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;transition:top .2s var(--ease-soft)}
+.skip-link:focus{top:1rem}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-    /* ── Nav ── */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,7,10,0.88); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--rule); display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter); height: 56px; }
-    .nav-logo { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.02em; color: var(--text); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--gold); }
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);height:64px;background:color-mix(in srgb, var(--canvas) 82%, transparent);backdrop-filter:blur(14px);border-bottom:.5px solid var(--rule)}
+.nav-logo{font-family:var(--font-display);font-size:1.15rem;letter-spacing:.03em;text-decoration:none;color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-links{display:flex;gap:1.75rem}
+.nav-links a{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--muted);transition:color .2s var(--ease-soft)}
+.nav-links a:hover{color:var(--gold)}
+.icon-btn{background:none;border:.5px solid var(--rule);color:var(--ink);width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s}
+.icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.lang{position:relative}
+.lang-btn{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:none;border:.5px solid var(--rule);color:var(--ink);padding:0 .85rem;height:38px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:border-color .2s}
+.lang-btn:hover{border-color:var(--gold)}
+.lang-menu{position:absolute;top:calc(100% + 8px);right:0;background:var(--panel);border:.5px solid var(--rule);min-width:168px;box-shadow:0 18px 40px rgba(20,15,5,.16);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s var(--ease-soft),transform .2s var(--ease-soft),visibility .2s}
+.lang[data-open="true"] .lang-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-menu button{display:flex;width:100%;justify-content:space-between;align-items:center;gap:.75rem;background:none;border:0;text-align:left;padding:.65rem .9rem;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;color:var(--ink);cursor:pointer}
+.lang-menu button:hover:not(:disabled){background:var(--canvas2)}
+.lang-menu button[aria-current="true"]{color:var(--gold)}
+.lang-menu button:disabled{color:var(--muted);opacity:.55;cursor:default}
+.lang-soon{font-size:10px;letter-spacing:.05em;text-transform:uppercase;opacity:.7}
+.mobile-toggle{display:none}
 
-    /* ── Hero ── */
-    .hero { position: relative; width: 100%; overflow: hidden; }
-    .hero img { width: 100%; height: 100svh; min-height: 600px; object-fit: cover; object-position: 50% 18%; display: block; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,7,10,0.72) 0%, rgba(8,7,10,0.2) 40%, rgba(8,7,10,0.6) 68%, rgba(8,7,10,0.95) 100%); pointer-events: none; }
-    .hero-text { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: clamp(2rem,5vw,4.5rem) var(--gutter); }
-    .hero-eyebrow { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
-    .hero-h1 { font-family: var(--font-display); font-size: clamp(4.5rem,14vw,11rem); font-weight: normal; letter-spacing: -0.05em; line-height: 0.85; color: var(--text); }
-    .hero-tagline { font-family: var(--font-ed); font-size: clamp(1.2rem,2.5vw,1.8rem); font-style: italic; color: var(--text); margin-bottom: 0.5rem; }
-    .hero-meta { font-family: var(--font-mono); font-size: clamp(14px,1.1vw,15px); letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212,168,75,0.9); margin-bottom: 0.4rem; display: block; }
-    .hero-date { font-family: var(--font-mono); font-size: clamp(14px,1.1vw,15px); letter-spacing: 0.18em; text-transform: uppercase; color: rgba(237,234,228,0.7); margin-bottom: 1.75rem; display: block; }
-    .hero-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .btn-gold { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size:14px; letter-spacing: 0.28em; text-transform: uppercase; color: #06080C; background: var(--gold); padding: 13px 28px; text-decoration: none; transition: opacity 0.2s; border-radius: 0; }
-    .btn-gold:hover { opacity: 0.85; }
-    .btn-outline { display: inline-flex; align-items: center; font-family: var(--font-mono); font-size:14px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--text); border: 0.5px solid rgba(237,234,228,0.3); padding: 13px 28px; text-decoration: none; transition: border-color 0.2s, color 0.2s; border-radius: 0; }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+/* ---------- hero ---------- */
+.hero-pin{position:relative;height:550vh}
+.hero-stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--canvas)}
+.hero-media{position:absolute;inset:0}
+.hero-poster{position:absolute;inset:0;background-size:cover;background-position:50% 42%;opacity:1;transition:opacity .6s var(--ease-soft)}
+#hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s var(--ease-soft);will-change:transform;transform:translateZ(0)}
+.stage.video-ready #hero-video{opacity:1}
+.stage.video-ready .hero-poster{opacity:0}
+.hero-scrim{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 130% 95% at 50% 42%, rgba(10,9,6,0) 30%, rgba(10,9,6,.5) 100%)}
+:root[data-theme="dark"] .hero-scrim{background:radial-gradient(ellipse 130% 95% at 50% 42%, rgba(6,5,4,0) 30%, rgba(6,5,4,.62) 100%)}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--gutter)}
+.band{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--gutter);opacity:0;pointer-events:none}
+.band::before{content:"";position:absolute;inset:-6%;pointer-events:none;opacity:calc(.25 + .75*var(--k,1));background:radial-gradient(ellipse 78% 60% at 50% 50%, rgba(10,9,6,.5) 0%, rgba(10,9,6,.3) 46%, rgba(10,9,6,0) 76%)}
+:root[data-theme="dark"] .band::before{background:radial-gradient(ellipse 78% 60% at 50% 50%, rgba(5,5,10,.66) 0%, rgba(5,5,10,.44) 46%, rgba(5,5,10,0) 76%)}
+.band.active{pointer-events:auto}
+.kicker{font-family:var(--font-mono);font-size:13px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-strong);margin-bottom:.75rem;text-shadow:var(--tshadow)}
+.band-h{font-family:var(--font-display);font-weight:normal;letter-spacing:-.03em;line-height:.92;color:#F5F0E4;text-shadow:var(--tshadow);max-width:18ch}
+:root[data-theme="dark"] .band-h{color:#F5F0E4}
+.band-1 .band-h{font-size:clamp(3.4rem,11vw,8.5rem)}
+.band-2 .band-h,.band-3 .band-h{font-size:clamp(2.4rem,7vw,5rem);max-width:14ch}
+.band-4 .band-h{font-size:clamp(2rem,5.5vw,3.6rem);color:#F5F0E4}
+.band-sub{font-family:var(--font-ed);font-style:italic;font-size:clamp(1.05rem,2vw,1.4rem);color:#EDE7D8;text-shadow:var(--tshadow);margin-top:.9rem;max-width:34ch}
+.band-meta{font-family:var(--font-mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#E9D9AF;text-shadow:var(--tshadow);margin-top:1.25rem}
+.band-cta{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.75rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:13px;letter-spacing:.26em;text-transform:uppercase;padding:14px 30px;text-decoration:none;transition:opacity .2s var(--ease-soft),transform .2s var(--ease-soft);cursor:pointer;border:none}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:#1A1305}
+.btn-gold:hover{opacity:.88}
+.btn-ghost{border:.75px solid rgba(245,240,228,.55);color:#F5F0E4;background:transparent;text-shadow:var(--tshadow)}
+.btn-ghost:hover{border-color:#F5F0E4}
+@media (pointer:coarse){.btn{min-height:44px}}
 
-    /* ── Sections ── */
-    .sec { padding: clamp(3.5rem,7vw,6rem) var(--gutter); border-bottom: 0.5px solid var(--rule); }
-    .eyebrow { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; display: block; }
-    .sec-title { font-family: var(--font-display); font-size: clamp(2rem,5vw,4rem); font-weight: normal; letter-spacing: -0.03em; line-height: 1; color: var(--text); margin-bottom: 1.25rem; }
-    .sec-body { font-family: var(--font-ed); font-size: clamp(1.125rem,1.6vw,1.25rem); font-style: italic; color: var(--muted); line-height: 1.75; max-width: 680px; }
-    .sec-body + .sec-body { margin-top: 1rem; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem 5rem; }
-    .rule { height: 0.5px; background: var(--rule); margin: 2.5rem 0; }
+/* word/char split assembly */
+.w{display:inline-block;overflow:hidden;vertical-align:top}
+.w .cwrap{display:inline-block}
+.w.rise{--kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);opacity:var(--kc);transform:translateY(calc((1 - var(--kc))*32px))}
+.blur-pair{position:relative;display:inline-block}
+.blur-pair .soft{position:absolute;inset:0;filter:blur(9px);opacity:calc(1 - var(--k,0));transition:none}
+.blur-pair .sharp{opacity:var(--k,0)}
+.c-scatter{display:inline-block;--kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);opacity:var(--kc);transform:translate(calc((1 - var(--kc))*var(--jx,0px)),calc((1 - var(--kc))*var(--jy,0px))) rotate(calc((1 - var(--kc))*var(--jr,0deg)))}
 
-    /* ── Modalities ── */
-    .mod-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px; background: var(--rule); margin-top: 2.5rem; }
-    .mod-card { background: var(--bg); padding: 1.75rem 1.5rem; }
-    .mod-num { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.22em; color: var(--gold); margin-bottom: 0.75rem; display: block; }
-    .mod-name { font-family: var(--font-display); font-size: clamp(1.1rem,1.8vw,1.5rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1.1; color: var(--text); margin-bottom: 0.5rem; }
-    .mod-desc { font-family: var(--font-ed); font-size: 1.05rem; font-style: italic; color: var(--muted); line-height: 1.65; }
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:#F5F0E4;text-shadow:var(--tshadow);opacity:var(--cue-op,1);transition:opacity .4s var(--ease-soft)}
+.scroll-cue span{font-family:var(--font-mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase}
+.scroll-cue svg{animation:cuebob 2.2s ease-in-out infinite}
+@keyframes cuebob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
-    /* ── Pricing ── */
-    .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--rule); margin-top: 2.5rem; }
-    .price-card { background: var(--bg); padding: clamp(2rem,4vw,3rem); display: flex; flex-direction: column; }
-    .price-card.featured { background: var(--bg2); }
-    .price-label { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
-    .price-title { font-family: var(--font-display); font-size: clamp(2rem,4vw,3.2rem); font-weight: normal; letter-spacing: -0.03em; line-height: 0.95; color: var(--text); margin-bottom: 0.5rem; }
-    .price-amount { font-family: var(--font-mono); font-size: clamp(1.2rem,2vw,1.5rem); letter-spacing: 0.06em; color: var(--gold); border-bottom: 0.5px solid var(--rule); padding-bottom: 1.25rem; margin-bottom: 1.25rem; }
-    .price-amount span { font-size: 0.65em; opacity: 0.6; }
-    .price-features { list-style: none; flex: 1; margin-bottom: 1.75rem; }
-    .price-features li { font-family: var(--font-ed); font-size: clamp(0.9rem,1.3vw,1rem); color: var(--muted); padding: 0.4rem 0; border-bottom: 0.5px solid rgba(212,168,75,0.08); font-style: italic; display: flex; gap: 0.75rem; line-height: 1.5; }
-    .price-features li::before { content: '—'; color: var(--gold); font-family: var(--font-mono); font-size:14px; flex-shrink: 0; margin-top: 0.2rem; }
-    .price-note { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); opacity: 0.6; margin-bottom: 1.5rem; line-height: 1.7; }
-    .price-cta { display: block; text-align: center; font-family: var(--font-mono); font-size:14px; letter-spacing: 0.28em; text-transform: uppercase; color: #06080C; background: var(--gold); padding: 14px; text-decoration: none; transition: opacity 0.2s; border-radius: 0; }
-    .price-cta:hover { opacity: 0.85; }
+.ring-wrap{position:absolute;bottom:28px;right:var(--gutter);color:#F5F0E4;opacity:var(--ring-op,0);transition:opacity .3s}
+.ring{transform:rotate(-90deg)}
+@media (max-height:560px){.scroll-cue,.ring-wrap{display:none}}
 
-    /* ── Stay menu ── */
-    .stay-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
-    .stay-table th { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); text-align: left; padding: 0.5rem 1rem 0.5rem 0; border-bottom: 0.5px solid var(--rule); }
-    .stay-table td { font-family: var(--font-ed); font-size: clamp(0.9rem,1.3vw,1rem); font-style: italic; color: var(--muted); padding: 0.65rem 1rem 0.65rem 0; border-bottom: 0.5px solid rgba(212,168,75,0.06); line-height: 1.5; }
-    .stay-table td:first-child { color: var(--text); font-style: normal; }
+/* the composed static hero: one designed resting state, not a broken scrub */
+.stage.static-hero{position:relative;top:auto;height:100svh}
+.stage.static-hero .band{display:none}
+.stage.static-hero .band-4{display:flex;opacity:1;pointer-events:auto;position:absolute}
+.stage.static-hero .scroll-cue,.stage.static-hero .ring-wrap{display:none}
 
-    /* ── CTA band ── */
-    .cta-band { background: var(--bg2); padding: clamp(4rem,8vw,7rem) var(--gutter); text-align: center; border-top: 0.5px solid var(--rule); }
-    .cta-band-title { font-family: var(--font-display); font-size: clamp(2.5rem,6vw,5rem); font-weight: normal; letter-spacing: -0.04em; line-height: 0.9; color: var(--text); margin-bottom: 1rem; }
-    .cta-band-sub { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem; line-height: 1.7; }
-    .cta-band-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+/* ---------- shared section chrome ---------- */
+main{position:relative;background:var(--canvas)}
+section{padding:clamp(4.5rem,10vw,8.5rem) var(--gutter);position:relative}
+.eyebrow{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;display:block}
+.sec-title{font-family:var(--font-display);font-weight:normal;letter-spacing:-.03em;line-height:1.02;font-size:clamp(2.1rem,5vw,4rem);margin-bottom:1.1rem}
+.sec-lede{font-family:var(--font-ed);font-style:italic;font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--muted);line-height:1.7;max-width:640px}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-soft),transform .7s var(--ease-soft)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-stagger .r-part{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease-soft),transform .6s var(--ease-soft)}
+.reveal-stagger.in .r-part{opacity:1;transform:translateY(0)}
+.reveal-stagger.in .r-part:nth-child(1){transition-delay:0ms}
+.reveal-stagger.in .r-part:nth-child(2){transition-delay:90ms}
+.reveal-stagger.in .r-part:nth-child(3){transition-delay:180ms}
+.reveal-stagger.in .r-part:nth-child(4){transition-delay:270ms}
+.reveal-stagger.in .r-part:nth-child(5){transition-delay:360ms}
+.reveal-stagger.in .r-part:nth-child(6){transition-delay:450ms}
+.reveal-stagger .r-part:nth-child(1),.reveal-stagger .r-part:nth-child(2),.reveal-stagger .r-part:nth-child(3),
+.reveal-stagger .r-part:nth-child(4),.reveal-stagger .r-part:nth-child(5),.reveal-stagger .r-part:nth-child(6){transition-delay:0ms}
 
-    /* ── Footer ── */
-    .footer { border-top: 0.5px solid var(--rule); padding: 2rem var(--gutter); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-copy { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); opacity: 0.5; }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; opacity: 0.5; transition: opacity 0.2s; }
-    .footer-links a:hover { opacity: 1; color: var(--gold); }
+/* ---------- series strip ---------- */
+.series{background:var(--canvas2)}
+.series-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5px;background:var(--rule);margin-top:2.5rem;border:1.5px solid var(--rule)}
+.ed-card{background:var(--canvas2);padding:clamp(1.75rem,3vw,2.5rem)}
+.ed-num{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.2em;color:var(--gold);display:block;margin-bottom:.9rem}
+.ed-place{font-family:var(--font-display);font-size:clamp(1.5rem,2.5vw,2.1rem);letter-spacing:-.02em;margin-bottom:.35rem}
+.ed-date{font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;color:var(--muted);margin-bottom:.9rem}
+.ed-status{display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .7rem;border:.5px solid var(--rule)}
+.ed-status.open{color:var(--gold);border-color:var(--gold)}
+.ed-status.soon{color:var(--muted)}
+.series-note{font-family:var(--font-ed);font-style:italic;color:var(--muted);margin-top:1.75rem;font-size:1.05rem}
 
-    @media (max-width: 768px) {
-      .two-col, .mod-grid, .price-grid { grid-template-columns: 1fr; }
-      .mod-grid { gap: 1px; }
-      .hero-text { padding: 1.5rem 1.25rem; }
-      .hero-ctas { flex-direction: column; }
-      .btn-gold, .btn-outline { text-align: center; justify-content: center; }
-      .nav-links { display: none; }
-    }
+/* ---------- premise ---------- */
+.premise-body{font-family:var(--font-ed);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.65rem);line-height:1.65;max-width:760px;color:var(--ink)}
+.premise-body strong{font-style:normal;color:var(--gold-strong)}
 
-    /* ── Browser surfaces: theme what you didn't draw ── */
-    ::selection { background: rgba(212,168,75,0.32); color: var(--text, #EAE0CC); }
-    ::-webkit-scrollbar { width: 10px; height: 10px; }
-    ::-webkit-scrollbar-track { background: var(--bg, #08070A); }
-    ::-webkit-scrollbar-thumb { background: rgba(212,168,75,0.35); border-radius: 5px; border: 2px solid var(--bg, #08070A); }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(212,168,75,0.55); }
-    * { scrollbar-color: rgba(212,168,75,0.35) var(--bg, #08070A); scrollbar-width: thin; }
-    a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
-      outline: 2px solid var(--gold, #D4A84B); outline-offset: 3px; border-radius: 2px;
-    }
-    .pricing-amount, .modus-index-score, .modus-axis-val, .hero-date { font-variant-numeric: tabular-nums; }
-  </style>
+/* ---------- five senses ---------- */
+.senses{background:var(--canvas)}
+.senses-wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);margin-top:3rem;border:1.5px solid var(--rule)}
+.sense{background:var(--panel);padding:2rem 1.25rem;text-align:center;position:relative;cursor:default}
+.sense-name{font-family:var(--font-display);font-size:clamp(1.1rem,1.6vw,1.5rem);letter-spacing:-.01em}
+.sense-desc{font-family:var(--font-ed);font-style:italic;color:var(--muted);font-size:.92rem;margin-top:.6rem;line-height:1.5}
+.sense.lit{background:color-mix(in srgb, var(--gold) 12%, var(--panel))}
+.presence-hold{margin-top:2.5rem;text-align:center}
+.presence-btn{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:.6rem;background:none;border:none;cursor:pointer;padding:1.5rem 2.5rem;font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--ink);-webkit-user-select:none;user-select:none}
+.presence-track{width:min(320px,70vw);height:2px;background:var(--rule);position:relative;overflow:hidden}
+.presence-fill{position:absolute;inset:0 auto 0 0;width:calc(var(--hold,0)*100%);background:var(--gold);transition:width .05s linear}
+.presence-hint{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.presence-btn.done .presence-hint{color:var(--gold)}
+
+/* ---------- method ---------- */
+.method{background:var(--canvas2)}
+.method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:var(--rule);margin-top:3rem;border:1.5px solid var(--rule)}
+.m-step{background:var(--canvas2);padding:clamp(1.75rem,2.5vw,2.25rem)}
+.m-num{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.2em;color:var(--gold);display:block;margin-bottom:1rem}
+.m-name{font-family:var(--font-display);font-size:clamp(1.15rem,1.8vw,1.5rem);margin-bottom:.6rem}
+.m-desc{font-family:var(--font-ed);font-style:italic;color:var(--muted);font-size:.98rem;line-height:1.55}
+
+/* ---------- modalities ---------- */
+.mod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:var(--rule);margin-top:3rem;border:1.5px solid var(--rule)}
+.mod-card{background:var(--panel);padding:clamp(1.5rem,2.2vw,2rem)}
+.mod-num{font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;color:var(--gold);display:block;margin-bottom:.6rem}
+.mod-name{font-family:var(--font-display);font-size:clamp(1.05rem,1.5vw,1.3rem);line-height:1.15;margin-bottom:.5rem}
+.mod-desc{font-family:var(--font-ed);font-style:italic;color:var(--muted);font-size:.92rem;line-height:1.5}
+
+/* ---------- proof / trailer ---------- */
+.proof{background:var(--canvas)}
+.player{position:relative;margin-top:2.5rem;aspect-ratio:16/9;background:#000;overflow:hidden;border:1.5px solid var(--rule)}
+.player img{width:100%;height:100%;object-fit:cover;opacity:.82}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,9,6,.28);border:none;cursor:pointer;width:100%}
+.play-ring{width:76px;height:76px;border-radius:50%;border:1.5px solid rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;transition:transform .25s var(--ease-soft),background .25s}
+.player-play:hover .play-ring{transform:scale(1.06);background:rgba(255,255,255,.12)}
+.player-caption{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:1rem}
+
+/* ---------- program / pricing ---------- */
+.program{background:var(--canvas2)}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--rule);margin-top:3rem;border:1.5px solid var(--rule)}
+.price-card{background:var(--panel);padding:clamp(2rem,3.5vw,3rem);display:flex;flex-direction:column}
+.price-card.featured{background:color-mix(in srgb, var(--gold) 7%, var(--panel))}
+.price-label{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;display:block}
+.price-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.7rem);line-height:.98;margin-bottom:.5rem}
+.price-amount{font-family:var(--font-mono);font-size:clamp(1.1rem,1.8vw,1.35rem);letter-spacing:.05em;color:var(--gold-strong);border-bottom:.5px solid var(--rule);padding-bottom:1.1rem;margin-bottom:1.1rem}
+.price-amount span{font-size:.65em;opacity:.7}
+.price-features{list-style:none;flex:1;margin-bottom:1.5rem}
+.price-features li{font-family:var(--font-ed);font-size:.98rem;font-style:italic;color:var(--muted);padding:.4rem 0;border-bottom:.5px solid var(--rule);display:flex;gap:.65rem;line-height:1.5}
+.price-features li::before{content:'—';color:var(--gold);font-family:var(--font-mono);flex-shrink:0}
+.price-note{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);opacity:.75;margin-bottom:1.5rem;line-height:1.7}
+.price-cta{display:block;text-align:center}
+.deposit-note{font-family:var(--font-ed);font-style:italic;color:var(--muted);font-size:.95rem;margin-top:2rem;max-width:640px}
+
+/* ---------- faq ---------- */
+.faq-list{margin-top:2.5rem;max-width:760px}
+.faq-item{border-bottom:.5px solid var(--rule)}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:1.35rem 0;display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;font-family:var(--font-display);font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--ink)}
+.faq-q .plus{font-family:var(--font-mono);font-size:1.1rem;color:var(--gold);transition:transform .3s var(--ease-soft);flex-shrink:0}
+.faq-item[data-open="true"] .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease-soft)}
+.faq-a p{font-family:var(--font-ed);font-style:italic;color:var(--muted);line-height:1.65;padding-bottom:1.35rem;max-width:64ch}
+
+/* ---------- final cta ---------- */
+.final-cta{background:var(--canvas2);text-align:center}
+.final-cta .sec-title{max-width:16ch;margin:0 auto 1.25rem}
+.final-cta .sec-lede{margin:0 auto 2rem}
+.final-cta .btn{padding:16px 40px}
+
+/* ---------- footer ---------- */
+footer{padding:clamp(3rem,6vw,4.5rem) var(--gutter) 2.5rem;border-top:.5px solid var(--rule);background:var(--canvas)}
+.foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2.5rem}
+.foot-logo{font-family:var(--font-display);font-size:1.3rem}
+.foot-links{display:flex;gap:2.5rem;flex-wrap:wrap}
+.foot-col h4{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem}
+.foot-col a{display:block;font-family:var(--font-ed);font-style:italic;color:var(--ink);text-decoration:none;margin-bottom:.5rem;font-size:.98rem}
+.foot-col a:hover{color:var(--gold)}
+.foot-bottom{margin-top:3rem;padding-top:1.75rem;border-top:.5px solid var(--rule);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:var(--muted)}
+
+/* ---------- ambient background layer ---------- */
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background:radial-gradient(ellipse 60% 40% at 15% 0%, color-mix(in srgb, var(--gold) 10%, transparent), transparent 60%);animation:ambientdrift 70s ease-in-out infinite;animation-delay:-20s}
+@keyframes ambientdrift{0%,100%{transform:translate(0,0)}50%{transform:translate(2%,3%)}}
+main,footer{position:relative;z-index:1}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .method-grid,.mod-grid{grid-template-columns:repeat(2,1fr)}
+  .senses-wrap{grid-template-columns:repeat(3,1fr)}
+  .price-grid{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .nav-links{display:none}
+  .senses-wrap{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+}
+</style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="ambient" aria-hidden="true"></div>
 
 <nav class="nav">
-  <a class="nav-logo" href="/">ASCENSION</a>
-  <div class="nav-links">
-    <a href="/retreat">Full Retreat Brief</a>
-    <a href="/partners/">Partners</a>
-    <a href="#apply">Apply</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <img
-    src="https://res.cloudinary.com/dno3ruh4b/image/upload/c_fill,g_face,w_1800,h_1200,q_auto,f_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg"
-    alt="ASCENSION Retreat — Da Nang, Vietnam"
-    loading="eager" fetchpriority="high">
-  <div class="hero-overlay"></div>
-  <div class="hero-text">
-    <div>
-      <span class="hero-eyebrow">MODUS Séance &middot; Tết Preparation Retreat 2027</span>
-      <h1 class="hero-h1">ASCENSION</h1>
+  <a class="nav-logo" href="#main">ASCENSION</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#senses">Five Senses</a>
+      <a href="#program">Program</a>
+      <a href="#reserve">Reserve</a>
     </div>
-    <div>
-      <p class="hero-tagline">Be Your Greatest Self &mdash; GoAt &#x1F525;&#x1F410;</p>
-      <span class="hero-meta">Prepare for Tết Nguyên Đán &middot; Year of the Fire Goat</span>
-      <span class="hero-date">January 12&ndash;26, 2027 &middot; Da Nang, Vietnam &middot; 7-Day &amp; 14-Day</span>
-      <div class="hero-ctas">
-        <a class="btn-gold" href="#apply">Apply to Attend &rarr;</a>
-        <a class="btn-outline" href="/retreat">Full Retreat Brief &darr;</a>
+    <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+      <svg id="theme-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="4" stroke="currentColor" stroke-width="1.3"/></svg>
+    </button>
+    <div class="lang" id="lang-wrap">
+      <button class="lang-btn" id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false">EN <svg width="9" height="6" viewBox="0 0 9 6" fill="none" aria-hidden="true"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.3"/></svg></button>
+      <div class="lang-menu" id="lang-menu" role="menu">
+        <button role="menuitemradio" aria-current="true" data-lang="en">English</button>
+        <button role="menuitemradio" data-lang="fr" disabled>Français <span class="lang-soon">Soon</span></button>
+        <button role="menuitemradio" data-lang="vi" disabled>Tiếng Việt <span class="lang-soon">Soon</span></button>
+        <button role="menuitemradio" data-lang="ko" disabled>한국어 <span class="lang-soon">Soon</span></button>
+        <button role="menuitemradio" data-lang="zh" disabled>中文 <span class="lang-soon">Soon</span></button>
       </div>
     </div>
   </div>
-</div>
+</nav>
 
-<!-- CURATOR THESIS -->
-<div class="sec">
-  <div class="two-col">
+<main id="main" tabindex="-1">
+
+  <div class="hero-pin" id="hero-pin">
+    <div class="hero-stage stage" id="hero-stage">
+      <div class="hero-media">
+        <div class="hero-poster" id="hero-poster"></div>
+        <video id="hero-video" muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+        <div class="hero-scrim" aria-hidden="true"></div>
+      </div>
+
+      <div class="band band-1" data-range="0.00,0.24" id="band-1">
+        <span class="kicker r1">The Ascension Series</span>
+        <h1 class="band-h">
+          <span class="w rise" style="--th:0.02"><span class="cwrap">ASCENSION</span></span>
+        </h1>
+      </div>
+
+      <div class="band band-2" data-range="0.24,0.46" id="band-2">
+        <p class="band-h" style="font-family:var(--font-ed);font-style:italic;font-weight:normal">
+          <span class="blur-pair"><span class="soft" aria-hidden="true">Come curious.</span><span class="sharp">Come curious.</span></span>
+        </p>
+      </div>
+
+      <div class="band band-3" data-range="0.46,0.68" id="band-3">
+        <p class="band-h">
+          <span class="w rise" style="--th:0.0">Leave</span>
+          <span class="w rise" style="--th:0.12">changed.</span>
+        </p>
+        <p class="band-sub">Your experience isn't prescribed. It's curated, one person at a time.</p>
+      </div>
+
+      <div class="band band-4" data-range="0.70,1.00" id="band-4">
+        <span class="kicker">Edition 01</span>
+        <h2 class="band-h">Da Nang, Vietnam</h2>
+        <span class="band-meta">January 12 to 26, 2027</span>
+        <div class="band-cta">
+          <a class="btn btn-gold" id="hero-reserve" href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener">Reserve Your Place</a>
+          <a class="btn btn-ghost" href="#program">See the Program</a>
+        </div>
+      </div>
+
+      <div class="scroll-cue" id="scroll-cue" aria-hidden="true">
+        <span>Scroll</span>
+        <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M1 1l7 7 7-7M8 8v15" stroke="currentColor" stroke-width="1.2"/></svg>
+      </div>
+      <div class="ring-wrap" id="ring-wrap" aria-hidden="true">
+        <svg class="ring" width="40" height="40" viewBox="0 0 48 48">
+          <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2" opacity=".25"/>
+          <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="126" style="stroke-dashoffset:var(--ld,126)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <section class="series" id="series">
+    <span class="eyebrow reveal">The Series</span>
+    <h2 class="sec-title reveal">One idea. Many places.</h2>
+    <p class="sec-lede reveal">ASCENSION is not a single retreat. It's a travelling series of curated editions, each built around wellbeing, movement, sound and place, and each shaped by where it lands.</p>
+    <div class="series-grid reveal">
+      <div class="ed-card">
+        <span class="ed-num">01</span>
+        <h3 class="ed-place">Da Nang, Vietnam</h3>
+        <span class="ed-date">January 12 to 26, 2027</span><br>
+        <span class="ed-status open">Open for reservation</span>
+      </div>
+      <div class="ed-card">
+        <span class="ed-num">02</span>
+        <h3 class="ed-place">Montréal, Canada</h3>
+        <span class="ed-date">August 12 to 26, 2027</span><br>
+        <span class="ed-status soon">Announced</span>
+      </div>
+    </div>
+    <p class="series-note reveal">Future editions are taking shape. This page will always show what's real, nothing more.</p>
+  </section>
+
+  <section class="premise">
+    <span class="eyebrow reveal">Why Ascension</span>
+    <p class="premise-body reveal">Most retreats hand you a schedule and call it transformation. <strong>Ascension works the other way.</strong> We bring together practitioners, places and practices across the body's five senses, and you move through them differently than the person beside you. Nobody is prescribed a path here. You find yours.</p>
+  </section>
+
+  <section class="senses" id="senses">
+    <span class="eyebrow reveal">The Framework</span>
+    <h2 class="sec-title reveal">Five senses. One presence.</h2>
+    <p class="sec-lede reveal">Sight, sound, touch, taste and scent are the doors in. Presence is what waits on the other side of all five at once. Hold the button below and feel what that means.</p>
+    <div class="senses-wrap reveal" id="senses-wrap">
+      <div class="sense" data-sense="1"><div class="sense-name">Sight</div><p class="sense-desc">Light, landscape, and the architecture of a place built to be looked at slowly.</p></div>
+      <div class="sense" data-sense="2"><div class="sense-name">Sound</div><p class="sense-desc">Gong, bowl, and voice, used for restoration rather than performance.</p></div>
+      <div class="sense" data-sense="3"><div class="sense-name">Touch</div><p class="sense-desc">Bodywork and fascial release, the physical release of what the body has been holding.</p></div>
+      <div class="sense" data-sense="4"><div class="sense-name">Taste</div><p class="sense-desc">Plant-based, ceremonial meals built around the rhythm of the day, not around a menu.</p></div>
+      <div class="sense" data-sense="5"><div class="sense-name">Scent</div><p class="sense-desc">The quiet sense. Rarely designed for on purpose, and one of the first things you'll notice.</p></div>
+    </div>
+    <div class="presence-hold">
+      <button class="presence-btn" id="presence-btn" type="button" aria-describedby="presence-hint">
+        Presence
+        <div class="presence-track"><div class="presence-fill" id="presence-fill"></div></div>
+        <span class="presence-hint" id="presence-hint">Press and hold</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="method" id="method">
+    <span class="eyebrow reveal">How It Works</span>
+    <h2 class="sec-title reveal">The Ascension method</h2>
+    <div class="method-grid reveal-stagger">
+      <div class="m-step r-part"><span class="m-num">01</span><h3 class="m-name">Understand</h3><p class="m-desc">We begin with what brought you here, not with a form.</p></div>
+      <div class="m-step r-part"><span class="m-num">02</span><h3 class="m-name">Curate</h3><p class="m-desc">Practitioners, practices and people are connected around your interests.</p></div>
+      <div class="m-step r-part"><span class="m-num">03</span><h3 class="m-name">Experience</h3><p class="m-desc">You move through a modular ecosystem, not a fixed itinerary.</p></div>
+      <div class="m-step r-part"><span class="m-num">04</span><h3 class="m-name">Integrate</h3><p class="m-desc">You leave with more than a tan and a memory. That's the whole point.</p></div>
+    </div>
+  </section>
+
+  <section class="modalities" id="modalities">
+    <span class="eyebrow reveal">What's Inside</span>
+    <h2 class="sec-title reveal">Eight ways in</h2>
+    <p class="sec-lede reveal">Every modality below is confirmed, not aspirational. This is what you'll actually move through in Da Nang.</p>
+    <div class="mod-grid reveal-stagger">
+      <div class="mod-card r-part"><span class="mod-num">01</span><h3 class="mod-name">Rolfing &amp; Fascial Release</h3><p class="mod-desc">Structural integration. Release the armour the body has been holding for years.</p></div>
+      <div class="mod-card r-part"><span class="mod-num">02</span><h3 class="mod-name">Sleep Science Conference</h3><p class="mod-desc">The neuroscience of recovery, a personal sleep assessment, and a deep sleep ceremony.</p></div>
+      <div class="mod-card r-part"><span class="mod-num">03</span><h3 class="mod-name">Somatic &amp; Energy Work</h3><p class="mod-desc">Trauma-informed somatic practice and Reiki. A reset for the nervous system.</p></div>
+      <div class="mod-card r-part"><span class="mod-num">04</span><h3 class="mod-name">Shamanic Ceremony</h3><p class="mod-desc">Guided plant ceremony, ancestral connection, and fire ritual.</p></div>
+      <div class="mod-card r-part"><span class="mod-num">05</span><h3 class="mod-name">Budokon Yoga</h3><p class="mod-desc">Movement that bridges martial intelligence and yogic flow.</p></div>
+      <div class="mod-card r-part"><span class="mod-num">06</span><h3 class="mod-name">Sound Healing</h3><p class="mod-desc">Gong bath, Tibetan bowls, and vocal toning as a deep cellular reset.</p></div>
+      <div class="mod-card r-part"><span class="mod-num">07</span><h3 class="mod-name">Traditional Vietnamese Medicine</h3><p class="mod-desc">Acupressure, herbal protocols, and lineage healing from Da Nang practitioners.</p></div>
+      <div class="mod-card r-part"><span class="mod-num">08</span><h3 class="mod-name">Tết Preparation</h3><p class="mod-desc">Lunar New Year integration: ritual, intention, and cultural immersion. Fourteen day edition only.</p></div>
+    </div>
+  </section>
+
+  <section class="proof" id="watch">
+    <span class="eyebrow reveal">See It</span>
+    <h2 class="sec-title reveal">Da Nang, in thirty seconds</h2>
+    <p class="sec-lede reveal">The real coastline, the real place, before you arrive.</p>
+    <div class="player reveal" id="trailer-player">
+      <img src="/assets/images/hero-poster.jpg" alt="" aria-hidden="true">
+      <button class="player-play" id="trailer-play" type="button" aria-label="Play the Da Nang trailer">
+        <span class="play-ring"><svg width="20" height="22" viewBox="0 0 20 22" fill="#fff"><path d="M1 1l18 10L1 21V1z"/></svg></span>
+      </button>
+    </div>
+    <p class="player-caption">Filmed on location. Da Nang, Vietnam.</p>
+  </section>
+
+  <section class="program" id="program">
+    <span class="eyebrow reveal">Reserve Your Place</span>
+    <h2 class="sec-title reveal">Edition 01. January 12 to 26, 2027.</h2>
+    <p class="sec-lede reveal">Two ways to attend. Both include the full modality program; travel and lodging are arranged separately once you're confirmed.</p>
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <span class="price-label">7-Day Edition</span>
+        <h3 class="price-title">One Week</h3>
+        <p class="price-amount">$1,200 <span>USD · Programme only</span></p>
+        <ul class="price-features">
+          <li>All group modalities and workshops</li>
+          <li>Two private fascial release sessions</li>
+          <li>Sleep Science Conference access</li>
+          <li>Personal sleep assessment, 30 minutes</li>
+          <li>Three ceremonial meals daily, plant-based</li>
+          <li>Airport transfer, arrival and departure</li>
+          <li>Home practice protocols</li>
+        </ul>
+        <p class="price-note">Early bird 15%: $1,020, reserve by June 30, 2026<br>Group 10%: $1,080, three or more</p>
+        <a class="btn btn-gold price-cta" href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener">Reserve, $300 Deposit</a>
+      </div>
+      <div class="price-card featured">
+        <span class="price-label">14-Day Fortnight</span>
+        <h3 class="price-title">Enter Tết Transformed</h3>
+        <p class="price-amount">$2,000 <span>USD · Programme only</span></p>
+        <ul class="price-features">
+          <li>Everything in the 7-day edition, extended</li>
+          <li>Five private fascial release sessions</li>
+          <li>Personal transformation coaching</li>
+          <li>Advanced sleep mastery module</li>
+          <li>Tết rituals and blessings, January 24</li>
+          <li>Closing ceremony, January 25</li>
+          <li>Optional Tết celebration, January 26 to 29</li>
+        </ul>
+        <p class="price-note">Early bird 15%: $1,700, reserve by June 30, 2026<br>Group 10%: $1,800, three or more</p>
+        <a class="btn btn-gold price-cta" href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener">Reserve, $300 Deposit</a>
+      </div>
+    </div>
+    <p class="deposit-note reveal">A $300 deposit holds your place and is applied to your total program cost. The balance is arranged directly once you're confirmed.</p>
+  </section>
+
+  <section class="faq" id="faq">
+    <span class="eyebrow reveal">Before You Ask</span>
+    <h2 class="sec-title reveal">The honest questions</h2>
+    <div class="faq-list reveal" id="faq-list">
+      <div class="faq-item" data-open="false">
+        <button class="faq-q" aria-expanded="false">Is this actually different from a normal wellness retreat?<span class="plus">+</span></button>
+        <div class="faq-a"><p>The modalities are confirmed, not aspirational. Every practitioner and practice listed on this page is real and scheduled for Da Nang. Nothing here is a placeholder waiting to be filled in later.</p></div>
+      </div>
+      <div class="faq-item" data-open="false">
+        <button class="faq-q" aria-expanded="false">What does the deposit actually cover?<span class="plus">+</span></button>
+        <div class="faq-a"><p>The $300 deposit holds your place for the edition and is applied to your program cost, either the 7-day or 14-day price above. Travel and lodging are handled separately once you're confirmed.</p></div>
+      </div>
+      <div class="faq-item" data-open="false">
+        <button class="faq-q" aria-expanded="false">Do I need to be experienced with any of this?<span class="plus">+</span></button>
+        <div class="faq-a"><p>No. The whole point of curation over prescription is that you move at your own depth. Some modalities are gentle, some are intense; you choose how far into each one you go.</p></div>
+      </div>
+      <div class="faq-item" data-open="false">
+        <button class="faq-q" aria-expanded="false">What if Da Nang doesn't work for my dates?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Montréal, Edition 02, is confirmed for August 12 to 26, 2027. Reach out and we'll let you know as soon as that page opens for reservations.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" id="reserve">
+    <span class="eyebrow reveal">Edition 01</span>
+    <h2 class="sec-title reveal">Da Nang is waiting.</h2>
+    <p class="sec-lede reveal">Twenty six people, one edition, January 12 to 26, 2027. A $300 deposit holds your place.</p>
+    <a class="btn btn-gold reveal" href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener">Reserve Your Place</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-grid">
     <div>
-      <span class="eyebrow">The Edit</span>
-      <h2 class="sec-title">MODUS curates<br>the experience.</h2>
-      <p class="sec-body">ASCENSION is not a resort package. It is a precisely curated seven-day encounter — practitioners chosen for mastery, modalities sequenced for transformation, and a location chosen because Da Nang in January is, simply, right.</p>
-      <p class="sec-body" style="margin-top:1rem;">You choose where you stay. MODUS curates what you do there. This is the difference between a holiday and a change.</p>
+      <div class="foot-logo">ASCENSION</div>
+      <p style="font-family:var(--font-mono);font-size:11.5px;color:var(--muted);margin-top:.6rem;letter-spacing:.06em">A travelling series. Da Nang, Edition 01.</p>
     </div>
-    <div>
-      <span class="eyebrow">The Moment</span>
-      <h2 class="sec-title">Prepare for<br>the New Year.</h2>
-      <p class="sec-body">Tết Nguyên Đán — the Lunar New Year — is the most auspicious day in the Vietnamese calendar. The Year of the Fire Goat begins January 29, 2027. ASCENSION ends January 26. You will arrive at that threshold already transformed.</p>
-      <p class="sec-body" style="margin-top:1rem;">The 14-Day Fortnight includes a full Tết preparation day on January 24: ancestor veneration, bánh chưng making, calligraphy, red envelope ritual, and fire ceremony. Then you step into the New Year with intention.</p>
-    </div>
-  </div>
-</div>
-
-<!-- MODALITIES -->
-<div class="sec">
-  <span class="eyebrow">Modalities</span>
-  <h2 class="sec-title">Eight dimensions.<br>One arc.</h2>
-  <p class="sec-body">Every modality earns its place. The sequence is intentional: each day builds on the last, moving from physical release to mental clarity to spiritual integration.</p>
-  <div class="mod-grid">
-    <div class="mod-card">
-      <span class="mod-num">01</span>
-      <p class="mod-name">Rolfing &amp;<br>Fascial Release</p>
-      <p class="mod-desc">Structural integration — release the armour the body has been holding for years.</p>
-    </div>
-    <div class="mod-card">
-      <span class="mod-num">02</span>
-      <p class="mod-name">Sleep Science<br>Conference</p>
-      <p class="mod-desc">Neuroscience of recovery. Personal sleep assessment. Deep sleep ceremony.</p>
-    </div>
-    <div class="mod-card">
-      <span class="mod-num">03</span>
-      <p class="mod-name">Somatic &amp;<br>Energy Work</p>
-      <p class="mod-desc">Trauma-informed somatic practice and Reiki — the nervous system reset.</p>
-    </div>
-    <div class="mod-card">
-      <span class="mod-num">04</span>
-      <p class="mod-name">Shamanic<br>Ceremony</p>
-      <p class="mod-desc">Guided plant ceremony, ancestral connection, and fire ritual.</p>
-    </div>
-    <div class="mod-card">
-      <span class="mod-num">05</span>
-      <p class="mod-name">Budokon<br>Yoga</p>
-      <p class="mod-desc">Movement arts that bridge martial intelligence and yogic flow.</p>
-    </div>
-    <div class="mod-card">
-      <span class="mod-num">06</span>
-      <p class="mod-name">Sound<br>Healing</p>
-      <p class="mod-desc">Gong bath, Tibetan bowls, and vocal toning as deep cellular reset.</p>
-    </div>
-    <div class="mod-card">
-      <span class="mod-num">07</span>
-      <p class="mod-name">Traditional<br>Vietnamese Medicine</p>
-      <p class="mod-desc">Acupressure, herbal protocols, and lineage healing from Da Nang practitioners.</p>
-    </div>
-    <div class="mod-card">
-      <span class="mod-num">08</span>
-      <p class="mod-name">Tết<br>Preparation</p>
-      <p class="mod-desc">Lunar New Year integration — ritual, intention, and cultural immersion. 14-day only.</p>
+    <div class="foot-links">
+      <div class="foot-col">
+        <h4>Program</h4>
+        <a href="#senses">Five Senses</a>
+        <a href="#modalities">Modalities</a>
+        <a href="#program">Pricing</a>
+      </div>
+      <div class="foot-col">
+        <h4>Series</h4>
+        <a href="#series">Da Nang, 2027</a>
+        <a href="#series">Montréal, 2027</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:daniel@stanfordemporium.com">daniel@stanfordemporium.com</a>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- PASSPORT / PRICING -->
-<div class="sec" id="pricing">
-  <span class="eyebrow">Edition</span>
-  <h2 class="sec-title">Choose your<br>immersion.</h2>
-  <p class="sec-body">ASCENSION operates on an edition model. Your edition covers the full programme — every modality, every session, every meal within the retreat schedule. Accommodation is separate and chosen by you from the curated stay menu below.</p>
-  <div class="price-grid">
-    <div class="price-card">
-      <span class="price-label">7-Day Edition</span>
-      <h3 class="price-title">One Week</h3>
-      <p class="price-amount">$1,200 <span>USD &middot; Programme only</span></p>
-      <ul class="price-features">
-        <li>All group modalities &amp; workshops</li>
-        <li>2 private fascial release sessions</li>
-        <li>Sleep Science Conference access</li>
-        <li>Personal sleep assessment (30 min)</li>
-        <li>3 meals daily — plant-based, ceremonial</li>
-        <li>Airport transfer (arrival + departure)</li>
-        <li>Home practice protocols</li>
-        <li>Tết preparation workshop</li>
-      </ul>
-      <p class="price-note">Early Bird 15%: $1,020 — reserve by June 30, 2026<br>Group 10%: $1,080 — 3 or more</p>
-      <a class="price-cta" href="#apply">Apply for 7-Day &rarr;</a>
-    </div>
-    <div class="price-card featured">
-      <span class="price-label">14-Day Fortnight</span>
-      <h3 class="price-title">Enter Tết<br>Transformed</h3>
-      <p class="price-amount">$2,000 <span>USD &middot; Programme only</span></p>
-      <ul class="price-features">
-        <li>Everything in 7-Day, extended</li>
-        <li>5 private fascial release sessions</li>
-        <li>Personal transformation coaching</li>
-        <li>Advanced sleep mastery module</li>
-        <li>Tết Rituals &amp; Blessings — Jan 24</li>
-        <li>Closing ceremony &amp; Tết blessing — Jan 25</li>
-        <li>Optional: Tết Celebration Jan 26–29</li>
-      </ul>
-      <p class="price-note">Early Bird 15%: $1,700 — reserve by June 30, 2026<br>Group 10%: $1,800 — 3 or more</p>
-      <a class="price-cta" href="#apply">Apply for 14-Day &rarr;</a>
-    </div>
-  </div>
-</div>
-
-<!-- STAY MENU -->
-<div class="sec">
-  <span class="eyebrow">Stay Menu</span>
-  <h2 class="sec-title">Where you stay<br>is yours to choose.</h2>
-  <p class="sec-body">MODUS has curated a shortlist of Da Nang properties that match the standard of the programme. Book directly — the retreat edition covers everything else.</p>
-  <table class="stay-table">
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Category</th>
-        <th>Range / Night</th>
-        <th>Notes</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Fusion Maia Da Nang</td>
-        <td>Luxury — All-Spa Inclusive</td>
-        <td>~$150–230</td>
-        <td>#2 International Wellness Retreat globally</td>
-      </tr>
-      <tr>
-        <td>Sheraton Grand Da Nang</td>
-        <td>5-Star</td>
-        <td>~$120–180</td>
-        <td>Direct beach access, large pool</td>
-      </tr>
-      <tr>
-        <td>Naman Retreat</td>
-        <td>Luxury Villa</td>
-        <td>~$130–200</td>
-        <td>Purpose-built wellness environment</td>
-      </tr>
-      <tr>
-        <td>The Hideout Hostel</td>
-        <td>Boutique / Social</td>
-        <td>~$45–80</td>
-        <td>Best value, strong community energy</td>
-      </tr>
-      <tr>
-        <td>Pullman Da Nang Beach</td>
-        <td>4-Star</td>
-        <td>~$90–130</td>
-        <td>Non Nuoc beach, reliable quality</td>
-      </tr>
-    </tbody>
-  </table>
-  <p style="font-family:var(--font-mono);font-size:14px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);opacity:0.5;margin-top:1rem;line-height:1.7;">Rates are indicative for January 2027. Book direct for best availability. Group block rates available for 3+ rooms — contact MODUS.</p>
-</div>
-
-<!-- APPLY CTA -->
-<div class="cta-band" id="apply">
-  <h2 class="cta-band-title">Ready to<br>Ascend into Tết?</h2>
-  <p class="cta-band-sub">Da Nang, Vietnam &nbsp;&middot;&nbsp; January 12&ndash;26, 2027 &nbsp;&middot;&nbsp; Cohort is limited by design.</p>
-  <div class="cta-band-btns">
-    <a class="btn-gold" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Application">Apply to Attend &rarr;</a>
-    <a class="btn-outline" href="/retreat">Full Programme Brief &rarr;</a>
-    <a class="btn-outline" href="/access.html">Partner / Sponsor Access &rarr;</a>
-  </div>
-</div>
-
-<footer class="footer">
-  <span class="footer-copy">&copy; 2026 MODUS &middot; Stanford Emporium Inc.</span>
-  <div class="footer-links">
-    <a href="/">MODUS</a>
-    <a href="/retreat">Retreat brief</a>
-    <a href="/partners/">Partners</a>
-    <a href="/access.html">Access</a>
+  <div class="foot-bottom">
+    <span>&copy; 2027 Ascension. A Stanford Emporium production.</span>
+    <span>Da Nang, Vietnam</span>
   </div>
 </footer>
 
+<script>
+(function(){
+"use strict";
+
+/* ---------- theme ---------- */
+var root = document.documentElement;
+var themeBtn = document.getElementById('theme-toggle');
+function applyTheme(t){
+  root.setAttribute('data-theme', t);
+  themeBtn.setAttribute('aria-pressed', String(t === 'dark'));
+  themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+  try{ localStorage.setItem('ascension-theme', t); }catch(e){}
+}
+(function initTheme(){
+  var saved = null;
+  try{ saved = localStorage.getItem('ascension-theme'); }catch(e){}
+  if (saved === 'light' || saved === 'dark'){ applyTheme(saved); return; }
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(prefersDark ? 'dark' : 'light');
+})();
+themeBtn.addEventListener('click', function(){
+  applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+/* ---------- language menu ---------- */
+var langWrap = document.getElementById('lang-wrap');
+var langBtn = document.getElementById('lang-btn');
+langBtn.addEventListener('click', function(){
+  var open = langWrap.getAttribute('data-open') === 'true';
+  langWrap.setAttribute('data-open', String(!open));
+  langBtn.setAttribute('aria-expanded', String(!open));
+});
+document.addEventListener('click', function(e){
+  if (!langWrap.contains(e.target)){ langWrap.setAttribute('data-open','false'); langBtn.setAttribute('aria-expanded','false'); }
+});
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape'){ langWrap.setAttribute('data-open','false'); langBtn.setAttribute('aria-expanded','false'); }
+});
+
+/* ---------- reveal on scroll ---------- */
+var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+}, { threshold: 0.18 });
+revealEls.forEach(function(el){ io.observe(el); });
+
+/* ---------- faq accordion ---------- */
+document.querySelectorAll('.faq-item').forEach(function(item){
+  var q = item.querySelector('.faq-q');
+  var a = item.querySelector('.faq-a');
+  q.addEventListener('click', function(){
+    var open = item.getAttribute('data-open') === 'true';
+    document.querySelectorAll('.faq-item').forEach(function(other){
+      other.setAttribute('data-open','false');
+      other.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      other.querySelector('.faq-a').style.maxHeight = null;
+    });
+    if (!open){
+      item.setAttribute('data-open','true');
+      q.setAttribute('aria-expanded','true');
+      a.style.maxHeight = a.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ---------- trailer proof player (click to load, never autoplay) ---------- */
+var playerEl = document.getElementById('trailer-player');
+var playBtn = document.getElementById('trailer-play');
+playBtn.addEventListener('click', function(){
+  var iframe = document.createElement('iframe');
+  iframe.src = 'https://player.vimeo.com/video/1221665573?autoplay=1&title=0&byline=0&portrait=0';
+  iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+  iframe.setAttribute('allowfullscreen','');
+  iframe.title = 'ASCENSION, Da Nang trailer';
+  playerEl.innerHTML = '';
+  playerEl.appendChild(iframe);
+});
+
+/* ---------- presence hold interaction (the one designed moment) ---------- */
+var presenceBtn = document.getElementById('presence-btn');
+var presenceFill = document.getElementById('presence-fill');
+var presenceHint = document.getElementById('presence-hint');
+var senses = document.querySelectorAll('.sense');
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+var holding = false, holdStart = 0, holdRaf = null, holdVal = 0;
+var HOLD_MS = 1400;
+
+function litCount(v){ return Math.round(v * senses.length); }
+function paintSenses(v){
+  var n = litCount(v);
+  senses.forEach(function(s, i){ s.classList.toggle('lit', i < n); });
+}
+function setFill(v){
+  presenceBtn.style.setProperty('--hold', v);
+  paintSenses(v);
+}
+function tickHold(now){
+  if (!holding) return;
+  var elapsed = now - holdStart;
+  holdVal = Math.min(1, elapsed / HOLD_MS);
+  setFill(holdVal);
+  if (holdVal >= 1){
+    presenceBtn.classList.add('done');
+    presenceHint.textContent = 'Presence';
+    holding = false;
+    return;
+  }
+  holdRaf = requestAnimationFrame(tickHold);
+}
+function releaseHold(){
+  if (!holding) return;
+  holding = false;
+  if (holdRaf) cancelAnimationFrame(holdRaf);
+  if (presenceBtn.classList.contains('done')) return;
+  var ease = function(){
+    holdVal *= 0.85;
+    setFill(holdVal);
+    if (holdVal > 0.01){ requestAnimationFrame(ease); } else { setFill(0); presenceHint.textContent = 'Press and hold'; }
+  };
+  ease();
+}
+function startHold(){
+  if (reduceMotion.matches){
+    holdVal = 1; setFill(1); presenceBtn.classList.add('done'); presenceHint.textContent = 'Presence';
+    return;
+  }
+  if (presenceBtn.classList.contains('done')){
+    presenceBtn.classList.remove('done'); holdVal = 0; setFill(0); presenceHint.textContent = 'Press and hold';
+    return;
+  }
+  holding = true; holdStart = performance.now();
+  holdRaf = requestAnimationFrame(tickHold);
+}
+presenceBtn.addEventListener('mousedown', startHold);
+presenceBtn.addEventListener('touchstart', function(e){ e.preventDefault(); startHold(); }, { passive:false });
+['mouseup','mouseleave','touchend','touchcancel'].forEach(function(ev){
+  presenceBtn.addEventListener(ev, releaseHold);
+});
+if (reduceMotion.matches){ setFill(1); presenceBtn.classList.add('done'); presenceHint.textContent = 'Presence'; }
+
+/* ================= SCRUB HERO ================= */
+var heroPin = document.getElementById('hero-pin');
+var stage = document.getElementById('hero-stage');
+var video = document.getElementById('hero-video');
+var poster = document.getElementById('hero-poster');
+var ringWrap = document.getElementById('ring-wrap');
+var ring = ringWrap.querySelector('.ring circle:nth-child(2)');
+var scrollCue = document.getElementById('scroll-cue');
+var bands = Array.prototype.slice.call(document.querySelectorAll('.band')).map(function(el){
+  var r = el.dataset.range.split(',').map(Number);
+  return { el: el, a: r[0], b: r[1], op: -1, k: -1, active: null };
+});
+
+var VIDEO_URL = '/assets/video/hero-scroll.mp4';
+var POSTER_URL = '/assets/images/hero-poster.jpg';
+
+poster.style.backgroundImage = "url('" + POSTER_URL + "')";
+
+var GATES = [
+  '(max-width: 720px)',
+  '(orientation: portrait) and (max-width: 1024px)',
+  '(orientation: portrait) and (pointer: coarse)',
+  '(orientation: landscape) and (pointer: coarse) and (max-height: 560px)',
+  '(prefers-reduced-motion: reduce)'
+];
+var MQLS = GATES.map(function(q){ return window.matchMedia(q); });
+
+var scrubOn = false, heroOnScreen = false, rafId = null, lastTick = 0;
+var target = 0, shown = 0;
+var seekBusy = false, pendingTime = null;
+var blobStarted = false;
+
+var heroIO = new IntersectionObserver(function(entries){
+  heroOnScreen = entries[0].isIntersecting;
+  if (heroOnScreen && scrubOn && rafId === null){ rafId = requestAnimationFrame(tick); }
+}, { threshold: 0 });
+heroIO.observe(heroPin);
+
+function heroProgress(){
+  var rect = heroPin.getBoundingClientRect();
+  var total = heroPin.offsetHeight - window.innerHeight;
+  if (total <= 0) return 1;
+  var scrolled = -rect.top;
+  return Math.min(1, Math.max(0, scrolled / total));
+}
+
+function requestSeek(t){
+  if (!video.duration || isNaN(video.duration)) return;
+  if (seekBusy){ pendingTime = t; return; }
+  seekBusy = true;
+  try{ video.currentTime = t; }catch(e){ seekBusy = false; }
+}
+video.addEventListener('seeked', function(){
+  seekBusy = false;
+  if (pendingTime !== null){ var t = pendingTime; pendingTime = null; requestSeek(t); }
+});
+video.addEventListener('error', function(){ seekBusy = false; pendingTime = null; });
+
+var smoothstep = function(p,e0,e1){ var t = Math.min(1, Math.max(0, (p-e0)/(e1-e0))); return t*t*(3-2*t); };
+var loadStart = performance.now();
+
+function updateCaptions(p, now){
+  var cueOp = p < 0.03 ? 1 : 0;
+  scrollCue.style.setProperty('--cue-op', cueOp);
+  bands.forEach(function(band){
+    var a = band.a, b = band.b;
+    var f = Math.min(0.02, (b - a) / 3);
+    var isFirst = a === 0;
+    var isLast = b >= 0.999;
+    var opUp = isFirst ? 1 : smoothstep(p, a, a + f);
+    var opDown = isLast ? 1 : (1 - smoothstep(p, b - f, b));
+    var op = Math.max(0, Math.min(opUp, opDown));
+    var ramp = Math.min(0.03, (b - a) * 0.4);
+    var loadK = isFirst ? Math.min(1, (now - loadStart) / 900) : 0;
+    var scrollK = Math.max(0, Math.min(1, (p - a) / (ramp || 0.001)));
+    var k = Math.max(scrollK, loadK);
+    if (Math.abs(op - band.op) > 0.004){
+      band.op = op;
+      band.el.style.opacity = op;
+    }
+    var active = op > 0.03;
+    if (active !== band.active){
+      band.active = active;
+      band.el.classList.toggle('active', active);
+    }
+    if (Math.abs(k - band.k) > 0.006){
+      band.k = k;
+      band.el.style.setProperty('--k', k.toFixed(3));
+    }
+  });
+}
+
+function tick(now){
+  var dt = Math.min(100, now - (lastTick || now));
+  lastTick = now;
+  var kSpeed = 0.16;
+  shown += (target - shown) * (1 - Math.pow(1 - kSpeed, dt / 16.667));
+  var converged = Math.abs(target - shown) < 0.0005;
+  if (converged){ shown = target; }
+  if (video.duration && !isNaN(video.duration)){ requestSeek(shown * video.duration); }
+  updateCaptions(shown, now);
+  if (converged && (now - loadStart) > 1000){
+    rafId = null; lastTick = 0;
+  } else if (heroOnScreen){
+    rafId = requestAnimationFrame(tick);
+  } else {
+    rafId = null; lastTick = 0;
+  }
+}
+
+function onScroll(){
+  target = heroProgress();
+  if (rafId === null && heroOnScreen){ rafId = requestAnimationFrame(tick); }
+}
+
+function startBlobFetch(){
+  if (blobStarted) return;
+  blobStarted = true;
+  loadHeroBlob().catch(failVideo);
+}
+
+function loadHeroBlob(){
+  return fetch(VIDEO_URL).then(function(res){
+    if (!res.ok) throw new Error('no video');
+    return res.blob();
+  }).then(function(blob){
+    video.src = URL.createObjectURL(blob);
+    video.load();
+    video.addEventListener('canplay', function(){
+      requestSeek(heroProgress() * video.duration);
+      stage.classList.add('video-ready');
+    }, { once: true });
+  });
+}
+
+function failVideo(){
+  ringWrap.style.setProperty('--ring-op', 0);
+  stage.classList.add('video-failed');
+  /* page is complete on the poster alone; captions and CTAs already work without the video */
+}
+
+function initHeroOnce(){
+  if (initHeroOnce.done) return;
+  initHeroOnce.done = true;
+  startBlobFetch();
+}
+
+function enableScrub(){
+  stage.classList.remove('static-hero');
+  heroPin.style.height = '';
+  if (scrubOn) return;
+  scrubOn = true;
+  initHeroOnce();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  bands.forEach(function(b){ b.op = -1; b.k = -1; b.active = null; b.el.style.opacity = ''; b.el.style.removeProperty('--k'); });
+  updateCaptions(heroProgress(), performance.now());
+  onScroll();
+}
+function disableScrub(){
+  scrubOn = false;
+  window.removeEventListener('scroll', onScroll);
+  if (rafId !== null){ cancelAnimationFrame(rafId); rafId = null; }
+  /* the composed static hero: poster plus the settled band, no video, no scroll drive */
+  heroPin.style.height = '100svh';
+  stage.classList.add('static-hero');
+  var settleBand = document.getElementById('band-4');
+  settleBand.style.setProperty('--k', 1);
+  settleBand.style.opacity = 1;
+}
+function applyHeroMode(){
+  var gated = MQLS.some(function(m){ return m.matches; });
+  if (gated){ disableScrub(); } else { enableScrub(); }
+}
+MQLS.forEach(function(m){ m.addEventListener('change', applyHeroMode); });
+applyHeroMode();
+
+})();
+</script>
 </body>
 </html>
