@@ -5,6 +5,9 @@ import Image from "next/image";
 
 const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/c_fill,g_face,w_1800,h_1200,q_auto,f_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg";
+const HERO_VIDEO_POSTER =
+  "https://i.vimeocdn.com/video/2194428736-e7f8d686f17ca2337dc92e5365b40b3c70ca10631e8aa53f4fe4531ae6d18356-d_1280x720?region=us";
+const HERO_VIMEO_ID = "1221665573";
 const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1787827128/zen_sunset_beach_pool_da_nang_ovllnz.jpg";
 
@@ -18,14 +21,24 @@ function ThemeControl({ theme, onChange }) {
   );
 }
 
-function ProgressiveMedia({ poster, alt, priority = false, className = "", videoSrc }) {
+function ProgressiveMedia({ poster, alt, priority = false, className = "", videoSrc, vimeoId }) {
   const videoRef = useRef(null);
   const [ready, setReady] = useState(false);
+  const [posterLoaded, setPosterLoaded] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(true);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReduceMotion(query.matches);
+    updatePreference();
+    query.addEventListener("change", updatePreference);
+    return () => query.removeEventListener("change", updatePreference);
+  }, []);
 
   return (
     <div className={`progressive-media ${ready ? "motion-ready" : ""} ${className}`}>
-      <Image src={poster} alt={alt} fill priority={priority} sizes="100vw" className="media-poster" />
-      {videoSrc ? (
+      <Image src={poster} alt={alt} fill priority={priority} sizes="100vw" className="media-poster" onLoad={() => setPosterLoaded(true)} />
+      {videoSrc && posterLoaded && !reduceMotion ? (
         <video
           ref={videoRef}
           className="media-motion"
@@ -40,6 +53,18 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
           <source src={videoSrc} type="video/mp4" />
         </video>
       ) : null}
+      {vimeoId && posterLoaded && !reduceMotion ? (
+        <iframe
+          className="media-motion media-vimeo"
+          src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&muted=1&loop=1&autopause=0&dnt=1&title=0&byline=0&portrait=0`}
+          title="Da Nang moving landscape"
+          allow="autoplay; fullscreen; picture-in-picture"
+          referrerPolicy="strict-origin-when-cross-origin"
+          tabIndex="-1"
+          aria-hidden="true"
+          onLoad={() => setReady(true)}
+        />
+      ) : null}
     </div>
   );
 }
@@ -48,9 +73,10 @@ function Hero({ theme, setTheme }) {
   return (
     <header className="hero-stage" id="top">
       <ProgressiveMedia
-        poster={HERO_POSTER}
-        alt="A monumental figure overlooking a coastal city at sunset"
+        poster={HERO_VIDEO_POSTER}
+        alt="A wide Pacific beach and mountain coastline in Da Nang"
         priority
+        vimeoId={HERO_VIMEO_ID}
       />
       <div className="hero-atmosphere" aria-hidden="true" />
       <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
