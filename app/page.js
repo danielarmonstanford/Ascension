@@ -17,7 +17,7 @@ const DA_NANG_PLACE =
 const CREATIVE_WATER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823818/Black_Gold-water-D80_5523_fgh0eu.jpg";
 const CREATIVE_MATERIAL =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823955/D80_2949-Zen-Indian_hms21t.jpg";
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787828365/thai_style_full_doors_contrast_llcw5b.jpg";
 const TOUCH_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png";
 const SOUND_ART =
@@ -446,7 +446,7 @@ export default function HomePage() {
           <div className="sight-table" aria-label="A visual study of place and creative materials">
             <div className="sight-image sight-landscape"><Image src={DA_NANG_PLACE} alt="Da Nang landscape and architecture" fill sizes="(max-width: 700px) 92vw, 58vw" /></div>
             <div className="sight-image sight-water"><Image src={CREATIVE_WATER} alt="A portrait beside the sea" fill sizes="(max-width: 700px) 54vw, 24vw" /></div>
-            <div className="sight-image sight-material"><Image src={CREATIVE_MATERIAL} alt="A quiet moment of creative stillness" fill sizes="(max-width: 700px) 58vw, 26vw" /></div>
+            <div className="sight-image sight-material"><Image src={CREATIVE_MATERIAL} alt="An ornate carved and gilded doorway, a study in pattern and material" fill sizes="(max-width: 700px) 58vw, 26vw" /></div>
           </div>
           <blockquote><strong>Make art.</strong><span>Not because you’re an artist. Because you’re alive.</span></blockquote>
         </section>
