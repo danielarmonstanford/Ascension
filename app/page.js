@@ -7,6 +7,8 @@ const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
 const HERO_MASTER =
   "https://res.cloudinary.com/dno3ruh4b/video/upload/v1788041873/Bodakon_wheel_Yoga_Ascension_qfdctl.mp4";
+const HERO_MASTER_MOBILE =
+  "https://res.cloudinary.com/dno3ruh4b/video/upload/c_fill,ar_4:5,w_960,q_auto/v1788041873/Bodakon_wheel_Yoga_Ascension_qfdctl.mp4";
 const DA_NANG_VIMEO_ID = "1221665573";
 const DA_NANG_VIDEO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787489954/Screen_Shot_2026-08-23_at_8.59.05_AM_e8jceq.png";
@@ -119,6 +121,7 @@ function ScrollHeroMedia({ videoRef, motionReady, onLoadedMetadata, onCanPlay, o
           onSeeked={onSeeked}
           onError={onError}
         >
+          <source media="(max-width: 700px)" src={HERO_MASTER_MOBILE} type="video/mp4" />
           <source src={HERO_MASTER} type="video/mp4" />
         </video>
       ) : null}
