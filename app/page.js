@@ -473,7 +473,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="rhythm" aria-labelledby="rhythm-title">
+        <section className="rhythm" id="program" aria-labelledby="rhythm-title">
           <div className="rhythm-heading">
             <h2 id="rhythm-title">A day in<br />Ascension.</h2>
             <p>Illustrative, not guaranteed. Every day is different — participate in what serves you, and leave space for what Da Nang reveals.</p>
@@ -494,7 +494,7 @@ export default function HomePage() {
           <div className="experience-words">
             <h2 id="experience-title">Experience<br />Da Nang.</h2>
             <p>Movement · restoration · food<br />culture · landscape · Tết</p>
-            <a href="/retreat/index.html">Explore the program <span aria-hidden="true">→</span></a>
+            <a href="#program">Explore the program <span aria-hidden="true">→</span></a>
           </div>
         </section>
 

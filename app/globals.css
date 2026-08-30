@@ -180,7 +180,7 @@ section { position: relative; }
 .model-categories { grid-column: 1 / -1; margin-top: clamp(3rem, 7vw, 6rem); border-top: 1px solid rgba(241, 230, 213, .28); }
 .model-category { display: grid; grid-template-columns: minmax(9rem, 14rem) 1fr; gap: 2rem; padding: 1.75rem 0; border-bottom: 1px solid rgba(241, 230, 213, .28); }
 .model-category h3 { margin: 0; font: 400 clamp(1.8rem, 3vw, 2.6rem)/1 var(--display); letter-spacing: -.02em; color: var(--sunset); }
-.model-category p { margin: 0; max-width: 34rem; color: rgba(241, 230, 213, .86); line-height: 1.6; font-size: .95rem; }
+.model-category p { margin: 0; max-width: 34rem; color: rgba(241, 230, 213, .86); line-height: 1.6; font-size: 1rem; }
 
 .rhythm { padding: var(--section-space) var(--gutter); background: var(--ground); }
 .rhythm-heading { max-width: 44rem; margin-bottom: clamp(3rem, 7vw, 6rem); }
@@ -222,7 +222,7 @@ section { position: relative; }
 .attendance-terms { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); margin-top: clamp(3rem, 6vw, 5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid rgba(241, 230, 213, .28); }
 .terms-label { margin: 0 0 1rem; color: var(--sunset); font: 500 .7rem/1 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
 .attendance-terms ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .85rem; }
-.attendance-terms li { margin: 0; padding-left: 1.1rem; position: relative; color: #b7cbc9; line-height: 1.55; font-size: .92rem; }
+.attendance-terms li { margin: 0; padding-left: 1.1rem; position: relative; color: #b7cbc9; line-height: 1.6; font-size: 1rem; }
 .attendance-terms li::before { content: "—"; position: absolute; left: 0; color: #93adb0; }
 .reserve-action { display: inline-flex; gap: 1.25rem; margin-top: 3rem; padding: 1rem 1.3rem; background: var(--sunset); color: var(--night-sea); text-decoration: none; font: 650 .78rem/1 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
 .deposit { max-width: 36rem; margin: 1rem 0 0; color: #93adb0; font-size: .75rem; line-height: 1.55; }
