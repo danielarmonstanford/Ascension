@@ -153,7 +153,7 @@ section { position: relative; }
 .sight-water { right: 2%; top: 0; width: 29%; height: 40%; }
 .sight-water img { object-position: 52% 50%; }
 .sight-material { right: 8%; bottom: 2%; width: 37%; height: 50%; }
-.sight-material img { object-position: 50% 32%; }
+.sight-material img { object-position: 50% 45%; }
 .sight blockquote { position: relative; z-index: 4; width: min(62rem, 84vw); margin: clamp(2rem, 6vw, 6rem) 0 0 auto; }
 .sight blockquote strong { display: block; font: 400 clamp(4.5rem, 10vw, 10rem)/.8 var(--display); letter-spacing: -.04em; text-transform: uppercase; }
 .sight blockquote span { display: block; max-width: 34rem; margin: 1.5rem 0 0 auto; font-size: clamp(1.15rem, 2vw, 1.7rem); line-height: 1.4; }
