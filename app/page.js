@@ -505,7 +505,7 @@ export default function HomePage() {
           <div className="people-copy">
             <h2 id="people-title">People shape<br />the experience.</h2>
             <p>Facilitators will be introduced here only as participation is confirmed.</p>
-            <a href="/partners/index.html">Facilitator and partner pathways <span aria-hidden="true">→</span></a>
+            <a href="/partners">Facilitator and partner pathways <span aria-hidden="true">→</span></a>
           </div>
         </section>
 
@@ -594,7 +594,7 @@ export default function HomePage() {
           </div>
           <footer>
             <span>ASCENSION SENSES · Edition 01</span>
-            <div><a href="/partners/practitioners.html">Facilitators</a><a href="/partners/index.html">Partners</a><a href="/partners/sponsorship.html">Sponsors</a></div>
+            <div><a href="/partners/practitioners">Facilitators</a><a href="/partners">Partners</a><a href="/partners/sponsorship">Sponsors</a></div>
           </footer>
         </section>
       </main>
