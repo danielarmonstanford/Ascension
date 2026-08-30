@@ -25,7 +25,7 @@ const TOUCH_ART =
 const SOUND_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp";
 const TOUCH_VIDEO =
-  "https://res.cloudinary.com/dno3ruh4b/video/upload/q_auto/v1788096436/hf_20260830_041430_e38407f9-d6d0-4bfd-8bc7-4635dc83c4a4_dbe2og.mp4";
+  "https://res.cloudinary.com/dno3ruh4b/video/upload/w_622,h_368,c_scale/v1788096436/hf_20260830_041430_e38407f9-d6d0-4bfd-8bc7-4635dc83c4a4_dbe2og.mp4";
 
 function ThemeControl({ theme, onChange }) {
   return (
