@@ -38,6 +38,15 @@
         ],
         "createdAt": "2026-08-30T00:27:30.437Z",
         "reason": "body-copy list text size consistent with the file's existing ad-hoc sub-1rem sizes (e.g. .sound-note .86rem); DESIGN.md ramp only documents 4 coarse roles"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.05rem",
+        "files": [
+          "partners/index.html"
+        ],
+        "createdAt": "2026-08-30T03:14:42.891Z",
+        "reason": "partner-portal pages use their own self-contained embedded stylesheet, not the main site's DESIGN.md ramp (established pattern this session); part of Codex's readability clamp(1rem,1.4vw,1.05rem), reviewed and accepted as-is"
       }
     ]
   }
