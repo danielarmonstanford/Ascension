@@ -108,6 +108,7 @@ function ScrollHeroMedia({ videoRef, motionReady, onLoadedMetadata, onCanPlay, o
           className="media-motion hero-orbit"
           muted
           playsInline
+          webkit-playsinline="true"
           preload="auto"
           poster={HERO_POSTER}
           aria-hidden="true"
@@ -349,6 +350,16 @@ function Hero({ theme, setTheme }) {
 
 const senses = ["SIGHT", "SOUND", "TOUCH", "TASTE", "SCENT", "MOVE"];
 
+const passportCategories = [
+  { name: "MOVE", copy: "Curated group movement, yoga, breathwork and embodied practices." },
+  { name: "RESTORE", copy: "Selected group restoration and wellness experiences, with additional private treatments available separately." },
+  { name: "SOUND", copy: "Guided meditation, sound and sensory sessions." },
+  { name: "TASTE", copy: "Selected shared culinary experiences connecting guests with Da Nang through food." },
+  { name: "DISCOVER", copy: "Curated cultural and place-based experiences across Da Nang and its surroundings." },
+  { name: "CREATE", copy: "Photography, drawing, painting, collage and material exploration." },
+  { name: "COMMUNITY", copy: "A small international cohort sharing the experience, rather than a conventional tour group." },
+];
+
 export default function HomePage() {
   const [theme, setTheme] = useState("day");
 
@@ -435,19 +446,42 @@ export default function HomePage() {
           <div className="sight-table" aria-label="A visual study of place and creative materials">
             <div className="sight-image sight-landscape"><Image src={DA_NANG_PLACE} alt="Da Nang landscape and architecture" fill sizes="(max-width: 700px) 92vw, 58vw" /></div>
             <div className="sight-image sight-water"><Image src={CREATIVE_WATER} alt="A portrait beside the sea" fill sizes="(max-width: 700px) 54vw, 24vw" /></div>
-            <div className="sight-image sight-material"><Image src={CREATIVE_MATERIAL} alt="A body moving through a Da Nang landscape" fill sizes="(max-width: 700px) 58vw, 26vw" /></div>
+            <div className="sight-image sight-material"><Image src={CREATIVE_MATERIAL} alt="A quiet moment of creative stillness" fill sizes="(max-width: 700px) 58vw, 26vw" /></div>
           </div>
           <blockquote><strong>Make art.</strong><span>Not because you’re an artist. Because you’re alive.</span></blockquote>
         </section>
 
         <section className="model" id="experience" aria-labelledby="model-title">
           <div className="model-title-wrap">
+            <p className="model-kicker">Your Ascension Passport</p>
             <h2 id="model-title">Not a retreat<br />from life.<br /><em>A return to it.</em></h2>
           </div>
           <div className="model-copy">
-            <p>ASCENSION is a curated, modular experience across movement, restoration, food, culture, landscape and the senses.</p>
-            <p>Choose seven days or the full fourteen. Accommodation and travel remain yours to arrange.</p>
+            <p className="model-lead">More than a retreat. Your way into Da Nang.</p>
+            <p>Your ASCENSION Passport gives you access to a curated program across movement, restoration, creativity, sound, taste and discovery — while leaving you free to choose your own hotel, your own downtime and the experiences that matter most to you.</p>
           </div>
+          <div className="model-categories" aria-label="What your Ascension Passport opens">
+            {passportCategories.map((category) => (
+              <article className="model-category" key={category.name}>
+                <h3>{category.name}</h3>
+                <p>{category.copy}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="rhythm" aria-labelledby="rhythm-title">
+          <div className="rhythm-heading">
+            <h2 id="rhythm-title">A day in<br />Ascension.</h2>
+            <p>Illustrative, not guaranteed. Every day is different — participate in what serves you, and leave space for what Da Nang reveals.</p>
+          </div>
+          <div className="rhythm-list" aria-label="An illustrative daily rhythm">
+            <article><p className="rhythm-time">Morning</p><p className="rhythm-detail">Movement · Breath · Ocean</p></article>
+            <article><p className="rhythm-time">Midday</p><p className="rhythm-detail">Restore · Explore · Create</p></article>
+            <article><p className="rhythm-time">Sunset</p><p className="rhythm-detail">Sound · Shared Table · Connection</p></article>
+            <article><p className="rhythm-time">Your Time</p><p className="rhythm-detail">Beach · Spa · City · Rest · Private Sessions</p></article>
+          </div>
+          <p className="rhythm-note">ASCENSION is curated, not prescribed.</p>
         </section>
 
         <section className="experience-da-nang" aria-labelledby="experience-title">
@@ -489,13 +523,31 @@ export default function HomePage() {
             <article>
               <p className="duration">7 DAYS</p>
               <p className="dates">January 12–19, 2027</p>
-              <p className="price">$1,200 <small>USD · program</small></p>
+              <p className="price">$1,200 <small>USD · program</small><span className="per-day">≈ $171 / day</span></p>
             </article>
             <article>
               <p className="duration">14 DAYS</p>
               <p className="dates">January 12–26, 2027</p>
-              <p className="price">$2,000 <small>USD · program</small></p>
+              <p className="price">$2,000 <small>USD · program</small><span className="per-day">≈ $143 / day</span></p>
             </article>
+          </div>
+          <div className="attendance-terms">
+            <div className="attendance-included">
+              <p className="terms-label">Included</p>
+              <ul>
+                <li>Access to the curated ASCENSION program across movement, restoration, sound, taste, discovery and creative sessions</li>
+                <li>Participation in the shared ASCENSION cohort</li>
+              </ul>
+            </div>
+            <div className="attendance-optional">
+              <p className="terms-label">Optional · Book Separately</p>
+              <ul>
+                <li>Accommodation — guests choose and book their own hotel</li>
+                <li>Flights and local transfers</li>
+                <li>Private treatments and additional spa services</li>
+                <li>Additional excursions, meals or special experiences</li>
+              </ul>
+            </div>
           </div>
           <a className="reserve-action" href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
           <p className="deposit">Current reservation link requests a $300 deposit. Commercial details require final verification before launch.</p>

@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "#b7cbc9",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-08-30T00:27:30.188Z",
+        "reason": "pre-existing token already used in this same attendance section (.attendance-heading p, .price small); reused verbatim for consistency, not new drift"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#93adb0",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-08-30T00:27:30.278Z",
+        "reason": "pre-existing token already used in this same attendance section (.deposit, .price small); reused verbatim for consistency, not new drift"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgba(241, 230, 213, .28)",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-08-30T00:27:30.357Z",
+        "reason": "pre-existing token already used repeatedly in attendance/footer sections for hairline borders on moon-ivory; reused verbatim for consistency"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": ".92rem",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-08-30T00:27:30.437Z",
+        "reason": "body-copy list text size consistent with the file's existing ad-hoc sub-1rem sizes (e.g. .sound-note .86rem); DESIGN.md ramp only documents 4 coarse roles"
+      }
+    ]
+  }
+}

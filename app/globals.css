@@ -169,11 +169,28 @@ section { position: relative; }
 @keyframes sight-float { from { transform: translate3d(0, 3rem, 0); } to { transform: translate3d(0, -5rem, 0); } }
 @keyframes sight-type { from { transform: translate3d(0, 5rem, 0); opacity: .2; } to { transform: translate3d(0, -1rem, 0); opacity: 1; } }
 
-.model { padding: var(--section-space) var(--gutter); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(18rem, .55fr); gap: clamp(3rem, 8vw, 9rem); align-items: end; background: var(--twilight); color: var(--moon-ivory); }
+.model { padding: var(--section-space) var(--gutter); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(18rem, .55fr); gap: clamp(3rem, 8vw, 9rem); background: var(--twilight); color: var(--moon-ivory); }
+.model-title-wrap, .model-copy { align-self: end; }
+.model-kicker { margin: 0 0 1.25rem; color: var(--sunset); font: 500 .7rem/1 var(--utility); letter-spacing: .16em; text-transform: uppercase; }
 .model h2 { margin: 0; font: 400 clamp(3.8rem, 8vw, 7.8rem)/.84 var(--display); letter-spacing: -.03em; }
 .model h2 em { color: var(--sunset); font-style: normal; }
 .model-copy { padding-bottom: .6rem; }
-.model-copy p { max-width: 31rem; margin: 0 0 1.25rem; line-height: 1.65; }
+.model-lead { color: var(--moon-ivory); font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.4; }
+.model-copy p { max-width: 31rem; margin: 0 0 1.25rem; line-height: 1.65; color: rgba(241, 230, 213, .86); }
+.model-categories { grid-column: 1 / -1; margin-top: clamp(3rem, 7vw, 6rem); border-top: 1px solid rgba(241, 230, 213, .28); }
+.model-category { display: grid; grid-template-columns: minmax(9rem, 14rem) 1fr; gap: 2rem; padding: 1.75rem 0; border-bottom: 1px solid rgba(241, 230, 213, .28); }
+.model-category h3 { margin: 0; font: 400 clamp(1.8rem, 3vw, 2.6rem)/1 var(--display); letter-spacing: -.02em; color: var(--sunset); }
+.model-category p { margin: 0; max-width: 34rem; color: rgba(241, 230, 213, .86); line-height: 1.6; font-size: .95rem; }
+
+.rhythm { padding: var(--section-space) var(--gutter); background: var(--ground); }
+.rhythm-heading { max-width: 44rem; margin-bottom: clamp(3rem, 7vw, 6rem); }
+.rhythm-heading h2 { margin: 0 0 1.25rem; font: 400 clamp(3.5rem, 7vw, 6.5rem)/.86 var(--display); letter-spacing: -.03em; }
+.rhythm-heading p { margin: 0; max-width: 34rem; color: var(--quiet); line-height: 1.65; }
+.rhythm-list { border-top: 1px solid var(--rule); }
+.rhythm-list article { display: grid; grid-template-columns: minmax(10rem, 16rem) 1fr; gap: 2rem; align-items: baseline; padding: 1.65rem 0; border-bottom: 1px solid var(--rule); }
+.rhythm-time { margin: 0; font: 400 clamp(1.8rem, 3vw, 2.6rem)/1 var(--display); letter-spacing: -.02em; color: var(--burnt-sand); }
+.rhythm-detail { margin: 0; font: 500 .78rem/1.5 var(--utility); letter-spacing: .09em; text-transform: uppercase; color: var(--quiet); }
+.rhythm-note { margin: 2rem 0 0; font: 500 .72rem/1 var(--utility); letter-spacing: .12em; text-transform: uppercase; color: var(--burnt-sand); }
 
 .experience-da-nang { min-height: 100svh; display: grid; grid-template-columns: 62% 38%; background: var(--shell); color: var(--deep-ocean); }
 .experience-image { position: relative; min-height: 100svh; }
@@ -201,6 +218,12 @@ section { position: relative; }
 .dates { margin: 0; font: 500 .72rem/1.4 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
 .price { margin: 0; text-align: right; font-size: clamp(1.5rem, 3vw, 2.5rem); }
 .price small { display: block; margin-top: .25rem; color: #b7cbc9; font: 500 .68rem/1.4 var(--utility); letter-spacing: .08em; text-transform: uppercase; }
+.per-day { display: block; margin-top: .3rem; color: #93adb0; font: 500 .62rem/1.4 var(--utility); letter-spacing: .08em; text-transform: uppercase; }
+.attendance-terms { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); margin-top: clamp(3rem, 6vw, 5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid rgba(241, 230, 213, .28); }
+.terms-label { margin: 0 0 1rem; color: var(--sunset); font: 500 .7rem/1 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
+.attendance-terms ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .85rem; }
+.attendance-terms li { margin: 0; padding-left: 1.1rem; position: relative; color: #b7cbc9; line-height: 1.55; font-size: .92rem; }
+.attendance-terms li::before { content: "—"; position: absolute; left: 0; color: #93adb0; }
 .reserve-action { display: inline-flex; gap: 1.25rem; margin-top: 3rem; padding: 1rem 1.3rem; background: var(--sunset); color: var(--night-sea); text-decoration: none; font: 650 .78rem/1 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
 .deposit { max-width: 36rem; margin: 1rem 0 0; color: #93adb0; font-size: .75rem; line-height: 1.55; }
 
@@ -285,9 +308,14 @@ footer div { display: flex; gap: 1.5rem; }
   .sight blockquote { width: 100%; margin-top: 4rem; }
   .sight blockquote strong { font-size: clamp(4rem, 21vw, 6.4rem); }
 
-  .model { grid-template-columns: 1fr; align-items: start; }
+  .model { grid-template-columns: 1fr; }
   .model h2 { font-size: clamp(3.4rem, 17vw, 5.5rem); }
   .model-copy { max-width: 29rem; }
+  .model-category { grid-template-columns: 1fr; gap: .5rem; padding: 1.4rem 0; }
+
+  .rhythm { padding-top: 6rem; padding-bottom: 6rem; }
+  .rhythm-heading h2 { font-size: clamp(3.4rem, 17vw, 5.5rem); }
+  .rhythm-list article { grid-template-columns: 1fr; gap: .35rem; padding: 1.25rem 0; }
 
   .experience-da-nang { display: block; min-height: auto; }
   .experience-image { min-height: 72svh; }
