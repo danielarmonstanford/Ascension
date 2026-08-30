@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASCENSION — Partner Hub · MODUS</title>
+  <title>ASCENSION — Partner Hub</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="preload" href="/assets/fonts/lovine.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Lovine';
@@ -18,66 +15,76 @@
       font-display: swap;
     }
     :root {
-      --bg: #08070A;
-      --bg2: #0E0C10;
-      --gold: #D4A84B;
-      --text: #EDEAE4;
-      --muted: #8A8681;
-      --rule: rgba(212,168,75,0.22);
+      --deep-ocean: #173744; --night-sea: #102932; --twilight: #315a67;
+      --burnt-sand: #a66d55; --clay: #875545; --sunset: #d79a72;
+      --warm-stone: #b99e88; --moon-ivory: #f1e6d5;
+      --bg: var(--night-sea); --bg2: var(--deep-ocean);
+      --accent: var(--sunset); --text: var(--moon-ivory);
+      --muted: color-mix(in srgb, var(--moon-ivory) 62%, transparent);
+      --rule: color-mix(in srgb, var(--sunset) 26%, transparent);
       --gutter: clamp(1.5rem, 5vw, 5rem);
-      --font-display: 'Lovine', 'Cormorant Garamond', Georgia, serif;
-      --font-ed: 'Cormorant Garamond', Georgia, serif;
-      --font-mono: 'DM Mono', 'Courier New', monospace;
+      --font-display: 'Lovine','Cormorant Garamond',Georgia,serif;
+      --font-body: 'Avenir Next','Helvetica Neue',Arial,sans-serif;
+      --font-mono: 'DM Mono','SFMono-Regular','Courier New',monospace;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font-ed); min-height: 100vh; }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter); height: 56px; border-bottom: 0.5px solid var(--rule); }
-    .nav-brand { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--gold); }
-    .hero { padding: clamp(4rem,9vw,8rem) var(--gutter) clamp(3rem,6vw,5rem); border-bottom: 0.5px solid var(--rule); }
-    .eyebrow { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
-    h1 { font-family: var(--font-display); font-size: clamp(3rem,8vw,7rem); font-weight: normal; letter-spacing: -0.04em; line-height: 0.88; color: var(--text); margin-bottom: 1.25rem; }
-    .hero-sub { font-family: var(--font-ed); font-size: clamp(1rem,1.5vw,1.2rem); font-style: italic; color: var(--muted); max-width: 560px; line-height: 1.75; }
-    .hero-meta { margin-top: 1.25rem; font-family: var(--font-mono); font-size:14px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(212,168,75,0.7); line-height: 2; }
-    .sec { padding: clamp(3rem,6vw,5rem) var(--gutter); border-bottom: 0.5px solid var(--rule); }
-    .sec-label { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: block; }
-    .nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--rule); }
-    .nav-card { background: var(--bg); padding: clamp(1.75rem,3vw,2.5rem); text-decoration: none; display: block; transition: background 0.2s; }
-    .nav-card:hover { background: var(--bg2); }
-    .nav-card-num { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.22em; color: var(--gold); margin-bottom: 0.75rem; display: block; }
-    .nav-card-title { font-family: var(--font-display); font-size: clamp(1.3rem,2.5vw,2rem); font-weight: normal; letter-spacing: -0.02em; line-height: 1.1; color: var(--text); margin-bottom: 0.5rem; }
-    .nav-card-desc { font-family: var(--font-ed); font-size: 1.1rem; font-style: italic; color: var(--muted); line-height: 1.65; }
-    .nav-card-arrow { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.2em; color: var(--gold); margin-top: 1.25rem; display: block; }
-    .dates-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px; background: var(--rule); margin-top: 1.5rem; }
-    .date-cell { background: var(--bg); padding: 1.5rem; }
-    .date-cell-label { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; display: block; }
-    .date-cell-val { font-family: var(--font-display); font-size: clamp(1rem,2vw,1.5rem); font-weight: normal; color: var(--text); line-height: 1.2; }
-    .action-list { list-style: none; margin-top: 1.5rem; }
-    .action-list li { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 0; border-bottom: 0.5px solid rgba(212,168,75,0.08); }
-    .action-list li::before { content: '→'; font-family: var(--font-mono); font-size:14px; color: var(--gold); flex-shrink: 0; }
-    .action-list a { font-family: var(--font-ed); font-size: clamp(0.95rem,1.4vw,1.1rem); font-style: italic; color: var(--text); text-decoration: none; transition: color 0.2s; }
-    .action-list a:hover { color: var(--gold); }
-    .action-list span { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-left: auto; }
-    .contact-block { background: var(--bg2); border: 0.5px solid var(--rule); padding: 2rem; margin-top: 1.5rem; }
-    .contact-block p { font-family: var(--font-ed); font-size: clamp(0.9rem,1.3vw,1rem); font-style: italic; color: var(--muted); line-height: 1.75; }
-    .contact-block a { color: var(--gold); text-decoration: none; }
-    .footer { padding: 1.5rem var(--gutter); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-    .footer span { font-family: var(--font-mono); font-size:14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); opacity: 0.4; }
-    @media (max-width: 768px) { .nav-grid, .dates-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;-webkit-font-smoothing:antialiased}
+    .nav{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);height:56px;border-bottom:0.5px solid var(--rule)}
+    .nav-brand{font-family:var(--font-mono);font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .nav-links{display:flex;gap:2rem}
+    .nav-links a{font-family:var(--font-mono);font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .hero{position:relative;padding:clamp(5rem,13vw,9rem) var(--gutter) clamp(4rem,9vw,7rem);border-bottom:0.5px solid var(--rule);overflow:hidden}
+    .hero-media{position:absolute;inset:0;z-index:0}
+    .hero-media img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+    .hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(16,41,50,.88) 0%, rgba(16,41,50,.52) 45%, rgba(16,41,50,.92) 100%)}
+    .hero-inner{position:relative;z-index:2}
+    .eyebrow{font-family:var(--font-mono);font-size:13px;letter-spacing:0.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;display:block}
+    h1{font-family:var(--font-display);font-size:clamp(3rem,8vw,7rem);font-weight:400;letter-spacing:-0.03em;line-height:0.9;color:var(--text);margin-bottom:1.5rem}
+    .hero-sub{font-family:var(--font-body);font-size:clamp(1rem,1.4vw,1.15rem);color:var(--warm-stone);max-width:38rem;line-height:1.65}
+    .hero-meta{margin-top:1.5rem;font-family:var(--font-mono);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);line-height:2}
+    .sec{position:relative;padding:clamp(3rem,6vw,5rem) var(--gutter);border-bottom:0.5px solid var(--rule)}
+    .sec-label{font-family:var(--font-mono);font-size:13px;letter-spacing:0.24em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:block}
+    /* Section list (was a boxed 3-col grid) */
+    .path-list{border-top:0.5px solid var(--rule)}
+    .path-row{display:grid;grid-template-columns:3rem minmax(14rem,1.3fr) 2fr auto;align-items:center;gap:2rem;padding:1.75rem 0;border-bottom:0.5px solid var(--rule);text-decoration:none;color:inherit;transition:opacity 0.2s}
+    .path-row:hover{opacity:0.72}
+    .path-num{font-family:var(--font-mono);font-size:13px;letter-spacing:0.14em;color:var(--accent)}
+    .path-title{font-family:var(--font-display);font-size:clamp(1.4rem,2.4vw,2rem);font-weight:400;letter-spacing:-0.02em;line-height:1.05;color:var(--text)}
+    .path-desc{font-family:var(--font-body);font-size:0.92rem;color:var(--warm-stone);line-height:1.55;max-width:28rem}
+    .path-arrow{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+    /* Dates list (was a boxed 2-col grid) */
+    .dates-list{border-top:0.5px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;gap:0}
+    .date-row{padding:1.25rem 1.5rem 1.25rem 0;border-bottom:0.5px solid var(--rule)}
+    .date-row:nth-child(odd){padding-right:2rem}
+    .date-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;display:block}
+    .date-val{font-family:var(--font-display);font-size:clamp(1rem,1.8vw,1.35rem);font-weight:400;color:var(--text);line-height:1.2}
+    .action-list{list-style:none;margin-top:1.5rem;border-top:0.5px solid var(--rule)}
+    .action-list li{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:0.5px solid var(--rule)}
+    .action-list li::before{content:'→';font-family:var(--font-mono);font-size:14px;color:var(--accent);flex-shrink:0}
+    .action-list a{font-family:var(--font-body);font-size:clamp(0.95rem,1.4vw,1.05rem);color:var(--text);text-decoration:none;transition:color 0.2s}
+    .action-list a:hover{color:var(--accent)}
+    .action-list span{font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+    .contact-block{background:var(--bg2);border:0.5px solid var(--rule);padding:2rem;margin-top:1.5rem}
+    .contact-block p{font-family:var(--font-body);font-size:clamp(0.9rem,1.2vw,1rem);color:var(--warm-stone);line-height:1.7}
+    .contact-block a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb, var(--sunset) 40%, transparent)}
+    .footer{padding:1.5rem var(--gutter);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+    .footer span{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
+    @media (max-width: 700px) {
+      .nav-links{display:none}
+      .path-row{grid-template-columns:1fr;gap:0.4rem}
+      .path-num{display:none}
+      .path-arrow{margin-top:0.5rem}
+      .dates-list{grid-template-columns:1fr}
+      .date-row{padding-right:0}
+    }
 
-    /* ── Browser surfaces: theme what you didn't draw ── */
-    ::selection { background: rgba(212,168,75,0.32); color: var(--text, #EAE0CC); }
+    ::selection { background: color-mix(in srgb, var(--sunset) 35%, transparent); color: var(--moon-ivory); }
     ::-webkit-scrollbar { width: 10px; height: 10px; }
-    ::-webkit-scrollbar-track { background: var(--bg, #08070A); }
-    ::-webkit-scrollbar-thumb { background: rgba(212,168,75,0.35); border-radius: 5px; border: 2px solid var(--bg, #08070A); }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(212,168,75,0.55); }
-    * { scrollbar-color: rgba(212,168,75,0.35) var(--bg, #08070A); scrollbar-width: thin; }
-    a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
-      outline: 2px solid var(--gold, #D4A84B); outline-offset: 3px; border-radius: 2px;
-    }
-    .pricing-amount, .modus-index-score, .modus-axis-val, .hero-date { font-variant-numeric: tabular-nums; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--sunset) 40%, transparent); border-radius: 5px; border: 2px solid var(--bg); }
+    * { scrollbar-color: color-mix(in srgb, var(--sunset) 40%, transparent) var(--bg); scrollbar-width: thin; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--sunset); outline-offset: 3px; }
   </style>
 </head>
 <body>
@@ -93,36 +100,41 @@
 </nav>
 
 <div class="hero">
-  <span class="eyebrow">MODUS Séance · ASCENSION · Partner Portal</span>
-  <h1>Partner<br>Hub</h1>
-  <p class="hero-sub">Confidential materials for verified partners, sponsors, facilitators, and venue representatives. Thank you for being part of the ASCENSION collaboration.</p>
-  <p class="hero-meta">
-    Da Nang, Vietnam &nbsp;·&nbsp; January 12–26, 2027<br>
-    Year of the Fire Goat &nbsp;·&nbsp; Tết Preparation Retreat
-  </p>
+  <div class="hero-media">
+    <img src="https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg" alt="Da Nang coastline at sunset">
+  </div>
+  <div class="hero-inner">
+    <span class="eyebrow">MODUS Séance · ASCENSION · Partner Portal</span>
+    <h1>Partner<br>Hub</h1>
+    <p class="hero-sub">Confidential materials for verified partners, sponsors, facilitators, and venue representatives. Thank you for being part of the ASCENSION collaboration.</p>
+    <p class="hero-meta">
+      Da Nang, Vietnam · January 12–26, 2027<br>
+      Year of the Fire Goat · Tết Preparation Retreat
+    </p>
+  </div>
 </div>
 
 <!-- NAVIGATION -->
 <div class="sec">
   <span class="sec-label">Partner Sections</span>
-  <div class="nav-grid">
-    <a class="nav-card" href="venues.html">
-      <span class="nav-card-num">01</span>
-      <p class="nav-card-title">Venues &amp;<br>Accommodation</p>
-      <p class="nav-card-desc">Group rates, commission structures, booking codes, and accommodation terms for venue partners.</p>
-      <span class="nav-card-arrow">View Venue Terms →</span>
+  <div class="path-list">
+    <a class="path-row" href="venues.html">
+      <span class="path-num">01</span>
+      <p class="path-title">Venues &amp;<br>Accommodation</p>
+      <p class="path-desc">Group rates, commission structures, booking codes, and accommodation terms for venue partners.</p>
+      <span class="path-arrow">View Venue Terms →</span>
     </a>
-    <a class="nav-card" href="sponsorship.html">
-      <span class="nav-card-num">02</span>
-      <p class="nav-card-title">Sponsorship<br>Tiers &amp; Deliverables</p>
-      <p class="nav-card-desc">Sponsor tier cards, deliverable packages, and brand integration opportunities.</p>
-      <span class="nav-card-arrow">View Sponsorship →</span>
+    <a class="path-row" href="sponsorship.html">
+      <span class="path-num">02</span>
+      <p class="path-title">Sponsorship<br>Tiers &amp; Deliverables</p>
+      <p class="path-desc">Sponsor tier cards, deliverable packages, and brand integration opportunities.</p>
+      <span class="path-arrow">View Sponsorship →</span>
     </a>
-    <a class="nav-card" href="practitioners.html">
-      <span class="nav-card-num">03</span>
-      <p class="nav-card-title">Practitioner<br>Terms</p>
-      <p class="nav-card-desc">Compensation model, referral fees, accommodation, and collaborative editorial rights.</p>
-      <span class="nav-card-arrow">View Practitioner Terms →</span>
+    <a class="path-row" href="practitioners.html">
+      <span class="path-num">03</span>
+      <p class="path-title">Practitioner<br>Terms</p>
+      <p class="path-desc">Compensation model, referral fees, accommodation, and collaborative editorial rights.</p>
+      <span class="path-arrow">View Practitioner Terms →</span>
     </a>
   </div>
 </div>
@@ -130,31 +142,13 @@
 <!-- KEY DATES -->
 <div class="sec">
   <span class="sec-label">Key Dates</span>
-  <div class="dates-grid">
-    <div class="date-cell">
-      <span class="date-cell-label">Early Bird Closes</span>
-      <p class="date-cell-val">June 30, 2026</p>
-    </div>
-    <div class="date-cell">
-      <span class="date-cell-label">Partner LOI Deadline</span>
-      <p class="date-cell-val">July 31, 2026</p>
-    </div>
-    <div class="date-cell">
-      <span class="date-cell-label">Retreat Opens</span>
-      <p class="date-cell-val">January 12, 2027</p>
-    </div>
-    <div class="date-cell">
-      <span class="date-cell-label">Tết / Retreat Closes</span>
-      <p class="date-cell-val">January 26, 2027</p>
-    </div>
-    <div class="date-cell">
-      <span class="date-cell-label">Tết Nguyên Đán</span>
-      <p class="date-cell-val">January 29, 2027 — Year of the Fire Goat</p>
-    </div>
-    <div class="date-cell">
-      <span class="date-cell-label">Cohort Size</span>
-      <p class="date-cell-val">Limited by design — curated application</p>
-    </div>
+  <div class="dates-list">
+    <div class="date-row"><span class="date-label">Early Bird Closes</span><p class="date-val">June 30, 2026</p></div>
+    <div class="date-row"><span class="date-label">Partner LOI Deadline</span><p class="date-val">July 31, 2026</p></div>
+    <div class="date-row"><span class="date-label">Retreat Opens</span><p class="date-val">January 12, 2027</p></div>
+    <div class="date-row"><span class="date-label">Tết / Retreat Closes</span><p class="date-val">January 26, 2027</p></div>
+    <div class="date-row"><span class="date-label">Tết Nguyên Đán</span><p class="date-val">January 29, 2027 — Year of the Fire Goat</p></div>
+    <div class="date-row"><span class="date-label">Cohort Size</span><p class="date-val">Limited by design — curated application</p></div>
   </div>
 </div>
 
@@ -196,7 +190,7 @@
 </div>
 
 <footer class="footer">
-  <span>MODUS · ASCENSION Partner Portal · Confidential</span>
+  <span>ASCENSION · Partner Portal · Confidential</span>
   <span>January 12–26, 2027 · Da Nang, Vietnam</span>
 </footer>
 
