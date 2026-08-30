@@ -24,6 +24,8 @@ const TOUCH_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png";
 const SOUND_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp";
+const TOUCH_VIDEO =
+  "https://res.cloudinary.com/dno3ruh4b/video/upload/v1788096436/hf_20260830_041430_e38407f9-d6d0-4bfd-8bc7-4635dc83c4a4_dbe2og.mp4";
 
 function ThemeControl({ theme, onChange }) {
   return (
@@ -80,6 +82,45 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
         />
       ) : null}
     </div>
+  );
+}
+
+function TouchMedia() {
+  const [reduceMotion, setReduceMotion] = useState(true);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReduceMotion(query.matches);
+    updatePreference();
+    query.addEventListener("change", updatePreference);
+    return () => query.removeEventListener("change", updatePreference);
+  }, []);
+
+  if (reduceMotion) {
+    return (
+      <Image
+        className="touch-art"
+        src={TOUCH_ART}
+        alt="An illustration of restorative touch and bodywork"
+        fill
+        sizes="(max-width: 700px) 100vw, 52vw"
+      />
+    );
+  }
+
+  return (
+    <video
+      className="touch-art"
+      poster={TOUCH_ART}
+      muted
+      loop
+      playsInline
+      autoPlay
+      preload="none"
+      aria-hidden="true"
+    >
+      <source src={TOUCH_VIDEO} type="video/mp4" />
+    </video>
   );
 }
 
@@ -421,15 +462,7 @@ export default function HomePage() {
           <div className="sense-river" aria-label="The six senses of ASCENSION">
             {senses.map((sense, index) => (
               <div className={`sense-word sense-${index + 1}`} key={sense}>
-                {sense === "TOUCH" ? (
-                  <Image
-                    className="touch-art"
-                    src={TOUCH_ART}
-                    alt="An illustration of restorative touch and bodywork"
-                    fill
-                    sizes="(max-width: 700px) 100vw, 52vw"
-                  />
-                ) : null}
+                {sense === "TOUCH" ? <TouchMedia /> : null}
                 <span>{sense}</span>
               </div>
             ))}
