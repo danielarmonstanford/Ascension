@@ -18,8 +18,6 @@ const DA_NANG_PLACE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg";
 const CREATIVE_WATER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823818/Black_Gold-water-D80_5523_fgh0eu.jpg";
-const CREATIVE_MATERIAL =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788050463/Hideout_Bath_scene_qwpu7q.jpg";
 const TOUCH_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png";
 const SOUND_ART =
@@ -507,10 +505,9 @@ export default function HomePage() {
             <p>No artistic experience required.</p>
             <p>This is about noticing, not making “good art.”</p>
           </div>
-          <div className="sight-table" aria-label="A visual study of place and creative materials">
+          <div className="sight-table" aria-label="A visual study of place and creative observation">
             <div className="sight-image sight-landscape"><Image src={DA_NANG_PLACE} alt="Da Nang landscape and architecture" fill sizes="(max-width: 700px) 92vw, 58vw" /></div>
-            <div className="sight-image sight-water"><Image src={CREATIVE_WATER} alt="A portrait beside the sea" fill sizes="(max-width: 700px) 54vw, 24vw" /></div>
-            <div className="sight-image sight-material"><Image src={CREATIVE_MATERIAL} alt="A quiet candlelit night swim, a restorative pause" fill sizes="(max-width: 700px) 58vw, 26vw" /></div>
+            <div className="sight-image sight-water"><Image src={CREATIVE_WATER} alt="A portrait beside the sea" fill sizes="(max-width: 700px) 62vw, 34vw" /></div>
           </div>
           <blockquote><strong>Make art.</strong><span>Not because you’re an artist. Because you’re alive.</span></blockquote>
         </section>

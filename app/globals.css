@@ -140,7 +140,7 @@ section { position: relative; }
 .sense-5 span { color: var(--sea-glass); }
 .sound-note { margin: 2rem 0 0 auto; max-width: 31rem; color: var(--quiet); font-size: .86rem; line-height: 1.6; }
 
-.sight { min-height: 170svh; padding: var(--section-space) var(--gutter); background: var(--shell); color: var(--deep-ocean); overflow: clip; }
+.sight { min-height: 100svh; padding: var(--section-space) var(--gutter); background: var(--shell); color: var(--deep-ocean); overflow: clip; }
 .sight-copy { position: relative; z-index: 4; width: min(42rem, 49vw); }
 .sight-label { margin: 0 0 1.25rem; color: var(--burnt-sand); font: 500 .72rem/1 var(--utility); letter-spacing: .18em; text-transform: uppercase; }
 .sight-copy h2 { margin: 0; font: 400 clamp(4rem, 7.5vw, 7.5rem)/.84 var(--display); letter-spacing: -.035em; }
@@ -148,15 +148,13 @@ section { position: relative; }
 .sight-sequence { position: absolute; top: 0; left: calc(100% + 8vw); display: flex; flex-direction: column; gap: .35rem; margin: 0; color: var(--sunset); font: 400 clamp(2.5rem, 5vw, 5rem)/.83 var(--display); text-transform: uppercase; }
 .sight-sequence span:nth-child(2) { transform: translateX(3vw); }
 .sight-sequence span:nth-child(3) { transform: translateX(6vw); }
-.sight-table { position: relative; min-height: 92svh; margin-top: clamp(5rem, 12vw, 11rem); }
+.sight-table { position: relative; min-height: 50svh; margin-top: clamp(4rem, 9vw, 8rem); }
 .sight-image { position: absolute; overflow: hidden; }
 .sight-image img { object-fit: cover; }
-.sight-landscape { left: 0; top: 3%; width: 62%; height: 72%; }
+.sight-landscape { left: 0; top: 4%; width: 58%; height: 88%; }
 .sight-landscape img { object-position: 50% 48%; }
-.sight-water { right: 2%; top: 0; width: 29%; height: 40%; }
+.sight-water { right: 2%; top: 0; width: 34%; height: 56%; }
 .sight-water img { object-position: 52% 50%; }
-.sight-material { right: 8%; bottom: 2%; width: 37%; height: 50%; }
-.sight-material img { object-position: 50% 45%; }
 .sight blockquote { position: relative; z-index: 4; width: min(62rem, 84vw); margin: clamp(2rem, 6vw, 6rem) 0 0 auto; }
 .sight blockquote strong { display: block; font: 400 clamp(4.5rem, 10vw, 10rem)/.8 var(--display); letter-spacing: -.04em; text-transform: uppercase; }
 .sight blockquote span { display: block; max-width: 34rem; margin: 1.5rem 0 0 auto; font-size: clamp(1.15rem, 2vw, 1.7rem); line-height: 1.4; }
@@ -164,13 +162,11 @@ section { position: relative; }
 @supports (animation-timeline: view()) {
   .sight-landscape { animation: sight-rise linear both; animation-timeline: view(); animation-range: entry 10% exit 90%; }
   .sight-water { animation: sight-drift linear both; animation-timeline: view(); animation-range: entry 5% exit 90%; }
-  .sight-material { animation: sight-float linear both; animation-timeline: view(); animation-range: entry 5% exit 90%; }
   .sight-sequence { animation: sight-type linear both; animation-timeline: view(); animation-range: entry 0% cover 65%; }
   .destination-copy { animation: destination-dissolve linear both; animation-timeline: view(); animation-range: cover 35% cover 80%; }
 }
 @keyframes sight-rise { from { transform: translate3d(0, 4rem, 0); } to { transform: translate3d(0, -2rem, 0); } }
 @keyframes sight-drift { from { transform: translate3d(0, 7rem, 0); } to { transform: translate3d(0, -4rem, 0); } }
-@keyframes sight-float { from { transform: translate3d(0, 3rem, 0); } to { transform: translate3d(0, -5rem, 0); } }
 @keyframes sight-type { from { transform: translate3d(0, 5rem, 0); opacity: .2; } to { transform: translate3d(0, -1rem, 0); opacity: 1; } }
 @keyframes destination-dissolve { to { opacity: 0; } }
 
@@ -298,18 +294,16 @@ footer div { display: flex; gap: 1.5rem; }
   .sense-copy { align-self: stretch; }
   .sense-copy > span { margin: 0; }
 
-  .sight { min-height: 150svh; padding-top: 6rem; padding-bottom: 6rem; }
+  .sight { min-height: 0; padding-top: 6rem; padding-bottom: 6rem; }
   .sight-copy { width: 100%; }
   .sight-copy h2 { font-size: clamp(3.8rem, 18vw, 5.8rem); }
   .sight-sequence { position: static; flex-direction: row; flex-wrap: wrap; gap: .5rem 1rem; margin: 2rem 0; font-size: clamp(2.1rem, 12vw, 3.4rem); }
   .sight-sequence span:nth-child(n) { transform: none; }
-  .sight-table { min-height: 100svh; margin-top: 5rem; }
-  .sight-landscape { top: 0; width: 92%; height: 47%; }
+  .sight-table { min-height: 62svh; margin-top: 4rem; }
+  .sight-landscape { top: 0; left: 0; width: 92%; height: 46%; }
   .sight-landscape img { object-position: 52% 48%; }
-  .sight-water { right: 0; top: 38%; width: 54%; height: 31%; }
+  .sight-water { right: 0; top: 50%; width: 62%; height: 42%; }
   .sight-water img { object-position: 50% 50%; }
-  .sight-material { left: 4%; right: auto; bottom: 0; width: 61%; height: 37%; }
-  .sight-material img { object-position: 48% 52%; }
   .sight blockquote { width: 100%; margin-top: 4rem; }
   .sight blockquote strong { font-size: clamp(4rem, 21vw, 6.4rem); }
 
