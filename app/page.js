@@ -98,29 +98,33 @@ function TouchMedia() {
 
   if (reduceMotion) {
     return (
-      <Image
-        className="touch-art"
-        src={TOUCH_ART}
-        alt="An illustration of restorative touch and bodywork"
-        fill
-        sizes="(max-width: 700px) 100vw, 52vw"
-      />
+      <div className="touch-frame">
+        <Image
+          className="touch-art"
+          src={TOUCH_ART}
+          alt="An illustration of restorative touch and bodywork"
+          fill
+          sizes="(max-width: 700px) 88vw, 580px"
+        />
+      </div>
     );
   }
 
   return (
-    <video
-      className="touch-art"
-      poster={TOUCH_ART}
-      muted
-      loop
-      playsInline
-      autoPlay
-      preload="none"
-      aria-hidden="true"
-    >
-      <source src={TOUCH_VIDEO} type="video/mp4" />
-    </video>
+    <div className="touch-frame">
+      <video
+        className="touch-art"
+        poster={TOUCH_ART}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="none"
+        aria-hidden="true"
+      >
+        <source src={TOUCH_VIDEO} type="video/mp4" />
+      </video>
+    </div>
   );
 }
 
