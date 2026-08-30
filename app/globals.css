@@ -163,11 +163,13 @@ section { position: relative; }
   .sight-water { animation: sight-drift linear both; animation-timeline: view(); animation-range: entry 5% exit 90%; }
   .sight-material { animation: sight-float linear both; animation-timeline: view(); animation-range: entry 5% exit 90%; }
   .sight-sequence { animation: sight-type linear both; animation-timeline: view(); animation-range: entry 0% cover 65%; }
+  .destination-copy { animation: destination-dissolve linear both; animation-timeline: view(); animation-range: cover 35% cover 80%; }
 }
 @keyframes sight-rise { from { transform: translate3d(0, 4rem, 0); } to { transform: translate3d(0, -2rem, 0); } }
 @keyframes sight-drift { from { transform: translate3d(0, 7rem, 0); } to { transform: translate3d(0, -4rem, 0); } }
 @keyframes sight-float { from { transform: translate3d(0, 3rem, 0); } to { transform: translate3d(0, -5rem, 0); } }
 @keyframes sight-type { from { transform: translate3d(0, 5rem, 0); opacity: .2; } to { transform: translate3d(0, -1rem, 0); opacity: 1; } }
+@keyframes destination-dissolve { to { opacity: 0; } }
 
 .model { padding: var(--section-space) var(--gutter); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(18rem, .55fr); gap: clamp(3rem, 8vw, 9rem); background: var(--twilight); color: var(--moon-ivory); }
 .model-title-wrap, .model-copy { align-self: end; }
