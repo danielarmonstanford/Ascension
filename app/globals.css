@@ -266,8 +266,8 @@ footer div { display: flex; gap: 1.5rem; }
   .nav-links { display: none; }
   .hero-nav { padding-top: calc(1.15rem + env(safe-area-inset-top)); }
   .hero-theme { top: calc(1rem + env(safe-area-inset-top)); }
-  .hero-stage .progressive-media img,
-  .hero-stage .progressive-media video { object-position: 57% 48%; }
+  .hero-stage .progressive-media img { object-position: 57% 48%; }
+  .hero-stage .progressive-media video { object-position: 46% 48%; }
   .hero-frame { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
   .hero-title { top: 18svh; left: var(--gutter); max-width: calc(100vw - 2.5rem); font-size: clamp(3.7rem, 20vw, 5.7rem); line-height: .82; }
   .hero-place { left: var(--gutter); bottom: calc(5.7rem + env(safe-area-inset-bottom)); max-width: 15rem; font-size: .6rem; }
