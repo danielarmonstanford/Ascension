@@ -398,6 +398,11 @@ function Hero({ theme, setTheme }) {
 
 const senses = ["SIGHT", "SOUND", "TOUCH", "TASTE", "SCENT", "MOVE"];
 
+const senseMedia = { TOUCH: TouchMedia };
+const senseDescriptors = {
+  TOUCH: ["Acupressure · Massage", "Bodywork · Fascia"],
+};
+
 const passportCategories = [
   { name: "MOVE", copy: "Curated group movement, yoga, breathwork and embodied practices." },
   { name: "RESTORE", copy: "Selected group restoration and wellness experiences, with additional private treatments available separately." },
@@ -464,12 +469,31 @@ export default function HomePage() {
             <p>Six ways into the present.</p>
           </div>
           <div className="sense-river" aria-label="The six senses of ASCENSION">
-            {senses.map((sense, index) => (
-              <div className={`sense-word sense-${index + 1}`} key={sense}>
-                {sense === "TOUCH" ? <TouchMedia /> : null}
-                <span>{sense}</span>
-              </div>
-            ))}
+            {senses.map((sense, index) => {
+              const Media = senseMedia[sense];
+              const descriptor = senseDescriptors[sense];
+              return (
+                <div className={`sense-word sense-${index + 1}`} key={sense}>
+                  {Media ? (
+                    <>
+                      <Media />
+                      <div className="sense-copy">
+                        {descriptor ? (
+                          <p className="sense-descriptor">
+                            {descriptor.map((line) => (
+                              <span key={line}>{line}</span>
+                            ))}
+                          </p>
+                        ) : null}
+                        <span>{sense}</span>
+                      </div>
+                    </>
+                  ) : (
+                    <span>{sense}</span>
+                  )}
+                </div>
+              );
+            })}
           </div>
           <p className="sound-note">Sound is always yours to begin. No audio plays without your choice.</p>
         </section>

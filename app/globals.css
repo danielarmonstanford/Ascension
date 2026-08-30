@@ -124,14 +124,17 @@ section { position: relative; }
 .sense-river { display: flex; flex-direction: column; }
 .sense-word { min-height: clamp(7rem, 13vw, 12rem); display: flex; align-items: center; border-top: 1px solid var(--rule); }
 .sense-word:last-child { border-bottom: 1px solid var(--rule); }
-.sense-word span { font: 400 clamp(3.5rem, 9vw, 8rem)/.82 var(--display); letter-spacing: -.035em; }
+.sense-word > span, .sense-copy > span { font: 400 clamp(3.5rem, 9vw, 8rem)/.82 var(--display); letter-spacing: -.035em; }
 .sense-2, .sense-5 { justify-content: center; }
 .sense-6 { justify-content: flex-end; }
 .sense-2 span { color: var(--twilight); }
-.sense-3 { position: relative; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1.5rem; padding: 2.5rem var(--gutter); }
-.touch-frame { position: relative; width: min(46%, 580px); aspect-ratio: 622 / 368; overflow: hidden; }
+.sense-3 { position: relative; flex-direction: row; align-items: flex-end; gap: clamp(1.5rem, 4vw, 3rem); padding: 2.5rem var(--gutter); }
+.touch-frame { position: relative; flex-shrink: 0; width: min(46%, 580px); aspect-ratio: 622 / 368; overflow: hidden; }
 .touch-frame .touch-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.sense-3 span { align-self: flex-end; position: relative; margin: 0; color: var(--deep-ocean); text-shadow: 0 1px 24px rgba(244, 237, 225, .76); }
+.sense-copy { display: flex; flex-direction: column; align-items: flex-end; flex: 1; min-width: 0; }
+.sense-descriptor { margin: 0 0 1rem; display: flex; flex-direction: column; gap: .3rem; text-align: right; }
+.sense-descriptor span { font: 500 .68rem/1.5 var(--utility); letter-spacing: .14em; text-transform: uppercase; color: var(--quiet); }
+.sense-copy > span { position: relative; margin: 0; color: var(--deep-ocean); text-shadow: 0 1px 24px rgba(244, 237, 225, .76); }
 :root[data-theme="dusk"] .sense-2 span { color: var(--sunset); }
 .sense-4 span { color: var(--burnt-sand); }
 .sense-5 span { color: var(--sea-glass); }
@@ -289,9 +292,11 @@ footer div { display: flex; gap: 1.5rem; }
   .sense-intro, .attendance-heading, .series-intro { grid-template-columns: 1fr; gap: 1.5rem; }
   .sense-intro h2 { font-size: clamp(3.8rem, 18vw, 6rem); }
   .sense-word { min-height: 7rem; }
-  .sense-word span { font-size: clamp(3.3rem, 18vw, 5.7rem); }
-  .touch-frame { width: 88%; }
-  .sense-3 span { margin: 0; }
+  .sense-word > span, .sense-copy > span { font-size: clamp(3.3rem, 18vw, 5.7rem); }
+  .sense-3 { flex-direction: column; gap: 1.25rem; }
+  .touch-frame { width: 88%; align-self: flex-start; }
+  .sense-copy { align-self: stretch; }
+  .sense-copy > span { margin: 0; }
 
   .sight { min-height: 150svh; padding-top: 6rem; padding-bottom: 6rem; }
   .sight-copy { width: 100%; }
