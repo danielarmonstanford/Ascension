@@ -13,7 +13,7 @@ const DA_NANG_VIMEO_ID = "1221665573";
 const DA_NANG_VIDEO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787489954/Screen_Shot_2026-08-23_at_8.59.05_AM_e8jceq.png";
 const DA_NANG_FILM =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/v1787827128/zen_sunset_beach_pool_da_nang_ovllnz.jpg";
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
 const DA_NANG_PLACE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg";
 const CREATIVE_WATER =
