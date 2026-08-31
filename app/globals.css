@@ -71,7 +71,7 @@ button { font: inherit; }
 .hero-atmosphere { position: absolute; inset: 0; z-index: 3; background: linear-gradient(180deg, rgba(9, 31, 42, .58) 0%, rgba(9, 31, 42, .06) 35%, rgba(9, 31, 42, .18) 58%, rgba(9, 31, 42, .74) 100%); pointer-events: none; }
 :root[data-theme="dusk"] .hero-atmosphere {
   background:
-    linear-gradient(180deg, rgba(215, 154, 114, .32) 0%, rgba(244, 201, 107, .16) 20%, rgba(135, 85, 69, .1) 42%, rgba(135, 85, 69, 0) 68%),
+    linear-gradient(180deg, color-mix(in srgb, var(--sunset) 32%, transparent) 0%, color-mix(in srgb, var(--sunlight) 16%, transparent) 20%, color-mix(in srgb, var(--clay) 10%, transparent) 42%, transparent 68%),
     linear-gradient(180deg, rgba(9, 31, 42, .58) 0%, rgba(9, 31, 42, .06) 35%, rgba(9, 31, 42, .18) 58%, rgba(9, 31, 42, .74) 100%);
 }
 .hero-nav { position: absolute; z-index: 5; top: env(safe-area-inset-top); left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem calc(var(--gutter) + env(safe-area-inset-right)) 0 calc(var(--gutter) + env(safe-area-inset-left)); }
