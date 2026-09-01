@@ -53,6 +53,10 @@ Practitioner, facilitator, partner, sponsor, and venue pathways are secondary. P
 
 SOUND is a core sense, not background decoration. Present it through verified practices and a deliberate listening moment only when an approved audio asset exists. Never autoplay. Provide clear playback controls, captions or descriptive context, volume independence, and a silent equivalent. The page must remain complete when audio is unavailable.
 
+## Confirmed Sensory Framework
+
+The September 1, 2026 production brief establishes this public sequence: EMBODY → SIGHT → SOUND → TASTE → SCENT → CREATE. The approved homepage copy names Loan for daily Vietnamese acupressure and confirms daily ecstatic dance, daily Hideout Wellness programming, daily sound practice, Marble Mountains as a special excursion with day TBD, and fascial release as a program component with practitioner TBD. Do not infer additional practitioners, schedules, inclusions, or dates from these confirmations.
+
 ## Media Strategy
 
 The original Da Nang yoga-wheel photograph is the hero source of truth. Use Cloudinary for responsive crops, formats, and progressive delivery. The homepage must feel finished with optimized still photography alone.

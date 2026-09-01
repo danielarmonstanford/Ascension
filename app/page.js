@@ -469,17 +469,68 @@ function Hero({ theme, setTheme }) {
   );
 }
 
-const senses = ["EMBODY", "SIGHT", "SOUND", "TASTE", "SCENT", "CREATE"];
-
 const senseMedia = { EMBODY: TouchMedia, SIGHT: SightMedia, SOUND: SoundMedia, CREATE: MakeArtMedia };
-const senseDescriptors = {
-  EMBODY: ["Ecstatic Movement · Somatic Release", "Acupressure with Loan"],
-  SIGHT: ["Marble Mountains · Hội An", "Da Nang Coastline"],
-  SOUND: ["Gong Bath · Waves at Dawn", "Live Music at Dusk"],
-  TASTE: ["Shared Table", "Local Flavor"],
-  SCENT: ["Salt Air", "Warm Earth"],
-  CREATE: ["Paint · Draw · Collage", "No Experience Required"],
-};
+const sensoryStories = [
+  {
+    id: "embody", icon: "✋", name: "EMBODY", title: "Feel More. Move More. Touch Deeper.", cta: "EMBODY IT",
+    blocks: [
+      "Your body has been waiting to heal and transform.",
+      "Ecstatic dance at sunset by the sea.\nSomatic release that rewires you from the inside and heals what's been held.\nVietnamese acupressure with Loan, daily—finding what no one else has found.\nFascial release work that opens doors in your body you forgot existed.",
+      "Here, movement transforms tension into presence.\nTouch heals what the mind alone cannot reach.",
+      "Feel your feet on the earth.\nMove like you're creating, not performing.\nLet your skin remember it's alive.",
+      "Your body knows how to heal. We just create the conditions."
+    ]
+  },
+  {
+    id: "sight", icon: "🎨", name: "SIGHT", title: "See Differently", cta: "EXPLORE SIGHT",
+    blocks: [
+      "Let your eyes soften. Let the world come to you.",
+      "Notice how light loves the ancient stones of Hội An.\nWatch the sea change color in the space of one breath.\nCatch the way a stranger's face opens when presence arrives.",
+      "Here, seeing is a practice of peace.\nEach glance becomes a small homecoming—gentle, clear, deeply calming.\nWithout effort, your mind settles. Tension unwinds.\nA quiet joy rises as the present moment reveals itself, again and again.",
+      "The world doesn't need your analysis. It needs your wonder.\nWhen you stop translating, you start receiving—\nand in that receiving, you are transformed.",
+      "Da Nang. Marble Mountains. The south Vietnamese coast.\nWhatever calls to you, go see it."
+    ]
+  },
+  {
+    id: "sound", icon: "🔊", name: "SOUND", title: "Listen Deeply", cta: "EXPERIENCE SOUND",
+    blocks: [
+      "Meditate into the symphony you've been too busy to hear.",
+      "Waves breaking at 5 AM. Wind through palms.\nGongs that move through your body like water.\nSilence so deep it rewires your nervous system.\nLive music at dusk when the city softens.",
+      "Our signature modality. Every single day.",
+      "Sound is not something you hear.\nSound is something you become.",
+      "Sound is always yours to begin. No audio plays without your choice."
+    ]
+  },
+  {
+    id: "taste", icon: "👅", name: "TASTE", title: "Taste the Place", cta: "DISCOVER TASTE",
+    blocks: [
+      "Eat flavors you've never met.",
+      "Tropical fruit that tastes like its own geography.\nFresh fish still carrying the salt of this morning's sea.\nHerbs that wake up your tongue and your nervous system.\nTea that tastes like time stopped.",
+      "Every meal is a ritual. Every bite is medicine.",
+      "Let flavor become a conversation with Da Nang itself."
+    ]
+  },
+  {
+    id: "scent", icon: "👃", name: "SCENT", title: "Breathe In", cta: "EXPERIENCE SCENT",
+    blocks: [
+      "Breathing new air is how you begin again.",
+      "Morning breathwork with sea air filling your lungs.\nThe warm humidity of Da Nang rising off your skin.\nBotanical rituals that anchor you to this moment.\nHerbal tea that tastes like a garden is speaking to you.",
+      "Scent rewires your nervous system. It opens memory. It calls you home.",
+      "Inhale the salt and the warmth.\nBreathe in what you've been missing.\nExhale what no longer serves."
+    ]
+  },
+  {
+    id: "create", icon: "✨", name: "CREATE", title: "The Sixth Sense", cta: "DISCOVER CREATE",
+    blocks: [
+      "Consciousness wants to be expressed. That's what makes you human.",
+      "You don't need to be an artist. You need to be alive.",
+      "Move your hands through paint. Click the camera at moments that steal your breath.\nWrite what your heart knows. Dance what your body remembers.\nMake something that didn't exist this morning.",
+      "Every mark you make is a memory.\nEvery image, a moment you loved enough to capture.\nEvery word, a piece of yourself you're giving to the world.",
+      "Be present enough to notice.\nBe brave enough to express.\nBe alive enough to create.",
+      "Transform what you've experienced into something real."
+    ]
+  }
+];
 
 const passportCategories = [
   { name: "MOVE", copy: "Curated group movement, yoga, breathwork and embodied practices." },
@@ -541,48 +592,31 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="sense-sequence" aria-labelledby="senses-title">
+        <section className="sensory-framework" aria-labelledby="senses-title">
           <div className="sense-intro">
             <h2 id="senses-title">Come back to<br />your senses.</h2>
             <p>Six ways into the present.</p>
           </div>
-          <div className="sense-river" aria-label="The six senses of ASCENSION">
-            {senses.map((sense) => {
-              const Media = senseMedia[sense];
-              const descriptor = senseDescriptors[sense];
+          <div className="sensory-stories" aria-label="The six senses of ASCENSION">
+            {sensoryStories.map((story, index) => {
+              const Media = senseMedia[story.name];
               return (
-                <div className={`sense-word sense-${sense.toLowerCase()}`} key={sense}>
-                  {Media ? (
-                    <>
-                      <Media />
-                      <div className="sense-copy">
-                        {descriptor ? (
-                          <p className="sense-descriptor">
-                            {descriptor.map((line) => (
-                              <span key={line}>{line}</span>
-                            ))}
-                          </p>
-                        ) : null}
-                        <span>{sense}</span>
-                      </div>
-                    </>
-                  ) : descriptor ? (
-                    <div className="sense-copy">
-                      <p className="sense-descriptor">
-                        {descriptor.map((line) => (
-                          <span key={line}>{line}</span>
-                        ))}
-                      </p>
-                      <span>{sense}</span>
-                    </div>
-                  ) : (
-                    <span>{sense}</span>
-                  )}
-                </div>
+                <article className={`sensory-story sensory-story-${index + 1}`} id={story.id} key={story.name}>
+                  <header className="sensory-story-heading">
+                    <p className="sensory-story-label"><span aria-hidden="true">{story.icon}</span>{story.name}</p>
+                    <h3>{story.title}</h3>
+                    {Media ? <Media /> : null}
+                  </header>
+                  <div className="sensory-story-copy">
+                    {story.blocks.map((block) => <p key={block}>{block}</p>)}
+                    <a href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener noreferrer">
+                      {story.cta} <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                </article>
               );
             })}
           </div>
-          <p className="sound-note">Sound begins only when you choose it. Nothing plays until you do.</p>
         </section>
 
         <section className="model" id="experience" aria-labelledby="model-title">
