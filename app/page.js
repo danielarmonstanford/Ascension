@@ -457,7 +457,7 @@ function Hero({ theme, setTheme }) {
         <div className="hero-frame">
           <h1 className="hero-title entrance entrance-title">ASCENSION</h1>
           <p className="hero-place entrance entrance-place">Da Nang · Vietnam<br />January 12–26, 2027</p>
-          <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
+          <p className="hero-proposition entrance entrance-proposition">Six ways into the present.</p>
           <a className="hero-explore entrance entrance-controls" href="#awaken">Explore <span aria-hidden="true">↓</span></a>
         </div>
 
@@ -595,7 +595,6 @@ export default function HomePage() {
         <section className="sensory-framework" aria-labelledby="senses-title">
           <div className="sense-intro">
             <h2 id="senses-title">Come back to<br />your senses.</h2>
-            <p>Six ways into the present.</p>
           </div>
           <div className="sensory-stories" aria-label="The six senses of ASCENSION">
             {sensoryStories.map((story, index) => {
