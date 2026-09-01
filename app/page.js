@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { sensoryMedia } from "./sensory-media";
+import { en, faqItems, passportCategories } from "../content/en";
 
 const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
@@ -13,8 +14,8 @@ const DA_NANG_VIDEO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787489954/Screen_Shot_2026-08-23_at_8.59.05_AM_e8jceq.png";
 const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
-const SOUND_ART =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp";
+const DIEN_CHAN_VISUAL =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787672842/hf_20260825_154036_0f54f781-11e4-4fd2-bc2e-b20f07766ac2_tuvnzo.png";
 
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 
@@ -366,7 +367,7 @@ function Hero({ theme, setTheme }) {
           <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
           <div className="hero-offer entrance entrance-place">
             <p className="hero-place">Da Nang, Vietnam<br />January 12–26, 2027</p>
-            <p className="hero-description">A 7- or 14-day experience of movement, restoration, culture and creative renewal.</p>
+            <p className="hero-description">{isMobile === false ? en.hero.desktop : en.hero.mobile}</p>
           </div>
           <div className="hero-actions entrance entrance-controls">
             <a className="hero-primary" href="#senses">Embody it</a>
@@ -381,49 +382,6 @@ function Hero({ theme, setTheme }) {
     </header>
   );
 }
-
-const sensoryStories = [
-  {
-    id: "embody", name: "EMBODY", title: "Feel more. Move more. Touch deeper.", cta: "Explore embody",
-    summary: "Movement, daily ecstatic dance and body-based practices invite you to notice how you feel, move and meet the present. The program also includes Vietnamese acupressure with Loan and fascial release, with private or specialist work identified separately where applicable.",
-    details: "Participation is invitational, not prescribed. Confirmed group programming and any optional paid private sessions will be clearly distinguished in the final schedule."
-  },
-  {
-    id: "see", name: "SEE", title: "See differently.", cta: "Explore seeing",
-    summary: "Let your eyes soften into Da Nang: changing Pacific light, the visual life of Hội An, contemporary art, architecture and the ancient stone of the Marble Mountains. Seeing becomes a practice of attention—less analysis, more wonder, and a more intimate relationship with place.",
-    details: "Marble Mountains is planned as a special excursion, with the day still to be confirmed. Other place-based moments remain illustrative until the final program is published."
-  },
-  {
-    id: "sound", name: "SOUND", title: "Listen deeply.", cta: "Explore sound",
-    summary: "Daily sound practice draws attention to waves, wind, music, resonance and silence. Rather than filling every moment, ASCENSION uses listening to create spaciousness and connection—to the body, the environment and the people sharing the experience. Any audible preview will always begin by choice.",
-    details: "The final sound preview and full participant controls are pending approved media. No named sound facilitator is presented as confirmed."
-  },
-  {
-    id: "taste", name: "TASTE", title: "Taste the place.", cta: "Explore taste",
-    summary: "Vietnamese ingredients, preparation and shared tables offer another way into Da Nang. Taste tropical fruit, local herbs, tea and the textures of the coast while learning through discovery rather than spectacle. Selected culinary experiences are part of the curated program; additional meals remain yours to choose.",
-    details: "The final culinary media and specific shared-meal schedule are pending. Only confirmed inclusions will appear in the participant program."
-  },
-  {
-    id: "breathe", name: "BREATHE", title: "Breathe it in.", cta: "Explore breathing",
-    summary: "Sea air, incense, plants, steam and the warm humidity of Da Nang make the environment physically present. Breath and scent become quiet forms of orientation: notice what surrounds you, what memory it carries, and how a change of place can open a different quality of attention.",
-    details: "Environmental and scent-led moments are descriptive of the experience. Specific botanical rituals or facilitators will be named only when confirmed."
-  },
-  {
-    id: "create", name: "CREATE · INTUITION", title: "Follow the sixth sense.", cta: "Explore creating",
-    summary: "Creative practice gives form to what you notice. Through photography, drawing, painting, collage, writing or movement, you can follow intuition without needing to perform as an artist. Make something that did not exist that morning, then carry the memory of the experience home in a tangible form.",
-    details: "Creative sessions are part of the ASCENSION Passport framework. Final media and the detailed materials schedule are still in production."
-  }
-];
-
-const passportCategories = [
-  { name: "MOVE", copy: "Curated group movement, yoga, breathwork and embodied practices." },
-  { name: "RESTORE", copy: "Selected group restoration and wellness experiences, with additional private treatments available separately." },
-  { name: "SOUND", copy: "Guided meditation, sound and sensory sessions." },
-  { name: "TASTE", copy: "Selected shared culinary experiences connecting guests with Da Nang through food." },
-  { name: "DISCOVER", copy: "Curated cultural and place-based experiences across Da Nang and its surroundings." },
-  { name: "CREATE", copy: "Photography, drawing, painting, collage and material exploration." },
-  { name: "COMMUNITY", copy: "A small international cohort sharing the experience, rather than a conventional tour group." },
-];
 
 function MobileReserveBar() {
   const [visible, setVisible] = useState(false);
@@ -462,8 +420,108 @@ function MobileReserveBar() {
   );
 }
 
+function EcstaticDanceExperience({ isMobile }) {
+  const experience = en.ecstaticDance;
+  const paragraphs = isMobile === false ? experience.desktop : [experience.mobile];
+
+  return (
+    <aside className="ecstatic-dance" aria-labelledby="ecstatic-dance-title">
+      <div className="ecstatic-intro">
+        <p className="sensory-story-label">{experience.label}</p>
+        <h4 id="ecstatic-dance-title">{experience.title}</h4>
+        {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        <p className="experience-status">{experience.status}</p>
+      </div>
+      <ol className="movement-arc" aria-label="Ecstatic Dance experience arc">
+        {experience.arc.map((step, index) => (
+          <li key={step.label}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h5>{step.label}</h5>
+            <p>{step.copy}</p>
+          </li>
+        ))}
+      </ol>
+    </aside>
+  );
+}
+
+function FoundationSection({ isMobile }) {
+  const foundation = en.foundation;
+  return (
+    <section className="foundation" id="dien-chan" aria-labelledby="foundation-title">
+      <div className="foundation-visual">
+        <Image
+          src={DIEN_CHAN_VISUAL}
+          alt="Needle-free Diện Chẩn reflexology and acupressure treatment"
+          fill
+          sizes="(max-width: 767px) 100vw, 52vw"
+        />
+      </div>
+      <div className="foundation-copy">
+        <p className="foundation-kicker">{foundation.eyebrow}</p>
+        <h2 id="foundation-title">{foundation.title}</h2>
+        <p>{isMobile === false ? foundation.desktop : foundation.mobile}</p>
+        <details>
+          <summary>Go deeper <span aria-hidden="true">→</span></summary>
+          <div className="foundation-details">
+            {foundation.details.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            <p className="medical-note">{foundation.disclaimer}</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  );
+}
+
+function ParticipationPrinciples() {
+  const participation = en.participation;
+  return (
+    <section className="participation" aria-labelledby="participation-title">
+      <div>
+        <p className="participation-kicker">{participation.eyebrow}</p>
+        <h2 id="participation-title">{participation.title}</h2>
+        <p>{participation.copy}</p>
+      </div>
+      <ul>
+        {participation.principles.map((principle) => <li key={principle}>{principle}</li>)}
+      </ul>
+    </section>
+  );
+}
+
+function PractitionerInvitation({ isMobile }) {
+  const practitioner = en.practitioner;
+  const applicationHref = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
+  return (
+    <section className="practitioner-invitation" aria-labelledby="practitioner-title">
+      <p className="practitioner-kicker">{practitioner.eyebrow}</p>
+      <h2 id="practitioner-title">{practitioner.title}</h2>
+      <p>{isMobile === false ? practitioner.desktop : practitioner.mobile}</p>
+      <a href={applicationHref}>Apply to facilitate <span aria-hidden="true">→</span></a>
+    </section>
+  );
+}
+
+function FrequentlyAskedQuestions() {
+  return (
+    <section className="faq" aria-labelledby="faq-title">
+      <p className="faq-kicker">Before you arrive</p>
+      <h2 id="faq-title">Questions,<br />answered.</h2>
+      <div className="faq-list">
+        {faqItems.map(([question, answer]) => (
+          <details key={question}>
+            <summary>{question}<span aria-hidden="true">+</span></summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function HomePage() {
   const [theme, setTheme] = useState("day");
+  const isMobile = useMobileLayout();
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -503,6 +561,18 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="main-introduction" id="experience" aria-labelledby="introduction-title">
+          <div>
+            <h2 id="introduction-title">{en.introduction.title}</h2>
+            <div className="introduction-copy">
+              {(isMobile === false ? en.introduction.desktop : [en.introduction.mobile]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
+          </div>
+          <ol className="introduction-progression" aria-label="The ASCENSION progression">
+            {en.introduction.progression.map((step) => <li key={step}>{step}</li>)}
+          </ol>
+        </section>
+
         <section className="destination" aria-labelledby="destination-title">
           <ProgressiveMedia
             poster={DA_NANG_VIDEO_POSTER}
@@ -516,12 +586,19 @@ export default function HomePage() {
           </div>
         </section>
 
+        <FoundationSection isMobile={isMobile} />
+
+        <section className="wider-program" aria-labelledby="wider-program-title">
+          <h2 id="wider-program-title">{en.widerProgram.title}</h2>
+          <p>{isMobile === false ? en.widerProgram.desktop : en.widerProgram.mobile}</p>
+        </section>
+
         <section className="sensory-framework" id="senses" aria-labelledby="senses-title">
           <div className="sense-intro">
             <h2 id="senses-title">Six ways into<br />the present.</h2>
           </div>
           <div className="sensory-stories" aria-label="The six senses of ASCENSION">
-            {sensoryStories.map((story, index) => {
+            {en.sensoryStories.map((story, index) => {
               const media = sensoryMedia[story.id];
               return (
                 <article className={`sensory-story sensory-story-${index + 1}`} id={story.id} key={story.name}>
@@ -531,26 +608,34 @@ export default function HomePage() {
                     <SensoryMedia media={media} chapter={story.id} />
                   </header>
                   <div className="sensory-story-copy">
-                    <p>{story.summary}</p>
-                    <details>
-                      <summary>{story.cta} <span aria-hidden="true">→</span></summary>
-                      <p>{story.details}</p>
-                    </details>
+                    {story.quote ? <blockquote>{story.quote}</blockquote> : null}
+                    <p>{isMobile === false ? story.desktop : story.mobile}</p>
+                    {story.href ? (
+                      <a className="sensory-link" href={story.href}>{story.cta} <span aria-hidden="true">→</span></a>
+                    ) : (
+                      <details>
+                        <summary>{story.cta} <span aria-hidden="true">→</span></summary>
+                        <p>{story.details}</p>
+                      </details>
+                    )}
                   </div>
+                  {story.id === "embody" ? <EcstaticDanceExperience isMobile={isMobile} /> : null}
                 </article>
               );
             })}
           </div>
         </section>
 
-        <section className="model" id="experience" aria-labelledby="model-title">
+        <ParticipationPrinciples />
+
+        <section className="model" aria-labelledby="model-title">
           <div className="model-title-wrap">
             <p className="model-kicker">Your Ascension Passport</p>
-            <h2 id="model-title">Not a retreat<br />from life.<br /><em>A return to it.</em></h2>
+            <h2 id="model-title">Your experience.<br /><em>Your rhythm.</em></h2>
           </div>
           <div className="model-copy">
-            <p className="model-lead">More than a retreat. Your way into Da Nang.</p>
-            <p>Your ASCENSION Passport gives you access to a curated program across movement, restoration, creativity, sound, taste and discovery — while leaving you free to choose your own hotel, your own downtime and the experiences that matter most to you.</p>
+            <p className="model-lead">Follow a curated program without losing your freedom.</p>
+            <p>Your ASCENSION Passport opens confirmed shared experiences while leaving room to rest, explore Da Nang and choose optional private sessions. Planned programming is identified separately until facilitators and schedules are confirmed.</p>
           </div>
           <div className="model-categories" id="inclusions" aria-label="What your Ascension Passport opens">
             {passportCategories.map((category) => (
@@ -564,8 +649,8 @@ export default function HomePage() {
 
         <section className="rhythm" id="program" aria-labelledby="rhythm-title">
           <div className="rhythm-heading">
-            <h2 id="rhythm-title">A day in<br />Ascension.</h2>
-            <p>Illustrative, not guaranteed. Every day is different — participate in what serves you, and leave space for what Da Nang reveals.</p>
+            <h2 id="rhythm-title">A rhythm,<br />not a rigid schedule.</h2>
+            <p>{isMobile === false ? "Mornings may begin with movement, breath or Diện Chẩn. Days open into restorative practices, food, cultural discovery and creative experience. As the sun lowers, the rhythm may shift toward sound baths, Ecstatic Dance, shared tables, reflection or quiet by the sea." : "Mornings may begin with movement, breath or Diện Chẩn. Days open into food, culture, creativity and restoration. Evenings may bring sound, dance, community or quiet. Every day leaves room to choose."}</p>
           </div>
           <div className="rhythm-list" aria-label="An illustrative daily rhythm">
             <article><p className="rhythm-time">Morning</p><p className="rhythm-detail">Movement · Breath · Ocean</p></article>
@@ -574,6 +659,20 @@ export default function HomePage() {
             <article><p className="rhythm-time">Your Time</p><p className="rhythm-detail">Beach · Spa · City · Rest · Private Sessions</p></article>
           </div>
           <p className="rhythm-note">ASCENSION is curated, not prescribed.</p>
+        </section>
+
+        <section className="host-story" aria-labelledby="host-title">
+          <div>
+            <p className="host-kicker">Daniel’s documented experience</p>
+            <h2 id="host-title">{en.host.title}</h2>
+          </div>
+          <div>
+            <p>{isMobile === false ? en.host.desktop : en.host.mobile}</p>
+            <details>
+              <summary>Read Daniel’s story <span aria-hidden="true">→</span></summary>
+              <p>{en.host.documentation}</p>
+            </details>
+          </div>
         </section>
 
         <section className="comparison" id="comparison" aria-labelledby="comparison-title">
@@ -601,29 +700,14 @@ export default function HomePage() {
           <p>Choose and book the Da Nang hotel that suits you. Flights, accommodation and local transfers are not included in the ASCENSION program price.</p>
         </section>
 
-        <section className="people" aria-labelledby="people-title">
-          <div className="people-photo">
-            <Image src={DA_NANG_FILM} alt="Da Nang at sunset" fill sizes="(max-width: 760px) 100vw, 50vw" />
-          </div>
-          <div className="people-copy">
-            <h2 id="people-title">People shape<br />the experience.</h2>
-            <p>Facilitators will be introduced here only as participation is confirmed.</p>
-            <a href="/partners">Facilitator and partner pathways <span aria-hidden="true">→</span></a>
-          </div>
-        </section>
+        <PractitionerInvitation isMobile={isMobile} />
+
+        <FrequentlyAskedQuestions />
 
         <section className="attendance" id="attendance" aria-labelledby="attendance-title">
           <div className="attendance-heading">
             <h2 id="attendance-title">Reserve your<br />Ascension.</h2>
             <p>Programs begin at USD $1,200. A $300 deposit currently reserves your place.</p>
-          </div>
-          <div className="attendance-art">
-            <Image
-              src={SOUND_ART}
-              alt="An illustration of an ear surrounded by radiating sound waves"
-              fill
-              sizes="(max-width: 700px) 100vw, 72vw"
-            />
           </div>
           <div className="attendance-terms">
             <div className="attendance-included">
@@ -684,7 +768,11 @@ export default function HomePage() {
           <div className="join-overlay" aria-hidden="true" />
           <div className="join-copy">
             <h2 id="join-title">Da Nang<br />is waiting.</h2>
-            <a href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+            <p>{isMobile === false ? en.finalCta.desktop : en.finalCta.mobile}</p>
+            <div className="join-actions">
+              <a href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+              <a className="join-question" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a question <span aria-hidden="true">→</span></a>
+            </div>
           </div>
           <footer>
             <span>ASCENSION SENSES · Edition 01</span>

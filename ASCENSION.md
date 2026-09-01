@@ -55,7 +55,11 @@ SOUND is a core sense, not background decoration. Present it through verified pr
 
 ## Confirmed Sensory Framework
 
-The September 1, 2026 production brief establishes this public sequence: EMBODY → SIGHT → SOUND → TASTE → SCENT → CREATE. The approved homepage copy names Loan for daily Vietnamese acupressure and confirms daily ecstatic dance, daily Hideout Wellness programming, daily sound practice, Marble Mountains as a special excursion with day TBD, and fascial release as a program component with practitioner TBD. Do not infer additional practitioners, schedules, inclusions, or dates from these confirmations.
+The September 1, 2026 production brief establishes this public sequence: EMBODY → SEE → SOUND → TASTE → BREATHE → CREATE. The approved homepage copy establishes Diện Chẩn as the foundation, identifies movement, breath, sound, food, culture and creativity as the wider framework, and treats Ecstatic Dance, sound baths and uncontracted facilitator-led modalities as planned until their people, place and schedule are confirmed. Marble Mountains remains a special excursion with day TBD. Do not infer additional practitioners, schedules, inclusions, or dates from these confirmations.
+
+The September 1 surgical conversion brief establishes Diện Chẩn as the signature therapeutic and educational foundation of the Da Nang edition. Describe it as a modern Vietnamese, needle-free system rooted in traditional principles; never describe it as ancient or promise medical outcomes. The supplied Diện Chẩn visual is approved, while treatment video and Daniel Stanford’s documentation remain pending.
+
+Ecstatic Dance sits only inside EMBODY as a planned ASCENSION movement experience. It is not a seventh sense, primary site section, navigation item, confirmed facilitator partnership, or separate purchasing pathway. Public status: facilitator to be announced. Do not mention, copy, link to, or use assets or trademarks from Extaticaa.
 
 ## Media Strategy
 
