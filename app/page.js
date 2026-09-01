@@ -26,6 +26,8 @@ const SOUND_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp";
 const TOUCH_VIDEO =
   "https://res.cloudinary.com/dno3ruh4b/video/upload/w_622,h_368,c_scale/v1788096436/hf_20260830_041430_e38407f9-d6d0-4bfd-8bc7-4635dc83c4a4_dbe2og.mp4";
+const HOI_AN_LANTERNS =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788267982/Screen_Shot_2026-09-01_at_9.06.12_AM_ikm6wg.png";
 
 function ThemeControl({ theme, onChange }) {
   return (
@@ -98,9 +100,9 @@ function TouchMedia() {
 
   if (reduceMotion) {
     return (
-      <div className="touch-frame">
+      <div className="sense-frame">
         <Image
-          className="touch-art"
+          className="sense-art"
           src={TOUCH_ART}
           alt="An illustration of restorative touch and bodywork"
           fill
@@ -111,9 +113,9 @@ function TouchMedia() {
   }
 
   return (
-    <div className="touch-frame">
+    <div className="sense-frame">
       <video
-        className="touch-art"
+        className="sense-art"
         poster={TOUCH_ART}
         muted
         loop
@@ -141,27 +143,47 @@ function MakeArtMedia() {
 
   if (reduceMotion) {
     return (
-      <Image
-        src={MAKE_ART_POSTER}
-        alt="A hand applying gold leaf detail to a painted portrait"
-        fill
-        sizes="(max-width: 700px) 62vw, 34vw"
-      />
+      <div className="sense-frame">
+        <Image
+          className="sense-art"
+          src={MAKE_ART_POSTER}
+          alt="A hand applying gold leaf detail to a painted portrait"
+          fill
+          sizes="(max-width: 700px) 88vw, 580px"
+        />
+      </div>
     );
   }
 
   return (
-    <video
-      poster={MAKE_ART_POSTER}
-      muted
-      loop
-      playsInline
-      autoPlay
-      preload="none"
-      aria-hidden="true"
-    >
-      <source src={MAKE_ART_VIDEO} type="video/mp4" />
-    </video>
+    <div className="sense-frame">
+      <video
+        className="sense-art"
+        poster={MAKE_ART_POSTER}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="none"
+        aria-hidden="true"
+      >
+        <source src={MAKE_ART_VIDEO} type="video/mp4" />
+      </video>
+    </div>
+  );
+}
+
+function SightMedia() {
+  return (
+    <div className="sense-frame">
+      <Image
+        className="sense-art"
+        src={HOI_AN_LANTERNS}
+        alt="Silk lanterns in a Hội An lantern shop"
+        fill
+        sizes="(max-width: 700px) 88vw, 580px"
+      />
+    </div>
   );
 }
 
@@ -433,13 +455,15 @@ function Hero({ theme, setTheme }) {
   );
 }
 
-const senses = ["SIGHT", "SOUND", "TOUCH", "TASTE", "SCENT", "MOVE"];
+const senses = ["EMBODY", "SIGHT", "SOUND", "TASTE", "SCENT", "CREATE"];
 
-const senseMedia = { TOUCH: TouchMedia };
+const senseMedia = { EMBODY: TouchMedia, SIGHT: SightMedia, CREATE: MakeArtMedia };
 const senseDescriptors = {
-  TOUCH: ["Acupressure · Massage", "Bodywork · Fascia"],
+  EMBODY: ["Ecstatic Movement · Somatic Release", "Acupressure with Loan"],
+  SIGHT: ["Marble Mountains · Hội An", "Da Nang Coastline"],
   TASTE: ["Shared Table", "Local Flavor"],
   SCENT: ["Salt Air", "Warm Earth"],
+  CREATE: ["Paint · Draw · Collage", "No Experience Required"],
 };
 
 const passportCategories = [
@@ -508,11 +532,11 @@ export default function HomePage() {
             <p>Six ways into the present.</p>
           </div>
           <div className="sense-river" aria-label="The six senses of ASCENSION">
-            {senses.map((sense, index) => {
+            {senses.map((sense) => {
               const Media = senseMedia[sense];
               const descriptor = senseDescriptors[sense];
               return (
-                <div className={`sense-word sense-${index + 1}`} key={sense}>
+                <div className={`sense-word sense-${sense.toLowerCase()}`} key={sense}>
                   {Media ? (
                     <>
                       <Media />
@@ -544,22 +568,6 @@ export default function HomePage() {
             })}
           </div>
           <p className="sound-note">Sound begins only when you choose it. Nothing plays until you do.</p>
-        </section>
-
-        <section className="sight" aria-labelledby="sight-title">
-          <div className="sight-copy">
-            <p className="sight-label">Sight</p>
-            <p className="sight-sequence" aria-hidden="true"><span>See</span><span>Make</span><span>Create</span></p>
-            <h2 id="sight-title">See differently.<br />Make something.</h2>
-            <p>ASCENSION invites creativity back into daily life. Photography, drawing, painting, collage, material exploration — ways to respond to what you see, feel and experience in Da Nang.</p>
-            <p>No artistic experience required.</p>
-            <p>This is about noticing, not making “good art.”</p>
-          </div>
-          <div className="sight-table" aria-label="A visual study of creative process">
-            <div className="sight-image sight-landscape" aria-hidden="true" />
-            <div className="sight-image sight-water"><MakeArtMedia /></div>
-          </div>
-          <blockquote><strong>Make art.</strong><span>Not because you’re an artist. Because you’re alive.</span></blockquote>
         </section>
 
         <section className="model" id="experience" aria-labelledby="model-title">

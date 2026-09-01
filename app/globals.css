@@ -130,52 +130,25 @@ section { position: relative; }
 .sense-word { min-height: clamp(7rem, 13vw, 12rem); display: flex; align-items: center; border-top: 1px solid var(--rule); }
 .sense-word:last-child { border-bottom: 1px solid var(--rule); }
 .sense-word > span, .sense-copy > span { font: 400 clamp(3.5rem, 9vw, 8rem)/.82 var(--display); letter-spacing: -.035em; }
-.sense-2, .sense-5 { justify-content: center; }
-.sense-6 { justify-content: flex-end; }
-.sense-2 span { color: var(--twilight); }
-.sense-3 { position: relative; flex-direction: row; align-items: flex-end; gap: clamp(1.5rem, 4vw, 3rem); padding: 2.5rem var(--gutter); }
-.touch-frame { position: relative; flex-shrink: 0; width: min(46%, 580px); aspect-ratio: 622 / 368; overflow: hidden; }
-.touch-frame .touch-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sense-sound, .sense-scent { justify-content: center; }
+.sense-sound span { color: var(--twilight); }
+.sense-embody, .sense-sight, .sense-create { position: relative; flex-direction: row; align-items: flex-end; gap: clamp(1.5rem, 4vw, 3rem); padding: 2.5rem var(--gutter); }
+.sense-create { flex-direction: row-reverse; }
+.sense-frame { position: relative; flex-shrink: 0; width: min(46%, 580px); aspect-ratio: 622 / 368; overflow: hidden; }
+.sense-frame .sense-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sense-copy { display: flex; flex-direction: column; align-items: flex-end; min-width: 0; }
-.sense-3 .sense-copy { flex: 1; }
+.sense-embody .sense-copy, .sense-sight .sense-copy, .sense-create .sense-copy { flex: 1; }
 .sense-descriptor { margin: 0 0 1rem; display: flex; flex-direction: column; gap: .3rem; text-align: right; }
 .sense-descriptor span { font: 500 .68rem/1.5 var(--utility); letter-spacing: .14em; text-transform: uppercase; color: var(--quiet); }
 .sense-copy > span { position: relative; margin: 0; color: var(--deep-ocean); text-shadow: 0 1px 24px rgba(244, 237, 225, .76); }
-:root[data-theme="dusk"] .sense-2 span { color: var(--sunset); }
-.sense-4 > span, .sense-4 .sense-copy > span { color: var(--burnt-sand); }
-.sense-5 > span, .sense-5 .sense-copy > span { color: var(--sea-glass); }
+:root[data-theme="dusk"] .sense-sound span { color: var(--sunset); }
+.sense-taste > span, .sense-taste .sense-copy > span { color: var(--burnt-sand); }
+.sense-scent > span, .sense-scent .sense-copy > span { color: var(--sea-glass); }
 .sound-note { margin: 2rem 0 0 auto; max-width: 31rem; color: var(--quiet); font-size: .86rem; line-height: 1.6; }
 
-.sight { min-height: 100svh; padding: var(--section-space) var(--gutter); background: var(--shell); color: var(--deep-ocean); overflow: clip; }
-.sight-copy { position: relative; z-index: 4; width: min(42rem, 49vw); }
-.sight-label { margin: 0 0 1.25rem; color: var(--burnt-sand); font: 500 .72rem/1 var(--utility); letter-spacing: .18em; text-transform: uppercase; }
-.sight-copy h2 { margin: 0; font: 400 clamp(4rem, 7.5vw, 7.5rem)/.84 var(--display); letter-spacing: -.035em; }
-.sight-copy > p:not(.sight-label):not(.sight-sequence) { max-width: 35rem; margin: 1.5rem 0 0; line-height: 1.65; }
-.sight-sequence { position: absolute; top: 0; left: calc(100% + 8vw); display: flex; flex-direction: column; gap: .35rem; margin: 0; color: var(--sunset); font: 400 clamp(2.5rem, 5vw, 5rem)/.83 var(--display); text-transform: uppercase; }
-.sight-sequence span:nth-child(2) { transform: translateX(3vw); }
-.sight-sequence span:nth-child(3) { transform: translateX(6vw); }
-.sight-table { position: relative; min-height: 50svh; margin-top: clamp(4rem, 9vw, 8rem); }
-.sight-image { position: absolute; overflow: hidden; }
-.sight-image img { object-fit: cover; }
-.sight-image video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.sight-landscape { left: 0; top: 4%; width: 58%; height: 88%; }
-.sight-landscape img { object-position: 50% 48%; }
-.sight-water { right: 2%; top: 0; width: 38%; height: 56%; }
-.sight-water img { object-position: 52% 50%; }
-.sight-water video { object-position: 50% 42%; }
-.sight blockquote { position: relative; z-index: 4; width: min(62rem, 84vw); margin: clamp(2rem, 6vw, 6rem) 0 0 auto; }
-.sight blockquote strong { display: block; font: 400 clamp(4.5rem, 10vw, 10rem)/.8 var(--display); letter-spacing: -.04em; text-transform: uppercase; }
-.sight blockquote span { display: block; max-width: 34rem; margin: 1.5rem 0 0 auto; font-size: clamp(1.15rem, 2vw, 1.7rem); line-height: 1.4; }
-
 @supports (animation-timeline: view()) {
-  .sight-landscape { animation: sight-rise linear both; animation-timeline: view(); animation-range: entry 10% exit 90%; }
-  .sight-water { animation: sight-drift linear both; animation-timeline: view(); animation-range: entry 5% exit 90%; }
-  .sight-sequence { animation: sight-type linear both; animation-timeline: view(); animation-range: entry 0% cover 65%; }
   .destination-copy { animation: destination-dissolve linear both; animation-timeline: view(); animation-range: cover 35% cover 80%; }
 }
-@keyframes sight-rise { from { transform: translate3d(0, 4rem, 0); } to { transform: translate3d(0, -2rem, 0); } }
-@keyframes sight-drift { from { transform: translate3d(0, 7rem, 0); } to { transform: translate3d(0, -4rem, 0); } }
-@keyframes sight-type { from { transform: translate3d(0, 5rem, 0); opacity: .2; } to { transform: translate3d(0, -1rem, 0); opacity: 1; } }
 @keyframes destination-dissolve { to { opacity: 0; } }
 
 .model { padding: var(--section-space) var(--gutter); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(18rem, .55fr); gap: clamp(3rem, 8vw, 9rem); background: var(--twilight); color: var(--moon-ivory); }
@@ -297,24 +270,10 @@ footer div { display: flex; gap: 1.5rem; }
   .sense-intro h2 { font-size: clamp(3.8rem, 18vw, 6rem); }
   .sense-word { min-height: 7rem; }
   .sense-word > span, .sense-copy > span { font-size: clamp(3.3rem, 18vw, 5.7rem); }
-  .sense-3 { flex-direction: column; gap: 1.25rem; }
-  .touch-frame { width: 88%; align-self: flex-start; }
+  .sense-embody, .sense-sight, .sense-create { flex-direction: column; gap: 1.25rem; }
+  .sense-frame { width: 88%; align-self: flex-start; }
   .sense-copy { align-self: stretch; }
   .sense-copy > span { margin: 0; }
-
-  .sight { min-height: 0; padding-top: 6rem; padding-bottom: 6rem; }
-  .sight-copy { width: 100%; }
-  .sight-copy h2 { font-size: clamp(3.8rem, 18vw, 5.8rem); }
-  .sight-sequence { position: static; flex-direction: row; flex-wrap: wrap; gap: .5rem 1rem; margin: 2rem 0; font-size: clamp(2.1rem, 12vw, 3.4rem); }
-  .sight-sequence span:nth-child(n) { transform: none; }
-  .sight-table { min-height: 52svh; margin-top: 4rem; }
-  .sight-landscape { top: 0; left: 0; width: 92%; height: 46%; }
-  .sight-landscape img { object-position: 52% 48%; }
-  .sight-water { right: 0; top: 52%; width: 70%; height: 30%; }
-  .sight-water img { object-position: 50% 50%; }
-  .sight-water video { object-position: 50% 40%; }
-  .sight blockquote { width: 100%; margin-top: 4rem; }
-  .sight blockquote strong { font-size: clamp(4rem, 21vw, 6.4rem); }
 
   .model { grid-template-columns: 1fr; }
   .model h2 { font-size: clamp(3.4rem, 17vw, 5.5rem); }
