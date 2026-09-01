@@ -159,7 +159,7 @@ section { position: relative; }
 .sight-image video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sight-landscape { left: 0; top: 4%; width: 58%; height: 88%; }
 .sight-landscape img { object-position: 50% 48%; }
-.sight-water { right: 2%; top: 0; width: 34%; height: 56%; }
+.sight-water { right: 2%; top: 0; width: 38%; height: 56%; }
 .sight-water img { object-position: 52% 50%; }
 .sight-water video { object-position: 50% 42%; }
 .sight blockquote { position: relative; z-index: 4; width: min(62rem, 84vw); margin: clamp(2rem, 6vw, 6rem) 0 0 auto; }
@@ -306,10 +306,10 @@ footer div { display: flex; gap: 1.5rem; }
   .sight-copy h2 { font-size: clamp(3.8rem, 18vw, 5.8rem); }
   .sight-sequence { position: static; flex-direction: row; flex-wrap: wrap; gap: .5rem 1rem; margin: 2rem 0; font-size: clamp(2.1rem, 12vw, 3.4rem); }
   .sight-sequence span:nth-child(n) { transform: none; }
-  .sight-table { min-height: 62svh; margin-top: 4rem; }
+  .sight-table { min-height: 52svh; margin-top: 4rem; }
   .sight-landscape { top: 0; left: 0; width: 92%; height: 46%; }
   .sight-landscape img { object-position: 52% 48%; }
-  .sight-water { right: 0; top: 50%; width: 62%; height: 42%; }
+  .sight-water { right: 0; top: 52%; width: 70%; height: 30%; }
   .sight-water img { object-position: 50% 50%; }
   .sight-water video { object-position: 50% 40%; }
   .sight blockquote { width: 100%; margin-top: 4rem; }
