@@ -130,18 +130,18 @@ section { position: relative; }
 .sense-word { min-height: clamp(7rem, 13vw, 12rem); display: flex; align-items: center; border-top: 1px solid var(--rule); }
 .sense-word:last-child { border-bottom: 1px solid var(--rule); }
 .sense-word > span, .sense-copy > span { font: 400 clamp(3.5rem, 9vw, 8rem)/.82 var(--display); letter-spacing: -.035em; }
-.sense-sound, .sense-scent { justify-content: center; }
-.sense-sound span { color: var(--twilight); }
-.sense-embody, .sense-sight, .sense-create { position: relative; flex-direction: row; align-items: flex-end; gap: clamp(1.5rem, 4vw, 3rem); padding: 2.5rem var(--gutter); }
-.sense-create { flex-direction: row-reverse; }
+.sense-scent { justify-content: center; }
+.sense-embody, .sense-sight, .sense-sound, .sense-create { position: relative; flex-direction: row; align-items: flex-end; gap: clamp(1.5rem, 4vw, 3rem); padding: 2.5rem var(--gutter); }
+.sense-sound, .sense-create { flex-direction: row-reverse; }
 .sense-frame { position: relative; flex-shrink: 0; width: min(46%, 580px); aspect-ratio: 622 / 368; overflow: hidden; }
 .sense-frame .sense-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sense-copy { display: flex; flex-direction: column; align-items: flex-end; min-width: 0; }
-.sense-embody .sense-copy, .sense-sight .sense-copy, .sense-create .sense-copy { flex: 1; }
+.sense-embody .sense-copy, .sense-sight .sense-copy, .sense-sound .sense-copy, .sense-create .sense-copy { flex: 1; }
 .sense-descriptor { margin: 0 0 1rem; display: flex; flex-direction: column; gap: .3rem; text-align: right; }
 .sense-descriptor span { font: 500 .68rem/1.5 var(--utility); letter-spacing: .14em; text-transform: uppercase; color: var(--quiet); }
 .sense-copy > span { position: relative; margin: 0; color: var(--deep-ocean); text-shadow: 0 1px 24px rgba(244, 237, 225, .76); }
-:root[data-theme="dusk"] .sense-sound span { color: var(--sunset); }
+.sense-sound > span, .sense-sound .sense-copy > span { color: var(--twilight); }
+:root[data-theme="dusk"] .sense-sound > span, :root[data-theme="dusk"] .sense-sound .sense-copy > span { color: var(--sunset); }
 .sense-taste > span, .sense-taste .sense-copy > span { color: var(--burnt-sand); }
 .sense-scent > span, .sense-scent .sense-copy > span { color: var(--sea-glass); }
 .sound-note { margin: 2rem 0 0 auto; max-width: 31rem; color: var(--quiet); font-size: .86rem; line-height: 1.6; }
@@ -270,7 +270,7 @@ footer div { display: flex; gap: 1.5rem; }
   .sense-intro h2 { font-size: clamp(3.8rem, 18vw, 6rem); }
   .sense-word { min-height: 7rem; }
   .sense-word > span, .sense-copy > span { font-size: clamp(3.3rem, 18vw, 5.7rem); }
-  .sense-embody, .sense-sight, .sense-create { flex-direction: column; gap: 1.25rem; }
+  .sense-embody, .sense-sight, .sense-sound, .sense-create { flex-direction: column; gap: 1.25rem; }
   .sense-frame { width: 88%; align-self: flex-start; }
   .sense-copy { align-self: stretch; }
   .sense-copy > span { margin: 0; }

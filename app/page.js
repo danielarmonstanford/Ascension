@@ -187,6 +187,20 @@ function SightMedia() {
   );
 }
 
+function SoundMedia() {
+  return (
+    <div className="sense-frame">
+      <Image
+        className="sense-art"
+        src={SOUND_ART}
+        alt="An illustration of an ear surrounded by radiating sound waves"
+        fill
+        sizes="(max-width: 700px) 88vw, 580px"
+      />
+    </div>
+  );
+}
+
 function ScrollHeroMedia({ videoRef, motionReady, onLoadedMetadata, onCanPlay, onSeeking, onSeeked, onError }) {
   const [reduceMotion, setReduceMotion] = useState(true);
 
@@ -457,10 +471,11 @@ function Hero({ theme, setTheme }) {
 
 const senses = ["EMBODY", "SIGHT", "SOUND", "TASTE", "SCENT", "CREATE"];
 
-const senseMedia = { EMBODY: TouchMedia, SIGHT: SightMedia, CREATE: MakeArtMedia };
+const senseMedia = { EMBODY: TouchMedia, SIGHT: SightMedia, SOUND: SoundMedia, CREATE: MakeArtMedia };
 const senseDescriptors = {
   EMBODY: ["Ecstatic Movement · Somatic Release", "Acupressure with Loan"],
   SIGHT: ["Marble Mountains · Hội An", "Da Nang Coastline"],
+  SOUND: ["Gong Bath · Waves at Dawn", "Live Music at Dusk"],
   TASTE: ["Shared Table", "Local Flavor"],
   SCENT: ["Salt Air", "Warm Earth"],
   CREATE: ["Paint · Draw · Collage", "No Experience Required"],
