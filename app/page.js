@@ -438,6 +438,8 @@ const senses = ["SIGHT", "SOUND", "TOUCH", "TASTE", "SCENT", "MOVE"];
 const senseMedia = { TOUCH: TouchMedia };
 const senseDescriptors = {
   TOUCH: ["Acupressure · Massage", "Bodywork · Fascia"],
+  TASTE: ["Shared Table", "Local Flavor"],
+  SCENT: ["Salt Air", "Warm Earth"],
 };
 
 const passportCategories = [
@@ -525,6 +527,15 @@ export default function HomePage() {
                         <span>{sense}</span>
                       </div>
                     </>
+                  ) : descriptor ? (
+                    <div className="sense-copy">
+                      <p className="sense-descriptor">
+                        {descriptor.map((line) => (
+                          <span key={line}>{line}</span>
+                        ))}
+                      </p>
+                      <span>{sense}</span>
+                    </div>
                   ) : (
                     <span>{sense}</span>
                   )}
