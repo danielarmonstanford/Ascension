@@ -2,32 +2,49 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { sensoryMedia } from "./sensory-media";
 
 const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
 const HERO_MASTER =
   "https://res.cloudinary.com/dno3ruh4b/video/upload/v1788041873/Bodakon_wheel_Yoga_Ascension_qfdctl.mp4";
-const HERO_MASTER_MOBILE =
-  "https://res.cloudinary.com/dno3ruh4b/video/upload/c_fill,ar_4:5,w_960,q_auto/v1788041873/Bodakon_wheel_Yoga_Ascension_qfdctl.mp4";
 const DA_NANG_VIMEO_ID = "1221665573";
 const DA_NANG_VIDEO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787489954/Screen_Shot_2026-08-23_at_8.59.05_AM_e8jceq.png";
 const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
-const DA_NANG_PLACE =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg";
-const MAKE_ART_POSTER =
-  "https://res.cloudinary.com/dno3ruh4b/video/upload/a_90,so_0,f_jpg,q_auto/v1788259482/Angel_Art_Daniel_Stanford_Da_Nang_fps2la.jpg";
-const MAKE_ART_VIDEO =
-  "https://res.cloudinary.com/dno3ruh4b/video/upload/a_90,q_auto/v1788259482/Angel_Art_Daniel_Stanford_Da_Nang_fps2la.mp4";
-const TOUCH_ART =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png";
 const SOUND_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp";
-const TOUCH_VIDEO =
-  "https://res.cloudinary.com/dno3ruh4b/video/upload/w_622,h_368,c_scale/v1788096436/hf_20260830_041430_e38407f9-d6d0-4bfd-8bc7-4635dc83c4a4_dbe2og.mp4";
-const HOI_AN_LANTERNS =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788267982/Screen_Shot_2026-09-01_at_9.06.12_AM_ikm6wg.png";
+
+const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
+
+function useReducedMotion() {
+  const [reduceMotion, setReduceMotion] = useState(true);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReduceMotion(query.matches);
+    updatePreference();
+    query.addEventListener("change", updatePreference);
+    return () => query.removeEventListener("change", updatePreference);
+  }, []);
+
+  return reduceMotion;
+}
+
+function useMobileLayout() {
+  const [isMobile, setIsMobile] = useState(null);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return isMobile;
+}
 
 function ThemeControl({ theme, onChange }) {
   return (
@@ -40,21 +57,30 @@ function ThemeControl({ theme, onChange }) {
 }
 
 function ProgressiveMedia({ poster, alt, priority = false, className = "", videoSrc, vimeoId }) {
+  const containerRef = useRef(null);
   const videoRef = useRef(null);
   const [ready, setReady] = useState(false);
   const [posterLoaded, setPosterLoaded] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(true);
+  const [inView, setInView] = useState(priority);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setReduceMotion(query.matches);
-    updatePreference();
-    query.addEventListener("change", updatePreference);
-    return () => query.removeEventListener("change", updatePreference);
+    const node = containerRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { rootMargin: "180px 0px" });
+    observer.observe(node);
+    return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (inView && ready && !reduceMotion) video.play().catch(() => {});
+    else video.pause();
+  }, [inView, ready, reduceMotion]);
+
   return (
-    <div className={`progressive-media ${ready ? "motion-ready" : ""} ${className}`}>
+    <div ref={containerRef} className={`progressive-media ${ready ? "motion-ready" : ""} ${className}`}>
       <Image src={poster} alt={alt} fill priority={priority} sizes="100vw" className="media-poster" onLoad={() => setPosterLoaded(true)} />
       {videoSrc && posterLoaded && !reduceMotion ? (
         <video
@@ -66,12 +92,12 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
           preload="metadata"
           poster={poster}
           onCanPlay={() => setReady(true)}
-          onLoadedData={() => videoRef.current?.play().catch(() => {})}
+          onLoadedData={() => setReady(true)}
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
       ) : null}
-      {vimeoId && posterLoaded && !reduceMotion ? (
+      {vimeoId && posterLoaded && inView && !reduceMotion ? (
         <iframe
           className="media-motion media-vimeo"
           src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&muted=1&loop=1&autopause=0&dnt=1&title=0&byline=0&portrait=0`}
@@ -87,130 +113,59 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
   );
 }
 
-function TouchMedia() {
-  const [reduceMotion, setReduceMotion] = useState(true);
+function MediaPlaceholder({ label, alt }) {
+  return (
+    <div className="sense-frame media-placeholder" role="img" aria-label={alt}>
+      {process.env.NODE_ENV !== "production" ? <span>{label}</span> : null}
+    </div>
+  );
+}
+
+function SensoryMedia({ media, chapter }) {
+  const frameRef = useRef(null);
+  const videoRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setReduceMotion(query.matches);
-    updatePreference();
-    query.addEventListener("change", updatePreference);
-    return () => query.removeEventListener("change", updatePreference);
+    const node = frameRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { rootMargin: "120px 0px" });
+    observer.observe(node);
+    return () => observer.disconnect();
   }, []);
 
-  if (reduceMotion) {
-    return (
-      <div className="sense-frame">
-        <Image
-          className="sense-art"
-          src={TOUCH_ART}
-          alt="An illustration of restorative touch and bodywork"
-          fill
-          sizes="(max-width: 700px) 88vw, 580px"
-        />
-      </div>
-    );
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (inView && !reduceMotion) video.play().catch(() => {});
+    else video.pause();
+  }, [inView, reduceMotion]);
+
+  if (media.type === "placeholder") {
+    return <MediaPlaceholder label={media.productionLabel} alt={media.alt} />;
   }
 
+  const imageSource = media.poster || media.src;
   return (
-    <div className="sense-frame">
-      <video
-        className="sense-art"
-        poster={TOUCH_ART}
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="none"
-        aria-hidden="true"
-      >
-        <source src={TOUCH_VIDEO} type="video/mp4" />
-      </video>
+    <div
+      className={`sense-frame sense-frame-${chapter}`}
+      ref={frameRef}
+      style={{ "--focal-mobile": media.focalPointMobile, "--focal-desktop": media.focalPointDesktop }}
+    >
+      <Image className="sense-art sense-poster" src={imageSource} alt={media.alt} fill sizes="(max-width: 767px) 100vw, 50vw" />
+      {media.type === "video" && inView && !reduceMotion ? (
+        <video ref={videoRef} className="sense-art sense-motion" poster={media.poster} muted loop playsInline preload="metadata" aria-hidden="true">
+          <source src={media.src} type="video/mp4" />
+        </video>
+      ) : null}
+      {media.type === "audio-video" ? <span className="sound-coming">60-SECOND SOUND PREVIEW — COMING SOON</span> : null}
     </div>
   );
 }
 
-function MakeArtMedia() {
-  const [reduceMotion, setReduceMotion] = useState(true);
-
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setReduceMotion(query.matches);
-    updatePreference();
-    query.addEventListener("change", updatePreference);
-    return () => query.removeEventListener("change", updatePreference);
-  }, []);
-
-  if (reduceMotion) {
-    return (
-      <div className="sense-frame">
-        <Image
-          className="sense-art"
-          src={MAKE_ART_POSTER}
-          alt="A hand applying gold leaf detail to a painted portrait"
-          fill
-          sizes="(max-width: 700px) 88vw, 580px"
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div className="sense-frame">
-      <video
-        className="sense-art"
-        poster={MAKE_ART_POSTER}
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="none"
-        aria-hidden="true"
-      >
-        <source src={MAKE_ART_VIDEO} type="video/mp4" />
-      </video>
-    </div>
-  );
-}
-
-function SightMedia() {
-  return (
-    <div className="sense-frame">
-      <Image
-        className="sense-art"
-        src={HOI_AN_LANTERNS}
-        alt="Silk lanterns in a Hội An lantern shop"
-        fill
-        sizes="(max-width: 700px) 88vw, 580px"
-      />
-    </div>
-  );
-}
-
-function SoundMedia() {
-  return (
-    <div className="sense-frame">
-      <Image
-        className="sense-art"
-        src={SOUND_ART}
-        alt="An illustration of an ear surrounded by radiating sound waves"
-        fill
-        sizes="(max-width: 700px) 88vw, 580px"
-      />
-    </div>
-  );
-}
-
-function ScrollHeroMedia({ videoRef, motionReady, onLoadedMetadata, onCanPlay, onSeeking, onSeeked, onError }) {
-  const [reduceMotion, setReduceMotion] = useState(true);
-
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setReduceMotion(query.matches);
-    updatePreference();
-    query.addEventListener("change", updatePreference);
-    return () => query.removeEventListener("change", updatePreference);
-  }, []);
+function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, onCanPlay, onSeeking, onSeeked, onError }) {
+  const reduceMotion = useReducedMotion();
 
   return (
     <div className={`progressive-media hero-progressive-media ${motionReady ? "motion-ready" : ""}`}>
@@ -228,8 +183,9 @@ function ScrollHeroMedia({ videoRef, motionReady, onLoadedMetadata, onCanPlay, o
           className="media-motion hero-orbit"
           muted
           playsInline
-          webkit-playsinline="true"
-          preload="auto"
+          autoPlay={isMobile}
+          loop={isMobile}
+          preload={isMobile ? "metadata" : "auto"}
           poster={HERO_POSTER}
           aria-hidden="true"
           tabIndex="-1"
@@ -239,7 +195,6 @@ function ScrollHeroMedia({ videoRef, motionReady, onLoadedMetadata, onCanPlay, o
           onSeeked={onSeeked}
           onError={onError}
         >
-          <source media="(max-width: 700px)" src={HERO_MASTER_MOBILE} type="video/mp4" />
           <source src={HERO_MASTER} type="video/mp4" />
         </video>
       ) : null}
@@ -251,20 +206,18 @@ function Hero({ theme, setTheme }) {
   const scrollRef = useRef(null);
   const stageRef = useRef(null);
   const videoRef = useRef(null);
+  const isMobile = useMobileLayout();
   const targetProgress = useRef(0);
   const renderedProgress = useRef(0);
   const animationFrame = useRef(0);
   const metadataReady = useRef(false);
   const canPlayReady = useRef(false);
-  const mobileUnlockRequired = useRef(false);
-  const mobileUnlocked = useRef(false);
   const seekInFlight = useRef(false);
   const pendingSeekTime = useRef(null);
   const [motionReady, setMotionReady] = useState(false);
 
   const enableMotionWhenReady = () => {
-    const unlockSatisfied = !mobileUnlockRequired.current || mobileUnlocked.current;
-    if (metadataReady.current && canPlayReady.current && unlockSatisfied) {
+    if (metadataReady.current && canPlayReady.current) {
       setMotionReady(true);
     }
   };
@@ -292,55 +245,7 @@ function Hero({ theme, setTheme }) {
   };
 
   useEffect(() => {
-    mobileUnlockRequired.current = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
-    if (!mobileUnlockRequired.current) mobileUnlocked.current = true;
-
-    let unlocking = false;
-    const unlockVideo = () => {
-      const video = videoRef.current;
-      if (!video || mobileUnlocked.current || unlocking) return;
-
-      unlocking = true;
-      video.muted = true;
-      video.playsInline = true;
-      const finishUnlock = () => {
-        video.pause();
-        mobileUnlocked.current = true;
-        unlocking = false;
-        enableMotionWhenReady();
-        window.removeEventListener("pointerdown", unlockVideo);
-        window.removeEventListener("touchstart", unlockVideo);
-        window.removeEventListener("wheel", unlockVideo);
-        window.removeEventListener("scroll", unlockVideo);
-      };
-
-      const playAttempt = video.play();
-      if (playAttempt) {
-        playAttempt.then(finishUnlock).catch(() => {
-          video.pause();
-          unlocking = false;
-        });
-      } else {
-        finishUnlock();
-      }
-    };
-
-    if (mobileUnlockRequired.current) {
-      window.addEventListener("pointerdown", unlockVideo, { passive: true });
-      window.addEventListener("touchstart", unlockVideo, { passive: true });
-      window.addEventListener("wheel", unlockVideo, { passive: true });
-      window.addEventListener("scroll", unlockVideo, { passive: true });
-    }
-
-    return () => {
-      window.removeEventListener("pointerdown", unlockVideo);
-      window.removeEventListener("touchstart", unlockVideo);
-      window.removeEventListener("wheel", unlockVideo);
-      window.removeEventListener("scroll", unlockVideo);
-    };
-  }, []);
-
-  useEffect(() => {
+    if (isMobile !== false) return;
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let observedScrollY = window.scrollY;
     let scrollPoll = 0;
@@ -414,13 +319,14 @@ function Hero({ theme, setTheme }) {
       animationFrame.current = 0;
       window.clearTimeout(scrollPoll);
     };
-  }, [motionReady]);
+  }, [isMobile, motionReady]);
 
   return (
-    <header className="hero-scroll" id="top" ref={scrollRef}>
+    <header className={`hero-scroll ${isMobile ? "hero-mobile" : "hero-desktop"}`} id="top" ref={scrollRef}>
       <div className="hero-stage" ref={stageRef}>
         <ScrollHeroMedia
           videoRef={videoRef}
+          isMobile={isMobile}
           motionReady={motionReady}
           onLoadedMetadata={() => {
             metadataReady.current = true;
@@ -429,6 +335,7 @@ function Hero({ theme, setTheme }) {
           onCanPlay={() => {
             canPlayReady.current = true;
             enableMotionWhenReady();
+            if (isMobile) videoRef.current?.play().catch(() => {});
           }}
           onSeeking={() => {
             seekInFlight.current = true;
@@ -456,9 +363,15 @@ function Hero({ theme, setTheme }) {
 
         <div className="hero-frame">
           <h1 className="hero-title entrance entrance-title">ASCENSION</h1>
-          <p className="hero-place entrance entrance-place">Da Nang · Vietnam<br />January 12–26, 2027</p>
-          <p className="hero-proposition entrance entrance-proposition">Six ways into the present.</p>
-          <a className="hero-explore entrance entrance-controls" href="#awaken">Explore <span aria-hidden="true">↓</span></a>
+          <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
+          <div className="hero-offer entrance entrance-place">
+            <p className="hero-place">Da Nang, Vietnam<br />January 12–26, 2027</p>
+            <p className="hero-description">A 7- or 14-day experience of movement, restoration, culture and creative renewal.</p>
+          </div>
+          <div className="hero-actions entrance entrance-controls">
+            <a className="hero-primary" href="#senses">Embody it</a>
+            <a className="hero-explore" href="#awaken">Explore the experience <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
 
         <div className="hero-theme entrance entrance-controls">
@@ -469,66 +382,36 @@ function Hero({ theme, setTheme }) {
   );
 }
 
-const senseMedia = { EMBODY: TouchMedia, SIGHT: SightMedia, SOUND: SoundMedia, CREATE: MakeArtMedia };
 const sensoryStories = [
   {
-    id: "embody", icon: "✋", name: "EMBODY", title: "Feel More. Move More. Touch Deeper.", cta: "EMBODY IT",
-    blocks: [
-      "Your body has been waiting to heal and transform.",
-      "Ecstatic dance at sunset by the sea.\nSomatic release that rewires you from the inside and heals what's been held.\nVietnamese acupressure with Loan, daily—finding what no one else has found.\nFascial release work that opens doors in your body you forgot existed.",
-      "Here, movement transforms tension into presence.\nTouch heals what the mind alone cannot reach.",
-      "Feel your feet on the earth.\nMove like you're creating, not performing.\nLet your skin remember it's alive.",
-      "Your body knows how to heal. We just create the conditions."
-    ]
+    id: "embody", name: "EMBODY", title: "Feel more. Move more. Touch deeper.", cta: "Explore embody",
+    summary: "Movement, daily ecstatic dance and body-based practices invite you to notice how you feel, move and meet the present. The program also includes Vietnamese acupressure with Loan and fascial release, with private or specialist work identified separately where applicable.",
+    details: "Participation is invitational, not prescribed. Confirmed group programming and any optional paid private sessions will be clearly distinguished in the final schedule."
   },
   {
-    id: "sight", icon: "🎨", name: "SIGHT", title: "See Differently", cta: "EXPLORE SIGHT",
-    blocks: [
-      "Let your eyes soften. Let the world come to you.",
-      "Notice how light loves the ancient stones of Hội An.\nWatch the sea change color in the space of one breath.\nCatch the way a stranger's face opens when presence arrives.",
-      "Here, seeing is a practice of peace.\nEach glance becomes a small homecoming—gentle, clear, deeply calming.\nWithout effort, your mind settles. Tension unwinds.\nA quiet joy rises as the present moment reveals itself, again and again.",
-      "The world doesn't need your analysis. It needs your wonder.\nWhen you stop translating, you start receiving—\nand in that receiving, you are transformed.",
-      "Da Nang. Marble Mountains. The south Vietnamese coast.\nWhatever calls to you, go see it."
-    ]
+    id: "see", name: "SEE", title: "See differently.", cta: "Explore seeing",
+    summary: "Let your eyes soften into Da Nang: changing Pacific light, the visual life of Hội An, contemporary art, architecture and the ancient stone of the Marble Mountains. Seeing becomes a practice of attention—less analysis, more wonder, and a more intimate relationship with place.",
+    details: "Marble Mountains is planned as a special excursion, with the day still to be confirmed. Other place-based moments remain illustrative until the final program is published."
   },
   {
-    id: "sound", icon: "🔊", name: "SOUND", title: "Listen Deeply", cta: "EXPERIENCE SOUND",
-    blocks: [
-      "Meditate into the symphony you've been too busy to hear.",
-      "Waves breaking at 5 AM. Wind through palms.\nGongs that move through your body like water.\nSilence so deep it rewires your nervous system.\nLive music at dusk when the city softens.",
-      "Our signature modality. Every single day.",
-      "Sound is not something you hear.\nSound is something you become.",
-      "Sound is always yours to begin. No audio plays without your choice."
-    ]
+    id: "sound", name: "SOUND", title: "Listen deeply.", cta: "Explore sound",
+    summary: "Daily sound practice draws attention to waves, wind, music, resonance and silence. Rather than filling every moment, ASCENSION uses listening to create spaciousness and connection—to the body, the environment and the people sharing the experience. Any audible preview will always begin by choice.",
+    details: "The final sound preview and full participant controls are pending approved media. No named sound facilitator is presented as confirmed."
   },
   {
-    id: "taste", icon: "👅", name: "TASTE", title: "Taste the Place", cta: "DISCOVER TASTE",
-    blocks: [
-      "Eat flavors you've never met.",
-      "Tropical fruit that tastes like its own geography.\nFresh fish still carrying the salt of this morning's sea.\nHerbs that wake up your tongue and your nervous system.\nTea that tastes like time stopped.",
-      "Every meal is a ritual. Every bite is medicine.",
-      "Let flavor become a conversation with Da Nang itself."
-    ]
+    id: "taste", name: "TASTE", title: "Taste the place.", cta: "Explore taste",
+    summary: "Vietnamese ingredients, preparation and shared tables offer another way into Da Nang. Taste tropical fruit, local herbs, tea and the textures of the coast while learning through discovery rather than spectacle. Selected culinary experiences are part of the curated program; additional meals remain yours to choose.",
+    details: "The final culinary media and specific shared-meal schedule are pending. Only confirmed inclusions will appear in the participant program."
   },
   {
-    id: "scent", icon: "👃", name: "SCENT", title: "Breathe In", cta: "EXPERIENCE SCENT",
-    blocks: [
-      "Breathing new air is how you begin again.",
-      "Morning breathwork with sea air filling your lungs.\nThe warm humidity of Da Nang rising off your skin.\nBotanical rituals that anchor you to this moment.\nHerbal tea that tastes like a garden is speaking to you.",
-      "Scent rewires your nervous system. It opens memory. It calls you home.",
-      "Inhale the salt and the warmth.\nBreathe in what you've been missing.\nExhale what no longer serves."
-    ]
+    id: "breathe", name: "BREATHE", title: "Breathe it in.", cta: "Explore breathing",
+    summary: "Sea air, incense, plants, steam and the warm humidity of Da Nang make the environment physically present. Breath and scent become quiet forms of orientation: notice what surrounds you, what memory it carries, and how a change of place can open a different quality of attention.",
+    details: "Environmental and scent-led moments are descriptive of the experience. Specific botanical rituals or facilitators will be named only when confirmed."
   },
   {
-    id: "create", icon: "✨", name: "CREATE", title: "The Sixth Sense", cta: "DISCOVER CREATE",
-    blocks: [
-      "Consciousness wants to be expressed. That's what makes you human.",
-      "You don't need to be an artist. You need to be alive.",
-      "Move your hands through paint. Click the camera at moments that steal your breath.\nWrite what your heart knows. Dance what your body remembers.\nMake something that didn't exist this morning.",
-      "Every mark you make is a memory.\nEvery image, a moment you loved enough to capture.\nEvery word, a piece of yourself you're giving to the world.",
-      "Be present enough to notice.\nBe brave enough to express.\nBe alive enough to create.",
-      "Transform what you've experienced into something real."
-    ]
+    id: "create", name: "CREATE · INTUITION", title: "Follow the sixth sense.", cta: "Explore creating",
+    summary: "Creative practice gives form to what you notice. Through photography, drawing, painting, collage, writing or movement, you can follow intuition without needing to perform as an artist. Make something that did not exist that morning, then carry the memory of the experience home in a tangible form.",
+    details: "Creative sessions are part of the ASCENSION Passport framework. Final media and the detailed materials schedule are still in production."
   }
 ];
 
@@ -541,6 +424,43 @@ const passportCategories = [
   { name: "CREATE", copy: "Photography, drawing, painting, collage and material exploration." },
   { name: "COMMUNITY", copy: "A small international cohort sharing the experience, rather than a conventional tour group." },
 ];
+
+function MobileReserveBar() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const hero = document.querySelector("#top");
+    const exclusionZones = ["#comparison", "#attendance", "#join"]
+      .map((selector) => document.querySelector(selector))
+      .filter(Boolean);
+    if (!hero) return;
+
+    let heroVisible = true;
+    const excluded = new Set();
+    const update = () => setVisible(!heroVisible && excluded.size === 0);
+    const heroObserver = new IntersectionObserver(([entry]) => {
+      heroVisible = entry.isIntersecting;
+      update();
+    });
+    const exclusionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.isIntersecting ? excluded.add(entry.target) : excluded.delete(entry.target));
+      update();
+    }, { rootMargin: "0px 0px -10% 0px" });
+
+    heroObserver.observe(hero);
+    exclusionZones.forEach((zone) => exclusionObserver.observe(zone));
+    return () => {
+      heroObserver.disconnect();
+      exclusionObserver.disconnect();
+    };
+  }, []);
+
+  return (
+    <a className={`mobile-reserve ${visible ? "is-visible" : ""}`} href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">
+      Reserve your place · from $1,200
+    </a>
+  );
+}
 
 export default function HomePage() {
   const [theme, setTheme] = useState("day");
@@ -561,21 +481,25 @@ export default function HomePage() {
     <>
       <a className="skip-link" href="#main">Skip to main content</a>
       <Hero theme={theme} setTheme={setTheme} />
+      <MobileReserveBar />
 
       <main id="main">
         <section className="awaken" id="awaken" aria-labelledby="awaken-title">
           <div className="awaken-heading">
-            <p className="awaken-kicker">Awaken</p>
-            <h2 id="awaken-title">Come back to<br />your senses.</h2>
+            <p className="awaken-kicker">Da Nang, Vietnam</p>
+            <h2 id="awaken-title">The experience,<br />at a glance.</h2>
           </div>
           <div className="awaken-facts">
-            <p className="awaken-lead">Fourteen days between city, sea and mountain.</p>
-            <p>ASCENSION is a curated experience of movement, restoration, sound, food, creativity and place in Da Nang, Vietnam.</p>
+            <p className="awaken-lead">Choose seven days or the full fourteen between city, sea and mountain.</p>
             <dl>
-              <div><dt>When</dt><dd>January 12–26, 2027</dd></div>
-              <div><dt>Formats</dt><dd>7-day + 14-day experiences</dd></div>
+              <div><dt>7 days</dt><dd>January 12–19, 2027 · USD $1,200</dd></div>
+              <div><dt>14 days</dt><dd>January 12–26, 2027 · USD $2,000</dd></div>
             </dl>
-            <a href="#experience">Explore the Experience <span aria-hidden="true">→</span></a>
+            <p>Small, intimate cohort. Accommodation and travel are separate.</p>
+            <div className="fact-actions">
+              <a href="#comparison">Compare 7 and 14 days <span aria-hidden="true">→</span></a>
+              <a href="#inclusions">See what’s included <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </section>
 
@@ -592,25 +516,26 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="sensory-framework" aria-labelledby="senses-title">
+        <section className="sensory-framework" id="senses" aria-labelledby="senses-title">
           <div className="sense-intro">
-            <h2 id="senses-title">Come back to<br />your senses.</h2>
+            <h2 id="senses-title">Six ways into<br />the present.</h2>
           </div>
           <div className="sensory-stories" aria-label="The six senses of ASCENSION">
             {sensoryStories.map((story, index) => {
-              const Media = senseMedia[story.name];
+              const media = sensoryMedia[story.id];
               return (
                 <article className={`sensory-story sensory-story-${index + 1}`} id={story.id} key={story.name}>
                   <header className="sensory-story-heading">
-                    <p className="sensory-story-label"><span aria-hidden="true">{story.icon}</span>{story.name}</p>
+                    <p className="sensory-story-label">{story.name}</p>
                     <h3>{story.title}</h3>
-                    {Media ? <Media /> : null}
+                    <SensoryMedia media={media} chapter={story.id} />
                   </header>
                   <div className="sensory-story-copy">
-                    {story.blocks.map((block) => <p key={block}>{block}</p>)}
-                    <a href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener noreferrer">
-                      {story.cta} <span aria-hidden="true">→</span>
-                    </a>
+                    <p>{story.summary}</p>
+                    <details>
+                      <summary>{story.cta} <span aria-hidden="true">→</span></summary>
+                      <p>{story.details}</p>
+                    </details>
                   </div>
                 </article>
               );
@@ -627,7 +552,7 @@ export default function HomePage() {
             <p className="model-lead">More than a retreat. Your way into Da Nang.</p>
             <p>Your ASCENSION Passport gives you access to a curated program across movement, restoration, creativity, sound, taste and discovery — while leaving you free to choose your own hotel, your own downtime and the experiences that matter most to you.</p>
           </div>
-          <div className="model-categories" aria-label="What your Ascension Passport opens">
+          <div className="model-categories" id="inclusions" aria-label="What your Ascension Passport opens">
             {passportCategories.map((category) => (
               <article className="model-category" key={category.name}>
                 <h3>{category.name}</h3>
@@ -651,15 +576,29 @@ export default function HomePage() {
           <p className="rhythm-note">ASCENSION is curated, not prescribed.</p>
         </section>
 
-        <section className="experience-da-nang" aria-labelledby="experience-title">
-          <div className="experience-image">
-            <Image src={DA_NANG_PLACE} alt="Da Nang landscape and architecture" fill sizes="(max-width: 760px) 100vw, 60vw" />
+        <section className="comparison" id="comparison" aria-labelledby="comparison-title">
+          <div className="comparison-heading">
+            <p className="comparison-kicker">Choose your rhythm</p>
+            <h2 id="comparison-title">Seven days<br />or fourteen.</h2>
           </div>
-          <div className="experience-words">
-            <h2 id="experience-title">Experience<br />Da Nang.</h2>
-            <p>Movement · restoration · food<br />culture · landscape · Tết</p>
-            <a href="#program">Explore the program <span aria-hidden="true">→</span></a>
+          <div className="comparison-options">
+            <article>
+              <p className="duration">7 DAYS</p>
+              <p className="dates">January 12–19, 2027</p>
+              <p className="price">$1,200 <small>USD · program</small></p>
+            </article>
+            <article>
+              <p className="duration">14 DAYS</p>
+              <p className="dates">January 12–26, 2027</p>
+              <p className="price">$2,000 <small>USD · program</small></p>
+            </article>
           </div>
+        </section>
+
+        <section className="travel-note" aria-labelledby="travel-title">
+          <p className="travel-kicker">Your stay, your way</p>
+          <h2 id="travel-title">Program and place.<br />Accommodation is separate.</h2>
+          <p>Choose and book the Da Nang hotel that suits you. Flights, accommodation and local transfers are not included in the ASCENSION program price.</p>
         </section>
 
         <section className="people" aria-labelledby="people-title">
@@ -675,8 +614,8 @@ export default function HomePage() {
 
         <section className="attendance" id="attendance" aria-labelledby="attendance-title">
           <div className="attendance-heading">
-            <h2 id="attendance-title">Your<br />Ascension.</h2>
-            <p>Program costs are separate from accommodation and travel.</p>
+            <h2 id="attendance-title">Reserve your<br />Ascension.</h2>
+            <p>Programs begin at USD $1,200. A $300 deposit currently reserves your place.</p>
           </div>
           <div className="attendance-art">
             <Image
@@ -685,18 +624,6 @@ export default function HomePage() {
               fill
               sizes="(max-width: 700px) 100vw, 72vw"
             />
-          </div>
-          <div className="attendance-options">
-            <article>
-              <p className="duration">7 DAYS</p>
-              <p className="dates">January 12–19, 2027</p>
-              <p className="price">$1,200 <small>USD · program</small><span className="per-day">≈ $171 / day</span></p>
-            </article>
-            <article>
-              <p className="duration">14 DAYS</p>
-              <p className="dates">January 12–26, 2027</p>
-              <p className="price">$2,000 <small>USD · program</small><span className="per-day">≈ $143 / day</span></p>
-            </article>
           </div>
           <div className="attendance-terms">
             <div className="attendance-included">
@@ -716,7 +643,10 @@ export default function HomePage() {
               </ul>
             </div>
           </div>
-          <a className="reserve-action" href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+          <div className="attendance-actions">
+            <a className="reserve-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+            <a className="question-action" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a question <span aria-hidden="true">→</span></a>
+          </div>
           <p className="deposit">Current reservation link requests a $300 deposit. Commercial details require final verification before launch.</p>
         </section>
 
@@ -749,12 +679,12 @@ export default function HomePage() {
           </a>
         </section>
 
-        <section className="join" aria-labelledby="join-title">
+        <section className="join" id="join" aria-labelledby="join-title">
           <ProgressiveMedia poster={DA_NANG_FILM} alt="Da Nang sunset reflected across still water" />
           <div className="join-overlay" aria-hidden="true" />
           <div className="join-copy">
             <h2 id="join-title">Da Nang<br />is waiting.</h2>
-            <a href="https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00" target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+            <a href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
           </div>
           <footer>
             <span>ASCENSION SENSES · Edition 01</span>
