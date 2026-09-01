@@ -16,8 +16,10 @@ const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
 const DA_NANG_PLACE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787504880/nano-banana-2_upscale_this_image_increase_the_statue_pull_back_and_sharpen_depth_HK_similar_vi-0_oyfqsj.jpg";
-const CREATIVE_WATER =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787823818/Black_Gold-water-D80_5523_fgh0eu.jpg";
+const MAKE_ART_POSTER =
+  "https://res.cloudinary.com/dno3ruh4b/video/upload/a_90,so_0,f_jpg,q_auto/v1788259482/Angel_Art_Daniel_Stanford_Da_Nang_fps2la.jpg";
+const MAKE_ART_VIDEO =
+  "https://res.cloudinary.com/dno3ruh4b/video/upload/a_90,q_auto/v1788259482/Angel_Art_Daniel_Stanford_Da_Nang_fps2la.mp4";
 const TOUCH_ART =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png";
 const SOUND_ART =
@@ -123,6 +125,43 @@ function TouchMedia() {
         <source src={TOUCH_VIDEO} type="video/mp4" />
       </video>
     </div>
+  );
+}
+
+function MakeArtMedia() {
+  const [reduceMotion, setReduceMotion] = useState(true);
+
+  useEffect(() => {
+    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReduceMotion(query.matches);
+    updatePreference();
+    query.addEventListener("change", updatePreference);
+    return () => query.removeEventListener("change", updatePreference);
+  }, []);
+
+  if (reduceMotion) {
+    return (
+      <Image
+        src={MAKE_ART_POSTER}
+        alt="A hand applying gold leaf detail to a painted portrait"
+        fill
+        sizes="(max-width: 700px) 62vw, 34vw"
+      />
+    );
+  }
+
+  return (
+    <video
+      poster={MAKE_ART_POSTER}
+      muted
+      loop
+      playsInline
+      autoPlay
+      preload="none"
+      aria-hidden="true"
+    >
+      <source src={MAKE_ART_VIDEO} type="video/mp4" />
+    </video>
   );
 }
 
@@ -493,7 +532,7 @@ export default function HomePage() {
               );
             })}
           </div>
-          <p className="sound-note">Sound is always yours to begin. No audio plays without your choice.</p>
+          <p className="sound-note">Sound begins only when you choose it. Nothing plays until you do.</p>
         </section>
 
         <section className="sight" aria-labelledby="sight-title">
@@ -501,13 +540,13 @@ export default function HomePage() {
             <p className="sight-label">Sight</p>
             <p className="sight-sequence" aria-hidden="true"><span>See</span><span>Make</span><span>Create</span></p>
             <h2 id="sight-title">See differently.<br />Make something.</h2>
-            <p>ASCENSION invites creativity back into daily life. Through photography, drawing, painting, collage and material exploration, guests respond to what they see, feel and experience in Da Nang.</p>
+            <p>ASCENSION invites creativity back into daily life. Photography, drawing, painting, collage, material exploration — ways to respond to what you see, feel and experience in Da Nang.</p>
             <p>No artistic experience required.</p>
             <p>This is about noticing, not making “good art.”</p>
           </div>
-          <div className="sight-table" aria-label="A visual study of place and creative observation">
-            <div className="sight-image sight-landscape"><Image src={DA_NANG_PLACE} alt="Da Nang landscape and architecture" fill sizes="(max-width: 700px) 92vw, 58vw" /></div>
-            <div className="sight-image sight-water"><Image src={CREATIVE_WATER} alt="A portrait beside the sea" fill sizes="(max-width: 700px) 62vw, 34vw" /></div>
+          <div className="sight-table" aria-label="A visual study of creative process">
+            <div className="sight-image sight-landscape" aria-hidden="true" />
+            <div className="sight-image sight-water"><MakeArtMedia /></div>
           </div>
           <blockquote><strong>Make art.</strong><span>Not because you’re an artist. Because you’re alive.</span></blockquote>
         </section>
