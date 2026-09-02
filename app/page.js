@@ -334,7 +334,6 @@ function SoundListeningStage({ media }) {
   const [filmReady, setFilmReady] = useState(false);
   const [mode, setMode] = useState("silent");
   const reduceMotion = useReducedMotion();
-  const isMobile = useMobileLayout();
 
   useEffect(() => {
     const node = frameRef.current;
@@ -373,7 +372,7 @@ function SoundListeningStage({ media }) {
     setMode("meditation");
   };
 
-  const loadFilm = inView && (!reduceMotion || mode === "film") && (isMobile === false || mode === "film");
+  const loadFilm = inView && (!reduceMotion || mode === "film");
 
   return (
     <div className={`sense-frame sound-listening-stage${filmReady ? " film-ready" : ""}${mode === "meditation" ? " meditation-active" : ""}`} ref={frameRef}>
@@ -393,8 +392,10 @@ function SoundListeningStage({ media }) {
             setFilmReady(true);
             if (mode === "film") {
               sendYouTubeCommand(filmRef, "unMute");
-              sendYouTubeCommand(filmRef, "playVideo");
+            } else {
+              sendYouTubeCommand(filmRef, "mute");
             }
+            sendYouTubeCommand(filmRef, "playVideo");
           }}
         />
       ) : null}
