@@ -26,6 +26,7 @@ export const sensoryMedia = {
   sound: {
     type: "audio-video",
     poster: "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp",
+    filmPoster: "https://i.ytimg.com/vi/w1ucZCmvO5c/maxresdefault.jpg",
     filmId: "w1ucZCmvO5c",
     meditationId: "x6UITRjhijI",
     alt: "An illustration of an ear surrounded by radiating sound waves",

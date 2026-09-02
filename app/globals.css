@@ -210,6 +210,7 @@ section { position: relative; }
 .media-placeholder span { position: relative; z-index: 3; padding: 1rem; text-align: center; font: 500 .65rem/1.5 var(--utility); letter-spacing: .12em; }
 .sound-listening-stage { background: var(--deep-ocean); isolation: isolate; }
 .sound-poster { z-index: 1; transition: opacity .8s ease; }
+.sound-poster-desktop { display: none; }
 .sound-film { position: absolute; z-index: 2; top: 50%; left: 50%; width: 108%; height: 108%; border: 0; opacity: 0; filter: saturate(.74) contrast(.94); transform: translate(-50%, -50%); transition: opacity .8s ease; pointer-events: none; }
 .film-ready .sound-film { opacity: .76; }
 .film-ready .sound-poster { opacity: 0; }
@@ -238,6 +239,32 @@ section { position: relative; }
 :root[data-theme="dusk"] .sensory-story-3 .sensory-story-name { color: var(--sunset); }
 .sensory-story-4 .sensory-story-name { color: var(--burnt-sand); }
 .sensory-story-5 .sensory-story-name { color: var(--sea-glass); }
+
+@media (min-width: 768px) {
+  .sensory-story-3 { position: relative; isolation: isolate; min-height: max(100svh, 54rem); grid-template-columns: minmax(0, .92fr) minmax(24rem, 1.08fr); overflow: hidden; background-color: var(--night-sea); background-image: none; color: var(--moon-ivory); }
+  :root[data-theme="dusk"] .sensory-story-3 { background-color: var(--night-sea); background-image: none; }
+  .sensory-story-3 > .sound-listening-stage { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; margin: 0; }
+  .sensory-story-3 .sensory-story-heading,
+  .sensory-story-3 .sensory-story-copy { position: relative; z-index: 4; }
+  .sensory-story-3 .sound-poster-mobile { display: none; }
+  .sensory-story-3 .sound-poster-desktop { display: block; }
+  .sensory-story-3 .sound-film { width: max(100%, 177.78vh); height: max(100%, 56.25vw); filter: saturate(.72) contrast(.96) brightness(.82); }
+  .sensory-story-3 .film-ready .sound-film { opacity: .88; }
+  .sensory-story-3 .sound-screen { background: linear-gradient(90deg, rgba(7, 25, 34, .7) 0%, rgba(7, 25, 34, .42) 44%, rgba(7, 25, 34, .64) 100%), linear-gradient(180deg, rgba(7, 25, 34, .22), rgba(7, 25, 34, .35) 56%, rgba(7, 25, 34, .88)); }
+  .sensory-story-3 .sensory-story-name { color: var(--moon-ivory); text-shadow: 0 2px 2rem rgba(7, 25, 34, .42); }
+  :root[data-theme="dusk"] .sensory-story-3 .sensory-story-name { color: var(--moon-ivory); }
+  .sensory-story-3 .sensory-story-keywords { color: var(--sunset); text-shadow: 0 1px 1rem rgba(7, 25, 34, .75); }
+  .sensory-story-3 .sensory-story-subtitle,
+  .sensory-story-3 .sensory-story-copy > p,
+  .sensory-story-3 .sensory-link,
+  .sensory-story-3 summary { color: var(--moon-ivory); text-shadow: 0 1px 1.25rem rgba(7, 25, 34, .82); }
+  .sensory-story-3 .sensory-story-copy > p { max-width: 35rem; }
+  .sensory-story-3 .sensory-story-copy details { border-color: rgba(241, 230, 213, .38); }
+  .sensory-story-3 .sensory-story-copy details p { color: rgba(241, 230, 213, .86); }
+  .sensory-story-3 .sound-stage-controls { left: var(--gutter); right: var(--gutter); bottom: 2rem; }
+  .sensory-story-3 .sound-source-note { left: var(--gutter); right: var(--gutter); bottom: 6.2rem; }
+  .sensory-story-3 .sound-meditation-player { top: 50%; width: min(56vw, 44rem); transform: translate(-50%, -50%); }
+}
 .create-extras { margin-top: clamp(2.5rem, 5vw, 4rem); padding-top: 1.5rem; border-top: 1px solid var(--rule); }
 .create-credit { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); }
 .create-credit p { margin: 0; color: var(--burnt-sand); font: 600 .68rem/1.5 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
@@ -466,6 +493,10 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .about-place-copy { grid-template-columns: 1fr 1fr; gap: 4rem; }
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .sensory-story-3 .sensory-story-keywords { align-self: flex-start; max-width: 100%; text-align: left; white-space: normal; }
+}
+
 @media (max-width: 767px) {
   :root { --gutter: 1.25rem; }
   .hero-scroll, .hero-mobile { min-height: 100svh; }
@@ -535,6 +566,9 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .sensory-story-6 .sensory-story-name { max-width: 7ch; margin-left: auto; font-size: clamp(3.6rem, 15vw, 5rem); line-height: .84; }
   .sensory-story-copy { max-width: 100%; }
   .sensory-story-3 { background-position: left center; background-size: auto 100%; }
+  .sensory-story-3 .sensory-story-heading { order: 1; }
+  .sensory-story-3 > .sound-listening-stage { order: 2; }
+  .sensory-story-3 .sensory-story-copy { order: 3; }
   .sense-frame { width: 100%; aspect-ratio: 4 / 5; margin-top: 2.5rem; }
   .sense-frame .sense-art { object-position: var(--focal-mobile, 50% 50%); }
   .sound-film { width: max(100%, 222%); height: 100%; }

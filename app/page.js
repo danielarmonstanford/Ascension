@@ -334,6 +334,7 @@ function SoundListeningStage({ media }) {
   const [filmReady, setFilmReady] = useState(false);
   const [mode, setMode] = useState("silent");
   const reduceMotion = useReducedMotion();
+  const isMobile = useMobileLayout();
 
   useEffect(() => {
     const node = frameRef.current;
@@ -372,11 +373,12 @@ function SoundListeningStage({ media }) {
     setMode("meditation");
   };
 
-  const loadFilm = inView && (!reduceMotion || mode === "film");
+  const loadFilm = inView && (!reduceMotion || mode === "film") && (isMobile === false || mode === "film");
 
   return (
     <div className={`sense-frame sound-listening-stage${filmReady ? " film-ready" : ""}${mode === "meditation" ? " meditation-active" : ""}`} ref={frameRef}>
-      <Image className="sense-art sound-poster" src={media.poster} alt={media.alt} fill sizes="(max-width: 767px) 100vw, 50vw" />
+      <Image className="sense-art sound-poster sound-poster-mobile" src={media.poster} alt={media.alt} fill sizes="100vw" />
+      <Image className="sense-art sound-poster sound-poster-desktop" src={media.filmPoster} alt="Preview frame from the selected Vietnamese SOUND film" fill sizes="100vw" />
       {loadFilm ? (
         <iframe
           ref={filmRef}
@@ -1026,13 +1028,14 @@ export default function HomePage() {
               }[story.id];
               return (
                 <article className={`sensory-story sensory-story-${index + 1}`} id={story.id} key={story.name}>
+                  {story.id === "sound" ? <SensoryMedia media={media} chapter={story.id} /> : null}
                   <header className="sensory-story-heading">
                     <div className={`sensory-story-lockup sensory-lockup-${alignment}`}>
                       <h3 className="sensory-story-name">{story.name}</h3>
                       <p className="sensory-story-keywords">{story.keywords}</p>
                       <p className="sensory-story-subtitle">{story.title}</p>
                     </div>
-                    <SensoryMedia media={media} chapter={story.id} />
+                    {story.id !== "sound" ? <SensoryMedia media={media} chapter={story.id} /> : null}
                   </header>
                   <div className="sensory-story-copy">
                     {story.quote ? <blockquote>{story.quote}</blockquote> : null}
