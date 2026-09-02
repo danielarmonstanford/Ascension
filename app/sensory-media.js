@@ -46,10 +46,14 @@ export const sensoryMedia = {
     productionLabel: "TASTE — EXTERNAL YOUTUBE FILM",
   },
   breathe: {
-    type: "placeholder",
-    alt: "Reserved media space for the BREATHE chapter",
-    status: "pending",
-    productionLabel: "BREATHE — FINAL SCENT/ENVIRONMENT MEDIA PENDING",
+    type: "video",
+    src: "https://res.cloudinary.com/dno3ruh4b/video/upload/v1788363812/holographic-human-body-x-ray-scan-with-respiratory-2026-04-22-16-04-13-utc_d8oqa0.mp4",
+    poster: "https://res.cloudinary.com/dno3ruh4b/video/upload/so_0,f_jpg,q_auto/v1788363812/holographic-human-body-x-ray-scan-with-respiratory-2026-04-22-16-04-13-utc_d8oqa0.jpg",
+    alt: "A holographic visualization of breath moving through the human body",
+    focalPointMobile: "50% 50%",
+    focalPointDesktop: "50% 50%",
+    status: "approved",
+    productionLabel: "BREATHE — APPROVED RESPIRATORY FILM",
   },
   create: {
     type: "video",

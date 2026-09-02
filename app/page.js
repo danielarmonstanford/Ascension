@@ -1028,14 +1028,14 @@ export default function HomePage() {
               }[story.id];
               return (
                 <article className={`sensory-story sensory-story-${index + 1}`} id={story.id} key={story.name}>
-                  {story.id === "sound" ? <SensoryMedia media={media} chapter={story.id} /> : null}
+                  {story.id === "sound" || story.id === "breathe" ? <SensoryMedia media={media} chapter={story.id} /> : null}
                   <header className="sensory-story-heading">
                     <div className={`sensory-story-lockup sensory-lockup-${alignment}`}>
                       <h3 className="sensory-story-name">{story.name}</h3>
                       <p className="sensory-story-keywords">{story.keywords}</p>
                       <p className="sensory-story-subtitle">{story.title}</p>
                     </div>
-                    {story.id !== "sound" ? <SensoryMedia media={media} chapter={story.id} /> : null}
+                    {story.id !== "sound" && story.id !== "breathe" ? <SensoryMedia media={media} chapter={story.id} /> : null}
                   </header>
                   <div className="sensory-story-copy">
                     {story.quote ? <blockquote>{story.quote}</blockquote> : null}

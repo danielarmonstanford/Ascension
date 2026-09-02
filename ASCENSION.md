@@ -63,6 +63,12 @@ The SEE chapter uses the approved external YouTube film `Ehku63B2pzQ` as its vis
 
 The TASTE chapter uses the approved external YouTube film `obRDCiSwjCs` in the existing chapter media slot. Load it progressively from its own thumbnail, keep it muted and inline, and preserve the approved TASTE typography, copy and composition around it. Do not retain the superseded placeholder once the film source is available or imply ASCENSION ownership of the recording.
 
+The BREATHE chapter uses the approved Cloudinary respiratory film as a full-bleed background stage:
+
+`https://res.cloudinary.com/dno3ruh4b/video/upload/v1788363812/holographic-human-body-x-ray-scan-with-respiratory-2026-04-22-16-04-13-utc_d8oqa0.mp4`
+
+Reference the master remotely; do not download or commit it. Load an immediate first-frame poster, begin muted inline motion only when the chapter is near the viewport, and preserve that poster as the reduced-motion and failure fallback. BREATHE typography and copy remain an independent interface layer above the media. The visual may communicate conscious breathing and presence, but it must not be framed as medical imaging, diagnosis, treatment or proof of an outcome.
+
 The September 1 surgical conversion brief establishes Diện Chẩn as the signature therapeutic and educational foundation of the Da Nang edition. Describe it as a modern Vietnamese, needle-free system rooted in traditional principles; never describe it as ancient or promise medical outcomes. The supplied Diện Chẩn visual is approved, while treatment video and Daniel Stanford’s documentation remain pending.
 
 Ecstatic Dance sits only inside EMBODY as a planned ASCENSION movement experience. It is not a seventh sense, primary site section, navigation item, confirmed facilitator partnership, or separate purchasing pathway. Public status: facilitator to be announced. Do not mention, copy, link to, or use assets or trademarks from Extaticaa.

@@ -84,9 +84,9 @@ export const en = {
     },
     {
       id: "create",
-      name: "CREATE · INTUITION",
+      name: "CREATE",
       title: "Reconnect with the artist within.",
-      keywords: "DRAW · PAINT · WRITE · PHOTOGRAPH",
+      keywords: "INTUITION · DRAW · PAINT · WRITE · PHOTOGRAPH",
       quote: "“Every child is an artist. The problem is how to remain an artist once we grow up.” — Pablo Picasso",
       mobile: "Be present. Follow your intuition. Draw, paint, write, photograph, move—or create in whatever form calls to you.",
       desktop: "Creativity begins with presence. Notice what you feel. Trust your intuition. Allow something honest to emerge. Draw, paint, write, photograph, move or create in any form that calls to you. Nothing needs to be perfect. The practice is simply to begin.",

@@ -184,7 +184,6 @@ section { position: relative; }
 .sensory-lockup-center { text-align: center; }
 .sensory-lockup-center .sensory-story-keywords { align-self: flex-end; text-align: right; }
 .sensory-lockup-center .sensory-story-subtitle { align-self: center; }
-.sensory-story-6 .sensory-story-name { font-size: clamp(4rem, 7vw, 7.5rem); line-height: .82; }
 .sensory-story-copy { max-width: 43rem; }
 .sensory-story-copy > p { margin: 0; color: var(--ink); font-size: clamp(1.05rem, 1.4vw, 1.25rem); line-height: 1.65; }
 .sensory-story-copy blockquote { margin: 0 0 1.5rem; color: var(--quiet); font: 400 clamp(1.35rem, 2vw, 1.8rem)/1.35 var(--display); }
@@ -239,7 +238,20 @@ section { position: relative; }
 .sensory-story-3 .sensory-story-name { color: var(--twilight); }
 :root[data-theme="dusk"] .sensory-story-3 .sensory-story-name { color: var(--sunset); }
 .sensory-story-4 .sensory-story-name { color: var(--burnt-sand); }
-.sensory-story-5 .sensory-story-name { color: var(--sea-glass); }
+.sensory-story-5 { position: relative; isolation: isolate; min-height: max(100svh, 48rem); margin-right: calc(-1 * var(--gutter)); margin-left: calc(-1 * var(--gutter)); padding-right: var(--gutter); padding-left: var(--gutter); overflow: hidden; background: var(--night-sea); color: var(--moon-ivory); }
+.sensory-story-5 > .sense-frame-breathe { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; margin: 0; background: var(--night-sea); }
+.sensory-story-5 > .sense-frame-breathe::after { content: ""; position: absolute; inset: 0; z-index: 3; background: linear-gradient(90deg, rgba(5, 22, 31, .7) 0%, rgba(5, 22, 31, .35) 48%, rgba(5, 22, 31, .66) 100%), linear-gradient(180deg, rgba(5, 22, 31, .2), rgba(5, 22, 31, .3) 58%, rgba(5, 22, 31, .84)); pointer-events: none; }
+.sensory-story-5 .sense-art { filter: saturate(.82) contrast(1.04) brightness(.8); }
+.sensory-story-5 .sensory-story-heading,
+.sensory-story-5 .sensory-story-copy { position: relative; z-index: 4; }
+.sensory-story-5 .sensory-story-name { color: #cfe9f2; text-shadow: 0 2px 2rem rgba(5, 22, 31, .72); }
+.sensory-story-5 .sensory-story-keywords { color: var(--sunset); text-shadow: 0 1px 1rem rgba(5, 22, 31, .9); }
+.sensory-story-5 .sensory-story-subtitle,
+.sensory-story-5 .sensory-story-copy > p,
+.sensory-story-5 .sensory-link,
+.sensory-story-5 summary { color: var(--moon-ivory); text-shadow: 0 1px 1.25rem rgba(5, 22, 31, .9); }
+.sensory-story-5 .sensory-story-copy details { border-color: rgba(241, 230, 213, .38); }
+.sensory-story-5 .sensory-story-copy details p { color: rgba(241, 230, 213, .88); }
 
 @media (min-width: 768px) {
   .sensory-story-3 { position: relative; isolation: isolate; min-height: max(100svh, 54rem); grid-template-columns: minmax(0, .92fr) minmax(24rem, 1.08fr); overflow: hidden; background-color: var(--night-sea); background-image: none; color: var(--moon-ivory); }
@@ -564,8 +576,12 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .sensory-story-keywords { max-width: 100%; margin-top: 1rem; font-size: clamp(.6rem, 2.9vw, .72rem); letter-spacing: .1em; white-space: normal; }
   .sensory-story-name { font-size: clamp(4.5rem, 22vw, 7rem); line-height: .78; }
   .sensory-story-subtitle { margin-top: 1.5rem; font-size: clamp(2rem, 9.5vw, 3rem); line-height: .98; }
-  .sensory-story-6 .sensory-story-name { max-width: 7ch; margin-left: auto; font-size: clamp(3.6rem, 15vw, 5rem); line-height: .84; }
   .sensory-story-copy { max-width: 100%; }
+  .sensory-story-5 { min-height: 110svh; }
+  .sensory-story-5 > .sense-frame-breathe { order: initial; }
+  .sensory-story-5 > .sense-frame-breathe::after { background: linear-gradient(180deg, rgba(5, 22, 31, .38) 0%, rgba(5, 22, 31, .58) 46%, rgba(5, 22, 31, .9) 100%); }
+  .sensory-story-5 .sensory-story-heading { align-self: start; }
+  .sensory-story-5 .sensory-story-copy { align-self: end; }
   .sensory-story-3 { background-position: left center; background-size: auto 100%; }
   .sensory-story-3 .sensory-story-heading { order: 1; }
   .sensory-story-3 > .sound-listening-stage { order: 2; }
