@@ -89,7 +89,7 @@ Lovine is the identity voice. Use it for decisive phrases, place names, edition 
 
 **The Identity Rule.** If removing Lovine from a composition changes nothing about its character, the type has been used as decoration rather than identity.
 
-**The Sensory Chapter Rule.** In each sensory chapter, the chapter name—EMBODY, SEE, SOUND, TASTE, BREATHE, CREATE · INTUITION, and the nested MOVE experience—is the dominant Lovine hero. The evocative phrase beneath it is a sub-hero at approximately half scale. Distilled modality keywords use the utility face on the opposing edge: left hero/right keywords, right hero/left keywords, with BREATHE intentionally centred beneath right-aligned SALT AIR · WARM EARTH. Preserve this hierarchy independently on desktop, tablet, and mobile; never promote the phrase above the chapter name again.
+**The Sensory Chapter Rule.** Every sensory lockup follows one order: dominant Lovine chapter hero → copper utility line naming the modalities → evocative Lovine sub-hero at approximately half scale. This applies to EMBODY, SEE, SOUND, TASTE, BREATHE, CREATE · INTUITION and the nested MOVE experience, where ECSTATIC DANCE sits immediately beneath MOVE. On desktop the copper line may offset toward the opposing edge, but it must remain below its hero; on mobile it may wrap but never move above the hero. Preserve this sequence independently across desktop, tablet and mobile.
 
 **The Featured Place Rule.** In the experience-at-a-glance composition, DA NANG, VIETNAM is the dominant Lovine hero—not a utility kicker. “The experience at a glance” is a substantial Lovine sub-hero at approximately half scale and offset on the opposing edge. Dates, duration, pricing, accommodation and comparison actions remain the factual utility layer.
 

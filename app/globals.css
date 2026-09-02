@@ -166,9 +166,9 @@ section { position: relative; }
 .sensory-story:nth-child(even) .sensory-story-heading { order: 2; }
 .sensory-story:nth-child(even) .sensory-story-copy { order: 1; }
 .sensory-story-lockup { display: flex; flex-direction: column; width: 100%; }
-.sensory-story-keywords { margin: 0 0 clamp(2rem, 4vw, 4rem); color: var(--quiet); font: 500 clamp(.58rem, .8vw, .72rem)/1.5 var(--utility); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.sensory-story-keywords { width: fit-content; margin: clamp(1rem, 2vw, 1.75rem) 0 0; color: var(--burnt-sand); font: 550 clamp(.62rem, .85vw, .76rem)/1.5 var(--utility); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
 .sensory-story-name { margin: 0; color: var(--burnt-sand); font: 400 clamp(6rem, 10.5vw, 11rem)/.76 var(--display); letter-spacing: -.04em; font-synthesis: none; }
-.sensory-story-subtitle { margin: clamp(1.5rem, 3vw, 2.75rem) 0 0; max-width: 13ch; color: var(--ink); font: 400 clamp(2rem, 3.6vw, 3.8rem)/.96 var(--display); letter-spacing: -.025em; }
+.sensory-story-subtitle { margin: clamp(1.25rem, 2.5vw, 2.25rem) 0 0; max-width: 13ch; color: var(--ink); font: 400 clamp(2rem, 3.6vw, 3.8rem)/.96 var(--display); letter-spacing: -.025em; }
 .sensory-lockup-left { text-align: left; }
 .sensory-lockup-left .sensory-story-keywords { align-self: flex-end; text-align: right; }
 .sensory-lockup-right { text-align: right; }
@@ -194,7 +194,7 @@ section { position: relative; }
 .media-placeholder span, .sound-coming { position: relative; z-index: 3; padding: 1rem; text-align: center; font: 500 .65rem/1.5 var(--utility); letter-spacing: .12em; }
 .sound-coming { position: absolute; left: 50%; bottom: 1.25rem; translate: -50% 0; width: min(90%, 28rem); background: color-mix(in srgb, var(--night-sea) 80%, transparent); color: var(--moon-ivory); }
 .ecstatic-dance { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, .72fr) minmax(28rem, 1.28fr); gap: clamp(3rem, 8vw, 9rem); margin-top: clamp(1rem, 3vw, 2.5rem); padding-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--rule); }
-.ecstatic-label { margin: 0 0 clamp(2rem, 4vw, 4rem); color: var(--burnt-sand); font: 600 .72rem/1.3 var(--utility); letter-spacing: .15em; text-transform: uppercase; }
+.ecstatic-label { width: fit-content; margin: clamp(1rem, 2vw, 1.75rem) 0 0 auto; color: var(--burnt-sand); font: 600 clamp(.62rem, .85vw, .76rem)/1.5 var(--utility); letter-spacing: .14em; text-align: right; text-transform: uppercase; }
 .ecstatic-intro h4 { margin: 0; color: var(--ink); font: 400 clamp(6rem, 10.5vw, 11rem)/.76 var(--display); letter-spacing: -.04em; text-align: right; }
 .ecstatic-subtitle { margin: clamp(1.5rem, 3vw, 2.75rem) 0 clamp(2.5rem, 5vw, 4rem) auto; max-width: 12ch; font: 400 clamp(2rem, 3.6vw, 3.8rem)/.96 var(--display); letter-spacing: -.025em; text-align: right; }
 .ecstatic-description { margin: 0 0 1rem; max-width: 36rem; line-height: 1.65; }
@@ -397,7 +397,7 @@ footer div a { font-size: clamp(.78rem, 1vw, .95rem); font-weight: 650; letter-s
   .sensory-story { min-height: 70svh; grid-template-columns: 1fr; gap: 2.75rem; padding: 5rem 0; }
   .sensory-story:nth-child(even) .sensory-story-heading,
   .sensory-story:nth-child(even) .sensory-story-copy { order: initial; }
-  .sensory-story-keywords { max-width: 100%; margin-bottom: 2.25rem; font-size: clamp(.55rem, 2.7vw, .68rem); letter-spacing: .1em; }
+  .sensory-story-keywords { max-width: 100%; margin-top: 1rem; font-size: clamp(.6rem, 2.9vw, .72rem); letter-spacing: .1em; white-space: normal; }
   .sensory-story-name { font-size: clamp(4.5rem, 22vw, 7rem); line-height: .78; }
   .sensory-story-subtitle { margin-top: 1.5rem; font-size: clamp(2rem, 9.5vw, 3rem); line-height: .98; }
   .sensory-story-6 .sensory-story-name { max-width: 7ch; margin-left: auto; font-size: clamp(3.6rem, 15vw, 5rem); line-height: .84; }
@@ -406,6 +406,7 @@ footer div a { font-size: clamp(.78rem, 1vw, .95rem); font-weight: 650; letter-s
   .sense-frame .sense-art { object-position: var(--focal-mobile, 50% 50%); }
   .ecstatic-dance { grid-template-columns: 1fr; gap: 3rem; }
   .ecstatic-intro h4 { font-size: clamp(4.5rem, 22vw, 7rem); }
+  .ecstatic-label { margin-top: 1rem; font-size: clamp(.6rem, 2.9vw, .72rem); }
   .ecstatic-subtitle { margin-top: 1.5rem; font-size: clamp(2rem, 9.5vw, 3rem); }
   .movement-arc li { grid-template-columns: 2.5rem 5.5rem 1fr; gap: .75rem; }
 

@@ -587,8 +587,8 @@ function EcstaticDanceExperience({ isMobile }) {
   return (
     <aside className="ecstatic-dance" aria-labelledby="ecstatic-dance-title">
       <div className="ecstatic-intro">
-        <p className="ecstatic-label">{experience.label}</p>
         <h4 id="ecstatic-dance-title">MOVE</h4>
+        <p className="ecstatic-label">{experience.label}</p>
         <p className="ecstatic-subtitle">{experience.title}</p>
         {paragraphs.map((paragraph) => <p className="ecstatic-description" key={paragraph}>{paragraph}</p>)}
         <p className="experience-status">{experience.status}</p>
@@ -762,8 +762,8 @@ export default function HomePage() {
                 <article className={`sensory-story sensory-story-${index + 1}`} id={story.id} key={story.name}>
                   <header className="sensory-story-heading">
                     <div className={`sensory-story-lockup sensory-lockup-${alignment}`}>
-                      <p className="sensory-story-keywords">{story.keywords}</p>
                       <h3 className="sensory-story-name">{story.name}</h3>
+                      <p className="sensory-story-keywords">{story.keywords}</p>
                       <p className="sensory-story-subtitle">{story.title}</p>
                     </div>
                     <SensoryMedia media={media} chapter={story.id} />
