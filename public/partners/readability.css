@@ -173,8 +173,8 @@ button:focus-visible {
 
 /* Detail pages move from a DUSK photographic threshold into a bright DAY reading field. */
 body.collaborator-detail {
-  --bg: #e7f0ef;
-  --bg2: #f4ede1;
+  --bg: #f4ede1;
+  --bg2: #e7f0ef;
   --text: #173744;
   --accent: #875545;
   --partner-reading: #294c56;
@@ -186,7 +186,7 @@ body.collaborator-detail {
 }
 
 .collaborator-detail .nav {
-  background: color-mix(in srgb, var(--mist, #e7f0ef) 94%, transparent);
+  background: color-mix(in srgb, var(--moon-ivory) 93%, transparent);
   border-bottom-color: var(--rule);
 }
 
@@ -207,10 +207,16 @@ body.collaborator-detail {
 .collaborator-detail .sec {
   background: var(--bg);
   border-bottom-color: var(--rule);
+  padding-top: clamp(4rem, 7vw, 6.5rem);
+  padding-bottom: clamp(4rem, 7vw, 6.5rem);
 }
 
-.collaborator-detail .contact-block,
 .collaborator-detail .tier-card {
+  background: color-mix(in srgb, var(--moon-ivory) 84%, var(--bg));
+  border-color: color-mix(in srgb, var(--deep-ocean) 34%, transparent);
+}
+
+.collaborator-detail .contact-block {
   background: var(--bg2);
   border-color: color-mix(in srgb, var(--deep-ocean) 34%, transparent);
 }
@@ -234,7 +240,7 @@ body.collaborator-detail {
 }
 
 .collaborator-detail .footer {
-  background: #f4ede1;
+  background: #e7f0ef;
 }
 
 .collaborator-detail .nav-back:hover,
