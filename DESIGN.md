@@ -91,6 +91,8 @@ Lovine is the identity voice. Use it for decisive phrases, place names, edition 
 
 **The Sensory Chapter Rule.** Every sensory lockup follows one order: dominant Lovine chapter hero → copper utility line naming the modalities → evocative Lovine sub-hero at approximately half scale. This applies to EMBODY, SEE, SOUND, TASTE, BREATHE, CREATE · INTUITION and the nested MOVE experience, where ECSTATIC DANCE sits immediately beneath MOVE. On desktop the copper line may offset toward the opposing edge, but it must remain below its hero; on mobile it may wrap but never move above the hero. Preserve this sequence independently across desktop, tablet and mobile.
 
+**The SEE Film Rule.** The approved YouTube film is a progressive visual replacement for the former lantern still, not a new interaction system. Use the film’s own frame as the poster, autoplay only while visible, remain muted, and use an edge-to-edge cover crop on compact screens rather than visible letterboxing. The SEE typography and copy remain independent of the media layer.
+
 **The SOUND Ground Rule.** SOUND alone uses the approved ear-and-radiating-wave illustration as a full-bleed chapter background. Screen it with the active DAY/DUSK ground colour so typography remains primary: Mist in DAY, Night Sea in DUSK. Keep the Vietnamese film as the foreground media stage. On mobile, move the background crop toward the ear rather than allowing a generic centered crop to lose the illustration's subject.
 
 **The Featured Place Rule.** In the experience-at-a-glance composition, DA NANG, VIETNAM is the dominant Lovine hero—not a utility kicker. “The experience at a glance” is a substantial Lovine sub-hero at approximately half scale and offset on the opposing edge. Dates, duration, pricing, accommodation and comparison actions remain the factual utility layer.
@@ -106,6 +108,8 @@ Lovine is the identity voice. Use it for decisive phrases, place names, edition 
 ## Layout
 
 Build around large photographic fields, calm negative space, and a single linear guest journey: desire → comprehension → trust → program → reservation. Alternate immersive media with concise information; do not convert every content group into a card grid. Secondary partner and facilitator routes stay discoverable in navigation and the closing utility layer, never beside the primary reservation action.
+
+**The About Route Rule.** `/about` is a restrained editorial narrative within the existing DAY/DUSK system, not a founder-brand microsite. Use one H1, large Lovine section statements, alternating media and copy, an uncarded numbered principles list, and clear cross-links back to the guest journey. Mobile places media before copy. If an approved Daniel portrait is unavailable, use an intentional art-directed placeholder; never fabricate a likeness or label another person as Daniel.
 
 Desktop composition may use strong asymmetry and cropped imagery. Mobile becomes a direct vertical narrative with the same photographic authority, readable facts, and no dependency on hover. Core text should normally stay within 60–72 characters per line.
 

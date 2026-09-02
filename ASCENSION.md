@@ -59,6 +59,8 @@ The SOUND listening stage uses two approved, externally hosted YouTube samples. 
 
 The September 1, 2026 production brief establishes this public sequence: EMBODY → SEE → SOUND → TASTE → BREATHE → CREATE. The approved homepage copy establishes Diện Chẩn as the foundation, identifies movement, breath, sound, food, culture and creativity as the wider framework, and treats Ecstatic Dance, sound baths and uncontracted facilitator-led modalities as planned until their people, place and schedule are confirmed. Marble Mountains remains a special excursion with day TBD. Do not infer additional practitioners, schedules, inclusions, or dates from these confirmations.
 
+The SEE chapter uses the approved external YouTube film `Ehku63B2pzQ` as its visual media source. Load it progressively from the film’s own thumbnail, keep it muted and inline, and crop it deliberately across desktop and mobile. Do not retain the superseded Hội An lantern photograph as the SEE chapter fallback, download the external film, or imply ASCENSION ownership of the recording.
+
 The September 1 surgical conversion brief establishes Diện Chẩn as the signature therapeutic and educational foundation of the Da Nang edition. Describe it as a modern Vietnamese, needle-free system rooted in traditional principles; never describe it as ancient or promise medical outcomes. The supplied Diện Chẩn visual is approved, while treatment video and Daniel Stanford’s documentation remain pending.
 
 Ecstatic Dance sits only inside EMBODY as a planned ASCENSION movement experience. It is not a seventh sense, primary site section, navigation item, confirmed facilitator partnership, or separate purchasing pathway. Public status: facilitator to be announced. Do not mention, copy, link to, or use assets or trademarks from Extaticaa.
@@ -88,6 +90,12 @@ Use it as the full-bleed visual ground of the SOUND chapter, screened beneath a 
 ## CREATE Credit and Listening Sample
 
 Credit the CREATE fine-art imagery to Daniel Stanford and provide a quiet external path to `https://danielstanford.art/` using “Go deeper · Explore the full series.” The approved external listening sample `xIGJZ4ydEgQ` may be presented editorially as “Finding Your Artist Voice.” It is published by Motivation2Study, must use a visibly available YouTube player, and must not be extracted, downloaded, autoplay before visitor action, or presented as an ASCENSION-owned recording.
+
+## About ASCENSION
+
+`/about` is the single canonical About route. It carries Daniel Stanford’s first-person origin story, names him as host, curator and creative director, and states clearly that he is not a medical practitioner. The approved facts are: more than two decades of personal exploration, more than 25 years of creative practice, travel through 25 countries, more than one year living in Da Nang, and several months of Diện Chẩn including 40 consecutive treatment days. Do not turn personal experience into a medical claim or invent credentials.
+
+The homepage contains only a concise “Why I created ASCENSION” gateway to `/about`. Desktop navigation, the mobile menu and the footer expose About without displacing the guest path. Required cross-links connect About with Experience, Diện Chẩn, Attend and Facilitate. The voice hierarchy is: “I created it. We hold it. You experience it.”
 
 ### Approved V2 hero master
 

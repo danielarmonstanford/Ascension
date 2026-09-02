@@ -18,6 +18,7 @@ const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787672842/hf_20260825_154036_0f54f781-11e4-4fd2-bc2e-b20f07766ac2_tuvnzo.png";
 
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
+const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
 
 const destinationTypographyTiming = {
   fadeInStart: 2.4,
@@ -469,6 +470,45 @@ function CreateArtistVoice() {
   );
 }
 
+function YouTubeVisual({ media, chapter }) {
+  const frameRef = useRef(null);
+  const [inView, setInView] = useState(false);
+  const [ready, setReady] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const node = frameRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { rootMargin: "120px 0px" });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      className={`sense-frame sense-frame-${chapter} youtube-visual${ready ? " film-ready" : ""}`}
+      ref={frameRef}
+      style={{ "--focal-mobile": media.focalPointMobile, "--focal-desktop": media.focalPointDesktop }}
+    >
+      <Image className="sense-art sense-poster" src={media.poster} alt={media.alt} fill sizes="(max-width: 767px) 100vw, 50vw" />
+      {inView && !reduceMotion ? (
+        <iframe
+          className="see-film"
+          src={`https://www.youtube-nocookie.com/embed/${media.videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${media.videoId}&playsinline=1&rel=0&modestbranding=1`}
+          title="ASCENSION SEE film"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          referrerPolicy="strict-origin-when-cross-origin"
+          tabIndex="-1"
+          aria-hidden="true"
+          onLoad={() => setReady(true)}
+        />
+      ) : null}
+      <div className="see-film-screen" aria-hidden="true" />
+      <p className="see-source-note">Selected SEE film · External YouTube recording</p>
+    </div>
+  );
+}
+
 function SensoryMedia({ media, chapter }) {
   const frameRef = useRef(null);
   const videoRef = useRef(null);
@@ -496,6 +536,10 @@ function SensoryMedia({ media, chapter }) {
 
   if (chapter === "sound") {
     return <SoundListeningStage media={media} />;
+  }
+
+  if (media.type === "youtube") {
+    return <YouTubeVisual media={media} chapter={chapter} />;
   }
 
   const imageSource = media.poster || media.src;
@@ -566,6 +610,16 @@ function Hero({ theme, setTheme }) {
   const seekInFlight = useRef(false);
   const pendingSeekTime = useRef(null);
   const [motionReady, setMotionReady] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   const enableMotionWhenReady = () => {
     if (metadataReady.current && canPlayReady.current) {
@@ -708,9 +762,32 @@ function Hero({ theme, setTheme }) {
           <a className="wordmark" href="#top">ASCENSION</a>
           <div className="nav-links">
             <a href="#experience">Experience</a>
+            <a href="#dien-chan">Diện Chẩn</a>
+            <a href="/about">About</a>
             <a href="#attendance">Attend</a>
           </div>
         </nav>
+
+        <button
+          className="mobile-menu-toggle entrance entrance-nav"
+          type="button"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span>{menuOpen ? "Close" : "Menu"}</span>
+          <i aria-hidden="true" />
+        </button>
+        <div className={`mobile-menu ${menuOpen ? "is-open" : ""}`} id="mobile-menu" aria-hidden={!menuOpen}>
+          <nav aria-label="Mobile navigation">
+            <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
+            <a href="#dien-chan" onClick={() => setMenuOpen(false)}>Diện Chẩn</a>
+            <a href="/about" onClick={() => setMenuOpen(false)}>About</a>
+            <a href="#attendance" onClick={() => setMenuOpen(false)}>Attend</a>
+            <a href="#facilitate" onClick={() => setMenuOpen(false)}>Facilitate</a>
+          </nav>
+          <a className="radiant-action mobile-menu-reserve" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+        </div>
 
         <div className="hero-frame">
           <h1 className="hero-title entrance entrance-title">ASCENSION</h1>
@@ -842,13 +919,12 @@ function ParticipationPrinciples() {
 
 function PractitionerInvitation({ isMobile }) {
   const practitioner = en.practitioner;
-  const applicationHref = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
   return (
-    <section className="practitioner-invitation" aria-labelledby="practitioner-title">
+    <section className="practitioner-invitation" id="facilitate" aria-labelledby="practitioner-title">
       <h2 id="practitioner-title">Facilitators</h2>
       <p className="practitioner-subtitle">{practitioner.title}</p>
       <p className="practitioner-description">{isMobile === false ? practitioner.desktop : practitioner.mobile}</p>
-      <a className="practitioner-action radiant-action" href={applicationHref}>Apply to facilitate <span aria-hidden="true">→</span></a>
+      <a className="practitioner-action radiant-action" href={PRACTITIONER_APPLICATION}>Apply to facilitate <span aria-hidden="true">→</span></a>
     </section>
   );
 }
@@ -1014,16 +1090,15 @@ export default function HomePage() {
         </section>
 
         <section className="host-story" aria-labelledby="host-title">
-          <div>
-            <p className="host-kicker">Daniel’s documented experience</p>
-            <h2 id="host-title">{en.host.title}</h2>
+          <div className="host-story-media" role="img" aria-label="Editorial portrait space reserved for Daniel Stanford in Da Nang">
+            <span>Daniel Stanford · Da Nang</span>
           </div>
-          <div>
-            <p>{isMobile === false ? en.host.desktop : en.host.mobile}</p>
-            <details>
-              <summary>Read Daniel’s story <span aria-hidden="true">→</span></summary>
-              <p>{en.host.documentation}</p>
-            </details>
+          <div className="host-story-copy">
+            <p className="host-kicker">Why I created ASCENSION</p>
+            <h2 id="host-title">Experienced before it was offered.</h2>
+            <p>ASCENSION grew from my personal journey through movement, creativity, traditional Vietnamese wellness and life in Da Nang.</p>
+            <p>Built around Diện Chẩn and expanded through selected practitioners, it is an immersive happening designed to awaken the body, senses and imagination.</p>
+            <a className="text-action" href="/about">Read my story <span aria-hidden="true">→</span></a>
           </div>
         </section>
 
@@ -1128,7 +1203,18 @@ export default function HomePage() {
           </div>
           <footer>
             <span>ASCENSION SENSES · Edition 01</span>
-            <div><a href="/partners/practitioners">Facilitators</a><a href="/partners">Partners</a><a href="/partners/sponsorship">Sponsors</a></div>
+            <div>
+              <a href="/about">About</a>
+              <a href="/#experience">Experience</a>
+              <a href="/#dien-chan">Diện Chẩn</a>
+              <a href="/#attendance">Attend</a>
+              <a href="/#facilitate">Facilitate</a>
+              <a href="/partners">Partners</a>
+              <a href="/partners/sponsorship">Sponsors</a>
+              <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">Contact</a>
+              <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Privacy">Privacy</a>
+              <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Terms">Terms</a>
+            </div>
           </footer>
         </section>
       </main>

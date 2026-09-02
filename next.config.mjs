@@ -30,6 +30,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
         pathname: "/dno3ruh4b/video/upload/**"
+      },
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+        pathname: "/vi/**"
       }
     ]
   }
