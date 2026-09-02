@@ -93,6 +93,8 @@ Lovine is the identity voice. Use it for decisive phrases, place names, edition 
 
 **The Featured Place Rule.** In the experience-at-a-glance composition, DA NANG, VIETNAM is the dominant Lovine hero—not a utility kicker. “The experience at a glance” is a substantial Lovine sub-hero at approximately half scale and offset on the opposing edge. Dates, duration, pricing, accommodation and comparison actions remain the factual utility layer.
 
+**The Facilitator Invitation Rule.** In the practitioner invitation, FACILITATORS is the dominant Lovine hero. “Bring your practice to Da Nang” is the offset Lovine sub-hero at approximately half scale. The application action may use a single concentrated sunrise-gold treatment—bright core, warm edge and a restrained interactive halo—to signal conversion without spreading glow or rounded controls across the wider interface. Closing FACILITATORS / PARTNERS / SPONSORS pathways must remain clearly legible rather than disappearing into footer utility text.
+
 **Typographic Implementation Rule.** Do not approximate typography. For every approved major type role, specify the typeface, available weight, size, line height, letter spacing, maximum width, optical treatment when supported, and responsive behavior. Disable synthesized bold or italic where the supplied font files do not contain those styles. Use deliberate text rendering and font smoothing. Lovine is a compositional element, not a generic heading font.
 
 ## Layout

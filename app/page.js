@@ -655,10 +655,10 @@ function PractitionerInvitation({ isMobile }) {
   const applicationHref = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
   return (
     <section className="practitioner-invitation" aria-labelledby="practitioner-title">
-      <p className="practitioner-kicker">{practitioner.eyebrow}</p>
-      <h2 id="practitioner-title">{practitioner.title}</h2>
-      <p>{isMobile === false ? practitioner.desktop : practitioner.mobile}</p>
-      <a href={applicationHref}>Apply to facilitate <span aria-hidden="true">→</span></a>
+      <h2 id="practitioner-title">Facilitators</h2>
+      <p className="practitioner-subtitle">{practitioner.title}</p>
+      <p className="practitioner-description">{isMobile === false ? practitioner.desktop : practitioner.mobile}</p>
+      <a className="practitioner-action" href={applicationHref}>Apply to facilitate <span aria-hidden="true">→</span></a>
     </section>
   );
 }
