@@ -228,6 +228,18 @@ section { position: relative; }
 :root[data-theme="dusk"] .sensory-story-3 .sensory-story-name { color: var(--sunset); }
 .sensory-story-4 .sensory-story-name { color: var(--burnt-sand); }
 .sensory-story-5 .sensory-story-name { color: var(--sea-glass); }
+.create-extras { margin-top: clamp(2.5rem, 5vw, 4rem); padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+.create-credit { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rule); }
+.create-credit p { margin: 0; color: var(--burnt-sand); font: 600 .68rem/1.5 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
+.create-credit a { display: inline-flex; align-items: center; gap: .75rem; color: var(--ink); font: 600 .68rem/1.5 var(--utility); letter-spacing: .09em; text-align: right; text-transform: uppercase; text-underline-offset: .35rem; }
+.create-listening { padding-top: 1.75rem; }
+.create-listening-label, .create-listening-source { color: var(--quiet); font: 500 .6rem/1.5 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
+.create-listening-label { margin: 0 0 .8rem; }
+.create-listening h4 { margin: 0; max-width: 11ch; color: var(--ink); font: 400 clamp(2.2rem, 4vw, 3.8rem)/.95 var(--display); letter-spacing: -.025em; }
+.create-listening-player { width: min(100%, 34rem); aspect-ratio: 16 / 9; margin-top: 1.5rem; overflow: hidden; border: 1px solid var(--rule); border-radius: .75rem; background: var(--night-sea); }
+.create-listening-player iframe { width: 100%; height: 100%; border: 0; }
+.create-listening-control { min-height: 50px; margin-top: 1.5rem; padding: .8rem 1.15rem; font-size: .68rem; }
+.create-listening-source { margin: .8rem 0 0; }
 
 .participation { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(22rem, .9fr); gap: clamp(3rem, 9vw, 10rem); padding: var(--section-space) var(--gutter); background: var(--ground); }
 .participation h2 { margin: 0 0 2rem; max-width: 12ch; font: 400 clamp(3.8rem, 7vw, 7rem)/.87 var(--display); letter-spacing: -.03em; }
@@ -431,6 +443,9 @@ footer div a { font-size: clamp(.78rem, 1vw, .95rem); font-weight: 650; letter-s
   .sound-stage-controls { align-items: stretch; }
   .sound-film-control, .sound-meditate-control { flex: 1; justify-content: center; padding-right: .65rem; padding-left: .65rem; }
   .sound-source-note { bottom: 5.75rem; text-align: center; }
+  .create-credit { display: block; }
+  .create-credit a { margin-top: .85rem; text-align: left; }
+  .create-listening h4 { font-size: clamp(2.2rem, 11vw, 3.2rem); }
   .ecstatic-dance { grid-template-columns: 1fr; gap: 3rem; }
   .ecstatic-intro h4 { font-size: clamp(4.5rem, 22vw, 7rem); }
   .ecstatic-label { margin-top: 1rem; font-size: clamp(.6rem, 2.9vw, .72rem); }

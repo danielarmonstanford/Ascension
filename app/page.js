@@ -424,6 +424,51 @@ function SoundListeningStage({ media }) {
   );
 }
 
+function CreateArtistVoice() {
+  const sectionRef = useRef(null);
+  const [listening, setListening] = useState(false);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) setListening(false);
+    }, { threshold: 0.05 });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <aside className="create-extras" ref={sectionRef} aria-labelledby="artist-voice-title">
+      <div className="create-credit">
+        <p>Fine art · Daniel Stanford</p>
+        <a href="https://danielstanford.art/" target="_blank" rel="noopener noreferrer">
+          Go deeper · Explore the full series <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div className="create-listening">
+        <p className="create-listening-label">Listening sample · External recording</p>
+        <h4 id="artist-voice-title">Finding your artist voice.</h4>
+        {listening ? (
+          <div className="create-listening-player">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/xIGJZ4ydEgQ?autoplay=1&playsinline=1&rel=0&modestbranding=1"
+              title="Finding Your Artist Voice listening sample"
+              allow="autoplay; encrypted-media; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          </div>
+        ) : null}
+        <button className="radiant-action create-listening-control" type="button" aria-pressed={listening} onClick={() => setListening((active) => !active)}>
+          {listening ? "END LISTENING" : "LISTEN NOW"}
+        </button>
+        <p className="create-listening-source">Motivation2Study · YouTube</p>
+      </div>
+    </aside>
+  );
+}
+
 function SensoryMedia({ media, chapter }) {
   const frameRef = useRef(null);
   const videoRef = useRef(null);
@@ -924,6 +969,7 @@ export default function HomePage() {
                         <p>{story.details}</p>
                       </details>
                     )}
+                    {story.id === "create" ? <CreateArtistVoice /> : null}
                   </div>
                   {story.id === "embody" ? <EcstaticDanceExperience isMobile={isMobile} /> : null}
                 </article>

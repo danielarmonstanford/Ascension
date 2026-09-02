@@ -85,6 +85,10 @@ The approved SOUND illustration is hosted remotely at:
 
 For the current composition pass, use it as a visual cue within the Your Ascension attendance section, with crops that retain the ear and radiating wave geometry. It remains a visual listening metaphor, not permission to autoplay audio or imply an unconfirmed sound modality.
 
+## CREATE Credit and Listening Sample
+
+Credit the CREATE fine-art imagery to Daniel Stanford and provide a quiet external path to `https://danielstanford.art/` using “Go deeper · Explore the full series.” The approved external listening sample `xIGJZ4ydEgQ` may be presented editorially as “Finding Your Artist Voice.” It is published by Motivation2Study, must use a visibly available YouTube player, and must not be extracted, downloaded, autoplay before visitor action, or presented as an ASCENSION-owned recording.
+
 ### Approved V2 hero master
 
 The sole approved V2 scroll-motion source is:
