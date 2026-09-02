@@ -495,9 +495,9 @@ function YouTubeVisual({ media, chapter }) {
       <Image className="sense-art sense-poster" src={media.poster} alt={media.alt} fill sizes="(max-width: 767px) 100vw, 50vw" />
       {inView && !reduceMotion ? (
         <iframe
-          className="see-film"
+          className="sensory-youtube-film"
           src={`https://www.youtube-nocookie.com/embed/${media.videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${media.videoId}&playsinline=1&rel=0&modestbranding=1`}
-          title="ASCENSION SEE film"
+          title={`ASCENSION ${chapter.toUpperCase()} film`}
           allow="autoplay; encrypted-media; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
           tabIndex="-1"
@@ -505,8 +505,8 @@ function YouTubeVisual({ media, chapter }) {
           onLoad={() => setReady(true)}
         />
       ) : null}
-      <div className="see-film-screen" aria-hidden="true" />
-      <p className="see-source-note">Selected SEE film · External YouTube recording</p>
+      <div className="sensory-youtube-screen" aria-hidden="true" />
+      <p className="sensory-youtube-note">Selected {chapter.toUpperCase()} film · External YouTube recording</p>
     </div>
   );
 }

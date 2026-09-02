@@ -36,10 +36,14 @@ export const sensoryMedia = {
     productionLabel: "SOUND — EXTERNAL LISTENING SAMPLES",
   },
   taste: {
-    type: "placeholder",
-    alt: "Reserved media space for the TASTE chapter",
-    status: "pending",
-    productionLabel: "TASTE — FINAL CULINARY MEDIA PENDING",
+    type: "youtube",
+    videoId: "obRDCiSwjCs",
+    poster: "https://i.ytimg.com/vi/obRDCiSwjCs/maxresdefault.jpg",
+    alt: "Preview frame from the selected ASCENSION TASTE film",
+    focalPointMobile: "50% 50%",
+    focalPointDesktop: "50% 50%",
+    status: "approved-sample",
+    productionLabel: "TASTE — EXTERNAL YOUTUBE FILM",
   },
   breathe: {
     type: "placeholder",

@@ -61,6 +61,8 @@ The September 1, 2026 production brief establishes this public sequence: EMBODY 
 
 The SEE chapter uses the approved external YouTube film `Ehku63B2pzQ` as its visual media source. Load it progressively from the film’s own thumbnail, keep it muted and inline, and crop it deliberately across desktop and mobile. Do not retain the superseded Hội An lantern photograph as the SEE chapter fallback, download the external film, or imply ASCENSION ownership of the recording.
 
+The TASTE chapter uses the approved external YouTube film `obRDCiSwjCs` in the existing chapter media slot. Load it progressively from its own thumbnail, keep it muted and inline, and preserve the approved TASTE typography, copy and composition around it. Do not retain the superseded placeholder once the film source is available or imply ASCENSION ownership of the recording.
+
 The September 1 surgical conversion brief establishes Diện Chẩn as the signature therapeutic and educational foundation of the Da Nang edition. Describe it as a modern Vietnamese, needle-free system rooted in traditional principles; never describe it as ancient or promise medical outcomes. The supplied Diện Chẩn visual is approved, while treatment video and Daniel Stanford’s documentation remain pending.
 
 Ecstatic Dance sits only inside EMBODY as a planned ASCENSION movement experience. It is not a seventh sense, primary site section, navigation item, confirmed facilitator partnership, or separate purchasing pathway. Public status: facilitator to be announced. Do not mention, copy, link to, or use assets or trademarks from Extaticaa.
