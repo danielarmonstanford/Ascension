@@ -321,6 +321,109 @@ function MediaPlaceholder({ label, alt }) {
   );
 }
 
+function sendYouTubeCommand(frame, func) {
+  frame.current?.contentWindow?.postMessage(JSON.stringify({ event: "command", func, args: [] }), "https://www.youtube-nocookie.com");
+}
+
+function SoundListeningStage({ media }) {
+  const frameRef = useRef(null);
+  const filmRef = useRef(null);
+  const meditationRef = useRef(null);
+  const [inView, setInView] = useState(false);
+  const [filmReady, setFilmReady] = useState(false);
+  const [mode, setMode] = useState("silent");
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const node = frameRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setInView(entry.isIntersecting);
+      if (!entry.isIntersecting) {
+        sendYouTubeCommand(filmRef, "mute");
+        sendYouTubeCommand(meditationRef, "pauseVideo");
+        setMode("silent");
+      }
+    }, { rootMargin: "120px 0px" });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const selectFilmSound = () => {
+    if (mode === "film") {
+      sendYouTubeCommand(filmRef, "mute");
+      setMode("silent");
+      return;
+    }
+    sendYouTubeCommand(meditationRef, "pauseVideo");
+    sendYouTubeCommand(filmRef, "unMute");
+    sendYouTubeCommand(filmRef, "playVideo");
+    setMode("film");
+  };
+
+  const selectMeditation = () => {
+    sendYouTubeCommand(filmRef, "mute");
+    if (mode === "meditation") {
+      sendYouTubeCommand(meditationRef, "pauseVideo");
+      setMode("silent");
+      return;
+    }
+    setMode("meditation");
+  };
+
+  const loadFilm = inView && (!reduceMotion || mode === "film");
+
+  return (
+    <div className={`sense-frame sound-listening-stage${filmReady ? " film-ready" : ""}${mode === "meditation" ? " meditation-active" : ""}`} ref={frameRef}>
+      <Image className="sense-art sound-poster" src={media.poster} alt={media.alt} fill sizes="(max-width: 767px) 100vw, 50vw" />
+      {loadFilm ? (
+        <iframe
+          ref={filmRef}
+          className="sound-film"
+          src={`https://www.youtube-nocookie.com/embed/${media.filmId}?autoplay=1&mute=${mode === "film" ? "0" : "1"}&controls=0&loop=1&playlist=${media.filmId}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`}
+          title="Vietnam scenic relaxation film"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          referrerPolicy="strict-origin-when-cross-origin"
+          tabIndex="-1"
+          aria-hidden="true"
+          onLoad={() => {
+            setFilmReady(true);
+            if (mode === "film") {
+              sendYouTubeCommand(filmRef, "unMute");
+              sendYouTubeCommand(filmRef, "playVideo");
+            }
+          }}
+        />
+      ) : null}
+      <div className="sound-screen" aria-hidden="true" />
+      {mode === "meditation" ? (
+        <div className="sound-meditation-player">
+          <iframe
+            ref={meditationRef}
+            src={`https://www.youtube-nocookie.com/embed/${media.meditationId}?autoplay=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`}
+            title="Full-length Tibetan sound meditation sample"
+            allow="autoplay; encrypted-media; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+      ) : null}
+      <div className="sound-stage-controls" aria-label="Choose the SOUND listening source">
+        <button className="sound-film-control" type="button" aria-pressed={mode === "film"} onClick={selectFilmSound}>
+          <span className="sound-control-indicator" aria-hidden="true" />
+          {mode === "film" ? "MUTE FILM" : "FILM SOUND"}
+        </button>
+        <button className="radiant-action sound-meditate-control" type="button" aria-pressed={mode === "meditation"} onClick={selectMeditation}>
+          {mode === "meditation" ? "END MEDITATION" : "MEDITATE NOW"}
+        </button>
+      </div>
+      <p className="sound-source-note" aria-live="polite">
+        {mode === "meditation" ? "Tibetan sound meditation · External YouTube recording" : "Vietnam scenic film · External YouTube recording"}
+      </p>
+    </div>
+  );
+}
+
 function SensoryMedia({ media, chapter }) {
   const frameRef = useRef(null);
   const videoRef = useRef(null);
@@ -346,6 +449,10 @@ function SensoryMedia({ media, chapter }) {
     return <MediaPlaceholder label={media.productionLabel} alt={media.alt} />;
   }
 
+  if (chapter === "sound") {
+    return <SoundListeningStage media={media} />;
+  }
+
   const imageSource = media.poster || media.src;
   return (
     <div
@@ -359,7 +466,6 @@ function SensoryMedia({ media, chapter }) {
           <source src={media.src} type="video/mp4" />
         </video>
       ) : null}
-      {media.type === "audio-video" ? <span className="sound-coming">60-SECOND SOUND PREVIEW — COMING SOON</span> : null}
     </div>
   );
 }
