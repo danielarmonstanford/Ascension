@@ -229,6 +229,38 @@ body.collaborator-detail {
   background: color-mix(in srgb, #f4c96b 24%, transparent);
 }
 
+/* Sponsorship investment is a primary decision point, not utility metadata. */
+.collaborator-detail .tier-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .65rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  color: var(--deep-ocean);
+  font-family: var(--font-display);
+  font-size: clamp(3.15rem, 4.25vw, 4.75rem);
+  font-weight: 400;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -.035em;
+  line-height: .86;
+  white-space: nowrap;
+}
+
+.collaborator-detail .tier-amount em {
+  color: var(--partner-secondary);
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-style: normal;
+  font-weight: 650;
+  letter-spacing: .1em;
+  line-height: 1.4;
+  opacity: 1;
+  text-transform: uppercase;
+  white-space: normal;
+}
+
 .collaborator-detail .tier-cta {
   background: #f4c96b;
   color: #102932;
@@ -254,5 +286,11 @@ body.collaborator-detail {
     --partner-reading: #102932;
     --partner-secondary: #294c56;
     --rule: color-mix(in srgb, var(--deep-ocean) 62%, transparent);
+  }
+}
+
+@media (max-width: 900px) {
+  .collaborator-detail .tier-amount {
+    font-size: clamp(3.75rem, 14vw, 6rem);
   }
 }
