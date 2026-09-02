@@ -107,8 +107,8 @@ main { overflow: clip; }
 section { position: relative; }
 
 .awaken { min-height: 82svh; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(20rem, .75fr); gap: clamp(3rem, 9vw, 10rem); align-items: center; padding: var(--section-space) var(--gutter); background: var(--ground); }
-.awaken-kicker { margin: 0 0 1.25rem; color: var(--burnt-sand); font: 500 .7rem/1 var(--utility); letter-spacing: .16em; text-transform: uppercase; }
-.awaken-heading h2 { margin: 0; max-width: 10ch; font: 400 clamp(4.7rem, 9.5vw, 9rem)/.84 var(--display); letter-spacing: -.035em; }
+.awaken-heading h2 { margin: 0; max-width: 10ch; color: var(--burnt-sand); font: 400 clamp(5.5rem, 10.5vw, 10rem)/.82 var(--display); letter-spacing: -.04em; font-synthesis: none; }
+.awaken-subtitle { width: fit-content; margin: clamp(2rem, 4vw, 3.5rem) 0 0 auto; color: var(--ink); font: 400 clamp(2.4rem, 4.5vw, 4.5rem)/.94 var(--display); letter-spacing: -.025em; text-align: right; }
 .awaken-facts { max-width: 34rem; }
 .awaken-facts > p { margin: 0 0 1.25rem; color: var(--quiet); line-height: 1.65; }
 .awaken-facts .awaken-lead { color: var(--ink); font-size: clamp(1.45rem, 2.2vw, 2.1rem); line-height: 1.25; }
@@ -356,7 +356,8 @@ footer div { display: flex; gap: 1.5rem; }
   .hero-explore { flex: 1; text-align: center; }
 
   .awaken { min-height: auto; grid-template-columns: 1fr; gap: 3.5rem; padding-top: 6rem; padding-bottom: 6rem; }
-  .awaken-heading h2 { font-size: clamp(3.5rem, 17vw, 5.5rem); }
+  .awaken-heading h2 { font-size: clamp(4.5rem, 22vw, 7rem); }
+  .awaken-subtitle { margin-top: 1.75rem; font-size: clamp(2rem, 10vw, 3.2rem); }
   .awaken-facts dl div { grid-template-columns: 4.5rem 1fr; }
   .fact-actions { flex-direction: column; align-items: flex-start; }
 

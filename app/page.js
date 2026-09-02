@@ -705,8 +705,8 @@ export default function HomePage() {
       <main id="main">
         <section className="awaken" id="awaken" aria-labelledby="awaken-title">
           <div className="awaken-heading">
-            <p className="awaken-kicker">Da Nang, Vietnam</p>
-            <h2 id="awaken-title">The experience,<br />at a glance.</h2>
+            <h2 id="awaken-title">Da Nang,<br />Vietnam</h2>
+            <p className="awaken-subtitle">The experience,<br />at a glance.</p>
           </div>
           <div className="awaken-facts">
             <p className="awaken-lead">Choose seven days or the full fourteen between city, sea and mountain.</p>
