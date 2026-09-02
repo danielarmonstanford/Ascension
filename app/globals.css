@@ -138,6 +138,12 @@ section { position: relative; }
 .destination-copy h2 span:nth-child(2) { margin-left: 12vw; }
 .destination-copy h2 span:nth-child(3) { margin-left: 24vw; }
 .destination-copy p { margin: 2.5rem 0 0 24vw; font-size: clamp(1rem, 1.5vw, 1.25rem); }
+.destination-sound { position: absolute; right: calc(var(--gutter) + env(safe-area-inset-right)); bottom: calc(2rem + env(safe-area-inset-bottom)); z-index: 5; min-height: 48px; display: inline-flex; align-items: center; gap: .75rem; padding: .8rem 1rem; border: 1px solid rgba(242, 195, 106, .78); border-radius: .65rem; background: rgba(3, 17, 23, .82); box-shadow: 0 0 0 1px rgba(242, 195, 106, .08), 0 0 2rem rgba(242, 195, 106, .18); color: var(--moon-ivory); font: 650 .68rem/1 var(--utility); letter-spacing: .13em; text-transform: uppercase; cursor: pointer; opacity: 0; transform: translateY(.6rem); pointer-events: none; transition: opacity .35s ease, transform .45s var(--ease-out), color .25s ease, background .25s ease, box-shadow .25s ease; }
+.destination-sound.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.destination-sound:hover, .destination-sound:focus-visible { background: rgba(16, 38, 45, .94); box-shadow: 0 0 0 1px rgba(242, 195, 106, .25), 0 0 2.75rem rgba(242, 195, 106, .32); outline: none; }
+.destination-sound[aria-pressed="true"] { background: var(--sunlight); color: var(--night-sea); }
+.destination-sound-indicator { width: .52rem; height: .52rem; flex: 0 0 auto; border: 1px solid currentColor; border-radius: 50%; box-shadow: 0 0 .75rem currentColor; }
+.destination-sound[aria-pressed="true"] .destination-sound-indicator { background: currentColor; }
 
 .foundation { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(24rem, .95fr); min-height: 90svh; background: var(--shell); color: var(--deep-ocean); }
 .foundation-visual { position: relative; min-height: 90svh; overflow: hidden; }
@@ -383,6 +389,7 @@ footer div a { font-size: clamp(.78rem, 1vw, .95rem); font-weight: 650; letter-s
   .destination-copy h2 span:nth-child(2),
   .destination-copy h2 span:nth-child(3) { margin-left: 0; }
   .destination-copy p { margin-left: 0; }
+  .destination-sound { right: calc(1.25rem + env(safe-area-inset-right)); bottom: calc(5.25rem + env(safe-area-inset-bottom)); }
 
   .foundation { display: block; min-height: auto; }
   .foundation-visual { min-height: 72svh; }
@@ -480,5 +487,6 @@ footer div a { font-size: clamp(.78rem, 1vw, .95rem); font-weight: 650; letter-s
   .destination { min-height: 100svh; }
   .destination-stage { position: relative; }
   .destination-copy { --destination-copy-opacity: 1; }
+  .destination-sound { display: none; }
   .nav-links { opacity: 1; transform: none; }
 }

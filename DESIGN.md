@@ -141,6 +141,8 @@ Prioritize above-the-fold posters. Defer non-critical video and below-the-fold m
 
 The static state is a finished composition, not a loading state. If video never loads, the visitor must not see an error, missing narrative, inactive control, or visibly incomplete hero.
 
+Destination film sound is opt-in. Keep the film muted on entry, reveal a clear `PLAY SOUND` control as its section enters view, and change the same control to `MUTE` after activation. A scroll event alone must never be treated as permission to unmute. Silence the film when the visitor leaves the section; poster, typography, navigation, and the complete journey remain usable without audio.
+
 Keep media and interface independent. The hero architecture is:
 
 ```text

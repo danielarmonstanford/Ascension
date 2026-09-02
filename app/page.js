@@ -141,10 +141,13 @@ function DestinationSection() {
   const sectionRef = useRef(null);
   const copyRef = useRef(null);
   const iframeRef = useRef(null);
+  const soundEnabledRef = useRef(false);
   const currentTime = useRef(0);
   const dismissed = useRef(false);
   const beforeSection = useRef(true);
   const animationFrame = useRef(0);
+  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [soundControlVisible, setSoundControlVisible] = useState(false);
   const reduceMotion = useReducedMotion();
 
   const sendVimeoMessage = (method, value) => {
@@ -156,6 +159,30 @@ function DestinationSection() {
     sendVimeoMessage("addEventListener", "playProgress");
     sendVimeoMessage("addEventListener", "ended");
   };
+
+  const setDestinationSound = (enabled) => {
+    soundEnabledRef.current = enabled;
+    setSoundEnabled(enabled);
+    sendVimeoMessage("setMuted", !enabled);
+    sendVimeoMessage("setVolume", enabled ? 1 : 0);
+    if (enabled) sendVimeoMessage("play");
+  };
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || reduceMotion) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setSoundControlVisible(entry.isIntersecting);
+      if (!entry.isIntersecting && soundEnabledRef.current) setDestinationSound(false);
+    }, { threshold: 0.05 });
+
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      if (soundEnabledRef.current) setDestinationSound(false);
+    };
+  }, [reduceMotion]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -269,6 +296,18 @@ function DestinationSection() {
           <h2 id="destination-title"><span>CITY.</span><span>SEA.</span><span>MOUNTAIN.</span></h2>
           <p>Da Nang, between salt air and ancient stone.</p>
         </div>
+        {!reduceMotion ? (
+          <button
+            className={`destination-sound${soundControlVisible ? " is-visible" : ""}`}
+            type="button"
+            aria-label={soundEnabled ? "Mute the Da Nang destination film" : "Play the Da Nang destination film with sound"}
+            aria-pressed={soundEnabled}
+            onClick={() => setDestinationSound(!soundEnabledRef.current)}
+          >
+            <span className="destination-sound-indicator" aria-hidden="true" />
+            <span>{soundEnabled ? "MUTE" : "PLAY SOUND"}</span>
+          </button>
+        ) : null}
       </div>
     </section>
   );
