@@ -377,8 +377,8 @@ function SoundListeningStage({ media }) {
 
   return (
     <div className={`sense-frame sound-listening-stage${filmReady ? " film-ready" : ""}${mode === "meditation" ? " meditation-active" : ""}`} ref={frameRef}>
-      <Image className="sense-art sound-poster sound-poster-mobile" src={media.poster} alt={media.alt} fill sizes="100vw" />
-      <Image className="sense-art sound-poster sound-poster-desktop" src={media.filmPoster} alt="Preview frame from the selected Vietnamese SOUND film" fill sizes="100vw" />
+      <Image className="sense-art sound-poster sound-poster-mobile" src={media.poster} alt={media.alt} fill sizes="(max-width: 767px) 100vw, 1px" />
+      <Image className="sense-art sound-poster sound-poster-desktop" src={media.filmPoster} alt="Preview frame from the selected Vietnamese SOUND film" fill sizes="(max-width: 767px) 1px, 100vw" />
       {loadFilm ? (
         <iframe
           ref={filmRef}
