@@ -171,3 +171,82 @@ button:focus-visible {
   }
 }
 
+/* Detail pages move from a DUSK photographic threshold into a bright DAY reading field. */
+body.collaborator-detail {
+  --bg: #e7f0ef;
+  --bg2: #f4ede1;
+  --text: #173744;
+  --accent: #875545;
+  --partner-reading: #294c56;
+  --partner-secondary: #456670;
+  --muted: var(--partner-secondary);
+  --rule: color-mix(in srgb, var(--deep-ocean) 28%, transparent);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.collaborator-detail .nav {
+  background: color-mix(in srgb, var(--mist, #e7f0ef) 94%, transparent);
+  border-bottom-color: var(--rule);
+}
+
+.collaborator-detail .hero {
+  color: #f1e6d5;
+  border-bottom-color: color-mix(in srgb, #ef9a62 42%, transparent);
+}
+
+.collaborator-detail .hero h1,
+.collaborator-detail .hero-sub {
+  color: #f1e6d5;
+}
+
+.collaborator-detail .hero .eyebrow {
+  color: #ef9a62;
+}
+
+.collaborator-detail .sec {
+  background: var(--bg);
+  border-bottom-color: var(--rule);
+}
+
+.collaborator-detail .contact-block,
+.collaborator-detail .tier-card {
+  background: var(--bg2);
+  border-color: color-mix(in srgb, var(--deep-ocean) 34%, transparent);
+}
+
+.collaborator-detail .tier-grid {
+  background: color-mix(in srgb, var(--deep-ocean) 30%, transparent);
+}
+
+.collaborator-detail .tier-target {
+  background: color-mix(in srgb, #f4c96b 24%, transparent);
+}
+
+.collaborator-detail .tier-cta {
+  background: #f4c96b;
+  color: #102932;
+}
+
+.collaborator-detail .tier-cta:hover {
+  background: #ffd45f;
+  opacity: 1;
+}
+
+.collaborator-detail .footer {
+  background: #f4ede1;
+}
+
+.collaborator-detail .nav-back:hover,
+.collaborator-detail .footer a:hover,
+.collaborator-detail .contact-block a:hover {
+  color: #173744 !important;
+}
+
+@media (prefers-contrast: more) {
+  body.collaborator-detail {
+    --partner-reading: #102932;
+    --partner-secondary: #294c56;
+    --rule: color-mix(in srgb, var(--deep-ocean) 62%, transparent);
+  }
+}
