@@ -19,6 +19,25 @@ const DIEN_CHAN_VISUAL =
 
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 
+const destinationTypographyTiming = {
+  fadeInStart: 2.4,
+  fadeInEnd: 6,
+  fadeOutStart: 12.6,
+  fadeOutEnd: 16.5,
+  hiddenBy: 25,
+  embeddedTitleStart: 25.75,
+};
+
+const destinationScrollTiming = {
+  fadeInStart: 0.08,
+  fadeInEnd: 0.2,
+  fadeOutStart: 0.42,
+  hiddenBy: 0.55,
+};
+
+const clamp = (value, minimum = 0, maximum = 1) => Math.min(Math.max(value, minimum), maximum);
+const rangeProgress = (value, start, end) => clamp((value - start) / (end - start));
+
 function useReducedMotion() {
   const [reduceMotion, setReduceMotion] = useState(true);
 
@@ -57,7 +76,7 @@ function ThemeControl({ theme, onChange }) {
   );
 }
 
-function ProgressiveMedia({ poster, alt, priority = false, className = "", videoSrc, vimeoId }) {
+function ProgressiveMedia({ poster, alt, priority = false, className = "", videoSrc, vimeoId, iframeRef, onVimeoLoad }) {
   const containerRef = useRef(null);
   const videoRef = useRef(null);
   const [ready, setReady] = useState(false);
@@ -100,17 +119,158 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
       ) : null}
       {vimeoId && posterLoaded && inView && !reduceMotion ? (
         <iframe
+          ref={iframeRef}
           className="media-motion media-vimeo"
-          src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&muted=1&loop=1&autopause=0&dnt=1&title=0&byline=0&portrait=0`}
+          src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&muted=1&loop=1&autopause=0&dnt=1&title=0&byline=0&portrait=0&api=1&player_id=destination-film`}
           title="Da Nang moving landscape"
           allow="autoplay; fullscreen; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
           tabIndex="-1"
           aria-hidden="true"
-          onLoad={() => setReady(true)}
+          onLoad={() => {
+            setReady(true);
+            onVimeoLoad?.();
+          }}
         />
       ) : null}
     </div>
+  );
+}
+
+function DestinationSection() {
+  const sectionRef = useRef(null);
+  const copyRef = useRef(null);
+  const iframeRef = useRef(null);
+  const currentTime = useRef(0);
+  const dismissed = useRef(false);
+  const beforeSection = useRef(true);
+  const animationFrame = useRef(0);
+  const reduceMotion = useReducedMotion();
+
+  const sendVimeoMessage = (method, value) => {
+    iframeRef.current?.contentWindow?.postMessage({ method, value }, "https://player.vimeo.com");
+  };
+
+  const registerVimeoEvents = () => {
+    sendVimeoMessage("addEventListener", "timeupdate");
+    sendVimeoMessage("addEventListener", "playProgress");
+    sendVimeoMessage("addEventListener", "ended");
+  };
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const copy = copyRef.current;
+    if (!section || !copy || reduceMotion) return;
+
+    const renderOpacity = () => {
+      animationFrame.current = 0;
+      const bounds = section.getBoundingClientRect();
+      const scrollDistance = Math.max(bounds.height - window.innerHeight, 1);
+      const scrollProgress = clamp(-bounds.top / scrollDistance);
+
+      if (bounds.top >= window.innerHeight) {
+        beforeSection.current = true;
+      } else if (beforeSection.current && bounds.bottom > 0) {
+        beforeSection.current = false;
+        dismissed.current = false;
+        currentTime.current = 0;
+        sendVimeoMessage("setCurrentTime", 0);
+        sendVimeoMessage("play");
+      }
+
+      const scrollAppearance = rangeProgress(
+        scrollProgress,
+        destinationScrollTiming.fadeInStart,
+        destinationScrollTiming.fadeInEnd,
+      );
+      const timeAppearance = rangeProgress(
+        currentTime.current,
+        destinationTypographyTiming.fadeInStart,
+        destinationTypographyTiming.fadeInEnd,
+      );
+      const scrollFadeOut = rangeProgress(
+        scrollProgress,
+        destinationScrollTiming.fadeOutStart,
+        destinationScrollTiming.hiddenBy,
+      );
+      const timeFadeOut = rangeProgress(
+        currentTime.current,
+        destinationTypographyTiming.fadeOutStart,
+        destinationTypographyTiming.fadeOutEnd,
+      );
+
+      if (
+        scrollProgress >= destinationScrollTiming.hiddenBy ||
+        currentTime.current >= destinationTypographyTiming.fadeOutEnd ||
+        currentTime.current >= destinationTypographyTiming.hiddenBy
+      ) {
+        dismissed.current = true;
+      }
+
+      const appearance = Math.max(scrollAppearance, timeAppearance);
+      const fadeOut = Math.max(scrollFadeOut, timeFadeOut);
+      const opacity = dismissed.current ? 0 : appearance * (1 - fadeOut);
+      copy.style.setProperty("--destination-copy-opacity", opacity.toFixed(3));
+      copy.dataset.phase = dismissed.current ? "hidden" : opacity >= 0.99 ? "visible" : opacity > 0 ? "transitioning" : "waiting";
+    };
+
+    const requestRender = () => {
+      if (!animationFrame.current) animationFrame.current = window.requestAnimationFrame(renderOpacity);
+    };
+
+    const onVimeoMessage = (event) => {
+      if (event.origin !== "https://player.vimeo.com" || event.source !== iframeRef.current?.contentWindow) return;
+      let message = event.data;
+      if (typeof message === "string") {
+        try {
+          message = JSON.parse(message);
+        } catch {
+          return;
+        }
+      }
+
+      if (message?.event === "timeupdate" || message?.event === "playProgress") {
+        const seconds = Number(message.data?.seconds);
+        if (Number.isFinite(seconds)) currentTime.current = seconds;
+        requestRender();
+      } else if (message?.event === "ended") {
+        dismissed.current = true;
+        requestRender();
+      } else if (message?.event === "ready") {
+        registerVimeoEvents();
+      }
+    };
+
+    window.addEventListener("scroll", requestRender, { passive: true });
+    window.addEventListener("resize", requestRender);
+    window.addEventListener("message", onVimeoMessage);
+    renderOpacity();
+
+    return () => {
+      window.removeEventListener("scroll", requestRender);
+      window.removeEventListener("resize", requestRender);
+      window.removeEventListener("message", onVimeoMessage);
+      if (animationFrame.current) window.cancelAnimationFrame(animationFrame.current);
+    };
+  }, [reduceMotion]);
+
+  return (
+    <section ref={sectionRef} className="destination" aria-labelledby="destination-title">
+      <div className="destination-stage">
+        <ProgressiveMedia
+          poster={DA_NANG_VIDEO_POSTER}
+          alt="A bright Pacific beach and mountain coastline in Da Nang"
+          vimeoId={DA_NANG_VIMEO_ID}
+          iframeRef={iframeRef}
+          onVimeoLoad={registerVimeoEvents}
+        />
+        <div className="destination-overlay" aria-hidden="true" />
+        <div ref={copyRef} className="destination-copy" data-phase={reduceMotion ? "static" : "waiting"}>
+          <h2 id="destination-title"><span>CITY.</span><span>SEA.</span><span>MOUNTAIN.</span></h2>
+          <p>Da Nang, between salt air and ancient stone.</p>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -573,18 +733,7 @@ export default function HomePage() {
           </ol>
         </section>
 
-        <section className="destination" aria-labelledby="destination-title">
-          <ProgressiveMedia
-            poster={DA_NANG_VIDEO_POSTER}
-            alt="A bright Pacific beach and mountain coastline in Da Nang"
-            vimeoId={DA_NANG_VIMEO_ID}
-          />
-          <div className="destination-overlay" aria-hidden="true" />
-          <div className="destination-copy">
-            <h2 id="destination-title"><span>CITY.</span><span>SEA.</span><span>MOUNTAIN.</span></h2>
-            <p>Da Nang, between salt air and ancient stone.</p>
-          </div>
-        </section>
+        <DestinationSection />
 
         <FoundationSection isMobile={isMobile} />
 

@@ -65,6 +65,12 @@ Ecstatic Dance sits only inside EMBODY as a planned ASCENSION movement experienc
 
 The original Da Nang yoga-wheel photograph is the hero source of truth. Use Cloudinary for responsive crops, formats, and progressive delivery. The homepage must feel finished with optimized still photography alone.
 
+### Da Nang destination film typography
+
+Preserve the approved oversized CITY / SEA / MOUNTAIN composition, scale, position, and mobile line breaks. The website typography is temporary: hidden at the opening frame, fading in over normalized section progress 0.08–0.20, holding through 0.42, fading out through 0.55, and remaining hidden for the rest of that playback. Video time provides the equivalent fallback when scrolling stops, and whichever control reaches fade-out first clears the typography. Once cleared, it must not return during minor reverse scrolling or a video loop; reset only after the visitor fully leaves above the section and later re-enters from its beginning.
+
+The current Vimeo destination film is 30 seconds. Its embedded ASCENSION title begins at approximately 25.75 seconds; website typography must be fully clear by 25.0 seconds at the absolute latest. Reduced-motion visitors receive the approved poster as a static frame with CITY / SEA / MOUNTAIN shown and no competing embedded title.
+
 The approved TOUCH illustration is hosted remotely at:
 
 `https://res.cloudinary.com/dno3ruh4b/image/upload/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png`
