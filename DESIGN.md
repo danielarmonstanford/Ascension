@@ -95,6 +95,8 @@ Lovine is the identity voice. Use it for decisive phrases, place names, edition 
 
 **The Facilitator Invitation Rule.** In the practitioner invitation, FACILITATORS is the dominant Lovine hero. “Bring your practice to Da Nang” is the offset Lovine sub-hero at approximately half scale. The application action may use a single concentrated sunrise-gold treatment—bright core, warm edge and a restrained interactive halo—to signal conversion without spreading glow or rounded controls across the wider interface. Closing FACILITATORS / PARTNERS / SPONSORS pathways must remain clearly legible rather than disappearing into footer utility text.
 
+**The Collaborator Legibility Rule.** Partner, practitioner, venue and sponsorship pages may remain quieter than the guest journey, but never visually faint. On DUSK surfaces, long-form body text uses a near-ivory reading colour, a minimum 17px compact-screen size, comfortable line-height and restrained line length. Utility labels, navigation, notes and tables must not rely on low opacity or excessive tracking for hierarchy. Links, rules and focus states remain visibly distinct in normal and increased-contrast modes.
+
 **Typographic Implementation Rule.** Do not approximate typography. For every approved major type role, specify the typeface, available weight, size, line height, letter spacing, maximum width, optical treatment when supported, and responsive behavior. Disable synthesized bold or italic where the supplied font files do not contain those styles. Use deliberate text rendering and font smoothing. Lovine is a compositional element, not a generic heading font.
 
 ## Layout

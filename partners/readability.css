@@ -1,0 +1,172 @@
+/* Shared collaborator-page legibility layer. Keep partner information calm, but never faint. */
+:root {
+  --partner-reading: color-mix(in srgb, var(--moon-ivory) 91%, var(--warm-stone));
+  --partner-secondary: color-mix(in srgb, var(--moon-ivory) 78%, var(--warm-stone));
+  --accent: #ef9a62;
+  --muted: var(--partner-secondary);
+  --rule: color-mix(in srgb, var(--sunset) 42%, transparent);
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+.hero-sub,
+.body-copy,
+.path-desc,
+.contact-block p,
+.term-row-note,
+.model-list li,
+.role-row-note,
+tbody td,
+.term-list li,
+.tier-target,
+.tier-features li,
+.deliv-table td {
+  color: var(--partner-reading);
+  font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);
+  line-height: 1.72;
+}
+
+.hero-sub {
+  max-width: 44rem;
+  font-size: clamp(1.125rem, 1.5vw, 1.3rem);
+  line-height: 1.62;
+}
+
+h2 {
+  font-size: clamp(2.15rem, 4vw, 3.35rem);
+  line-height: 1;
+}
+
+.path-title,
+.term-row-val,
+.role-row-name,
+.date-val {
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.12;
+}
+
+.nav-brand,
+.nav-back,
+.nav-links a,
+.eyebrow,
+.sec-label,
+.path-num,
+.path-arrow,
+.term-row-label,
+.role-row-num,
+.tier-tag,
+.tier-amount,
+.note,
+.date-label,
+.action-list span,
+.hero-meta,
+.footer span,
+thead th,
+.deliv-table th,
+.editorial-band-caption {
+  font-size: .875rem;
+  line-height: 1.55;
+  letter-spacing: .11em;
+}
+
+.nav-back,
+.nav-links a,
+.note,
+.date-label,
+.action-list span,
+.footer span {
+  color: var(--partner-secondary);
+}
+
+.nav-back,
+.nav-links a,
+.footer a,
+.contact-block a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3rem;
+}
+
+.nav-back:hover,
+.nav-links a:hover,
+.footer a:hover,
+.contact-block a:hover {
+  color: var(--moon-ivory) !important;
+}
+
+.path-row {
+  min-height: 8rem;
+}
+
+.action-list a {
+  font-size: clamp(1.0625rem, 1.35vw, 1.1875rem);
+  line-height: 1.5;
+}
+
+.contact-block {
+  border-color: color-mix(in srgb, var(--sunset) 52%, transparent);
+}
+
+.tier-cta {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .875rem;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline-width: 3px;
+  outline-offset: 4px;
+}
+
+@media (max-width: 700px) {
+  .nav {
+    min-height: 64px;
+    height: auto;
+    gap: 1rem;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-back {
+    max-width: 11rem;
+    text-align: right;
+  }
+
+  .path-row {
+    min-height: 0;
+  }
+
+  .hero-sub,
+  .body-copy,
+  .path-desc,
+  .contact-block p,
+  .term-row-note,
+  .model-list li,
+  .role-row-note,
+  tbody td,
+  .term-list li,
+  .tier-target,
+  .tier-features li,
+  .deliv-table td {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --partner-reading: var(--moon-ivory);
+    --partner-secondary: color-mix(in srgb, var(--moon-ivory) 92%, var(--warm-stone));
+    --rule: color-mix(in srgb, var(--sunset) 70%, transparent);
+  }
+}
