@@ -192,6 +192,8 @@ section { position: relative; }
 .sensory-story-copy summary { min-height: 52px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; font: 650 .73rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .sensory-story-copy summary::-webkit-details-marker { display: none; }
 .sensory-story-copy details p { margin: 0; padding: 0 0 1.5rem; color: var(--quiet); line-height: 1.65; }
+.sensory-story-3 { margin-right: calc(-1 * var(--gutter)); margin-left: calc(-1 * var(--gutter)); padding-right: var(--gutter); padding-left: var(--gutter); background-color: var(--mist); background-image: linear-gradient(rgba(231, 240, 239, .78), rgba(231, 240, 239, .78)), url("https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp"); background-repeat: no-repeat; background-position: left center; background-size: cover; }
+:root[data-theme="dusk"] .sensory-story-3 { background-color: var(--night-sea); background-image: linear-gradient(rgba(16, 41, 50, .82), rgba(16, 41, 50, .82)), url("https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp"); }
 .sense-frame { position: relative; width: 100%; aspect-ratio: 622 / 368; margin-top: clamp(2.5rem, 5vw, 4rem); overflow: hidden; }
 .sense-frame .sense-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--focal-desktop, 50% 50%); }
 .sense-motion { z-index: 2; }
@@ -436,6 +438,7 @@ footer div a { font-size: clamp(.78rem, 1vw, .95rem); font-weight: 650; letter-s
   .sensory-story-subtitle { margin-top: 1.5rem; font-size: clamp(2rem, 9.5vw, 3rem); line-height: .98; }
   .sensory-story-6 .sensory-story-name { max-width: 7ch; margin-left: auto; font-size: clamp(3.6rem, 15vw, 5rem); line-height: .84; }
   .sensory-story-copy { max-width: 100%; }
+  .sensory-story-3 { background-position: left center; background-size: auto 100%; }
   .sense-frame { width: 100%; aspect-ratio: 4 / 5; margin-top: 2.5rem; }
   .sense-frame .sense-art { object-position: var(--focal-mobile, 50% 50%); }
   .sound-film { width: max(100%, 222%); height: 100%; }

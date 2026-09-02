@@ -83,7 +83,7 @@ The approved SOUND illustration is hosted remotely at:
 
 `https://res.cloudinary.com/dno3ruh4b/image/upload/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp`
 
-For the current composition pass, use it as a visual cue within the Your Ascension attendance section, with crops that retain the ear and radiating wave geometry. It remains a visual listening metaphor, not permission to autoplay audio or imply an unconfirmed sound modality.
+Use it as the full-bleed visual ground of the SOUND chapter, screened beneath a translucent Mist wash in DAY and Night Sea wash in DUSK. Desktop should preserve the wider ear-and-wave field; compact/mobile should shift the crop toward the ear. It remains a visual listening metaphor, not permission to autoplay audio or imply an unconfirmed sound modality.
 
 ## CREATE Credit and Listening Sample
 
