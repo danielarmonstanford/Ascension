@@ -587,9 +587,10 @@ function EcstaticDanceExperience({ isMobile }) {
   return (
     <aside className="ecstatic-dance" aria-labelledby="ecstatic-dance-title">
       <div className="ecstatic-intro">
-        <p className="sensory-story-label">{experience.label}</p>
-        <h4 id="ecstatic-dance-title">{experience.title}</h4>
-        {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        <p className="ecstatic-label">{experience.label}</p>
+        <h4 id="ecstatic-dance-title">MOVE</h4>
+        <p className="ecstatic-subtitle">{experience.title}</p>
+        {paragraphs.map((paragraph) => <p className="ecstatic-description" key={paragraph}>{paragraph}</p>)}
         <p className="experience-status">{experience.status}</p>
       </div>
       <ol className="movement-arc" aria-label="Ecstatic Dance experience arc">
@@ -749,11 +750,22 @@ export default function HomePage() {
           <div className="sensory-stories" aria-label="The six senses of ASCENSION">
             {en.sensoryStories.map((story, index) => {
               const media = sensoryMedia[story.id];
+              const alignment = {
+                embody: "left",
+                see: "right",
+                sound: "left",
+                taste: "left",
+                breathe: "center",
+                create: "right",
+              }[story.id];
               return (
                 <article className={`sensory-story sensory-story-${index + 1}`} id={story.id} key={story.name}>
                   <header className="sensory-story-heading">
-                    <p className="sensory-story-label">{story.name}</p>
-                    <h3>{story.title}</h3>
+                    <div className={`sensory-story-lockup sensory-lockup-${alignment}`}>
+                      <p className="sensory-story-keywords">{story.keywords}</p>
+                      <h3 className="sensory-story-name">{story.name}</h3>
+                      <p className="sensory-story-subtitle">{story.title}</p>
+                    </div>
                     <SensoryMedia media={media} chapter={story.id} />
                   </header>
                   <div className="sensory-story-copy">

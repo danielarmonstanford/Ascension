@@ -89,6 +89,8 @@ Lovine is the identity voice. Use it for decisive phrases, place names, edition 
 
 **The Identity Rule.** If removing Lovine from a composition changes nothing about its character, the type has been used as decoration rather than identity.
 
+**The Sensory Chapter Rule.** In each sensory chapter, the chapter name—EMBODY, SEE, SOUND, TASTE, BREATHE, CREATE · INTUITION, and the nested MOVE experience—is the dominant Lovine hero. The evocative phrase beneath it is a sub-hero at approximately half scale. Distilled modality keywords use the utility face on the opposing edge: left hero/right keywords, right hero/left keywords, with BREATHE intentionally centred beneath right-aligned SALT AIR · WARM EARTH. Preserve this hierarchy independently on desktop, tablet, and mobile; never promote the phrase above the chapter name again.
+
 **Typographic Implementation Rule.** Do not approximate typography. For every approved major type role, specify the typeface, available weight, size, line height, letter spacing, maximum width, optical treatment when supported, and responsive behavior. Disable synthesized bold or italic where the supplied font files do not contain those styles. Use deliberate text rendering and font smoothing. Lovine is a compositional element, not a generic heading font.
 
 ## Layout
