@@ -125,7 +125,7 @@ The form language is full-bleed rectangular media, calm planes, precise rules, a
 
 ### Primary actions
 
-Use one dominant reservation action per decision region. Buttons are compact, nearly square, and plainly worded. Their contrast must survive both DAY and DUSK.
+Use one dominant reservation action per decision region. Every conversion button uses the approved radiant-gold signature: warm gold gradient, Night Sea utility type, rounded end geometry, a restrained luminous edge, and a brighter hover bloom. This shared treatment applies to reservation, application, request, and other deliberate primary actions across DAY and DUSK. Editorial navigation and low-priority utility links remain visually quieter so gold retains its conversion meaning.
 
 ### Photography
 

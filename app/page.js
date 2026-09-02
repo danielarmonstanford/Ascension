@@ -569,7 +569,7 @@ function Hero({ theme, setTheme }) {
             <p className="hero-description">{isMobile === false ? en.hero.desktop : en.hero.mobile}</p>
           </div>
           <div className="hero-actions entrance entrance-controls">
-            <a className="hero-primary" href="#senses">Embody it</a>
+            <a className="hero-primary radiant-action" href="#senses">Embody it</a>
             <a className="hero-explore" href="#awaken">Explore the experience <span aria-hidden="true">↓</span></a>
           </div>
         </div>
@@ -613,7 +613,7 @@ function MobileReserveBar() {
   }, []);
 
   return (
-    <a className={`mobile-reserve ${visible ? "is-visible" : ""}`} href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">
+    <a className={`mobile-reserve radiant-action ${visible ? "is-visible" : ""}`} href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">
       Reserve your place · from $1,200
     </a>
   );
@@ -697,7 +697,7 @@ function PractitionerInvitation({ isMobile }) {
       <h2 id="practitioner-title">Facilitators</h2>
       <p className="practitioner-subtitle">{practitioner.title}</p>
       <p className="practitioner-description">{isMobile === false ? practitioner.desktop : practitioner.mobile}</p>
-      <a className="practitioner-action" href={applicationHref}>Apply to facilitate <span aria-hidden="true">→</span></a>
+      <a className="practitioner-action radiant-action" href={applicationHref}>Apply to facilitate <span aria-hidden="true">→</span></a>
     </section>
   );
 }
@@ -928,7 +928,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="attendance-actions">
-            <a className="reserve-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+            <a className="reserve-action radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
             <a className="question-action" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a question <span aria-hidden="true">→</span></a>
           </div>
           <p className="deposit">Current reservation link requests a $300 deposit. Commercial details require final verification before launch.</p>
@@ -956,7 +956,7 @@ export default function HomePage() {
             </div>
           </div>
           <a
-            className="series-inquiry"
+            className="series-inquiry radiant-action"
             href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20in%20My%20City&body=City%20%2F%20Country%3A%20%0A%0AI%E2%80%99m%20interested%20as%20a%3A%20Guest%20%2F%20Practitioner%20%2F%20Venue%20or%20Hospitality%20Partner%20%2F%20Sponsor%20%2F%20Local%20Connector%0A%0AName%3A%20%0AOrganization%20(if%20applicable)%3A%20%0A%0AWhy%20ASCENSION%20could%20belong%20here%3A%20"
           >
             Request ASCENSION in Your City <span aria-hidden="true">→</span>
@@ -970,7 +970,7 @@ export default function HomePage() {
             <h2 id="join-title">Da Nang<br />is waiting.</h2>
             <p>{isMobile === false ? en.finalCta.desktop : en.finalCta.mobile}</p>
             <div className="join-actions">
-              <a href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+              <a className="radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
               <a className="join-question" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a question <span aria-hidden="true">→</span></a>
             </div>
           </div>
