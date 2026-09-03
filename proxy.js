@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 
-const PRODUCTION_HOST = "ascensionsenses.com";
-const WWW_HOST = "www.ascensionsenses.com";
+const PRODUCTION_HOST = "www.ascensionsenses.com";
+const APEX_HOST = "ascensionsenses.com";
 
 export function proxy(request) {
   const hostname = request.nextUrl.hostname.toLowerCase();
 
-  if (hostname === WWW_HOST) {
+  if (hostname === APEX_HOST) {
     const canonicalUrl = request.nextUrl.clone();
     canonicalUrl.protocol = "https:";
     canonicalUrl.host = PRODUCTION_HOST;
@@ -25,5 +25,5 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|assets/|icon.svg|favicon.ico).*)"],
+  matcher: ["/((?!_next/static|_next/image|assets/|icon.svg|apple-icon|favicon.ico).*)"],
 };

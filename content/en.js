@@ -40,7 +40,7 @@ export const en = {
       mobile: "Reconnect with your body through Diện Chẩn, conscious movement and restorative touch. No pressure to perform. Begin where you are and listen to what your body has been waiting to tell you.",
       desktop: "Reconnect with your body through Diện Chẩn, conscious movement and restorative touch. Release tension. Restore awareness. Move without performance or pressure. Your body already knows the way. ASCENSION creates the space to listen.",
       cta: "Discover Diện Chẩn",
-      href: "#dien-chan",
+      href: "/dien-chan",
     },
     {
       id: "see",
@@ -103,7 +103,7 @@ export const en = {
       "Follow the music from stillness into movement, energy and release—then return slowly to the body and the breath.",
       "Come alone or move with others. Participate in your own way.",
     ],
-    status: "Planned ASCENSION experience · Facilitator to be announced",
+    status: "Planned ASCENSION experience · Facilitator announcement forthcoming",
     arc: [
       { label: "ARRIVE", copy: "Feel the ground and become present." },
       { label: "MOVE", copy: "Follow the rhythm without choreography or judgment." },

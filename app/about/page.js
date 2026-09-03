@@ -1,20 +1,16 @@
 import AboutPageClient from "./about-client";
+import { JsonLd, breadcrumbStructuredData, createPageMetadata } from "../seo";
 
-export const metadata = {
-  title: "About ASCENSION | Daniel Stanford’s Story and Vision",
-  description:
-    "Discover why Daniel Stanford created ASCENSION in Da Nang—an immersive experience shaped by Diện Chẩn, movement, creativity, Vietnamese culture and personal renewal.",
-  alternates: {
-    canonical: "/about",
-  },
-  openGraph: {
-    title: "About ASCENSION | Daniel Stanford’s Story and Vision",
-    description:
-      "Discover why Daniel Stanford created ASCENSION in Da Nang—an immersive experience shaped by Diện Chẩn, movement, creativity, Vietnamese culture and personal renewal.",
-    url: "/about",
-  },
-};
+const title = "About ASCENSION | Daniel Stanford’s Story and Vision";
+const description = "Discover why Daniel Stanford created ASCENSION after living in Da Nang and experiencing Diện Chẩn, Vietnamese culture, movement and creative practice.";
+
+export const metadata = createPageMetadata({ title, description, path: "/about" });
 
 export default function AboutPage() {
-  return <AboutPageClient />;
+  return (
+    <>
+      <JsonLd data={breadcrumbStructuredData([{ name: "ASCENSION", path: "/" }, { name: "About", path: "/about" }])} />
+      <AboutPageClient />
+    </>
+  );
 }

@@ -2,13 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { sensoryMedia } from "./sensory-media";
 import { en, faqItems, passportCategories } from "../content/en";
+import { JsonLd, homeStructuredData } from "./seo";
 
 const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
 const HERO_MASTER =
   "https://res.cloudinary.com/dno3ruh4b/video/upload/v1788041873/Bodakon_wheel_Yoga_Ascension_qfdctl.mp4";
+const HERO_COMPAT =
+  "https://res.cloudinary.com/dno3ruh4b/video/upload/ac_none/vc_h264:high:4.1/f_mp4/q_auto:best/v1788041873/Bodakon_wheel_Yoga_Ascension_qfdctl.mp4";
 const DA_NANG_VIMEO_ID = "1221665573";
 const DA_NANG_VIDEO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787489954/Screen_Shot_2026-08-23_at_8.59.05_AM_e8jceq.png";
@@ -82,10 +86,16 @@ function ThemeControl({ theme, onChange }) {
 function ProgressiveMedia({ poster, alt, priority = false, className = "", videoSrc, vimeoId, iframeRef, onVimeoLoad }) {
   const containerRef = useRef(null);
   const videoRef = useRef(null);
+  const vimeoFrameRef = useRef(null);
+  const onVimeoLoadRef = useRef(onVimeoLoad);
   const [ready, setReady] = useState(false);
   const [posterLoaded, setPosterLoaded] = useState(false);
   const [inView, setInView] = useState(priority);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    onVimeoLoadRef.current = onVimeoLoad;
+  }, [onVimeoLoad]);
 
   useEffect(() => {
     const node = containerRef.current;
@@ -101,6 +111,23 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
     if (inView && ready && !reduceMotion) video.play().catch(() => {});
     else video.pause();
   }, [inView, ready, reduceMotion]);
+
+  useEffect(() => {
+    if (!vimeoId) return;
+    const onMessage = (event) => {
+      if (event.origin !== "https://player.vimeo.com" || event.source !== vimeoFrameRef.current?.contentWindow) return;
+      let message = event.data;
+      if (typeof message === "string") {
+        try { message = JSON.parse(message); } catch { return; }
+      }
+      if (message?.event === "ready") {
+        setReady(true);
+        onVimeoLoadRef.current?.();
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [vimeoId]);
 
   return (
     <div ref={containerRef} className={`progressive-media ${ready ? "motion-ready" : ""} ${className}`}>
@@ -122,7 +149,10 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
       ) : null}
       {vimeoId && posterLoaded && inView && !reduceMotion ? (
         <iframe
-          ref={iframeRef}
+          ref={(node) => {
+            vimeoFrameRef.current = node;
+            if (iframeRef) iframeRef.current = node;
+          }}
           className="media-motion media-vimeo"
           src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&muted=1&loop=1&autopause=0&dnt=1&title=0&byline=0&portrait=0&api=1&player_id=destination-film`}
           title="Da Nang moving landscape"
@@ -130,10 +160,6 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
           referrerPolicy="strict-origin-when-cross-origin"
           tabIndex="-1"
           aria-hidden="true"
-          onLoad={() => {
-            setReady(true);
-            onVimeoLoad?.();
-          }}
         />
       ) : null}
     </div>
@@ -188,6 +214,8 @@ function DestinationSection() {
       observer.disconnect();
       if (soundEnabledRef.current) setDestinationSound(false);
     };
+    // Sound teardown intentionally reads the current callback and mutable player refs.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduceMotion]);
 
   useEffect(() => {
@@ -308,6 +336,8 @@ function DestinationSection() {
       window.clearInterval(timePoll);
       if (animationFrame.current) window.cancelAnimationFrame(animationFrame.current);
     };
+    // Vimeo registration intentionally stays scoped to this single player lifecycle.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduceMotion]);
 
   return (
@@ -625,7 +655,8 @@ function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, on
           onSeeked={onSeeked}
           onError={onError}
         >
-          <source src={HERO_MASTER} type="video/mp4" />
+          <source src={HERO_COMPAT} type='video/mp4; codecs="avc1"' />
+          <source src={HERO_MASTER} type='video/mp4; codecs="hvc1"' />
         </video>
       ) : null}
     </div>
@@ -794,12 +825,12 @@ function Hero({ theme, setTheme }) {
         />
         <div className="hero-atmosphere" aria-hidden="true" />
         <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
-          <a className="wordmark" href="#top">ASCENSION</a>
+          <Link className="wordmark" href="/">ASCENSION</Link>
           <div className="nav-links">
             <a href="#experience">Experience</a>
-            <a href="#dien-chan">Diện Chẩn</a>
+            <a href="/dien-chan">Diện Chẩn</a>
             <a href="/about">About</a>
-            <a href="#attendance">Attend</a>
+            <a href="/attend">Attend</a>
           </div>
         </nav>
 
@@ -816,10 +847,10 @@ function Hero({ theme, setTheme }) {
         <div className={`mobile-menu ${menuOpen ? "is-open" : ""}`} id="mobile-menu" aria-hidden={!menuOpen}>
           <nav aria-label="Mobile navigation">
             <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
-            <a href="#dien-chan" onClick={() => setMenuOpen(false)}>Diện Chẩn</a>
+            <a href="/dien-chan" onClick={() => setMenuOpen(false)}>Diện Chẩn</a>
             <a href="/about" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="#attendance" onClick={() => setMenuOpen(false)}>Attend</a>
-            <a href="#facilitate" onClick={() => setMenuOpen(false)}>Facilitate</a>
+            <a href="/attend" onClick={() => setMenuOpen(false)}>Attend</a>
+            <a href="/facilitate" onClick={() => setMenuOpen(false)}>Facilitate</a>
           </nav>
           <a className="radiant-action mobile-menu-reserve" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
         </div>
@@ -991,14 +1022,17 @@ export default function HomePage() {
   }, [theme]);
 
   useEffect(() => {
+    let frame;
     try {
       const saved = window.localStorage.getItem("ascension-theme");
-      if (saved === "day" || saved === "dusk") setTheme(saved);
+      if (saved === "day" || saved === "dusk") frame = window.requestAnimationFrame(() => setTheme(saved));
     } catch {}
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   return (
     <>
+      <JsonLd data={homeStructuredData} />
       <a className="skip-link" href="#main">Skip to main content</a>
       <Hero theme={theme} setTheme={setTheme} />
       <MobileReserveBar />
@@ -1027,6 +1061,7 @@ export default function HomePage() {
           <div>
             <h2 id="introduction-title">{en.introduction.title}</h2>
             <div className="introduction-copy">
+              <p className="entity-definition">ASCENSION is a seven- or fourteen-day immersive wellness and cultural happening in Da Nang, Vietnam, taking place January 12–26, 2027. It is built around Diện Chẩn, a needle-free Vietnamese system incorporating reflexology, acupressure, heat, stretching and individualized full-body therapeutic work. The wider program combines confirmed programming with planned movement, breathwork, guided meditation, sound baths, Ecstatic Dance, Vietnamese food, cultural discovery and creative expression.</p>
               {(isMobile === false ? en.introduction.desktop : [en.introduction.mobile]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </div>
           </div>
@@ -1135,7 +1170,7 @@ export default function HomePage() {
             <h2 id="host-title">Experienced before it was offered.</h2>
             <p>ASCENSION grew from my personal journey through movement, creativity, traditional Vietnamese wellness and life in Da Nang.</p>
             <p>Built around Diện Chẩn and expanded through selected practitioners, it is an immersive happening designed to awaken the body, senses and imagination.</p>
-            <a className="text-action" href="/about">Read my story <span aria-hidden="true">→</span></a>
+            <Link className="text-action" href="/about">Read my story <span aria-hidden="true">→</span></Link>
           </div>
         </section>
 
@@ -1241,13 +1276,13 @@ export default function HomePage() {
           <footer>
             <span>ASCENSION SENSES · Edition 01</span>
             <div>
-              <a href="/about">About</a>
-              <a href="/#experience">Experience</a>
-              <a href="/#dien-chan">Diện Chẩn</a>
-              <a href="/#attendance">Attend</a>
-              <a href="/#facilitate">Facilitate</a>
-              <a href="/partners">Partners</a>
-              <a href="/partners/sponsorship">Sponsors</a>
+              <Link href="/about">About</Link>
+              <Link href="/#experience">Experience</Link>
+              <Link href="/dien-chan">Diện Chẩn</Link>
+              <Link href="/attend">Attend</Link>
+              <Link href="/facilitate">Facilitate</Link>
+              <Link href="/partners">Partners</Link>
+              <Link href="/partners/sponsorship">Sponsors</Link>
               <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">Contact</a>
               <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Privacy">Privacy</a>
               <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Terms">Terms</a>

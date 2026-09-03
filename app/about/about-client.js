@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const HERO_IMAGE =
@@ -51,12 +52,12 @@ function AboutHeader({ theme, setTheme }) {
   return (
     <header className="about-site-header">
       <nav className="about-site-nav" aria-label="Primary navigation">
-        <a className="wordmark" href="/#top">ASCENSION</a>
+        <Link className="wordmark" href="/#top">ASCENSION</Link>
         <div className="about-nav-links">
-          <a href="/#experience">Experience</a>
-          <a href="/#dien-chan">Diện Chẩn</a>
-          <a href="/about" aria-current="page">About</a>
-          <a href="/#attendance">Attend</a>
+          <Link href="/#experience">Experience</Link>
+          <Link href="/dien-chan">Diện Chẩn</Link>
+          <Link href="/about" aria-current="page">About</Link>
+          <Link href="/attend">Attend</Link>
         </div>
       </nav>
       <div className="about-theme"><ThemeControl theme={theme} onChange={setTheme} /></div>
@@ -65,11 +66,11 @@ function AboutHeader({ theme, setTheme }) {
       </button>
       <div className={`about-mobile-menu ${menuOpen ? "is-open" : ""}`} id="about-mobile-menu" aria-hidden={!menuOpen}>
         <nav aria-label="Mobile navigation">
-          <a href="/#experience">Experience</a>
-          <a href="/#dien-chan">Diện Chẩn</a>
-          <a href="/about" aria-current="page">About</a>
-          <a href="/#attendance">Attend</a>
-          <a href="/#facilitate">Facilitate</a>
+          <Link href="/#experience">Experience</Link>
+          <Link href="/dien-chan">Diện Chẩn</Link>
+          <Link href="/about" aria-current="page">About</Link>
+          <Link href="/attend">Attend</Link>
+          <Link href="/facilitate">Facilitate</Link>
         </nav>
         <a className="radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
       </div>
@@ -82,7 +83,7 @@ function AboutFooter() {
     <footer className="about-footer">
       <span>ASCENSION SENSES · Edition 01</span>
       <div>
-        <a href="/about">About</a><a href="/#experience">Experience</a><a href="/#dien-chan">Diện Chẩn</a><a href="/#attendance">Attend</a><a href="/#facilitate">Facilitate</a><a href="/partners">Partners</a><a href="/partners/sponsorship">Sponsors</a><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">Contact</a><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Privacy">Privacy</a><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Terms">Terms</a>
+        <Link href="/about">About</Link><Link href="/#experience">Experience</Link><Link href="/dien-chan">Diện Chẩn</Link><Link href="/attend">Attend</Link><Link href="/facilitate">Facilitate</Link><Link href="/partners">Partners</Link><Link href="/partners/sponsorship">Sponsors</Link><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">Contact</a><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Privacy">Privacy</a><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Terms">Terms</a>
       </div>
     </footer>
   );
@@ -92,10 +93,12 @@ export default function AboutPageClient() {
   const [theme, setTheme] = useState("day");
 
   useEffect(() => {
+    let frame;
     try {
       const saved = window.localStorage.getItem("ascension-theme");
-      if (saved === "day" || saved === "dusk") setTheme(saved);
+      if (saved === "day" || saved === "dusk") frame = window.requestAnimationFrame(() => setTheme(saved));
     } catch {}
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -116,9 +119,10 @@ export default function AboutPageClient() {
             <p className="about-eyebrow">About ASCENSION</p>
             <h1 id="about-title">A return to what makes us feel alive.</h1>
             <p>ASCENSION is a curated experience of Vietnamese wellness, movement, sound, food, culture and creativity—built around Diện Chẩn, a needle-free Vietnamese system of reflexology, acupressure, heat, stretching and full-body therapeutic work.</p>
+            <p>Created by Daniel Stanford, its first edition takes place in Da Nang, Vietnam, January 12–26, 2027, with seven- and fourteen-day ways to attend.</p>
             <p>Around this foundation, selected practitioners contribute movement, breathwork, guided meditation, sound baths, bodywork and creative expression.</p>
             <p>ASCENSION is not a retreat formula. It is an immersive happening—an invitation to return to the body, awaken the senses and experience Vietnam with greater presence.</p>
-            <div className="about-actions"><a className="radiant-action" href="/#experience">Explore the experience <span aria-hidden="true">→</span></a><a className="about-secondary-action" href="/#attendance">View dates and pricing <span aria-hidden="true">→</span></a></div>
+            <div className="about-actions"><Link className="radiant-action" href="/#experience">Explore the experience <span aria-hidden="true">→</span></Link><Link className="about-secondary-action" href="/attend">View dates and pricing <span aria-hidden="true">→</span></Link></div>
           </div>
         </section>
 
@@ -150,6 +154,7 @@ export default function AboutPageClient() {
             <p>ASCENSION brings that creative practice into a living experience.</p>
             <p>Every element is considered—the place, the people, the visual atmosphere, the rhythm of the days and the space left open for what you discover on your own.</p>
             <p>ASCENSION brings these worlds together as a cultural journey and living artwork—something to enter, feel and experience, not simply observe.</p>
+            <p>Its early development is documented within MODUS SÉANCE. <a href="https://www.modus.gallery/seance/ascension" target="_blank" rel="noopener noreferrer external">Read the ASCENSION project history on MODUS.</a></p>
           </div>
           <div className="about-role-media"><Image src={CREATE_IMAGE} alt="A hand applying gold leaf detail to a painted portrait" fill sizes="(max-width: 767px) 100vw, 46vw" /></div>
         </section>
@@ -184,7 +189,7 @@ export default function AboutPageClient() {
 
         <section className="about-foundation" aria-labelledby="program-foundation-title">
           <div><p className="about-eyebrow">Program foundation</p><h2 id="program-foundation-title">One foundation. Many practices.</h2></div>
-          <div className="about-long-copy"><p>Diện Chẩn is the therapeutic foundation of ASCENSION.</p><p>Around it, a modular program brings together movement, breath, guided meditation, sound baths, bodywork, food, cultural discovery and creative practice.</p><p>Facilitators are selected for experience, integrity, cultural fit and the quality of what they can contribute.</p><p>The foundation is clear. The experience remains alive.</p><p className="about-medical-note">Diện Chẩn is presented as a traditional wellness practice and educational experience. Individual responses vary. Participation does not replace medical diagnosis, treatment or professional healthcare.</p><div className="about-actions"><a className="radiant-action" href="/#dien-chan">Learn about Diện Chẩn <span aria-hidden="true">→</span></a><a className="about-secondary-action" href={PRACTITIONER_APPLICATION}>Apply to facilitate <span aria-hidden="true">→</span></a></div></div>
+          <div className="about-long-copy"><p>Diện Chẩn is the therapeutic foundation of ASCENSION.</p><p>Around it, a modular program brings together movement, breath, guided meditation, sound baths, bodywork, food, cultural discovery and creative practice.</p><p>Facilitators are selected for experience, integrity, cultural fit and the quality of what they can contribute.</p><p>The foundation is clear. The experience remains alive.</p><p className="about-medical-note">Diện Chẩn is presented as a traditional wellness practice and educational experience. Individual responses vary. Participation does not replace medical diagnosis, treatment or professional healthcare.</p><div className="about-actions"><Link className="radiant-action" href="/dien-chan">Learn about Diện Chẩn <span aria-hidden="true">→</span></Link><Link className="about-secondary-action" href="/facilitate">Apply to facilitate <span aria-hidden="true">→</span></Link></div></div>
         </section>
 
         <section className="about-closing" aria-labelledby="about-closing-title">
@@ -194,7 +199,7 @@ export default function AboutPageClient() {
             <p className="about-closing-line">I created it. We hold it. You experience it.</p>
             <h2 id="about-closing-title">Da Nang is waiting.</h2>
             <p>Come for seven days or experience the complete fourteen-day journey. Discover Vietnamese knowledge. Reconnect with your body. Share extraordinary food, sound, movement, culture and creative experience within a small, carefully curated group.</p>
-            <div className="about-actions"><a className="radiant-action" href="/#experience">Experience ASCENSION <span aria-hidden="true">→</span></a><a className="about-secondary-action about-secondary-light" href="/#attendance">View dates and pricing <span aria-hidden="true">→</span></a></div>
+            <div className="about-actions"><Link className="radiant-action" href="/#experience">Experience ASCENSION <span aria-hidden="true">→</span></Link><Link className="about-secondary-action about-secondary-light" href="/attend">View dates and pricing <span aria-hidden="true">→</span></Link></div>
           </div>
           <AboutFooter />
         </section>
