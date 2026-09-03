@@ -70,7 +70,7 @@ export const en = {
       mobile: "Taste real food as nature designed it—fresh ingredients, prepared with care, shared tables and unforgettable Vietnamese dining experiences.",
       desktop: "Taste real food as nature designed it—fresh, alive and connected to the place from which it comes. Discover local markets, fragrant herbs, tropical fruit, coastal seafood and the balance of Vietnamese cuisine.",
       cta: "Discover taste",
-      details: "The final culinary media and specific shared-meal schedule are pending. Only confirmed inclusions will appear in the participant program.",
+      details: "Specific shared-meal inclusions and timing will appear only after they are confirmed for the participant program.",
     },
     {
       id: "breathe",
@@ -91,7 +91,7 @@ export const en = {
       mobile: "Be present. Follow your intuition. Draw, paint, write, photograph, move—or create in whatever form calls to you.",
       desktop: "Creativity begins with presence. Notice what you feel. Trust your intuition. Allow something honest to emerge. Draw, paint, write, photograph, move or create in any form that calls to you. Nothing needs to be perfect. The practice is simply to begin.",
       cta: "Discover create",
-      details: "Creative sessions are part of the ASCENSION Passport framework. Final media and the detailed materials schedule are still in production.",
+      details: "Creative sessions are part of the ASCENSION Passport framework. Confirmed session formats and materials will be stated in the participant program.",
     },
   ],
   ecstaticDance: {
@@ -168,6 +168,6 @@ export const faqItems = [
   ["Who are the facilitators?", "Participating facilitators will be announced as agreements are confirmed. ASCENSION is selecting practitioners for experience, integrity and alignment with the program."],
   ["Can I choose whether I am photographed?", "Yes. You choose whether you appear in photographs or video."],
   ["What if I have an injury or medical condition?", "Ask questions before participating and consult an appropriate healthcare professional when needed. ASCENSION experiences do not replace medical diagnosis or treatment."],
-  ["How do I reserve my place?", "Use a clearly labelled Reserve Your Place link. The current checkout requests a USD $300 deposit, subject to final commercial verification."],
+  ["How do I reserve my place?", "Use a clearly labelled Reserve Your Place link. The active checkout requests a USD $300 reservation deposit."],
   ["Can I apply as a practitioner?", "Yes. Practitioner applications are open through the prefilled application email below."],
 ];

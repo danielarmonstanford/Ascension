@@ -28,7 +28,7 @@ const values = [
 
 function ThemeControl({ theme, onChange }) {
   return (
-    <div className="theme-control" aria-label="Choose time of day">
+    <div className="theme-control" role="group" aria-label="Choose time of day">
       <button aria-pressed={theme === "day"} onClick={() => onChange("day")}>DAY</button>
       <span aria-hidden="true" />
       <button aria-pressed={theme === "dusk"} onClick={() => onChange("dusk")}>DUSK</button>

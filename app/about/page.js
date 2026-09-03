@@ -4,6 +4,15 @@ export const metadata = {
   title: "About ASCENSION | Daniel Stanford’s Story and Vision",
   description:
     "Discover why Daniel Stanford created ASCENSION in Da Nang—an immersive experience shaped by Diện Chẩn, movement, creativity, Vietnamese culture and personal renewal.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About ASCENSION | Daniel Stanford’s Story and Vision",
+    description:
+      "Discover why Daniel Stanford created ASCENSION in Da Nang—an immersive experience shaped by Diện Chẩn, movement, creativity, Vietnamese culture and personal renewal.",
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {

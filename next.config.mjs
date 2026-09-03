@@ -15,6 +15,10 @@ const nextConfig = {
       { source: "/partners/venues.html", destination: "/partners/venues", permanent: true },
       { source: "/partners/sponsorship.html", destination: "/partners/sponsorship", permanent: true },
       { source: "/partners/practitioners.html", destination: "/partners/practitioners", permanent: true },
+      { source: "/attend", destination: "/#attendance", permanent: true },
+      { source: "/attendance", destination: "/#attendance", permanent: true },
+      { source: "/facilitators", destination: "/#facilitate", permanent: true },
+      { source: "/practitioners", destination: "/#facilitate", permanent: true },
       { source: "/retreat", destination: "/#program", permanent: true },
       { source: "/retreat/index.html", destination: "/#program", permanent: true }
     ];

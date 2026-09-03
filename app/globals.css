@@ -18,7 +18,7 @@
   --radiant-gold-deep: #eaa43f;
   --deep-ocean: #173744;
   --twilight: #315a67;
-  --burnt-sand: #a66d55;
+  --burnt-sand: #875545;
   --clay: #875545;
   --sunset: #d79a72;
   --warm-stone: #b99e88;
@@ -26,7 +26,7 @@
   --night-sea: #102932;
   --ink: var(--deep-ocean);
   --ground: var(--mist);
-  --quiet: #53737b;
+  --quiet: #47666f;
   --rule: color-mix(in srgb, var(--deep-ocean) 20%, transparent);
   --gutter: clamp(1.25rem, 4.7vw, 5.25rem);
   --section-space: clamp(5rem, 11vw, 10rem);
@@ -41,6 +41,7 @@
   --ink: var(--moon-ivory);
   --ground: var(--night-sea);
   --quiet: #b7cbc9;
+  --burnt-sand: #d79a72;
   --rule: color-mix(in srgb, var(--moon-ivory) 24%, transparent);
   color-scheme: dark;
 }
@@ -152,7 +153,7 @@ section { position: relative; }
 .foundation-copy { align-self: center; padding: var(--section-space) var(--gutter); }
 .foundation-kicker, .participation-kicker, .host-kicker, .practitioner-kicker, .faq-kicker { margin: 0 0 1.25rem; color: var(--burnt-sand); font: 500 .7rem/1 var(--utility); letter-spacing: .15em; text-transform: uppercase; }
 .foundation-copy h2 { margin: 0 0 2rem; font: 400 clamp(3.8rem, 7vw, 7rem)/.86 var(--display); letter-spacing: -.035em; }
-.foundation-copy > p { margin: 0; max-width: 35rem; color: #53737b; line-height: 1.68; }
+.foundation-copy > p { margin: 0; max-width: 35rem; color: var(--quiet); line-height: 1.68; }
 .foundation-copy details, .host-story details { margin-top: 2rem; border-top: 1px solid rgba(23, 55, 68, .25); border-bottom: 1px solid rgba(23, 55, 68, .25); }
 .foundation-copy summary, .host-story summary { min-height: 54px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; font: 650 .72rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .foundation-copy summary::-webkit-details-marker, .host-story summary::-webkit-details-marker { display: none; }
@@ -299,7 +300,7 @@ section { position: relative; }
 
 .model { padding: var(--section-space) var(--gutter); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(18rem, .55fr); gap: clamp(3rem, 8vw, 9rem); background: var(--twilight); color: var(--moon-ivory); }
 .model-title-wrap, .model-copy { align-self: end; }
-.model-kicker { margin: 0 0 1.25rem; color: var(--sunset); font: 500 .7rem/1 var(--utility); letter-spacing: .16em; text-transform: uppercase; }
+.model-kicker { margin: 0 0 1.25rem; color: var(--radiant-gold); font: 500 .7rem/1 var(--utility); letter-spacing: .16em; text-transform: uppercase; }
 .model h2 { margin: 0; font: 400 clamp(3.8rem, 8vw, 7.8rem)/.84 var(--display); letter-spacing: -.03em; }
 .model h2 em { color: var(--sunset); font-style: normal; }
 .model-copy { padding-bottom: .6rem; }
@@ -326,19 +327,20 @@ section { position: relative; }
 .host-story-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(16, 41, 50, .78)); }
 .host-story-media span { position: absolute; z-index: 1; left: 1.25rem; bottom: 1.25rem; color: var(--moon-ivory); font: 500 .62rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .host-story h2 { margin: .8rem 0 2rem; max-width: 12ch; font: 400 clamp(3.8rem, 7vw, 7rem)/.86 var(--display); letter-spacing: -.035em; }
-.host-story-copy > p:not(.host-kicker) { max-width: 38rem; margin: 0 0 1rem; color: #53737b; line-height: 1.68; }
+.host-story-copy > p:not(.host-kicker) { max-width: 38rem; margin: 0 0 1rem; color: var(--quiet); line-height: 1.68; }
 .host-kicker, .about-eyebrow { margin: 0; color: var(--burnt-sand); font: 650 .7rem/1.4 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
 .text-action, .about-secondary-action { display: inline-flex; min-height: 44px; align-items: center; gap: 1rem; margin-top: 1.25rem; font: 650 .72rem/1.4 var(--utility); letter-spacing: .11em; text-transform: uppercase; text-underline-offset: .4rem; }
 
 .comparison { padding: var(--section-space) var(--gutter); background: var(--night-sea); color: var(--moon-ivory); }
 .comparison-heading { display: grid; grid-template-columns: 1fr 2fr; align-items: end; gap: 3rem; }
 .comparison-kicker, .travel-kicker { margin: 0; color: var(--sunset); font: 500 .7rem/1 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
+.travel-kicker { color: var(--burnt-sand); }
 .comparison-heading h2 { margin: 0; font: 400 clamp(4rem, 9vw, 8rem)/.84 var(--display); letter-spacing: -.035em; }
 .comparison-options { margin-top: clamp(4rem, 8vw, 7rem); border-top: 1px solid rgba(241, 230, 213, .28); }
 .comparison-options article { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: baseline; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid rgba(241, 230, 213, .28); }
 .travel-note { display: grid; grid-template-columns: minmax(9rem, .55fr) minmax(18rem, 1.45fr) minmax(18rem, .75fr); gap: clamp(2rem, 6vw, 7rem); align-items: end; padding: var(--section-space) var(--gutter); background: var(--shell); color: var(--deep-ocean); }
 .travel-note h2 { margin: 0; font: 400 clamp(3rem, 6vw, 6rem)/.9 var(--display); letter-spacing: -.03em; }
-.travel-note > p:last-child { margin: 0 0 .5rem; color: #53737b; line-height: 1.7; }
+.travel-note > p:last-child { margin: 0 0 .5rem; color: var(--quiet); line-height: 1.7; }
 
 .people-copy h2 { margin: 0; font: 400 clamp(3.8rem, 7vw, 7rem)/.86 var(--display); letter-spacing: -.03em; }
 .people-copy a { display: inline-flex; gap: 1rem; font: 600 .72rem/1.4 var(--utility); letter-spacing: .11em; text-transform: uppercase; text-decoration-thickness: 1px; text-underline-offset: .45rem; }
@@ -447,7 +449,7 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
 .about-placeholder::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, rgba(16, 41, 50, .82)); }
 .about-placeholder span { position: absolute; z-index: 1; left: 1.4rem; bottom: 1.4rem; color: var(--moon-ivory); font: 500 .62rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .about-long-copy h2, .about-collective h2, .about-values h2, .about-foundation h2 { margin: .9rem 0 2rem; max-width: 11ch; font: 400 clamp(3.5rem, 6.8vw, 6.7rem)/.86 var(--display); letter-spacing: -.035em; }
-.about-long-copy > p { max-width: 42rem; margin: 0 0 1rem; color: #53737b; line-height: 1.7; }
+.about-long-copy > p { max-width: 42rem; margin: 0 0 1rem; color: var(--quiet); line-height: 1.7; }
 .about-role { grid-template-columns: minmax(27rem, 1.1fr) minmax(20rem, .9fr); background: var(--ground); }
 :root[data-theme="dusk"] .about-role .about-long-copy > p { color: var(--quiet); }
 .about-role-media { min-height: clamp(30rem, 58vw, 50rem); }

@@ -71,7 +71,7 @@ function useMobileLayout() {
 
 function ThemeControl({ theme, onChange }) {
   return (
-    <div className="theme-control" aria-label="Choose time of day">
+    <div className="theme-control" role="group" aria-label="Choose time of day">
       <button aria-pressed={theme === "day"} onClick={() => onChange("day")}>DAY</button>
       <span aria-hidden="true" />
       <button aria-pressed={theme === "dusk"} onClick={() => onChange("dusk")}>DUSK</button>
@@ -146,6 +146,9 @@ function DestinationSection() {
   const iframeRef = useRef(null);
   const soundEnabledRef = useRef(false);
   const currentTime = useRef(0);
+  const playerLoaded = useRef(false);
+  const playbackStartedAt = useRef(null);
+  const hasPlayerTime = useRef(false);
   const dismissed = useRef(false);
   const beforeSection = useRef(true);
   const animationFrame = useRef(0);
@@ -204,6 +207,8 @@ function DestinationSection() {
         beforeSection.current = false;
         dismissed.current = false;
         currentTime.current = 0;
+        hasPlayerTime.current = false;
+        playbackStartedAt.current = playerLoaded.current ? performance.now() : null;
         sendVimeoMessage("setCurrentTime", 0);
         sendVimeoMessage("play");
       }
@@ -261,7 +266,17 @@ function DestinationSection() {
 
       if (message?.event === "timeupdate" || message?.event === "playProgress") {
         const seconds = Number(message.data?.seconds);
-        if (Number.isFinite(seconds)) currentTime.current = seconds;
+        if (Number.isFinite(seconds)) {
+          hasPlayerTime.current = true;
+          currentTime.current = seconds;
+        }
+        requestRender();
+      } else if (message?.method === "getCurrentTime") {
+        const seconds = Number(message.value);
+        if (Number.isFinite(seconds)) {
+          hasPlayerTime.current = true;
+          currentTime.current = seconds;
+        }
         requestRender();
       } else if (message?.event === "ended") {
         dismissed.current = true;
@@ -274,12 +289,23 @@ function DestinationSection() {
     window.addEventListener("scroll", requestRender, { passive: true });
     window.addEventListener("resize", requestRender);
     window.addEventListener("message", onVimeoMessage);
+    const timePoll = window.setInterval(() => {
+      const bounds = section.getBoundingClientRect();
+      if (bounds.bottom > 0 && bounds.top < window.innerHeight) {
+        sendVimeoMessage("getCurrentTime");
+        if (!hasPlayerTime.current && playbackStartedAt.current) {
+          currentTime.current = Math.max(0, (performance.now() - playbackStartedAt.current) / 1000);
+          requestRender();
+        }
+      }
+    }, 250);
     renderOpacity();
 
     return () => {
       window.removeEventListener("scroll", requestRender);
       window.removeEventListener("resize", requestRender);
       window.removeEventListener("message", onVimeoMessage);
+      window.clearInterval(timePoll);
       if (animationFrame.current) window.cancelAnimationFrame(animationFrame.current);
     };
   }, [reduceMotion]);
@@ -292,7 +318,11 @@ function DestinationSection() {
           alt="A bright Pacific beach and mountain coastline in Da Nang"
           vimeoId={DA_NANG_VIMEO_ID}
           iframeRef={iframeRef}
-          onVimeoLoad={registerVimeoEvents}
+          onVimeoLoad={() => {
+            playerLoaded.current = true;
+            playbackStartedAt.current = performance.now();
+            registerVimeoEvents();
+          }}
         />
         <div className="destination-overlay" aria-hidden="true" />
         <div ref={copyRef} className="destination-copy" data-phase={reduceMotion ? "static" : "waiting"}>
@@ -414,7 +444,7 @@ function SoundListeningStage({ media }) {
           />
         </div>
       ) : null}
-      <div className="sound-stage-controls" aria-label="Choose the SOUND listening source">
+      <div className="sound-stage-controls" role="group" aria-label="Choose the SOUND listening source">
         <button className="sound-film-control" type="button" aria-pressed={mode === "film"} onClick={selectFilmSound}>
           <span className="sound-control-indicator" aria-hidden="true" />
           {mode === "film" ? "MUTE FILM" : "FILM SOUND"}
@@ -1018,7 +1048,7 @@ export default function HomePage() {
           <div className="sense-intro">
             <h2 id="senses-title">Six ways into<br />the present.</h2>
           </div>
-          <div className="sensory-stories" aria-label="The six senses of ASCENSION">
+          <div className="sensory-stories" role="group" aria-label="The six senses of ASCENSION">
             {en.sensoryStories.map((story, index) => {
               const media = sensoryMedia[story.id];
               const alignment = {
@@ -1071,7 +1101,7 @@ export default function HomePage() {
             <p className="model-lead">Follow a curated program without losing your freedom.</p>
             <p>Your ASCENSION Passport opens confirmed shared experiences while leaving room to rest, explore Da Nang and choose optional private sessions. Planned programming is identified separately until facilitators and schedules are confirmed.</p>
           </div>
-          <div className="model-categories" id="inclusions" aria-label="What your Ascension Passport opens">
+          <div className="model-categories" id="inclusions" role="group" aria-label="What your Ascension Passport opens">
             {passportCategories.map((category) => (
               <article className="model-category" key={category.name}>
                 <h3>{category.name}</h3>
@@ -1086,7 +1116,7 @@ export default function HomePage() {
             <h2 id="rhythm-title">A rhythm,<br />not a rigid schedule.</h2>
             <p>{isMobile === false ? "Mornings may begin with movement, breath or Diện Chẩn. Days open into restorative practices, food, cultural discovery and creative experience. As the sun lowers, the rhythm may shift toward sound baths, Ecstatic Dance, shared tables, reflection or quiet by the sea." : "Mornings may begin with movement, breath or Diện Chẩn. Days open into food, culture, creativity and restoration. Evenings may bring sound, dance, community or quiet. Every day leaves room to choose."}</p>
           </div>
-          <div className="rhythm-list" aria-label="An illustrative daily rhythm">
+          <div className="rhythm-list" role="group" aria-label="An illustrative daily rhythm">
             <article><p className="rhythm-time">Morning</p><p className="rhythm-detail">Movement · Breath · Ocean</p></article>
             <article><p className="rhythm-time">Midday</p><p className="rhythm-detail">Restore · Explore · Create</p></article>
             <article><p className="rhythm-time">Sunset</p><p className="rhythm-detail">Sound · Shared Table · Connection</p></article>
@@ -1165,7 +1195,7 @@ export default function HomePage() {
             <a className="reserve-action radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
             <a className="question-action" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a question <span aria-hidden="true">→</span></a>
           </div>
-          <p className="deposit">Current reservation link requests a $300 deposit. Commercial details require final verification before launch.</p>
+          <p className="deposit">The active checkout requests a USD $300 reservation deposit.</p>
         </section>
 
         <section className="series-positioning" aria-labelledby="series-title">
@@ -1173,7 +1203,7 @@ export default function HomePage() {
             <h2 id="series-title">One idea.<br />Many places.</h2>
             <p>ASCENSION is not a single retreat. It’s a travelling series of curated editions — each built around wellbeing, movement, sound and place, and each shaped by where it lands.</p>
           </div>
-          <div className="series-editions" aria-label="ASCENSION series editions">
+          <div className="series-editions" role="group" aria-label="ASCENSION series editions">
             <div className="series-edition series-current">
               <h3>Da Nang</h3>
               <p>Edition 01 · January 2027</p>
