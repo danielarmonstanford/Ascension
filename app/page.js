@@ -454,7 +454,7 @@ function SoundListeningStage({ media }) {
         </button>
       </div>
       <p className="sound-source-note" aria-live="polite">
-        {mode === "meditation" ? "Tibetan sound meditation · External YouTube recording" : "Vietnam scenic film · External YouTube recording"}
+        {mode === "meditation" ? "Tibetan sound meditation · Full listening experience" : "Vietnam scenic film · Sound available"}
       </p>
     </div>
   );
@@ -483,7 +483,7 @@ function CreateArtistVoice() {
         </a>
       </div>
       <div className="create-listening">
-        <p className="create-listening-label">Listening sample · External recording</p>
+        <p className="create-listening-label">Guided listening</p>
         <h4 id="artist-voice-title">Finding your artist voice.</h4>
         {listening ? (
           <div className="create-listening-player">
@@ -499,7 +499,7 @@ function CreateArtistVoice() {
         <button className="radiant-action create-listening-control" type="button" aria-pressed={listening} onClick={() => setListening((active) => !active)}>
           {listening ? "END LISTENING" : "LISTEN NOW"}
         </button>
-        <p className="create-listening-source">Motivation2Study · YouTube</p>
+        <p className="create-listening-source">Featured recording · Motivation2Study</p>
       </div>
     </aside>
   );
@@ -539,7 +539,7 @@ function YouTubeVisual({ media, chapter }) {
         />
       ) : null}
       <div className="sensory-youtube-screen" aria-hidden="true" />
-      <p className="sensory-youtube-note">Selected {chapter.toUpperCase()} film · External YouTube recording</p>
+      <p className="sensory-youtube-note">Featured {chapter.toUpperCase()} film</p>
     </div>
   );
 }

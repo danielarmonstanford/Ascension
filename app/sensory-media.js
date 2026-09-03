@@ -21,7 +21,7 @@ export const sensoryMedia = {
     focalPointMobile: "50% 50%",
     focalPointDesktop: "50% 50%",
     status: "approved-sample",
-    productionLabel: "SEE — EXTERNAL YOUTUBE FILM",
+    productionLabel: "SEE — FEATURED FILM",
   },
   sound: {
     type: "audio-video",
@@ -43,7 +43,7 @@ export const sensoryMedia = {
     focalPointMobile: "50% 50%",
     focalPointDesktop: "50% 50%",
     status: "approved-sample",
-    productionLabel: "TASTE — EXTERNAL YOUTUBE FILM",
+    productionLabel: "TASTE — FEATURED FILM",
   },
   breathe: {
     type: "video",
