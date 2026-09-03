@@ -11,6 +11,8 @@ const HOI_AN_IMAGE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788267982/Screen_Shot_2026-09-01_at_9.06.12_AM_ikm6wg.png";
 const DA_NANG_IMAGE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
+const DANIEL_PORTRAIT =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788402592/IMG_5135_2_fp3ceb.heic";
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
 
@@ -121,7 +123,10 @@ export default function AboutPageClient() {
         </section>
 
         <section className="about-editorial about-origin" aria-labelledby="origin-title">
-          <div className="about-placeholder" role="img" aria-label="Editorial portrait space reserved for Daniel Stanford in Da Nang"><span>Daniel Stanford · Da Nang</span></div>
+          <div className="about-placeholder">
+            <Image src={DANIEL_PORTRAIT} alt="Portrait of Daniel Stanford beneath tropical trees in Da Nang" fill sizes="(max-width: 767px) 100vw, 40vw" />
+            <span>Daniel Stanford · Da Nang</span>
+          </div>
           <div className="about-long-copy">
             <p className="about-eyebrow">Why I created ASCENSION</p>
             <h2 id="origin-title">Experienced before it was offered.</h2>

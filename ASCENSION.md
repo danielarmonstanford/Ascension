@@ -103,6 +103,8 @@ Credit the CREATE fine-art imagery to Daniel Stanford and provide a quiet extern
 
 `/about` is the single canonical About route. It carries Daniel Stanford’s first-person origin story, names him as host, curator and creative director, and states clearly that he is not a medical practitioner. The approved facts are: more than two decades of personal exploration, more than 25 years of creative practice, travel through 25 countries, more than one year living in Da Nang, and several months of Diện Chẩn including 40 consecutive treatment days. Do not turn personal experience into a medical claim or invent credentials.
 
+The approved Daniel Stanford portrait in Da Nang is hosted remotely at `https://res.cloudinary.com/dno3ruh4b/image/upload/v1788402592/IMG_5135_2_fp3ceb.heic`. Use Cloudinary automatic format and quality delivery rather than serving or committing the HEIC directly. It replaces the reserved Daniel portrait fields on both the homepage host-story gateway and the About origin section; preserve the face, tropical foliage and natural daylight through deliberate responsive crops.
+
 The homepage contains only a concise “Why I created ASCENSION” gateway to `/about`. Desktop navigation, the mobile menu and the footer expose About without displacing the guest path. Required cross-links connect About with Experience, Diện Chẩn, Attend and Facilitate. The voice hierarchy is: “I created it. We hold it. You experience it.”
 
 ### Approved V2 hero master

@@ -322,7 +322,7 @@ section { position: relative; }
 
 .host-story { display: grid; grid-template-columns: minmax(18rem, .8fr) minmax(22rem, 1.2fr); gap: clamp(3rem, 8vw, 9rem); align-items: center; padding: var(--section-space) var(--gutter); background: var(--shell); color: var(--deep-ocean); }
 .host-story-media { position: relative; min-height: clamp(26rem, 50vw, 43rem); overflow: hidden; background: linear-gradient(150deg, var(--warm-stone), var(--clay) 58%, var(--deep-ocean)); }
-.host-story-media::before { content: ""; position: absolute; inset: 12% -12% -18% 28%; border-radius: 52% 48% 0 0; background: linear-gradient(160deg, rgba(241, 230, 213, .78), rgba(215, 154, 114, .18)); filter: blur(1px); transform: rotate(-7deg); }
+.host-story-media img { object-fit: cover; object-position: 50% 40%; }
 .host-story-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(16, 41, 50, .78)); }
 .host-story-media span { position: absolute; z-index: 1; left: 1.25rem; bottom: 1.25rem; color: var(--moon-ivory); font: 500 .62rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .host-story h2 { margin: .8rem 0 2rem; max-width: 12ch; font: 400 clamp(3.8rem, 7vw, 7rem)/.86 var(--display); letter-spacing: -.035em; }
@@ -443,7 +443,7 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
 .about-editorial { display: grid; grid-template-columns: minmax(18rem, .8fr) minmax(27rem, 1.2fr); gap: clamp(3rem, 9vw, 10rem); align-items: center; padding: var(--section-space) var(--gutter); }
 .about-origin { background: var(--shell); color: var(--deep-ocean); }
 .about-placeholder { position: relative; min-height: clamp(32rem, 57vw, 48rem); overflow: hidden; background: linear-gradient(150deg, var(--warm-stone), var(--clay) 58%, var(--deep-ocean)); }
-.about-placeholder::before { content: ""; position: absolute; inset: 12% -12% -18% 28%; border-radius: 52% 48% 0 0; background: linear-gradient(160deg, rgba(241, 230, 213, .78), rgba(215, 154, 114, .18)); transform: rotate(-7deg); }
+.about-placeholder img { object-fit: cover; object-position: 50% 42%; }
 .about-placeholder::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 58%, rgba(16, 41, 50, .82)); }
 .about-placeholder span { position: absolute; z-index: 1; left: 1.4rem; bottom: 1.4rem; color: var(--moon-ivory); font: 500 .62rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .about-long-copy h2, .about-collective h2, .about-values h2, .about-foundation h2 { margin: .9rem 0 2rem; max-width: 11ch; font: 400 clamp(3.5rem, 6.8vw, 6.7rem)/.86 var(--display); letter-spacing: -.035em; }
