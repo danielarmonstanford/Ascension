@@ -14,7 +14,7 @@ ASCENSION is a seven- or fourteen-day immersive wellness and cultural happening 
 
 Planned activities and unconfirmed facilitators are identified as planned until confirmed.
 
-French, Vietnamese, Korean and Simplified Chinese are being prepared but are not published or indexable until human review is complete.
+English, French, Vietnamese, Korean and Simplified Chinese locale routes are live. English remains the current source copy while localized editorial translations are completed.
 `;
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
 }

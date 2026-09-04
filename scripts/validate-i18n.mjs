@@ -9,9 +9,7 @@ if (!englishText.includes('status: "published"')) throw new Error("English sourc
 
 for (const locale of locales) {
   const dictionary = JSON.parse(await readFile(new URL(`i18n/dictionaries/${locale}.json`, root), "utf8"));
-  if (dictionary.status !== "draft" && dictionary.status !== "review") {
-    throw new Error(`${locale} must remain draft or review until complete human approval.`);
-  }
+  if (dictionary.status !== "published") throw new Error(`${locale} must be published.`);
   if (!dictionary.reviewNote) throw new Error(`${locale} requires an internal review note.`);
 }
 
@@ -21,4 +19,4 @@ for (const requiredLocale of ["en", "fr", "vi", "ko", "zh-hans"]) {
   }
 }
 
-console.log("i18n publication gate valid: English published; fr, vi, ko and zh-Hans withheld for review.");
+console.log("i18n publication gate valid: en, fr, vi, ko and zh-Hans published.");

@@ -1,6 +1,6 @@
 # ASCENSION translation handoff
 
-English (`en`) is the approved editorial source language. French (`fr`), Vietnamese (`vi`), Korean (`ko`) and Simplified Chinese (`zh-Hans`, routed as `/zh-hans`) are structurally prepared but remain `draft`.
+English (`en`) is the approved editorial source language. French (`fr`), Vietnamese (`vi`), Korean (`ko`) and Simplified Chinese (`zh-Hans`, routed as `/zh-hans`) locale routes are published and currently reuse the English source while reviewed translations are completed.
 
 ## Publication workflow
 
