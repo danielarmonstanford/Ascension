@@ -7,6 +7,7 @@ import LanguageSelector from "./_components/language-selector";
 import HostHotel from "./_components/host-hotel";
 import { sensoryMedia } from "./sensory-media";
 import { en, faqItems, passportCategories } from "../content/en";
+import { vi, viFaqItems, viPassportCategories, viUi } from "../content/vi";
 import { JsonLd, homeStructuredData } from "./seo";
 
 const HERO_POSTER =
@@ -75,12 +76,12 @@ function useMobileLayout() {
   return isMobile;
 }
 
-function ThemeControl({ theme, onChange }) {
+function ThemeControl({ theme, onChange, labels = { day: "DAY", dusk: "DUSK" } }) {
   return (
     <div className="theme-control" role="group" aria-label="Choose time of day">
-      <button aria-pressed={theme === "day"} onClick={() => onChange("day")}>DAY</button>
+      <button aria-pressed={theme === "day"} onClick={() => onChange("day")}>{labels.day}</button>
       <span aria-hidden="true" />
-      <button aria-pressed={theme === "dusk"} onClick={() => onChange("dusk")}>DUSK</button>
+      <button aria-pressed={theme === "dusk"} onClick={() => onChange("dusk")}>{labels.dusk}</button>
     </div>
   );
 }
@@ -693,7 +694,7 @@ function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, on
   );
 }
 
-function Hero({ theme, setTheme }) {
+function Hero({ theme, setTheme, copy, ui, locale }) {
   const scrollRef = useRef(null);
   const stageRef = useRef(null);
   const videoRef = useRef(null);
@@ -861,12 +862,12 @@ function Hero({ theme, setTheme }) {
         />
         <div className="hero-atmosphere" aria-hidden="true" />
         <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
-          <Link className="wordmark" href="/">ASCENSION</Link>
+          <Link className="wordmark" href={locale === "vi" ? "/vi" : "/"}>ASCENSION</Link>
           <div className="nav-links">
-            <a href="#experience">Experience</a>
-            <Link href="/dien-chan">Diện Chẩn</Link>
-            <Link href="/about">About</Link>
-            <Link href="/attend">Attend</Link>
+            <a href="#experience">{ui.nav.experience}</a>
+            <Link href={locale === "vi" ? "/vi/dien-chan" : "/dien-chan"}>Diện Chẩn</Link>
+            <Link href={locale === "vi" ? "/vi/about" : "/about"}>{ui.nav.about}</Link>
+            <Link href={locale === "vi" ? "/vi/attend" : "/attend"}>{ui.nav.attend}</Link>
           </div>
           <LanguageSelector className="language-selector-desktop" />
         </nav>
@@ -878,44 +879,44 @@ function Hero({ theme, setTheme }) {
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <span>{menuOpen ? "Close" : "Menu"}</span>
+          <span>{menuOpen ? ui.nav.close : ui.nav.menu}</span>
           <i aria-hidden="true" />
         </button>
         <div className={`mobile-menu ${menuOpen ? "is-open" : ""}`} id="mobile-menu" aria-hidden={!menuOpen}>
           <nav aria-label="Mobile navigation">
-            <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
-            <Link href="/dien-chan" onClick={() => setMenuOpen(false)}>Diện Chẩn</Link>
-            <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
-            <Link href="/attend" onClick={() => setMenuOpen(false)}>Attend</Link>
-            <Link href="/facilitate" onClick={() => setMenuOpen(false)}>Facilitate</Link>
+            <a href="#experience" onClick={() => setMenuOpen(false)}>{ui.nav.experience}</a>
+            <Link href={locale === "vi" ? "/vi/dien-chan" : "/dien-chan"} onClick={() => setMenuOpen(false)}>Diện Chẩn</Link>
+            <Link href={locale === "vi" ? "/vi/about" : "/about"} onClick={() => setMenuOpen(false)}>{ui.nav.about}</Link>
+            <Link href={locale === "vi" ? "/vi/attend" : "/attend"} onClick={() => setMenuOpen(false)}>{ui.nav.attend}</Link>
+            <Link href={locale === "vi" ? "/vi/facilitate" : "/facilitate"} onClick={() => setMenuOpen(false)}>{ui.nav.facilitate}</Link>
           </nav>
           <LanguageSelector className="language-selector-mobile" />
-          <a className="radiant-action mobile-menu-reserve" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
+          <a className="radiant-action mobile-menu-reserve" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">{ui.reserve} <span aria-hidden="true">→</span></a>
         </div>
 
         <div className="hero-frame">
-          <p className="hero-series-eyebrow entrance entrance-place">A MODUS SERIES</p>
+          <p className="hero-series-eyebrow entrance entrance-place">{ui.series}</p>
           <h1 className="hero-title entrance entrance-title">ASCENSION</h1>
-          <p className="hero-proposition entrance entrance-proposition"><span>Heal your soul.</span><span>Revive your senses.</span></p>
+          <p className="hero-proposition entrance entrance-proposition"><span>{ui.slogan[0]}</span><span>{ui.slogan[1]}</span></p>
           <div className="hero-offer entrance entrance-place">
-            <p className="hero-place">Da Nang, Vietnam<br />January 12–26, 2027</p>
-            <p className="hero-description">{isMobile === false ? en.hero.desktop : en.hero.mobile}</p>
+            <p className="hero-place">{ui.place}<br />{ui.dates}</p>
+            <p className="hero-description">{isMobile === false ? copy.hero.desktop : copy.hero.mobile}</p>
           </div>
           <div className="hero-actions entrance entrance-controls">
-            <a className="hero-primary radiant-action" href="#senses">Embody it</a>
-            <a className="hero-explore" href="#awaken">Explore the experience <span aria-hidden="true">↓</span></a>
+            <a className="hero-primary radiant-action" href="#senses">{ui.embody}</a>
+            <a className="hero-explore" href="#awaken">{ui.explore} <span aria-hidden="true">↓</span></a>
           </div>
         </div>
 
         <div className="hero-theme entrance entrance-controls">
-          <ThemeControl theme={theme} onChange={setTheme} />
+          <ThemeControl theme={theme} onChange={setTheme} labels={ui} />
         </div>
       </div>
     </header>
   );
 }
 
-function MobileReserveBar() {
+function MobileReserveBar({ label = "Reserve your place" }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -947,13 +948,13 @@ function MobileReserveBar() {
 
   return (
     <a className={`mobile-reserve radiant-action ${visible ? "is-visible" : ""}`} href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">
-      Reserve your place
+      {label}
     </a>
   );
 }
 
-function EcstaticDanceExperience({ isMobile }) {
-  const experience = en.ecstaticDance;
+function EcstaticDanceExperience({ isMobile, copy }) {
+  const experience = copy.ecstaticDance;
   const paragraphs = isMobile === false ? experience.desktop : [experience.mobile];
 
   return (
@@ -978,8 +979,8 @@ function EcstaticDanceExperience({ isMobile }) {
   );
 }
 
-function FoundationSection({ isMobile }) {
-  const foundation = en.foundation;
+function FoundationSection({ isMobile, copy, isVi }) {
+  const foundation = copy.foundation;
   return (
     <section className="foundation" id="dien-chan" aria-labelledby="foundation-title">
       <div className="foundation-visual">
@@ -995,12 +996,12 @@ function FoundationSection({ isMobile }) {
         <h2 id="foundation-title">{foundation.title}</h2>
         <p>{isMobile === false ? foundation.desktop : foundation.mobile}</p>
         <div className="foundation-practitioner" aria-label="Confirmed Diện Chẩn practitioner">
-          <span>Confirmed practitioner · Daily Diện Chẩn</span>
+          <span>{isVi ? "Người thực hành đã xác nhận · Diện Chẩn hằng ngày" : "Confirmed practitioner · Daily Diện Chẩn"}</span>
           <strong>Dr. Huỳnh Bảo Loan</strong>
-          <small>Da Nang, Vietnam</small>
+          <small>{isVi ? "Đà Nẵng, Việt Nam" : "Da Nang, Vietnam"}</small>
         </div>
         <details>
-          <summary>Go deeper <span aria-hidden="true">→</span></summary>
+          <summary>{isVi ? "Tìm hiểu sâu hơn" : "Go deeper"} <span aria-hidden="true">→</span></summary>
           <div className="foundation-details">
             {foundation.details.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <p className="medical-note">{foundation.disclaimer}</p>
@@ -1011,8 +1012,8 @@ function FoundationSection({ isMobile }) {
   );
 }
 
-function ParticipationPrinciples() {
-  const participation = en.participation;
+function ParticipationPrinciples({ copy }) {
+  const participation = copy.participation;
   return (
     <section className="participation" aria-labelledby="participation-title">
       <div>
@@ -1027,25 +1028,25 @@ function ParticipationPrinciples() {
   );
 }
 
-function PractitionerInvitation({ isMobile }) {
-  const practitioner = en.practitioner;
+function PractitionerInvitation({ isMobile, copy, ui }) {
+  const practitioner = copy.practitioner;
   return (
     <section className="practitioner-invitation" id="facilitate" aria-labelledby="practitioner-title">
-      <h2 id="practitioner-title">Facilitators</h2>
+      <h2 id="practitioner-title">{ui.facilitator}</h2>
       <p className="practitioner-subtitle">{practitioner.title}</p>
       <p className="practitioner-description">{isMobile === false ? practitioner.desktop : practitioner.mobile}</p>
-      <a className="practitioner-action radiant-action" href={PRACTITIONER_APPLICATION}>Apply to facilitate <span aria-hidden="true">→</span></a>
+      <a className="practitioner-action radiant-action" href={PRACTITIONER_APPLICATION}>{ui.apply} <span aria-hidden="true">→</span></a>
     </section>
   );
 }
 
-function FrequentlyAskedQuestions() {
+function FrequentlyAskedQuestions({ items = faqItems, ui }) {
   return (
     <section className="faq" aria-labelledby="faq-title">
-      <p className="faq-kicker">Before you arrive</p>
-      <h2 id="faq-title">Questions,<br />answered.</h2>
+      <p className="faq-kicker">{ui.faqKicker}</p>
+      <h2 id="faq-title">{ui.faqTitle.split("\n").map((line, index) => <span key={line}>{line}{index === 0 ? <br /> : null}</span>)}</h2>
       <div className="faq-list">
-        {faqItems.map(([question, answer]) => (
+        {items.map(([question, answer]) => (
           <details key={question}>
             <summary>{question}<span aria-hidden="true">+</span></summary>
             <p>{answer}</p>
@@ -1056,7 +1057,14 @@ function FrequentlyAskedQuestions() {
   );
 }
 
-export default function HomePage() {
+export default function HomePage({ locale = "en" }) {
+  const isVi = locale === "vi";
+  const copy = isVi ? vi : en;
+  const localizedFaqItems = isVi ? viFaqItems : faqItems;
+  const localizedPassportCategories = isVi ? viPassportCategories : passportCategories;
+  const ui = isVi ? viUi : {
+    nav:{experience:"Experience",about:"About",attend:"Attend",facilitate:"Facilitate",menu:"Menu",close:"Close"}, reserve:"Reserve your place", ask:"Ask a question", embody:"Embody it", explore:"Explore the experience", day:"DAY", dusk:"DUSK", slogan:["Heal your soul.","Revive your senses."], place:"Da Nang, Vietnam", dates:"January 12–26, 2027", series:"A MODUS SERIES", glanceTitle:"Da Nang,\nVietnam", glanceSub:"The experience,\nat a glance.", glanceLead:"Choose seven days or the full fourteen between city, sea and mountain.", seven:"7 days", fourteen:"14 days", small:"Small, intimate cohort. Accommodation and travel are separate.", compare:"Compare 7 and 14 days", included:"See what’s included", entity:"ASCENSION is a seven- or fourteen-day immersive wellness and cultural happening in Da Nang, Vietnam, taking place January 12–26, 2027. It is built around Diện Chẩn, a needle-free Vietnamese system incorporating reflexology, acupressure, heat, stretching and individualized full-body therapeutic work. The wider program combines confirmed programming with planned movement, breathwork, guided meditation, sound baths, Ecstatic Dance, Vietnamese food, cultural discovery and creative expression.", sixWays:"Six ways into\nthe present.", passport:"Your Ascension Passport", experienceRhythm:"Your experience.\nYour rhythm.", curatedFreedom:"Follow a curated program without losing your freedom.", passportBody:"Your ASCENSION Passport opens confirmed shared experiences while leaving room to rest, explore Da Nang and choose optional private sessions. Planned programming is identified separately until facilitators and schedules are confirmed.", faqKicker:"Before you arrive", faqTitle:"Questions,\nanswered.", facilitator:"Facilitators", apply:"Apply to facilitate"
+  };
   const [theme, setTheme] = useState("day");
   const isMobile = useMobileLayout();
 
@@ -1078,57 +1086,57 @@ export default function HomePage() {
     <>
       <JsonLd data={homeStructuredData} />
       <a className="skip-link" href="#main">Skip to main content</a>
-      <Hero theme={theme} setTheme={setTheme} />
-      <MobileReserveBar />
+      <Hero theme={theme} setTheme={setTheme} copy={copy} ui={ui} locale={locale} />
+      <MobileReserveBar label={ui.reserve} />
 
       <main id="main">
         <section className="awaken" id="awaken" aria-labelledby="awaken-title">
           <div className="awaken-heading">
-            <h2 id="awaken-title">Da Nang,<br />Vietnam</h2>
-            <p className="awaken-subtitle">The experience,<br />at a glance.</p>
+            <h2 id="awaken-title">{ui.glanceTitle.split("\n").map((line, index) => <span key={line}>{line}{index === 0 ? <br /> : null}</span>)}</h2>
+            <p className="awaken-subtitle">{ui.glanceSub.split("\n").map((line, index) => <span key={line}>{line}{index === 0 ? <br /> : null}</span>)}</p>
           </div>
           <div className="awaken-facts">
-            <p className="awaken-lead">Choose seven days or the full fourteen between city, sea and mountain.</p>
+            <p className="awaken-lead">{ui.glanceLead}</p>
             <dl>
-              <div><dt>7 days</dt><dd>January 12–19, 2027 · USD $1,200</dd></div>
-              <div><dt>14 days</dt><dd>January 12–26, 2027 · USD $2,000</dd></div>
+              <div><dt>{ui.seven}</dt><dd>{isVi ? "12–19 tháng 1, 2027" : "January 12–19, 2027"} · USD $1,200</dd></div>
+              <div><dt>{ui.fourteen}</dt><dd>{isVi ? "12–26 tháng 1, 2027" : "January 12–26, 2027"} · USD $2,000</dd></div>
             </dl>
-            <p>Small, intimate cohort. Accommodation and travel are separate.</p>
+            <p>{ui.small}</p>
             <div className="fact-actions">
-              <a href="#comparison">Compare 7 and 14 days <span aria-hidden="true">→</span></a>
-              <a href="#inclusions">See what’s included <span aria-hidden="true">→</span></a>
+              <a href="#comparison">{ui.compare} <span aria-hidden="true">→</span></a>
+              <a href="#inclusions">{ui.included} <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </section>
 
         <section className="main-introduction" id="experience" aria-labelledby="introduction-title">
           <div>
-            <h2 id="introduction-title">{en.introduction.title}</h2>
+            <h2 id="introduction-title">{copy.introduction.title}</h2>
             <div className="introduction-copy">
-              <p className="entity-definition">ASCENSION is a seven- or fourteen-day immersive wellness and cultural happening in Da Nang, Vietnam, taking place January 12–26, 2027. It is built around Diện Chẩn, a needle-free Vietnamese system incorporating reflexology, acupressure, heat, stretching and individualized full-body therapeutic work. The wider program combines confirmed programming with planned movement, breathwork, guided meditation, sound baths, Ecstatic Dance, Vietnamese food, cultural discovery and creative expression.</p>
-              {(isMobile === false ? en.introduction.desktop : [en.introduction.mobile]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              <p className="entity-definition">{ui.entity}</p>
+              {(isMobile === false ? copy.introduction.desktop : [copy.introduction.mobile]).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </div>
           </div>
           <ol className="introduction-progression" aria-label="The ASCENSION progression">
-            {en.introduction.progression.map((step) => <li key={step}>{step}</li>)}
+            {copy.introduction.progression.map((step) => <li key={step}>{step}</li>)}
           </ol>
         </section>
 
         <DestinationSection />
 
-        <FoundationSection isMobile={isMobile} />
+        <FoundationSection isMobile={isMobile} copy={copy} isVi={isVi} />
 
         <section className="wider-program" aria-labelledby="wider-program-title">
-          <h2 id="wider-program-title">{en.widerProgram.title}</h2>
-          <p>{isMobile === false ? en.widerProgram.desktop : en.widerProgram.mobile}</p>
+          <h2 id="wider-program-title">{copy.widerProgram.title}</h2>
+          <p>{isMobile === false ? copy.widerProgram.desktop : copy.widerProgram.mobile}</p>
         </section>
 
         <section className="sensory-framework" id="senses" aria-labelledby="senses-title">
           <div className="sense-intro">
-            <h2 id="senses-title">Six ways into<br />the present.</h2>
+            <h2 id="senses-title">{ui.sixWays.split("\n").map((line, index) => <span key={line}>{line}{index === 0 ? <br /> : null}</span>)}</h2>
           </div>
           <div className="sensory-stories" role="group" aria-label="The six senses of ASCENSION">
-            {en.sensoryStories.map((story, index) => {
+            {copy.sensoryStories.map((story, index) => {
               const media = sensoryMedia[story.id];
               const alignment = {
                 embody: "left",
@@ -1153,7 +1161,7 @@ export default function HomePage() {
                     {story.quote ? <blockquote>{story.quote}</blockquote> : null}
                     <p>{isMobile === false ? story.desktop : story.mobile}</p>
                     {story.href ? (
-                      <a className="sensory-link" href={story.href}>{story.cta} <span aria-hidden="true">→</span></a>
+                      <a className="sensory-link" href={isVi ? `/vi${story.href}` : story.href}>{story.cta} <span aria-hidden="true">→</span></a>
                     ) : (
                       <details>
                         <summary>{story.cta} <span aria-hidden="true">→</span></summary>
@@ -1162,26 +1170,26 @@ export default function HomePage() {
                     )}
                     {story.id === "create" ? <CreateArtistVoice /> : null}
                   </div>
-                  {story.id === "embody" ? <EcstaticDanceExperience isMobile={isMobile} /> : null}
+                  {story.id === "embody" ? <EcstaticDanceExperience isMobile={isMobile} copy={copy} /> : null}
                 </article>
               );
             })}
           </div>
         </section>
 
-        <ParticipationPrinciples />
+        <ParticipationPrinciples copy={copy} />
 
         <section className="model" aria-labelledby="model-title">
           <div className="model-title-wrap">
-            <p className="model-kicker">Your Ascension Passport</p>
-            <h2 id="model-title">Your experience.<br /><em>Your rhythm.</em></h2>
+            <p className="model-kicker">{ui.passport}</p>
+            <h2 id="model-title">{ui.experienceRhythm.split("\n").map((line, index) => index === 0 ? <span key={line}>{line}<br /></span> : <em key={line}>{line}</em>)}</h2>
           </div>
           <div className="model-copy">
-            <p className="model-lead">Follow a curated program without losing your freedom.</p>
-            <p>Your ASCENSION Passport opens confirmed shared experiences while leaving room to rest, explore Da Nang and choose optional private sessions. Planned programming is identified separately until facilitators and schedules are confirmed.</p>
+            <p className="model-lead">{ui.curatedFreedom}</p>
+            <p>{ui.passportBody}</p>
           </div>
           <div className="model-categories" id="inclusions" role="group" aria-label="What your Ascension Passport opens">
-            {passportCategories.map((category) => (
+            {localizedPassportCategories.map((category) => (
               <article className="model-category" key={category.name}>
                 <h3>{category.name}</h3>
                 <p>{category.copy}</p>
@@ -1192,29 +1200,29 @@ export default function HomePage() {
 
         <section className="rhythm" id="program" aria-labelledby="rhythm-title">
           <div className="rhythm-heading">
-            <h2 id="rhythm-title">A rhythm,<br />not a rigid schedule.</h2>
-            <p>{isMobile === false ? "Mornings may begin with movement, breath or Diện Chẩn. Days open into restorative practices, food, cultural discovery and creative experience. As the sun lowers, the rhythm may shift toward sound baths, Ecstatic Dance, shared tables, reflection or quiet by the sea." : "Mornings may begin with movement, breath or Diện Chẩn. Days open into food, culture, creativity and restoration. Evenings may bring sound, dance, community or quiet. Every day leaves room to choose."}</p>
+            <h2 id="rhythm-title">{isVi ? <>Một nhịp điệu,<br />không phải lịch trình cứng nhắc.</> : <>A rhythm,<br />not a rigid schedule.</>}</h2>
+            <p>{isVi ? "Buổi sáng có thể bắt đầu bằng chuyển động, hơi thở hoặc Diện Chẩn. Ban ngày mở ra ẩm thực, văn hóa, sáng tạo và phục hồi. Buổi tối có thể là âm thanh, khiêu vũ, cộng đồng hoặc sự yên tĩnh. Mỗi ngày luôn có khoảng trống để lựa chọn." : (isMobile === false ? "Mornings may begin with movement, breath or Diện Chẩn. Days open into restorative practices, food, cultural discovery and creative experience. As the sun lowers, the rhythm may shift toward sound baths, Ecstatic Dance, shared tables, reflection or quiet by the sea." : "Mornings may begin with movement, breath or Diện Chẩn. Days open into food, culture, creativity and restoration. Evenings may bring sound, dance, community or quiet. Every day leaves room to choose.")}</p>
           </div>
           <div className="rhythm-list" role="group" aria-label="An illustrative daily rhythm">
-            <article><p className="rhythm-time">Morning</p><p className="rhythm-detail">Movement · Breath · Ocean</p></article>
-            <article><p className="rhythm-time">Midday</p><p className="rhythm-detail">Restore · Explore · Create</p></article>
-            <article><p className="rhythm-time">Sunset</p><p className="rhythm-detail">Sound · Shared Table · Connection</p></article>
-            <article><p className="rhythm-time">Your Time</p><p className="rhythm-detail">Beach · Spa · City · Rest · Private Sessions</p></article>
+            <article><p className="rhythm-time">{isVi ? "Buổi sáng" : "Morning"}</p><p className="rhythm-detail">{isVi ? "Chuyển động · Hơi thở · Đại dương" : "Movement · Breath · Ocean"}</p></article>
+            <article><p className="rhythm-time">{isVi ? "Buổi trưa" : "Midday"}</p><p className="rhythm-detail">{isVi ? "Phục hồi · Khám phá · Sáng tạo" : "Restore · Explore · Create"}</p></article>
+            <article><p className="rhythm-time">{isVi ? "Hoàng hôn" : "Sunset"}</p><p className="rhythm-detail">{isVi ? "Âm thanh · Bàn ăn chung · Kết nối" : "Sound · Shared Table · Connection"}</p></article>
+            <article><p className="rhythm-time">{isVi ? "Thời gian của bạn" : "Your Time"}</p><p className="rhythm-detail">{isVi ? "Biển · Spa · Thành phố · Nghỉ ngơi · Buổi riêng" : "Beach · Spa · City · Rest · Private Sessions"}</p></article>
           </div>
-          <p className="rhythm-note">ASCENSION is curated, not prescribed.</p>
+          <p className="rhythm-note">{isVi ? "ASCENSION được tuyển chọn, không áp đặt." : "ASCENSION is curated, not prescribed."}</p>
         </section>
 
         <section className="host-story" aria-labelledby="host-title">
           <div className="host-story-media">
             <Image src={DANIEL_PORTRAIT} alt="Portrait of ASCENSION creator Daniel Stanford" fill sizes="(max-width: 767px) 100vw, 40vw" />
-            <span>Daniel Stanford · Da Nang</span>
+            <span>Daniel Stanford · {isVi ? "Đà Nẵng" : "Da Nang"}</span>
           </div>
           <div className="host-story-copy">
-            <p className="host-kicker">Why I created ASCENSION</p>
-            <h2 id="host-title">Experienced before it was offered.</h2>
-            <p>ASCENSION grew from my personal journey through movement, creativity, traditional Vietnamese wellness and life in Da Nang.</p>
-            <p>Built around Diện Chẩn and expanded through selected practitioners, it is an immersive happening designed to awaken the body, senses and imagination.</p>
-            <Link className="text-action" href="/about">Read my story <span aria-hidden="true">→</span></Link>
+            <p className="host-kicker">{isVi ? "Vì sao tôi tạo ra ASCENSION" : "Why I created ASCENSION"}</p>
+            <h2 id="host-title">{isVi ? "Được trải nghiệm trước khi được trao tặng." : "Experienced before it was offered."}</h2>
+            <p>{isVi ? "ASCENSION phát triển từ hành trình cá nhân của tôi qua chuyển động, sáng tạo, chăm sóc sức khỏe truyền thống Việt Nam và cuộc sống tại Đà Nẵng." : "ASCENSION grew from my personal journey through movement, creativity, traditional Vietnamese wellness and life in Da Nang."}</p>
+            <p>{isVi ? "Được xây quanh Diện Chẩn và mở rộng cùng những người thực hành được chọn, đây là trải nghiệm nhập vai đánh thức cơ thể, giác quan và trí tưởng tượng." : "Built around Diện Chẩn and expanded through selected practitioners, it is an immersive happening designed to awaken the body, senses and imagination."}</p>
+            <Link className="text-action" href={isVi ? "/vi/about" : "/about"}>{isVi ? "Đọc câu chuyện của tôi" : "Read my story"} <span aria-hidden="true">→</span></Link>
           </div>
         </section>
 
@@ -1232,91 +1240,91 @@ export default function HomePage() {
 
         <section className="comparison" id="comparison" aria-labelledby="comparison-title">
           <div className="comparison-heading">
-            <p className="comparison-kicker">Choose your rhythm</p>
-            <h2 id="comparison-title">Seven days<br />or fourteen.</h2>
+            <p className="comparison-kicker">{isVi ? "Chọn nhịp điệu của bạn" : "Choose your rhythm"}</p>
+            <h2 id="comparison-title">{isVi ? <>Bảy ngày<br />hoặc mười bốn.</> : <>Seven days<br />or fourteen.</>}</h2>
           </div>
           <div className="comparison-options">
             <article>
-              <p className="duration">7 DAYS</p>
-              <p className="dates">January 12–19, 2027</p>
-              <p className="price">$1,200 <small>USD · program</small></p>
+              <p className="duration">{isVi ? "7 NGÀY" : "7 DAYS"}</p>
+              <p className="dates">{isVi ? "12–19 tháng 1, 2027" : "January 12–19, 2027"}</p>
+              <p className="price">$1,200 <small>USD · {isVi ? "chương trình" : "program"}</small></p>
             </article>
             <article>
-              <p className="duration">14 DAYS</p>
-              <p className="dates">January 12–26, 2027</p>
-              <p className="price">$2,000 <small>USD · program</small></p>
+              <p className="duration">{isVi ? "14 NGÀY" : "14 DAYS"}</p>
+              <p className="dates">{isVi ? "12–26 tháng 1, 2027" : "January 12–26, 2027"}</p>
+              <p className="price">$2,000 <small>USD · {isVi ? "chương trình" : "program"}</small></p>
             </article>
           </div>
         </section>
 
         <section className="travel-note" aria-labelledby="travel-title">
-          <p className="travel-kicker">Your stay, your way</p>
-          <h2 id="travel-title">Program and place.<br />Accommodation is separate.</h2>
-          <p>Choose and book the Da Nang hotel that suits you. Flights, accommodation and local transfers are not included in the ASCENSION program price.</p>
+          <p className="travel-kicker">{isVi ? "Kỳ nghỉ theo cách của bạn" : "Your stay, your way"}</p>
+          <h2 id="travel-title">{isVi ? <>Chương trình và nơi chốn.<br />Chỗ ở tính riêng.</> : <>Program and place.<br />Accommodation is separate.</>}</h2>
+          <p>{isVi ? "Tự chọn và đặt khách sạn phù hợp tại Đà Nẵng. Chuyến bay, chỗ ở và di chuyển địa phương không bao gồm trong giá chương trình ASCENSION." : "Choose and book the Da Nang hotel that suits you. Flights, accommodation and local transfers are not included in the ASCENSION program price."}</p>
         </section>
 
         <HostHotel />
 
-        <PractitionerInvitation isMobile={isMobile} />
+        <PractitionerInvitation isMobile={isMobile} copy={copy} ui={ui} />
 
-        <FrequentlyAskedQuestions />
+        <FrequentlyAskedQuestions items={localizedFaqItems} ui={ui} />
 
         <section className="attendance" id="attendance" aria-labelledby="attendance-title">
           <div className="attendance-heading">
-            <h2 id="attendance-title">Reserve your<br />Ascension.</h2>
-            <p>Programs begin at USD $1,200. A $300 deposit currently reserves your place.</p>
+            <h2 id="attendance-title">{isVi ? <>Đặt chỗ cho<br />Ascension của bạn.</> : <>Reserve your<br />Ascension.</>}</h2>
+            <p>{isVi ? "Chương trình từ 1.200 USD. Khoản đặt cọc 300 USD hiện giữ chỗ của bạn." : "Programs begin at USD $1,200. A $300 deposit currently reserves your place."}</p>
           </div>
           <div className="attendance-terms">
             <div className="attendance-included">
-              <p className="terms-label">Included</p>
+              <p className="terms-label">{isVi ? "Bao gồm" : "Included"}</p>
               <ul>
-                <li>Access to the curated ASCENSION program across movement, restoration, sound, taste, discovery and creative sessions</li>
-                <li>Participation in the shared ASCENSION cohort</li>
+                <li>{isVi ? "Quyền tham gia chương trình ASCENSION được tuyển chọn qua chuyển động, phục hồi, âm thanh, vị giác, khám phá và sáng tạo" : "Access to the curated ASCENSION program across movement, restoration, sound, taste, discovery and creative sessions"}</li>
+                <li>{isVi ? "Tham gia nhóm khách chung của ASCENSION" : "Participation in the shared ASCENSION cohort"}</li>
               </ul>
             </div>
             <div className="attendance-optional">
-              <p className="terms-label">Optional · Book Separately</p>
+              <p className="terms-label">{isVi ? "Tùy chọn · Đặt riêng" : "Optional · Book Separately"}</p>
               <ul>
-                <li>Accommodation — guests choose and book their own hotel</li>
-                <li>Flights and local transfers</li>
-                <li>Private treatments and additional spa services</li>
-                <li>Additional excursions, meals or special experiences</li>
+                <li>{isVi ? "Chỗ ở — khách tự chọn và đặt khách sạn" : "Accommodation — guests choose and book their own hotel"}</li>
+                <li>{isVi ? "Chuyến bay và di chuyển địa phương" : "Flights and local transfers"}</li>
+                <li>{isVi ? "Trị liệu riêng và dịch vụ spa bổ sung" : "Private treatments and additional spa services"}</li>
+                <li>{isVi ? "Chuyến đi, bữa ăn hoặc trải nghiệm đặc biệt bổ sung" : "Additional excursions, meals or special experiences"}</li>
               </ul>
             </div>
           </div>
           <div className="attendance-actions">
-            <a className="reserve-action radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
-            <a className="question-action" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a question <span aria-hidden="true">→</span></a>
+            <a className="reserve-action radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">{ui.reserve} <span aria-hidden="true">→</span></a>
+            <a className="question-action" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">{ui.ask} <span aria-hidden="true">→</span></a>
           </div>
-          <p className="deposit">The active checkout requests a USD $300 reservation deposit.</p>
+          <p className="deposit">{isVi ? "Trang thanh toán hiện yêu cầu khoản đặt cọc giữ chỗ 300 USD." : "The active checkout requests a USD $300 reservation deposit."}</p>
         </section>
 
         <section className="series-positioning" aria-labelledby="series-title">
           <div className="series-intro">
-            <h2 id="series-title">One idea.<br />Many places.</h2>
-            <p>ASCENSION is not a single retreat. It’s a travelling series of curated editions — each built around wellbeing, movement, sound and place, and each shaped by where it lands.</p>
+            <h2 id="series-title">{isVi ? <>Một ý tưởng.<br />Nhiều nơi chốn.</> : <>One idea.<br />Many places.</>}</h2>
+            <p>{isVi ? "ASCENSION không phải một kỳ nghỉ dưỡng duy nhất. Đây là chuỗi những phiên bản được tuyển chọn và di chuyển—mỗi kỳ được xây quanh sức khỏe, chuyển động, âm thanh và nơi chốn, đồng thời được định hình bởi nơi nó đến." : "ASCENSION is not a single retreat. It’s a travelling series of curated editions — each built around wellbeing, movement, sound and place, and each shaped by where it lands."}</p>
           </div>
           <div className="series-editions" role="group" aria-label="ASCENSION series editions">
             <div className="series-edition series-current">
               <h3>Da Nang</h3>
-              <p>Edition 01 · January 2027</p>
-              <span>Current primary experience</span>
+              <p>{isVi ? "Kỳ 01 · Tháng 1, 2027" : "Edition 01 · January 2027"}</p>
+              <span>{isVi ? "Trải nghiệm chính hiện tại" : "Current primary experience"}</span>
             </div>
             <div className="series-edition">
               <h3>Montréal</h3>
-              <p>Edition 02 · In planning</p>
-              <span>Follow-up edition</span>
+              <p>{isVi ? "Kỳ 02 · Đang lên kế hoạch" : "Edition 02 · In planning"}</p>
+              <span>{isVi ? "Kỳ tiếp theo" : "Follow-up edition"}</span>
             </div>
             <div className="series-edition series-next">
-              <h3>Next</h3>
-              <p>Perhaps your city.</p>
+              <h3>{isVi ? "Tiếp theo" : "Next"}</h3>
+              <p>{isVi ? "Có thể là thành phố của bạn." : "Perhaps your city."}</p>
             </div>
           </div>
           <a
             className="series-inquiry radiant-action"
             href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20in%20My%20City&body=City%20%2F%20Country%3A%20%0A%0AI%E2%80%99m%20interested%20as%20a%3A%20Guest%20%2F%20Practitioner%20%2F%20Venue%20or%20Hospitality%20Partner%20%2F%20Sponsor%20%2F%20Local%20Connector%0A%0AName%3A%20%0AOrganization%20(if%20applicable)%3A%20%0A%0AWhy%20ASCENSION%20could%20belong%20here%3A%20"
           >
-            Request ASCENSION in Your City <span aria-hidden="true">→</span>
+            {isVi ? "Mời ASCENSION đến thành phố của bạn" : "Request ASCENSION in Your City"} <span aria-hidden="true">→</span>
           </a>
         </section>
 
@@ -1324,26 +1332,26 @@ export default function HomePage() {
           <ProgressiveMedia poster={DA_NANG_FILM} alt="Da Nang sunset reflected across still water" />
           <div className="join-overlay" aria-hidden="true" />
           <div className="join-copy">
-            <h2 id="join-title">Da Nang<br />is waiting.</h2>
-            <p>{isMobile === false ? en.finalCta.desktop : en.finalCta.mobile}</p>
+            <h2 id="join-title">{isVi ? <>Đà Nẵng<br />đang chờ.</> : <>Da Nang<br />is waiting.</>}</h2>
+            <p>{isMobile === false ? copy.finalCta.desktop : copy.finalCta.mobile}</p>
             <div className="join-actions">
-              <a className="radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
-              <a className="join-question" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a question <span aria-hidden="true">→</span></a>
+              <a className="radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">{ui.reserve} <span aria-hidden="true">→</span></a>
+              <a className="join-question" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">{ui.ask} <span aria-hidden="true">→</span></a>
             </div>
           </div>
           <footer>
             <span>ASCENSION is a series initiated and published by <a href="https://modus.gallery" target="_blank" rel="noopener noreferrer">MODUS — Taste Intelligence</a>, Stanford Emporium Inc., Montréal.</span>
             <div>
-              <Link href="/about">About</Link>
-              <Link href="/#experience">Experience</Link>
-              <Link href="/dien-chan">Diện Chẩn</Link>
-              <Link href="/attend">Attend</Link>
-              <Link href="/facilitate">Facilitate</Link>
+              <Link href={isVi ? "/vi/about" : "/about"}>{ui.nav.about}</Link>
+              <Link href={isVi ? "/vi/#experience" : "/#experience"}>{ui.nav.experience}</Link>
+              <Link href={isVi ? "/vi/dien-chan" : "/dien-chan"}>Diện Chẩn</Link>
+              <Link href={isVi ? "/vi/attend" : "/attend"}>{ui.nav.attend}</Link>
+              <Link href={isVi ? "/vi/facilitate" : "/facilitate"}>{ui.nav.facilitate}</Link>
               <Link href="/partners">Partners</Link>
               <Link href="/partners/sponsorship">Sponsors</Link>
-              <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">Contact</a>
-              <Link href="/privacy">Privacy</Link>
-              <Link href="/terms">Terms</Link>
+              <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">{isVi ? "Liên hệ" : "Contact"}</a>
+              <Link href={isVi ? "/vi/privacy" : "/privacy"}>{isVi ? "Quyền riêng tư" : "Privacy"}</Link>
+              <Link href={isVi ? "/vi/terms" : "/terms"}>{isVi ? "Điều khoản" : "Terms"}</Link>
             </div>
           </footer>
         </section>

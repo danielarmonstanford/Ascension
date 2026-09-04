@@ -2,23 +2,26 @@ import Link from "next/link";
 import { CONTACT_EMAIL, RESERVATION_URL } from "../seo";
 import LanguageSelector from "./language-selector";
 
-export default function InfoPage({ eyebrow, title, lead, currentPath, children, primaryLabel = "Reserve your place", primaryHref = RESERVATION_URL }) {
+export default function InfoPage({ eyebrow, title, lead, currentPath, children, primaryLabel, primaryHref = RESERVATION_URL, locale = "en" }) {
+  const isVi = locale === "vi";
+  const prefix = isVi ? "/vi" : "";
+  const resolvedPrimaryLabel = primaryLabel || (isVi ? "Đặt chỗ" : "Reserve your place");
   return (
     <div className="info-page">
-      <a className="skip-link" href="#content">Skip to main content</a>
+      <a className="skip-link" href="#content">{isVi ? "Bỏ qua để đến nội dung chính" : "Skip to main content"}</a>
       <header className="info-header">
-        <Link className="wordmark" href="/">ASCENSION</Link>
+        <Link className="wordmark" href={prefix || "/"}>ASCENSION</Link>
         <nav aria-label="Primary navigation">
-          <Link href="/about">About</Link>
-          <Link href="/dien-chan">Diện Chẩn</Link>
-          <Link href="/attend">Attend</Link>
-          <Link href="/facilitate">Facilitate</Link>
+          <Link href={`${prefix}/about`}>{isVi ? "Giới thiệu" : "About"}</Link>
+          <Link href={`${prefix}/dien-chan`}>Diện Chẩn</Link>
+          <Link href={`${prefix}/attend`}>{isVi ? "Tham dự" : "Attend"}</Link>
+          <Link href={`${prefix}/facilitate`}>{isVi ? "Hướng dẫn" : "Facilitate"}</Link>
         </nav>
         <LanguageSelector />
       </header>
       <main id="content">
         <nav className="info-breadcrumb" aria-label="Breadcrumb">
-          <Link href="/">ASCENSION</Link><span aria-hidden="true">/</span><span aria-current="page">{eyebrow}</span>
+          <Link href={prefix || "/"}>ASCENSION</Link><span aria-hidden="true">/</span><span aria-current="page">{eyebrow}</span>
         </nav>
         <section className="info-hero">
           <p className="info-eyebrow">{eyebrow}</p>
@@ -27,14 +30,14 @@ export default function InfoPage({ eyebrow, title, lead, currentPath, children, 
         </section>
         <div className="info-content">{children}</div>
         <section className="info-cta" aria-label="Next step">
-          <p>Da Nang, Vietnam · January 12–26, 2027</p>
-          <a className="radiant-action" href={primaryHref} target={primaryHref.startsWith("http") ? "_blank" : undefined} rel={primaryHref.startsWith("http") ? "noopener noreferrer" : undefined}>{primaryLabel} <span aria-hidden="true">→</span></a>
-          <a href={`mailto:${CONTACT_EMAIL}?subject=ASCENSION%20Da%20Nang%20Question`}>Ask a question</a>
+          <p>{isVi ? "Đà Nẵng, Việt Nam · 12–26 tháng 1, 2027" : "Da Nang, Vietnam · January 12–26, 2027"}</p>
+          <a className="radiant-action" href={primaryHref} target={primaryHref.startsWith("http") ? "_blank" : undefined} rel={primaryHref.startsWith("http") ? "noopener noreferrer" : undefined}>{resolvedPrimaryLabel} <span aria-hidden="true">→</span></a>
+          <a href={`mailto:${CONTACT_EMAIL}?subject=ASCENSION%20Da%20Nang%20Question`}>{isVi ? "Đặt câu hỏi" : "Ask a question"}</a>
         </section>
       </main>
       <footer className="info-footer">
         <span>ASCENSION SENSES · Da Nang 2027</span>
-        <nav aria-label="Footer navigation"><Link href="/">Home</Link><Link href="/about">About</Link><Link href="/attend">Attend</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></nav>
+        <nav aria-label="Footer navigation"><Link href={prefix || "/"}>{isVi ? "Trang chủ" : "Home"}</Link><Link href={`${prefix}/about`}>{isVi ? "Giới thiệu" : "About"}</Link><Link href={`${prefix}/attend`}>{isVi ? "Tham dự" : "Attend"}</Link><Link href={`${prefix}/privacy`}>{isVi ? "Quyền riêng tư" : "Privacy"}</Link><Link href={`${prefix}/terms`}>{isVi ? "Điều khoản" : "Terms"}</Link></nav>
       </footer>
     </div>
   );

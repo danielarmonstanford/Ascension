@@ -15,5 +15,5 @@ export default async function LocalizedHomePage({ params }) {
   const { locale } = await params;
   if (!isSupportedLocale(locale)) notFound();
   if (!isPublishedLocale(locale)) return <LocaleReviewPage locale={locale} />;
-  return <HomePage />;
+  return <HomePage locale={locale} />;
 }
