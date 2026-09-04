@@ -4,6 +4,7 @@ import LocaleReviewPage from "../../_components/locale-review-page";
 import { createLocalizedPageMetadata } from "../../seo";
 import { isPublishedLocale, isSupportedLocale } from "../../../i18n/config";
 import { VietnamesePrivacyPage } from "../../_components/vietnamese-pages";
+import TranslatedInfoPage from "../../_components/translated-info-page";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -16,5 +17,6 @@ export default async function LocalizedPrivacyPage({ params }) {
   if (!isSupportedLocale(locale)) notFound();
   if (!isPublishedLocale(locale)) return <LocaleReviewPage locale={locale} />;
   if (locale === "vi") return <VietnamesePrivacyPage />;
+  if (locale !== "en") return <TranslatedInfoPage locale={locale} page="privacy" />;
   return <PrivacyPage />;
 }
