@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import LanguageSelector from "./_components/language-selector";
+import HostHotel from "./_components/host-hotel";
 import { sensoryMedia } from "./sensory-media";
 import { en, faqItems, passportCategories } from "../content/en";
 import { JsonLd, homeStructuredData } from "./seo";
@@ -121,8 +123,14 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
         try { message = JSON.parse(message); } catch { return; }
       }
       if (message?.event === "ready") {
-        setReady(true);
+        vimeoFrameRef.current?.contentWindow?.postMessage({ method: "addEventListener", value: "play" }, "https://player.vimeo.com");
+        vimeoFrameRef.current?.contentWindow?.postMessage({ method: "addEventListener", value: "bufferstart" }, "https://player.vimeo.com");
+        vimeoFrameRef.current?.contentWindow?.postMessage({ method: "addEventListener", value: "bufferend" }, "https://player.vimeo.com");
         onVimeoLoadRef.current?.();
+      } else if (message?.event === "play" || message?.event === "bufferend") {
+        setReady(true);
+      } else if (message?.event === "bufferstart") {
+        setReady(false);
       }
     };
     window.addEventListener("message", onMessage);
@@ -139,10 +147,12 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
           muted
           playsInline
           loop
-          preload="metadata"
+          preload={priority ? "auto" : "metadata"}
           poster={poster}
-          onCanPlay={() => setReady(true)}
-          onLoadedData={() => setReady(true)}
+          onPlaying={() => setReady(true)}
+          onWaiting={() => setReady(false)}
+          onStalled={() => setReady(false)}
+          onError={() => setReady(false)}
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
@@ -412,6 +422,22 @@ function SoundListeningStage({ media }) {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const onYouTubeMessage = (event) => {
+      if (event.origin !== "https://www.youtube-nocookie.com" || event.source !== filmRef.current?.contentWindow) return;
+      let message = event.data;
+      if (typeof message === "string") {
+        try { message = JSON.parse(message); } catch { return; }
+      }
+      if (message?.event === "onStateChange") {
+        if (message.info === 1) setFilmReady(true);
+        if (message.info === 3 || message.info === -1) setFilmReady(false);
+      }
+    };
+    window.addEventListener("message", onYouTubeMessage);
+    return () => window.removeEventListener("message", onYouTubeMessage);
+  }, []);
+
   const selectFilmSound = () => {
     if (mode === "film") {
       sendYouTubeCommand(filmRef, "mute");
@@ -451,7 +477,7 @@ function SoundListeningStage({ media }) {
           tabIndex="-1"
           aria-hidden="true"
           onLoad={() => {
-            setFilmReady(true);
+            filmRef.current?.contentWindow?.postMessage(JSON.stringify({ event: "listening", id: "ascension-sound-film" }), "https://www.youtube-nocookie.com");
             if (mode === "film") {
               sendYouTubeCommand(filmRef, "unMute");
             } else {
@@ -624,7 +650,7 @@ function SensoryMedia({ media, chapter }) {
   );
 }
 
-function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, onCanPlay, onSeeking, onSeeked, onError }) {
+function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, onCanPlay, onPlaying, onWaiting, onSeeking, onSeeked, onError }) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -651,6 +677,9 @@ function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, on
           tabIndex="-1"
           onLoadedMetadata={onLoadedMetadata}
           onCanPlay={onCanPlay}
+          onPlaying={onPlaying}
+          onWaiting={onWaiting}
+          onStalled={onWaiting}
           onSeeking={onSeeking}
           onSeeked={onSeeked}
           onError={onError}
@@ -805,14 +834,20 @@ function Hero({ theme, setTheme }) {
           }}
           onCanPlay={() => {
             canPlayReady.current = true;
-            enableMotionWhenReady();
+            if (!isMobile) enableMotionWhenReady();
             if (isMobile) videoRef.current?.play().catch(() => {});
           }}
+          onPlaying={() => {
+            if (metadataReady.current && canPlayReady.current) setMotionReady(true);
+          }}
+          onWaiting={() => setMotionReady(false)}
           onSeeking={() => {
             seekInFlight.current = true;
+            setMotionReady(false);
           }}
           onSeeked={() => {
             seekInFlight.current = false;
+            if (metadataReady.current && canPlayReady.current) setMotionReady(true);
             const queuedTime = pendingSeekTime.current;
             pendingSeekTime.current = null;
             if (Number.isFinite(queuedTime)) requestVideoTime(queuedTime);
@@ -828,10 +863,11 @@ function Hero({ theme, setTheme }) {
           <Link className="wordmark" href="/">ASCENSION</Link>
           <div className="nav-links">
             <a href="#experience">Experience</a>
-            <a href="/dien-chan">Diện Chẩn</a>
-            <a href="/about">About</a>
-            <a href="/attend">Attend</a>
+            <Link href="/dien-chan">Diện Chẩn</Link>
+            <Link href="/about">About</Link>
+            <Link href="/attend">Attend</Link>
           </div>
+          <LanguageSelector className="language-selector-desktop" />
         </nav>
 
         <button
@@ -847,15 +883,17 @@ function Hero({ theme, setTheme }) {
         <div className={`mobile-menu ${menuOpen ? "is-open" : ""}`} id="mobile-menu" aria-hidden={!menuOpen}>
           <nav aria-label="Mobile navigation">
             <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
-            <a href="/dien-chan" onClick={() => setMenuOpen(false)}>Diện Chẩn</a>
-            <a href="/about" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="/attend" onClick={() => setMenuOpen(false)}>Attend</a>
-            <a href="/facilitate" onClick={() => setMenuOpen(false)}>Facilitate</a>
+            <Link href="/dien-chan" onClick={() => setMenuOpen(false)}>Diện Chẩn</Link>
+            <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+            <Link href="/attend" onClick={() => setMenuOpen(false)}>Attend</Link>
+            <Link href="/facilitate" onClick={() => setMenuOpen(false)}>Facilitate</Link>
           </nav>
+          <LanguageSelector className="language-selector-mobile" />
           <a className="radiant-action mobile-menu-reserve" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
         </div>
 
         <div className="hero-frame">
+          <p className="hero-series-eyebrow entrance entrance-place">A MODUS SERIES</p>
           <h1 className="hero-title entrance entrance-title">ASCENSION</h1>
           <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
           <div className="hero-offer entrance entrance-place">
@@ -908,7 +946,7 @@ function MobileReserveBar() {
 
   return (
     <a className={`mobile-reserve radiant-action ${visible ? "is-visible" : ""}`} href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">
-      Reserve your place · from $1,200
+      Reserve your place
     </a>
   );
 }
@@ -955,6 +993,7 @@ function FoundationSection({ isMobile }) {
         <p className="foundation-kicker">{foundation.eyebrow}</p>
         <h2 id="foundation-title">{foundation.title}</h2>
         <p>{isMobile === false ? foundation.desktop : foundation.mobile}</p>
+        <p className="foundation-leader">{foundation.leader}</p>
         <details>
           <summary>Go deeper <span aria-hidden="true">→</span></summary>
           <div className="foundation-details">
@@ -1174,6 +1213,18 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="provenance" aria-labelledby="provenance-title">
+          <p className="provenance-kicker">Provenance</p>
+          <h2 id="provenance-title">Curated by an editor,<br />not an operator.</h2>
+          <div className="provenance-record">
+            <p>Cornell Art Museum 2016 — shown alongside Warhol and Russell Young</p>
+            <p>Art Basel Miami 2014–2018</p>
+            <p>MIS São Paulo solo invitation, 49/50</p>
+            <p>MODUS Index Authorities: Marie-Christine Gilbert PhD, National Gallery of Canada · Cleber Papa, MIS São Paulo</p>
+            <a className="text-action" href="https://modus.gallery/methodology" target="_blank" rel="noopener noreferrer">Explore the MODUS methodology <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+
         <section className="comparison" id="comparison" aria-labelledby="comparison-title">
           <div className="comparison-heading">
             <p className="comparison-kicker">Choose your rhythm</p>
@@ -1198,6 +1249,8 @@ export default function HomePage() {
           <h2 id="travel-title">Program and place.<br />Accommodation is separate.</h2>
           <p>Choose and book the Da Nang hotel that suits you. Flights, accommodation and local transfers are not included in the ASCENSION program price.</p>
         </section>
+
+        <HostHotel />
 
         <PractitionerInvitation isMobile={isMobile} />
 
@@ -1274,7 +1327,7 @@ export default function HomePage() {
             </div>
           </div>
           <footer>
-            <span>ASCENSION SENSES · Edition 01</span>
+            <span>ASCENSION is a series initiated and published by <a href="https://modus.gallery" target="_blank" rel="noopener noreferrer">MODUS — Taste Intelligence</a>, Stanford Emporium Inc., Montréal.</span>
             <div>
               <Link href="/about">About</Link>
               <Link href="/#experience">Experience</Link>
@@ -1284,8 +1337,8 @@ export default function HomePage() {
               <Link href="/partners">Partners</Link>
               <Link href="/partners/sponsorship">Sponsors</Link>
               <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">Contact</a>
-              <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Privacy">Privacy</a>
-              <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Terms">Terms</a>
+              <Link href="/privacy">Privacy</Link>
+              <Link href="/terms">Terms</Link>
             </div>
           </footer>
         </section>

@@ -1,7 +1,7 @@
 import { PRODUCTION_ORIGIN } from "./seo";
 
 export default function robots() {
-  const disallow = ["/api/", "/access", "/partners"];
+  const disallow = ["/api/", "/access", "/partners/venues", "/partners/practitioners"];
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow },

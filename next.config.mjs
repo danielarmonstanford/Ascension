@@ -11,15 +11,22 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      { source: "/", destination: "/en", permanent: true },
+      { source: "/about", destination: "/en/about", permanent: true },
+      { source: "/dien-chan", destination: "/en/dien-chan", permanent: true },
+      { source: "/attend", destination: "/en/attend", permanent: true },
+      { source: "/facilitate", destination: "/en/facilitate", permanent: true },
+      { source: "/terms", destination: "/en/terms", permanent: true },
+      { source: "/privacy", destination: "/en/privacy", permanent: true },
       { source: "/partners/index.html", destination: "/partners", permanent: true },
       { source: "/partners/venues.html", destination: "/partners/venues", permanent: true },
       { source: "/partners/sponsorship.html", destination: "/partners/sponsorship", permanent: true },
       { source: "/partners/practitioners.html", destination: "/partners/practitioners", permanent: true },
-      { source: "/attendance", destination: "/attend", permanent: true },
-      { source: "/facilitators", destination: "/facilitate", permanent: true },
-      { source: "/practitioners", destination: "/facilitate", permanent: true },
-      { source: "/retreat", destination: "/#program", permanent: true },
-      { source: "/retreat/index.html", destination: "/#program", permanent: true }
+      { source: "/attendance", destination: "/en/attend", permanent: true },
+      { source: "/facilitators", destination: "/en/facilitate", permanent: true },
+      { source: "/practitioners", destination: "/en/facilitate", permanent: true },
+      { source: "/retreat", destination: "/en/#program", permanent: true },
+      { source: "/retreat/index.html", destination: "/en/#program", permanent: true }
     ];
   },
   images: {

@@ -1,4 +1,5 @@
 import { faqItems } from "../content/en";
+import { getLocaleConfig, getPublishedLocales, isPublishedLocale, localePath } from "../i18n/config";
 
 export const PRODUCTION_ORIGIN = "https://www.ascensionsenses.com";
 export const MODUS_ASCENSION_URL = "https://www.modus.gallery/seance/ascension";
@@ -43,6 +44,52 @@ export function createPageMetadata({ title, description, path }) {
   };
 }
 
+export function createLocalizedPageMetadata({ locale, title, description, socialTitle = title, socialDescription = description, path }) {
+  const localizedRoute = localePath(locale, path);
+  const url = `${PRODUCTION_ORIGIN}${localizedRoute}`;
+  const published = isPublishedLocale(locale);
+  const languages = published
+    ? Object.fromEntries([
+        ...getPublishedLocales().map((publishedLocale) => [publishedLocale === "zh-hans" ? "zh-Hans" : publishedLocale, `${PRODUCTION_ORIGIN}${localePath(publishedLocale, path)}`]),
+        ["x-default", `${PRODUCTION_ORIGIN}${localePath("en", path)}`],
+      ])
+    : undefined;
+
+  if (!published) {
+    const languageName = getLocaleConfig(locale).label;
+    return {
+      title: `${languageName} translation under review | ASCENSION SENSES`,
+      description: "This ASCENSION SENSES translation is withheld from publication until human linguistic and cultural review is complete.",
+      alternates: { canonical: url },
+      robots: { index: false, follow: false, noarchive: true },
+      openGraph: null,
+      twitter: null,
+    };
+  }
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url, languages },
+    robots: { index: true, follow: true },
+    openGraph: {
+      title: socialTitle,
+      description: socialDescription,
+      url,
+      siteName: "ASCENSION SENSES",
+      images: [SOCIAL_IMAGE],
+      locale: locale === "en" ? "en" : locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: socialTitle,
+      description: socialDescription,
+      images: [{ url: SOCIAL_IMAGE.url, alt: SOCIAL_IMAGE.alt }],
+    },
+  };
+}
+
 export function JsonLd({ data }) {
   return (
     <script
@@ -60,7 +107,7 @@ export const siteEntityGraph = {
       "@id": `${PRODUCTION_ORIGIN}/#website`,
       name: "ASCENSION SENSES",
       alternateName: "ASCENSION",
-      url: `${PRODUCTION_ORIGIN}/`,
+      url: `${PRODUCTION_ORIGIN}/en`,
       inLanguage: "en",
       publisher: { "@id": `${PRODUCTION_ORIGIN}/#organization` },
     },
@@ -69,10 +116,10 @@ export const siteEntityGraph = {
       "@id": `${PRODUCTION_ORIGIN}/#organization`,
       name: "ASCENSION SENSES",
       alternateName: "ASCENSION",
-      url: `${PRODUCTION_ORIGIN}/`,
+      url: `${PRODUCTION_ORIGIN}/en`,
       logo: `${PRODUCTION_ORIGIN}/icon.svg`,
       description: "ASCENSION SENSES is a travelling series of immersive wellness and cultural happenings. Its first edition takes place in Da Nang, Vietnam, January 12–26, 2027.",
-      founder: { "@id": `${PRODUCTION_ORIGIN}/about#daniel-stanford` },
+      founder: { "@id": `${PRODUCTION_ORIGIN}/en/about#daniel-stanford` },
       sameAs: [MODUS_ASCENSION_URL],
       subjectOf: { "@type": "WebPage", url: MODUS_ASCENSION_URL, name: "ASCENSION editorial project page on MODUS" },
       contactPoint: {
@@ -83,9 +130,9 @@ export const siteEntityGraph = {
     },
     {
       "@type": "Person",
-      "@id": `${PRODUCTION_ORIGIN}/about#daniel-stanford`,
+      "@id": `${PRODUCTION_ORIGIN}/en/about#daniel-stanford`,
       name: "Daniel Stanford",
-      url: `${PRODUCTION_ORIGIN}/about`,
+      url: `${PRODUCTION_ORIGIN}/en/about`,
       jobTitle: "Host, Curator and Creative Director",
       worksFor: { "@id": `${PRODUCTION_ORIGIN}/#organization` },
       sameAs: ["https://danielstanford.art/"],
@@ -101,7 +148,7 @@ export const homeStructuredData = {
       "@id": `${PRODUCTION_ORIGIN}/#event`,
       name: "ASCENSION SENSES — Da Nang 2027",
       description: "A seven- or fourteen-day immersive wellness and cultural happening in Da Nang built around Diện Chẩn, movement, breathwork, sound baths, Vietnamese food, culture and creativity.",
-      url: `${PRODUCTION_ORIGIN}/attend`,
+      url: `${PRODUCTION_ORIGIN}/en/attend`,
       startDate: "2027-01-12",
       endDate: "2027-01-26",
       eventStatus: "https://schema.org/EventScheduled",
@@ -121,14 +168,14 @@ export const homeStructuredData = {
         {
           "@type": "Offer",
           name: "Seven-day ASCENSION program",
-          url: `${PRODUCTION_ORIGIN}/attend#seven-days`,
+          url: `${PRODUCTION_ORIGIN}/en/attend#seven-days`,
           price: "1200",
           priceCurrency: "USD",
         },
         {
           "@type": "Offer",
           name: "Fourteen-day ASCENSION program",
-          url: `${PRODUCTION_ORIGIN}/attend#fourteen-days`,
+          url: `${PRODUCTION_ORIGIN}/en/attend#fourteen-days`,
           price: "2000",
           priceCurrency: "USD",
         },

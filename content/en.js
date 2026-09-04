@@ -19,6 +19,7 @@ export const en = {
     title: "One body. Everything connected.",
     mobile: "Diện Chẩn is a needle-free Vietnamese system combining reflexology, acupressure, heat, stretching and full-body therapeutic work. Every session responds to the individual—not a fixed routine.",
     desktop: "Diện Chẩn is the therapeutic foundation of ASCENSION—a distinctive Vietnamese system based on the understanding that the body is interconnected. Using needle-free acupressure, reflexology, heat, stretching and targeted bodywork, practitioners may work across the face, head, hands, feet, limbs and back. Each session responds to the individual rather than following a fixed routine.",
+    leader: "Sessions are led daily by Dr. Huỳnh Bảo Loan, Da Nang.",
     details: [
       "The face may be the starting point. The whole body is the journey. Diện Chẩn often begins through reflex points across the face and head, but it is not limited to facial reflexology. The practitioner follows the body—working wherever attention is needed.",
       "A session may combine targeted pressure, specialized tools, therapeutic heat, stretching and full-body manual work. Hands. Feet. Head. Limbs. Back. Movement. Tension. Connection.",
@@ -165,7 +166,8 @@ export const faqItems = [
   ["What is the difference between 7 and 14 days?", "The 7-day program runs January 12–19 for USD $1,200. The complete 14-day program runs January 12–26 for USD $2,000."],
   ["Will Ecstatic Dance be included?", "Ecstatic Dance is planned as part of the EMBODY experience. The facilitator, location and final schedule will be announced after confirmation."],
   ["Will sound baths be included?", "Sound baths and guided sound experiences are part of the intended program. Participating sound practitioners and session details will be announced as they are confirmed."],
-  ["Who are the facilitators?", "Participating facilitators will be announced as agreements are confirmed. ASCENSION is selecting practitioners for experience, integrity and alignment with the program."],
+  ["Who are the facilitators?", "Dr. Huỳnh Bảo Loan leads Diện Chẩn daily. Additional facilitators will be announced as agreements are confirmed."],
+  ["What is the cancellation policy?", "A USD $300 deposit reserves your place and the balance is due 30 days before January 12, 2027. Cancel 60 or more days before January 12 for a full refund less a USD $25 administration fee; cancel 30–60 days before for a 50% refund; cancellations under 30 days are non-refundable. Private sessions are non-refundable once booked."],
   ["Can I choose whether I am photographed?", "Yes. You choose whether you appear in photographs or video."],
   ["What if I have an injury or medical condition?", "Ask questions before participating and consult an appropriate healthcare professional when needed. ASCENSION experiences do not replace medical diagnosis or treatment."],
   ["How do I reserve my place?", "Use a clearly labelled Reserve Your Place link. The active checkout requests a USD $300 reservation deposit."],

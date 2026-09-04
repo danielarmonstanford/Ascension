@@ -15,6 +15,7 @@ export default function DienChanPage() {
           <h2>What is Diện Chẩn?</h2>
           <p>Diện Chẩn is a modern Vietnamese system rooted in traditional principles. It combines reflexology, needle-free acupressure, therapeutic heat, stretching and individualized full-body work.</p>
           <p>The face may be a starting point, but a session is not limited to facial reflexology. Practitioners may work across the head, hands, feet, limbs and back according to the individual.</p>
+          <p><strong>Sessions are led daily by Dr. Huỳnh Bảo Loan, Da Nang.</strong></p>
         </section>
         <section>
           <h2>Does Diện Chẩn use needles?</h2>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import LanguageSelector from "../_components/language-selector";
 
 const HERO_IMAGE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
@@ -59,6 +60,7 @@ function AboutHeader({ theme, setTheme }) {
           <Link href="/about" aria-current="page">About</Link>
           <Link href="/attend">Attend</Link>
         </div>
+        <LanguageSelector className="language-selector-desktop" />
       </nav>
       <div className="about-theme"><ThemeControl theme={theme} onChange={setTheme} /></div>
       <button className="about-menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="about-mobile-menu" onClick={() => setMenuOpen((open) => !open)}>
@@ -72,6 +74,7 @@ function AboutHeader({ theme, setTheme }) {
           <Link href="/attend">Attend</Link>
           <Link href="/facilitate">Facilitate</Link>
         </nav>
+        <LanguageSelector className="language-selector-mobile" />
         <a className="radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">Reserve your place <span aria-hidden="true">→</span></a>
       </div>
     </header>
@@ -83,7 +86,7 @@ function AboutFooter() {
     <footer className="about-footer">
       <span>ASCENSION SENSES · Edition 01</span>
       <div>
-        <Link href="/about">About</Link><Link href="/#experience">Experience</Link><Link href="/dien-chan">Diện Chẩn</Link><Link href="/attend">Attend</Link><Link href="/facilitate">Facilitate</Link><Link href="/partners">Partners</Link><Link href="/partners/sponsorship">Sponsors</Link><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">Contact</a><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Privacy">Privacy</a><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Terms">Terms</a>
+        <Link href="/about">About</Link><Link href="/#experience">Experience</Link><Link href="/dien-chan">Diện Chẩn</Link><Link href="/attend">Attend</Link><Link href="/facilitate">Facilitate</Link><Link href="/partners">Partners</Link><Link href="/partners/sponsorship">Sponsors</Link><a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Enquiry">Contact</a><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link>
       </div>
     </footer>
   );

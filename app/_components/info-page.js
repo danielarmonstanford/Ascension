@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CONTACT_EMAIL, RESERVATION_URL } from "../seo";
+import LanguageSelector from "./language-selector";
 
 export default function InfoPage({ eyebrow, title, lead, currentPath, children, primaryLabel = "Reserve your place", primaryHref = RESERVATION_URL }) {
   return (
@@ -13,6 +14,7 @@ export default function InfoPage({ eyebrow, title, lead, currentPath, children, 
           <Link href="/attend">Attend</Link>
           <Link href="/facilitate">Facilitate</Link>
         </nav>
+        <LanguageSelector />
       </header>
       <main id="content">
         <nav className="info-breadcrumb" aria-label="Breadcrumb">
@@ -32,7 +34,7 @@ export default function InfoPage({ eyebrow, title, lead, currentPath, children, 
       </main>
       <footer className="info-footer">
         <span>ASCENSION SENSES · Da Nang 2027</span>
-        <nav aria-label="Footer navigation"><Link href="/">Home</Link><Link href="/about">About</Link><Link href="/attend">Attend</Link></nav>
+        <nav aria-label="Footer navigation"><Link href="/">Home</Link><Link href="/about">About</Link><Link href="/attend">Attend</Link><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></nav>
       </footer>
     </div>
   );
