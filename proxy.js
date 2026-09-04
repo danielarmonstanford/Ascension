@@ -16,6 +16,19 @@ export function proxy(request) {
     return NextResponse.redirect(canonicalUrl, 308);
   }
 
+  const isVenuePortal = request.nextUrl.pathname === "/partners/venues" || request.nextUrl.pathname === "/partners/venues.html";
+  if (isVenuePortal) {
+    const expectedToken = process.env.VENUE_PORTAL_SESSION_TOKEN;
+    const suppliedToken = request.cookies.get("ascension_venue_access")?.value;
+    if (!expectedToken || suppliedToken !== expectedToken) {
+      const accessUrl = request.nextUrl.clone();
+      accessUrl.pathname = "/access";
+      accessUrl.search = "";
+      accessUrl.searchParams.set("next", "/partners/venues");
+      return NextResponse.redirect(accessUrl, 307);
+    }
+  }
+
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-ascension-locale", locale);
   const response = NextResponse.next({ request: { headers: requestHeaders } });
