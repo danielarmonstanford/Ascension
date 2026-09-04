@@ -155,7 +155,10 @@ section { position: relative; }
 .foundation-kicker, .participation-kicker, .host-kicker, .practitioner-kicker, .faq-kicker { margin: 0 0 1.25rem; color: var(--burnt-sand); font: 500 .7rem/1 var(--utility); letter-spacing: .15em; text-transform: uppercase; }
 .foundation-copy h2 { margin: 0 0 2rem; font: 400 clamp(3.8rem, 7vw, 7rem)/.86 var(--display); letter-spacing: -.035em; }
 .foundation-copy > p { margin: 0; max-width: 35rem; color: var(--quiet); line-height: 1.68; }
-.foundation-copy .foundation-leader { margin-top: 1.25rem; color: var(--ink); font-weight: 600; }
+.foundation-practitioner { display: grid; gap: .45rem; margin-top: 1.75rem; padding: 1.4rem 0; border-top: 1px solid rgba(23, 55, 68, .25); border-bottom: 1px solid rgba(23, 55, 68, .25); }
+.foundation-practitioner span, .foundation-practitioner small { color: var(--burnt-sand); font: 600 .64rem/1.4 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
+.foundation-practitioner strong { color: var(--deep-ocean); font: 400 clamp(2rem, 3.25vw, 3.4rem)/.95 var(--display); letter-spacing: -.025em; }
+.foundation-practitioner small { color: #5e7579; }
 .foundation-copy details, .host-story details { margin-top: 2rem; border-top: 1px solid rgba(23, 55, 68, .25); border-bottom: 1px solid rgba(23, 55, 68, .25); }
 .foundation-copy summary, .host-story summary { min-height: 54px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; font: 650 .72rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .foundation-copy summary::-webkit-details-marker, .host-story summary::-webkit-details-marker { display: none; }

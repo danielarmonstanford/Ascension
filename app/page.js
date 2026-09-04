@@ -993,7 +993,11 @@ function FoundationSection({ isMobile }) {
         <p className="foundation-kicker">{foundation.eyebrow}</p>
         <h2 id="foundation-title">{foundation.title}</h2>
         <p>{isMobile === false ? foundation.desktop : foundation.mobile}</p>
-        <p className="foundation-leader">{foundation.leader}</p>
+        <div className="foundation-practitioner" aria-label="Confirmed Diện Chẩn practitioner">
+          <span>Confirmed practitioner · Daily Diện Chẩn</span>
+          <strong>Dr. Huỳnh Bảo Loan</strong>
+          <small>Da Nang, Vietnam</small>
+        </div>
         <details>
           <summary>Go deeper <span aria-hidden="true">→</span></summary>
           <div className="foundation-details">
