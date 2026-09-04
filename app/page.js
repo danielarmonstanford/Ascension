@@ -477,6 +477,7 @@ function SoundListeningStage({ media }) {
           tabIndex="-1"
           aria-hidden="true"
           onLoad={() => {
+            setFilmReady(true);
             filmRef.current?.contentWindow?.postMessage(JSON.stringify({ event: "listening", id: "ascension-sound-film" }), "https://www.youtube-nocookie.com");
             if (mode === "film") {
               sendYouTubeCommand(filmRef, "unMute");
@@ -895,7 +896,7 @@ function Hero({ theme, setTheme }) {
         <div className="hero-frame">
           <p className="hero-series-eyebrow entrance entrance-place">A MODUS SERIES</p>
           <h1 className="hero-title entrance entrance-title">ASCENSION</h1>
-          <p className="hero-proposition entrance entrance-proposition">Come back to your senses.</p>
+          <p className="hero-proposition entrance entrance-proposition"><span>Heal your soul.</span><span>Revive your senses.</span></p>
           <div className="hero-offer entrance entrance-place">
             <p className="hero-place">Da Nang, Vietnam<br />January 12–26, 2027</p>
             <p className="hero-description">{isMobile === false ? en.hero.desktop : en.hero.mobile}</p>
