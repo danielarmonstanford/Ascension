@@ -70,7 +70,7 @@ export const viUi = {
   reserve:"Đặt chỗ", ask:"Đặt câu hỏi", embody:"Cảm nhận", explore:"Khám phá trải nghiệm", day:"NGÀY", dusk:"HOÀNG HÔN",
   slogan:["Chữa lành tâm hồn.","Đánh thức các giác quan."],
   place:"Đà Nẵng, Việt Nam", dates:"12–26 tháng 1, 2027", series:"MỘT CHUỖI CỦA MODUS",
-  glanceTitle:"Đà Nẵng,\nViệt Nam", glanceSub:"Tổng quan\ntrải nghiệm.", glanceLead:"Chọn bảy ngày hoặc trọn mười bốn ngày giữa thành phố, biển và núi.", seven:"7 ngày", fourteen:"14 ngày", small:"Nhóm nhỏ, thân mật. Chỗ ở và đi lại tính riêng.", compare:"So sánh 7 và 14 ngày", included:"Xem những gì bao gồm",
+  glanceTitle:"Đà Nẵng,\nViệt Nam", glanceSub:"Tổng quan\ntrải nghiệm.", glanceLead:"Chọn bảy ngày hoặc mười bốn ngày giữa thành phố, biển và núi.", seven:"7 ngày", fourteen:"14 ngày", small:"Nhóm nhỏ, thân mật. Chỗ ở và đi lại tính riêng.", compare:"So sánh 7 và 14 ngày", included:"Xem những gì bao gồm",
   entity:"ASCENSION là hành trình chăm sóc sức khỏe và văn hóa kéo dài bảy hoặc mười bốn ngày tại Đà Nẵng, Việt Nam, từ 12–26 tháng 1 năm 2027. Nền tảng là Diện Chẩn, phương pháp Việt Nam không dùng kim, kết hợp phản xạ học, day ấn huyệt, nhiệt, kéo giãn và trị liệu toàn thân theo từng người.",
   sixWays:"Sáu lối vào\nhiện tại.", passport:"Hộ chiếu ASCENSION của bạn", experienceRhythm:"Trải nghiệm của bạn.\nNhịp điệu của bạn.", curatedFreedom:"Theo một chương trình được tuyển chọn mà vẫn giữ tự do.", passportBody:"Hộ chiếu ASCENSION mở ra các trải nghiệm chung đã xác nhận, đồng thời để bạn nghỉ ngơi, khám phá Đà Nẵng và chọn các buổi riêng tùy ý.",
   faqKicker:"Trước khi bạn đến", faqTitle:"Câu hỏi,\nđã được giải đáp.", facilitator:"Người hướng dẫn", apply:"Đăng ký hướng dẫn",
