@@ -38,8 +38,33 @@ export const en = {
       name: "EMBODY",
       title: "Feel more. Move more. Touch deeper.",
       keywords: "ACUPRESSURE · BODYWORK · MOVEMENT",
+      mobileSummary: "Receive the work. Breathe, soften and move again.",
       mobile: "Reconnect with your body through Diện Chẩn, conscious movement and restorative touch. No pressure to perform. Begin where you are and listen to what your body has been waiting to tell you.",
-      desktop: "Reconnect with your body through Diện Chẩn, conscious movement and restorative touch. Release tension. Restore awareness. Move without performance or pressure. Your body already knows the way. ASCENSION creates the space to listen.",
+      mobileDetails: [
+        {
+          heading: "VIETNAMESE BODY CARE",
+          paragraphs: [
+            "ASCENSION’s restorative foundation brings together complementary Vietnamese body-care practices. Depending on each participant’s needs, sessions may combine Diện Chẩn, Thập Thủ Đạo acupressure, assisted stretching, warm herbal applications, reflexology and focused work around areas of muscular tension or discomfort.",
+            "The approach is individualized rather than applied as one fixed sequence. Areas of attention may include the face, head, hands, feet, neck, shoulders, back, arms or legs. The intention is to support flexibility, balance, physical awareness and more comfortable everyday movement.",
+          ],
+        },
+        {
+          heading: "RESTORATIVE MOVEMENT",
+          paragraphs: [
+            "Hands-on care is complemented by breath-led mobility and gentle movement. Practices may draw from Qigong and soft martial-arts principles to explore coordination, joint movement, grounded strength and movement without unnecessary force.",
+            "Sessions are adaptable to different experience levels and physical capacities.",
+          ],
+        },
+        { closing: "Hands restore. Breath opens. Movement begins again." },
+      ],
+      desktop: [
+        "The body is not a collection of separate parts. ASCENSION approaches it as an interconnected system—something to listen to, care for and move with greater awareness.",
+        "At the foundation are complementary Vietnamese body-care practices. Depending on the individual, sessions may combine Diện Chẩn, Thập Thủ Đạo acupressure, assisted stretching, warm herbal applications, reflexology and focused work around areas of muscular tension or discomfort.",
+        "The work may extend across the face, head, hands, feet, neck, shoulders, back and limbs. It is not a standardized sequence applied identically to every participant. Techniques and areas of attention are selected according to the person receiving them.",
+        "Hands-on care is complemented by breath-led mobility and gentle movement. Practices may draw from Qigong and soft martial-arts principles to encourage coordination, joint movement, grounded strength and a more attentive relationship with the body.",
+        "Receive the work. Learn the movement. Continue the practice.",
+        "Hands restore. Breath opens. Movement begins again.",
+      ],
       cta: "Discover Diện Chẩn",
       href: "/dien-chan",
     },

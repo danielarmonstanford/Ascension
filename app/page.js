@@ -653,6 +653,26 @@ function SensoryMedia({ media, chapter }) {
   );
 }
 
+function SenseDetailContent({ content }) {
+  if (!Array.isArray(content)) return <p>{content}</p>;
+
+  return content.map((section, index) => {
+    if (typeof section === "string") return <p key={`${index}-${section}`}>{section}</p>;
+    return (
+      <section className={section.closing ? "sense-detail-closing" : "sense-detail-section"} key={section.heading || section.closing}>
+        {section.heading ? <h4>{section.heading}</h4> : null}
+        {(section.paragraphs || []).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        {section.closing ? <p>{section.closing}</p> : null}
+      </section>
+    );
+  });
+}
+
+function SenseNarrative({ content }) {
+  if (!Array.isArray(content)) return <p>{content}</p>;
+  return <>{content.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</>;
+}
+
 function MobileSenseDisclosure({ storyId, details, labels }) {
   const [expanded, setExpanded] = useState(false);
   const detailsId = `${storyId}-mobile-details`;
@@ -671,7 +691,7 @@ function MobileSenseDisclosure({ storyId, details, labels }) {
         <span aria-hidden="true">{expanded ? "−" : "+"}</span>
       </button>
       <div id={detailsId} className="mobile-sense-details" role="region" aria-labelledby={buttonId} aria-hidden={!expanded}>
-        <div><p>{details}</p></div>
+        <div><SenseDetailContent content={details} /></div>
       </div>
     </div>
   );
@@ -1202,7 +1222,10 @@ export default function HomePage({ locale = "en" }) {
           <div className="sensory-stories" role="group" aria-label="The six senses of ASCENSION">
             {copy.sensoryStories.map((story, index) => {
               const media = sensoryMedia[story.id];
-              const senseCopy = { mobileSummary: story.mobile, details: story.desktop };
+              const senseCopy = {
+                mobileSummary: story.mobileSummary || story.mobile,
+                details: story.mobileDetails || story.desktop,
+              };
               const alignment = {
                 embody: "left",
                 see: "right",
@@ -1225,7 +1248,7 @@ export default function HomePage({ locale = "en" }) {
                   </header>
                   <div className="sensory-story-copy">
                     {story.quote ? <blockquote>{story.quote}</blockquote> : null}
-                    <p>{isMobile === false ? story.desktop : senseCopy.mobileSummary}</p>
+                    {isMobile === false ? <SenseNarrative content={story.desktop} /> : <p>{senseCopy.mobileSummary}</p>}
                     {isMobile !== false ? (
                       <MobileSenseDisclosure storyId={story.id} details={senseCopy.details} labels={ui.senseDisclosure} />
                     ) : null}

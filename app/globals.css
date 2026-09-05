@@ -220,6 +220,7 @@ section { position: relative; }
 .sensory-lockup-center .sensory-story-subtitle { align-self: center; }
 .sensory-story-copy { max-width: 43rem; }
 .sensory-story-copy > p { margin: 0; color: var(--ink); font-size: clamp(1.05rem, 1.4vw, 1.25rem); line-height: 1.65; }
+.sensory-story-copy > p + p { margin-top: 1rem; }
 .sensory-story-copy blockquote { margin: 0 0 1.5rem; color: var(--quiet); font: 400 clamp(1.35rem, 2vw, 1.8rem)/1.35 var(--display); }
 .sensory-link { display: inline-flex; min-height: 52px; align-items: center; gap: 1rem; margin-top: 1.75rem; font: 650 .73rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; text-underline-offset: .4rem; }
 .sensory-story-copy details { margin-top: 1.75rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
@@ -663,9 +664,16 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .mobile-sense-details { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .45s var(--ease-out), opacity .3s ease; }
   .mobile-sense-details > div { min-height: 0; overflow: hidden; }
   .mobile-sense-details p { margin: 0; padding: .15rem 0 1.4rem; color: var(--quiet); line-height: 1.65; }
+  .sense-detail-section + .sense-detail-section, .sense-detail-closing { margin-top: .65rem; }
+  .sense-detail-section h4 { margin: .35rem 0 .9rem; color: var(--burnt-sand); font: 650 .7rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
+  .sense-detail-closing { padding-top: .65rem; border-top: 1px solid var(--rule); }
+  .sense-detail-closing p { color: var(--ink); font-family: var(--display); font-size: 1.35rem; line-height: 1.15; }
   .mobile-sense-disclosure.is-expanded .mobile-sense-details { grid-template-rows: 1fr; opacity: 1; }
   .mobile-mid-senses-cta { display: flex; justify-content: center; padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
   .mobile-mid-senses-cta .radiant-action { width: min(100%, 24rem); }
+  .sensory-story-1 .sensory-story-keywords,
+  .sensory-story-1 .sensory-story-subtitle,
+  .sensory-story-1 .sensory-link { display: none; }
   .sensory-story-5 {
     min-height: 0;
     padding-right: calc(var(--gutter) + env(safe-area-inset-right));
