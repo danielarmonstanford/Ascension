@@ -654,7 +654,19 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .sensory-story-name { font-size: clamp(4.5rem, 22vw, 7rem); line-height: .78; }
   .sensory-story-subtitle { margin-top: 1.5rem; font-size: clamp(2rem, 9.5vw, 3rem); line-height: .98; }
   .sensory-story-copy { max-width: 100%; }
-  .sensory-story-5 { min-height: 110svh; }
+  .sensory-story-5 {
+    min-height: 110svh;
+    padding-right: calc(var(--gutter) + env(safe-area-inset-right));
+    padding-left: calc(var(--gutter) + env(safe-area-inset-left));
+  }
+  .sensory-story-5 .sensory-story-lockup,
+  .sensory-story-5 .sensory-story-copy { min-width: 0; max-width: 100%; }
+  .sensory-story-5 .sensory-story-name {
+    max-width: 100%;
+    font-size: clamp(3.8rem, 19vw, 6.5rem);
+    overflow-wrap: anywhere;
+  }
+  .sensory-story-5 .sensory-story-keywords { max-width: calc(100vw - 2 * var(--gutter) - env(safe-area-inset-left) - env(safe-area-inset-right)); }
   .sensory-story-5 > .sense-frame-breathe { order: initial; }
   .sensory-story-5 > .sense-frame-breathe::after { background: linear-gradient(180deg, rgba(5, 22, 31, .38) 0%, rgba(5, 22, 31, .58) 46%, rgba(5, 22, 31, .9) 100%); }
   .sensory-story-5 .sensory-story-heading { align-self: start; }
