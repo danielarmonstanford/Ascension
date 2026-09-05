@@ -226,6 +226,7 @@ section { position: relative; }
 .sensory-story-copy summary { min-height: 52px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; font: 650 .73rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .sensory-story-copy summary::-webkit-details-marker { display: none; }
 .sensory-story-copy details p { margin: 0; padding: 0 0 1.5rem; color: var(--quiet); line-height: 1.65; }
+.mobile-sense-disclosure, .mobile-mid-senses-cta { display: none; }
 .sensory-story-3 { margin-right: calc(-1 * var(--gutter)); margin-left: calc(-1 * var(--gutter)); padding-right: var(--gutter); padding-left: var(--gutter); background-color: var(--mist); background-image: linear-gradient(rgba(231, 240, 239, .78), rgba(231, 240, 239, .78)), url("https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp"); background-repeat: no-repeat; background-position: left center; background-size: cover; }
 :root[data-theme="dusk"] .sensory-story-3 { background-color: var(--night-sea); background-image: linear-gradient(rgba(16, 41, 50, .82), rgba(16, 41, 50, .82)), url("https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787663022/ear_sound_topographic_parchment_d1tm3s.webp"); }
 .sense-frame { position: relative; width: 100%; aspect-ratio: 622 / 368; margin-top: clamp(2.5rem, 5vw, 4rem); overflow: hidden; }
@@ -647,15 +648,26 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
 
   .sense-intro, .attendance-heading, .series-intro { grid-template-columns: 1fr; gap: 1.5rem; }
   .sense-intro h2 { font-size: clamp(3.8rem, 18vw, 6rem); }
-  .sensory-story { min-height: 70svh; grid-template-columns: 1fr; gap: 2.75rem; padding: 5rem 0; }
+  .sensory-story { min-height: 0; grid-template-columns: 1fr; gap: 1.75rem; padding: 3rem 0; }
   .sensory-story:nth-child(even) .sensory-story-heading,
   .sensory-story:nth-child(even) .sensory-story-copy { order: initial; }
+  .sensory-story-heading { display: flex; flex-direction: column; }
+  .sensory-story-heading > .sense-frame { order: -1; margin: 0 0 1.75rem; }
   .sensory-story-keywords { max-width: 100%; margin-top: 1rem; font-size: clamp(.6rem, 2.9vw, .72rem); letter-spacing: .1em; white-space: normal; }
   .sensory-story-name { font-size: clamp(4.5rem, 22vw, 7rem); line-height: .78; }
   .sensory-story-subtitle { margin-top: 1.5rem; font-size: clamp(2rem, 9.5vw, 3rem); line-height: .98; }
   .sensory-story-copy { max-width: 100%; }
+  .mobile-sense-disclosure { display: block; margin-top: 1.25rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .mobile-sense-disclosure > button { width: 100%; min-height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0; border: 0; background: transparent; color: inherit; font: 650 .73rem/1.4 var(--utility); letter-spacing: .12em; text-align: left; text-transform: uppercase; cursor: pointer; }
+  .mobile-sense-disclosure > button span { font-size: 1.1rem; font-weight: 400; }
+  .mobile-sense-details { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .45s var(--ease-out), opacity .3s ease; }
+  .mobile-sense-details > div { min-height: 0; overflow: hidden; }
+  .mobile-sense-details p { margin: 0; padding: .15rem 0 1.4rem; color: var(--quiet); line-height: 1.65; }
+  .mobile-sense-disclosure.is-expanded .mobile-sense-details { grid-template-rows: 1fr; opacity: 1; }
+  .mobile-mid-senses-cta { display: flex; justify-content: center; padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
+  .mobile-mid-senses-cta .radiant-action { width: min(100%, 24rem); }
   .sensory-story-5 {
-    min-height: 110svh;
+    min-height: 0;
     padding-right: calc(var(--gutter) + env(safe-area-inset-right));
     padding-left: calc(var(--gutter) + env(safe-area-inset-left));
   }
@@ -667,22 +679,21 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
     overflow-wrap: anywhere;
   }
   .sensory-story-5 .sensory-story-keywords { max-width: calc(100vw - 2 * var(--gutter) - env(safe-area-inset-left) - env(safe-area-inset-right)); }
-  .sensory-story-5 > .sense-frame-breathe { order: initial; }
+  .sensory-story-5 > .sense-frame-breathe { position: relative; inset: auto; order: 1; width: 100%; height: auto; aspect-ratio: 16 / 9; margin: 0; }
   .sensory-story-5 > .sense-frame-breathe::after { background: linear-gradient(180deg, rgba(5, 22, 31, .38) 0%, rgba(5, 22, 31, .58) 46%, rgba(5, 22, 31, .9) 100%); }
-  .sensory-story-5 .sensory-story-heading { align-self: start; }
-  .sensory-story-5 .sensory-story-copy { align-self: end; }
+  .sensory-story-5 .sensory-story-heading { order: 2; align-self: start; }
+  .sensory-story-5 .sensory-story-copy { order: 3; align-self: end; }
   .sensory-story-3 { margin-right: calc(-1 * var(--gutter)); margin-left: calc(-1 * var(--gutter)); padding-right: calc(var(--gutter) + env(safe-area-inset-right)); padding-left: calc(var(--gutter) + env(safe-area-inset-left)); background-position: left center; background-size: auto 100%; }
-  .sensory-story-3 .sensory-story-heading { order: 1; }
-  .sensory-story-3 > .sound-listening-stage { order: 2; }
+  .sensory-story-3 > .sound-listening-stage { order: 1; }
+  .sensory-story-3 .sensory-story-heading { order: 2; }
   .sensory-story-3 .sensory-story-copy { order: 3; }
-  .sense-frame { width: 100%; aspect-ratio: 4 / 5; margin-top: 2.5rem; }
+  .sense-frame { position: relative; width: 100%; height: auto; min-height: 0; aspect-ratio: 16 / 9; margin-top: 0; }
   .sense-frame .sense-art { object-position: var(--focal-mobile, 50% 50%); }
-  .sound-film { width: max(100%, 222%); height: 100%; }
-  .sensory-youtube-film { width: max(100%, 222%); height: 100%; }
-  .sound-meditation-player { top: 8%; width: calc(100% - 2rem); }
+  .sound-film, .sensory-youtube-film { width: 100%; height: 100%; }
+  .sound-meditation-player { top: .5rem; width: calc(100% - 1rem); height: calc(100% - 4.75rem); aspect-ratio: auto; }
   .sound-stage-controls { align-items: stretch; }
   .sound-film-control, .sound-meditate-control { flex: 1; justify-content: center; padding-right: .65rem; padding-left: .65rem; }
-  .sound-source-note { bottom: 5.75rem; text-align: center; }
+  .sound-source-note { display: none; }
   .create-credit { display: block; }
   .create-credit a { margin-top: .85rem; text-align: left; }
   .create-listening h4 { font-size: clamp(2.2rem, 11vw, 3.2rem); }

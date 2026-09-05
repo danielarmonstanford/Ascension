@@ -74,4 +74,5 @@ export const viUi = {
   entity:"ASCENSION là hành trình chăm sóc sức khỏe và văn hóa kéo dài bảy hoặc mười bốn ngày tại Đà Nẵng, Việt Nam, từ 12–26 tháng 1 năm 2027. Nền tảng là Diện Chẩn, phương pháp Việt Nam không dùng kim, kết hợp phản xạ học, day ấn huyệt, nhiệt, kéo giãn và trị liệu toàn thân theo từng người.",
   sixWays:"Sáu lối vào\nhiện tại.", passport:"Hộ chiếu ASCENSION của bạn", experienceRhythm:"Trải nghiệm của bạn.\nNhịp điệu của bạn.", curatedFreedom:"Theo một chương trình được tuyển chọn mà vẫn giữ tự do.", passportBody:"Hộ chiếu ASCENSION mở ra các trải nghiệm chung đã xác nhận, đồng thời để bạn nghỉ ngơi, khám phá Đà Nẵng và chọn các buổi riêng tùy ý.",
   faqKicker:"Trước khi bạn đến", faqTitle:"Câu hỏi,\nđã được giải đáp.", facilitator:"Người hướng dẫn", apply:"Đăng ký hướng dẫn",
+  senseDisclosure:{more:"Khám phá thêm",less:"Thu gọn"}, midSenseCta:"Đăng ký tham gia",
 };
