@@ -674,7 +674,7 @@ function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, on
           playsInline
           autoPlay={isMobile}
           loop={isMobile}
-          preload={isMobile ? "metadata" : "auto"}
+          preload="auto"
           poster={HERO_POSTER}
           aria-hidden="true"
           tabIndex="-1"
@@ -824,6 +824,42 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
     };
   }, [isMobile, motionReady]);
 
+  useEffect(() => {
+    if (!isMobile) return;
+
+    let unlockInFlight = false;
+
+    const removeUnlockListeners = () => {
+      window.removeEventListener("touchstart", unlockMobileVideo);
+      window.removeEventListener("pointerdown", unlockMobileVideo);
+      window.removeEventListener("scroll", unlockMobileVideo);
+    };
+
+    const unlockMobileVideo = () => {
+      const video = videoRef.current;
+      if (!video || unlockInFlight) return;
+
+      video.muted = true;
+      video.playsInline = true;
+      unlockInFlight = true;
+      video.play().then(() => {
+        removeUnlockListeners();
+        if (metadataReady.current && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+          canPlayReady.current = true;
+          setMotionReady(true);
+        }
+      }).catch(() => {
+        unlockInFlight = false;
+      });
+    };
+
+    window.addEventListener("touchstart", unlockMobileVideo, { passive: true });
+    window.addEventListener("pointerdown", unlockMobileVideo, { passive: true });
+    window.addEventListener("scroll", unlockMobileVideo, { passive: true });
+
+    return removeUnlockListeners;
+  }, [isMobile]);
+
   return (
     <header className={`hero-scroll ${isMobile ? "hero-mobile" : "hero-desktop"}`} id="top" ref={scrollRef}>
       <div className="hero-stage" ref={stageRef}>
@@ -843,10 +879,11 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
           onPlaying={() => {
             if (metadataReady.current && canPlayReady.current) setMotionReady(true);
           }}
-          onWaiting={() => setMotionReady(false)}
+          onWaiting={() => {
+            if (!metadataReady.current || !canPlayReady.current) setMotionReady(false);
+          }}
           onSeeking={() => {
             seekInFlight.current = true;
-            setMotionReady(false);
           }}
           onSeeked={() => {
             seekInFlight.current = false;
