@@ -1079,8 +1079,12 @@ function FoundationSection({ isMobile, copy, isVi }) {
         <p>{isMobile === false ? foundation.desktop : foundation.mobile}</p>
         <div className="foundation-practitioner" aria-label="Confirmed Diện Chẩn practitioner">
           <span>{isVi ? "Người thực hành đã xác nhận · Diện Chẩn hằng ngày" : "Confirmed practitioner · Daily Diện Chẩn"}</span>
-          <strong>Dr. Huỳnh Bảo Loan</strong>
+          <strong>Y sĩ Huỳnh Bảo Loan</strong>
           <small>{isVi ? "Đà Nẵng, Việt Nam" : "Da Nang, Vietnam"}</small>
+          <ul className="foundation-credentials" aria-label="Professional credentials">
+            <li>Y sĩ — Physician-level credential in Vietnam</li>
+            {(foundation.credentials || []).map((credential) => <li key={credential}>{credential}</li>)}
+          </ul>
         </div>
         <details>
           <summary>{isVi ? "Tìm hiểu sâu hơn" : "Go deeper"} <span aria-hidden="true">→</span></summary>

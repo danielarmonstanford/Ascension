@@ -19,7 +19,8 @@ export const vi = {
     title: "Một cơ thể. Mọi thứ đều kết nối.",
     mobile: "Diện Chẩn là phương pháp Việt Nam không dùng kim, kết hợp phản xạ học, day ấn huyệt, nhiệt, kéo giãn và trị liệu toàn thân. Mỗi buổi được điều chỉnh theo từng người—không theo một quy trình cố định.",
     desktop: "Diện Chẩn là nền tảng trị liệu của ASCENSION—một phương pháp đặc trưng của Việt Nam dựa trên sự thấu hiểu rằng cơ thể là một thể thống nhất. Bằng day ấn huyệt không dùng kim, phản xạ học, nhiệt, kéo giãn và trị liệu có chủ đích, người thực hành có thể tác động lên mặt, đầu, bàn tay, bàn chân, tay chân và lưng. Mỗi buổi đáp ứng nhu cầu riêng thay vì theo một quy trình cố định.",
-    leader: "Các buổi Diện Chẩn hằng ngày do BS. Huỳnh Bảo Loan, Đà Nẵng, phụ trách.",
+    leader: "Các buổi Diện Chẩn hằng ngày do Y sĩ Huỳnh Bảo Loan, Đà Nẵng, phụ trách.",
+    credentials: ["Licensed Traditional Medicine Practitioner", "Licensed Acupressure & Massage Therapist", "Licensed Healthcare Practitioner (Acupressure, Traditional Medicine)"],
     details: [
       "Khuôn mặt có thể là điểm khởi đầu. Toàn bộ cơ thể là hành trình. Diện Chẩn thường bắt đầu từ các điểm phản xạ trên mặt và đầu, nhưng không giới hạn ở phản xạ vùng mặt. Người thực hành lắng nghe cơ thể và tác động nơi cần được quan tâm.",
       "Một buổi có thể kết hợp lực ấn có chủ đích, dụng cụ chuyên biệt, nhiệt trị liệu, kéo giãn và thao tác toàn thân. Bàn tay. Bàn chân. Đầu. Tay chân. Lưng. Chuyển động. Căng thẳng. Kết nối.",
@@ -60,7 +61,7 @@ export const viFaqItems = [
   ["Giá chương trình bao gồm gì?","Giá bao gồm quyền tham gia chương trình chung ASCENSION đã xác nhận và nhóm khách. Hạng mục cuối cùng sẽ được nêu rõ trước khi đặt chỗ."],
   ["Chỗ ở và chuyến bay có bao gồm không?","Không. Khách tự chọn và đặt chỗ ở, chuyến bay và di chuyển địa phương."],
   ["7 ngày và 14 ngày khác nhau thế nào?","Chương trình 7 ngày diễn ra 12–19 tháng 1 năm 2027, giá 1.200 USD. Chương trình đầy đủ 14 ngày diễn ra 12–26 tháng 1, giá 2.000 USD."],
-  ["Ai là người hướng dẫn?","BS. Huỳnh Bảo Loan phụ trách Diện Chẩn hằng ngày. Các người hướng dẫn khác sẽ được công bố khi thỏa thuận được xác nhận."],
+  ["Ai là người hướng dẫn?","Y sĩ Huỳnh Bảo Loan phụ trách Diện Chẩn hằng ngày. Bà là Licensed Traditional Medicine Practitioner, Licensed Acupressure & Massage Therapist và Licensed Healthcare Practitioner (Acupressure, Traditional Medicine). Các người hướng dẫn khác sẽ được công bố khi thỏa thuận được xác nhận."],
   ["Chính sách hủy là gì?","Khoản đặt cọc 300 USD giữ chỗ; số dư đến hạn 30 ngày trước 12 tháng 1 năm 2027. Hủy trước từ 60 ngày được hoàn đủ trừ phí hành chính 25 USD; hủy trước 30–60 ngày được hoàn 50%; dưới 30 ngày không hoàn. Buổi riêng không hoàn tiền sau khi đặt."],
   ["Làm thế nào để giữ chỗ?","Chọn liên kết Đặt chỗ. Trang thanh toán hiện yêu cầu khoản đặt cọc 300 USD."],
 ];
