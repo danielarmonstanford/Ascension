@@ -1,11 +1,11 @@
+import Image from "next/image";
 import styles from "./join.module.css";
 import InterestForm from "./interest-form";
 import StickyInterestAction from "./sticky-interest-action";
 
-const HERO_POSTER =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1800/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
-const DIEN_CHAN_VISUAL =
-  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1200/v1787672842/hf_20260825_154036_0f54f781-11e4-4fd2-bc2e-b20f07766ac2_tuvnzo.png";
+const HERO_POSTER = "/assets/funnel/da-nang-dusk.png";
+const DIEN_CHAN_VISUAL = "/assets/funnel/dien-chan-circle.png";
+const MORNING_MOVEMENT = "/assets/funnel/morning-movement.png";
 
 export const metadata = {
   title: "Join ASCENSION SENSES | Da Nang 2027",
@@ -55,7 +55,7 @@ export default function JoinPage() {
 
       <header className={styles.hero} id="funnel-hero">
         <div className={styles.media} aria-hidden="true">
-          <img src={HERO_POSTER} alt="" />
+          <Image src={HERO_POSTER} alt="" fill priority sizes="100vw" />
         </div>
         <div className={styles.scrim} />
 
@@ -155,7 +155,7 @@ export default function JoinPage() {
           </p>
         </div>
         <div className={styles.practitioner}>
-          <img src={DIEN_CHAN_VISUAL} alt="Needle-free Diện Chẩn reflexology and acupressure practice" loading="lazy" />
+          <Image src={DIEN_CHAN_VISUAL} alt="A small group observing a gentle Vietnamese facial reflexology demonstration" width={1122} height={1402} sizes="(max-width: 820px) 100vw, 32vw" />
           <p>Led daily by</p>
           <h3>Y sĩ Huỳnh<br />Bảo Loan</h3>
           <p>Licensed Traditional Medicine Practitioner<br />Licensed Acupressure &amp; Massage Therapist</p>
@@ -168,6 +168,7 @@ export default function JoinPage() {
           <h2 id="day-title">Enough structure to arrive.<br />Enough freedom to breathe.</h2>
         </div>
         <p className={styles.dayLead}>No two days need to feel identical. The program balances dependable daily anchors with selected cultural experiences and unprogrammed space.</p>
+        <Image className={styles.dayImage} src={MORNING_MOVEMENT} alt="A small international group practicing gentle movement on a Da Nang terrace at sunrise" width={1672} height={941} sizes="(max-width: 820px) 100vw, 91vw" />
         <ol>
           <li><strong>Morning</strong><span>Breath, mobility and embodied practice.</span></li>
           <li><strong>Midday</strong><span>Vietnamese wellness, food and rest.</span></li>
