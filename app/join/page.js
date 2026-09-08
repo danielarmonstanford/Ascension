@@ -3,7 +3,8 @@ import styles from "./join.module.css";
 import InterestForm from "./interest-form";
 import StickyInterestAction from "./sticky-interest-action";
 
-const HERO_POSTER = "/assets/funnel/da-nang-dusk.png";
+const HERO_POSTER =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_2000/v1788887672/da-nang-dusk_il93gv.png";
 const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1200/v1788887674/dien-chan-circle_amacjw.png";
 const MORNING_MOVEMENT =
