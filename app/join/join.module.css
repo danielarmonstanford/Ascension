@@ -73,10 +73,11 @@
 .offerAction { display: flex; align-items: center; gap: 1.5rem; margin: 2.5rem 0 0 auto; width: fit-content; }
 
 .trust { background: #173744; color: #f1e6d5; }
+.trust { align-items: center; }
 .trust .sectionNumber { color: var(--funnel-gold); }
 .trust > div:nth-child(2) p { max-width: 37rem; color: rgba(241,230,213,.8); font-size: 1.05rem; line-height: 1.7; }
-.practitioner { align-self: end; padding-top: 1.5rem; border-top: 1px solid rgba(241,230,213,.35); }
-.practitioner img { width: 100%; aspect-ratio: 4 / 5; display: block; margin: 0 0 1.5rem; object-fit: cover; object-position: center 42%; }
+.practitioner { width: min(100%, 27rem); justify-self: end; align-self: center; padding-top: 1.5rem; border-top: 1px solid rgba(241,230,213,.35); }
+.practitioner img { width: 100%; aspect-ratio: 1; display: block; margin: 0 0 1.5rem; object-fit: cover; object-position: center 42%; }
 .practitioner p { margin: 0; font: 600 .65rem/1.6 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
 .practitioner h3 { margin: 1rem 0 1.5rem; color: #efb08b; font: 400 clamp(3.2rem, 5vw, 5.4rem)/.84 var(--display); font-weight: 400; letter-spacing: -.035em; }
 
@@ -149,6 +150,7 @@
   .orientation, .trust, .questions, .offerIntro, .hideout { grid-template-columns: 2.5rem 1fr; }
   .orientation > div, .trust > div:nth-child(2), .offerIntro h2, .hideout > div:nth-child(2) { grid-column: 2; }
   .factList, .practitioner, .offerIntro > p:last-child, .hideoutImage, .hideoutCopy { grid-column: 2; }
+  .practitioner { justify-self: start; }
   .rhythm { grid-template-columns: 1fr; }
   .rhythmHeading { position: static; }
   .rhythm li { grid-template-columns: 1fr; gap: .75rem; }
@@ -177,6 +179,7 @@
   .reserve { width: 100%; }
   .orientation, .trust, .questions, .hideout { grid-template-columns: 1fr; gap: 1.5rem; }
   .orientation > div, .trust > div:nth-child(2), .factList, .practitioner, .questions > div:first-of-type, .disclosures, .hideout > div:nth-child(2), .hideoutImage, .hideoutCopy { grid-column: 1; }
+  .practitioner { width: 100%; }
   .offerIntro { grid-template-columns: 1fr; }
   .offerIntro h2, .offerIntro > p:last-child { grid-column: 1; }
   .rhythm strong { font-size: 4rem; }
