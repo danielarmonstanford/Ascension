@@ -9,6 +9,8 @@ const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1200/v1788887674/dien-chan-circle_amacjw.png";
 const MORNING_MOVEMENT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1800/v1788887673/morning-movement_cqsgnn.png";
+const HIDEOUT_VISUAL =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1800/v1788050463/Hideout_Bath_scene_qwpu7q.jpg";
 
 export const metadata = {
   title: "Join ASCENSION SENSES | Da Nang 2027",
@@ -186,6 +188,7 @@ export default function JoinPage() {
           <p className={styles.hideoutLabel}>Planned featured venue</p>
           <h2 id="hideout-title">Hideout<br />Wellness</h2>
         </div>
+        <Image className={styles.hideoutImage} src={HIDEOUT_VISUAL} alt="A restorative bath setting at Hideout Wellness in Da Nang" width={1800} height={1200} sizes="(max-width: 820px) 100vw, 44vw" />
         <div className={styles.hideoutCopy}>
           <p>ASCENSION moves through Da Nang. Alongside our primary host setting, selected recovery experiences are planned at Hideout Wellness—bringing contrast therapy, sauna and deep rest into the fortnight’s rhythm.</p>
           <p>Subject to final venue confirmation and availability.</p>

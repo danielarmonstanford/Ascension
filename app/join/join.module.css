@@ -94,7 +94,8 @@
 .hideout .sectionNumber { align-self: start; color: var(--funnel-gold); }
 .hideoutLabel { margin: 0 0 1.25rem; color: var(--funnel-gold); font: 650 .67rem/1.4 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
 .hideout h2 { margin: 0; font: 400 clamp(4.5rem, 8.5vw, 9rem)/.78 var(--display); letter-spacing: -.045em; }
-.hideoutCopy { padding-top: 1.5rem; border-top: 1px solid rgba(241,230,213,.35); }
+.hideoutImage { grid-column: 3; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.hideoutCopy { grid-column: 3; padding-top: 1.5rem; border-top: 1px solid rgba(241,230,213,.35); }
 .hideoutCopy p { margin: 0 0 1.25rem; color: rgba(241,230,213,.88); line-height: 1.68; }
 .hideoutCopy p:nth-child(2) { color: rgba(241,230,213,.7); font-size: .78rem; }
 .hideoutCopy a { min-height: 44px; display: inline-flex; align-items: center; font: 650 .68rem/1.4 var(--utility); letter-spacing: .1em; text-transform: uppercase; text-underline-offset: .42rem; }
@@ -147,7 +148,7 @@
   .heroFacts { display: none; }
   .orientation, .trust, .questions, .offerIntro, .hideout { grid-template-columns: 2.5rem 1fr; }
   .orientation > div, .trust > div:nth-child(2), .offerIntro h2, .hideout > div:nth-child(2) { grid-column: 2; }
-  .factList, .practitioner, .offerIntro > p:last-child, .hideoutCopy { grid-column: 2; }
+  .factList, .practitioner, .offerIntro > p:last-child, .hideoutImage, .hideoutCopy { grid-column: 2; }
   .rhythm { grid-template-columns: 1fr; }
   .rhythmHeading { position: static; }
   .rhythm li { grid-template-columns: 1fr; gap: .75rem; }
@@ -175,7 +176,7 @@
   .heroAction { flex-direction: column; align-items: flex-start; gap: .8rem; }
   .reserve { width: 100%; }
   .orientation, .trust, .questions, .hideout { grid-template-columns: 1fr; gap: 1.5rem; }
-  .orientation > div, .trust > div:nth-child(2), .factList, .practitioner, .questions > div:first-of-type, .disclosures, .hideout > div:nth-child(2), .hideoutCopy { grid-column: 1; }
+  .orientation > div, .trust > div:nth-child(2), .factList, .practitioner, .questions > div:first-of-type, .disclosures, .hideout > div:nth-child(2), .hideoutImage, .hideoutCopy { grid-column: 1; }
   .offerIntro { grid-template-columns: 1fr; }
   .offerIntro h2, .offerIntro > p:last-child { grid-column: 1; }
   .rhythm strong { font-size: 4rem; }
