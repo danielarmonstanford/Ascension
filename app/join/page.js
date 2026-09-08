@@ -4,6 +4,8 @@ import InterestForm from "./interest-form";
 import StickyInterestAction from "./sticky-interest-action";
 
 const HERO_POSTER =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_2000/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
+const DUSK_GROUP =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_2000/v1788887672/da-nang-dusk_il93gv.png";
 const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1200/v1788887674/dien-chan-circle_amacjw.png";
@@ -223,6 +225,7 @@ export default function JoinPage() {
       </section>
 
       <footer className={styles.final}>
+        <Image className={styles.finalImage} src={DUSK_GROUP} alt="An ASCENSION group walking along the Da Nang coast at dusk" fill sizes="100vw" />
         <p>ASCENSION · A MODUS SERIES</p>
         <h2>Heal your soul.<br />Revive your senses.</h2>
         <InterestAction />

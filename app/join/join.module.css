@@ -84,7 +84,7 @@
 .dayRhythm { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(19rem, .65fr); gap: clamp(2rem, 7vw, 8rem); padding: clamp(6rem, 11vw, 11rem) clamp(1.25rem, 4.7vw, 5.25rem); background: var(--funnel-shell); }
 .dayRhythm h2 { margin: 1.5rem 0 0; max-width: 12ch; font: 400 clamp(3.5rem, 6.5vw, 7rem)/.87 var(--display); letter-spacing: -.04em; }
 .dayLead { align-self: end; margin: 0; color: #496970; font-size: 1.05rem; line-height: 1.65; }
-.dayImage { grid-column: 1 / -1; width: 100%; height: auto; margin-top: 2rem; object-fit: cover; }
+.dayImage { grid-column: 1 / -1; width: 100%; max-height: 34rem; margin-top: 2rem; object-fit: cover; object-position: center 48%; }
 .dayRhythm ol { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); margin: 2rem 0 0; padding: 0; border-top: 1px solid rgba(23,55,68,.25); border-bottom: 1px solid rgba(23,55,68,.25); list-style: none; }
 .dayRhythm li { min-height: 11rem; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; padding: 1.5rem; border-right: 1px solid rgba(23,55,68,.2); }
 .dayRhythm li:first-child { border-left: 1px solid rgba(23,55,68,.2); }
@@ -132,7 +132,10 @@
 .success h3 { margin: 1rem 0; font: 400 clamp(2.5rem, 4vw, 4rem)/.95 var(--display); font-weight: 400; }
 .success > p:last-child { color: #496970; line-height: 1.6; }
 
-.final { position: relative; z-index: auto; inset: auto; min-height: 86svh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; padding: clamp(6rem, 11vw, 11rem) clamp(1.25rem, 4.7vw, 5.25rem) calc(3rem + env(safe-area-inset-bottom)); border-top: 0; background: linear-gradient(125deg, #315a67 0%, #173744 62%, #102932 100%); color: #f1e6d5; }
+.final { position: relative; z-index: auto; inset: auto; min-height: 86svh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; overflow: hidden; padding: clamp(6rem, 11vw, 11rem) clamp(1.25rem, 4.7vw, 5.25rem) calc(3rem + env(safe-area-inset-bottom)); border-top: 0; background: #102932; color: #f1e6d5; }
+.final::after { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgba(6,29,40,.82) 0%, rgba(6,29,40,.4) 58%, rgba(6,29,40,.3) 100%), linear-gradient(0deg, rgba(6,29,40,.72), transparent 58%); }
+.finalImage { z-index: 0; object-fit: cover; object-position: center; }
+.final > :not(.finalImage) { position: relative; z-index: 2; }
 .final > p { margin: 0 0 2rem; color: var(--funnel-gold); font: 600 .68rem/1.5 var(--utility); letter-spacing: .15em; text-transform: uppercase; }
 .final h2 { margin: 0 0 3rem; font: 400 clamp(5rem, 11vw, 11rem)/.8 var(--display); letter-spacing: -.045em; }
 .final .legal { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 1.5rem; width: auto; max-width: none; margin-top: auto; padding-top: 5rem; font: 600 .64rem/1 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
@@ -190,7 +193,11 @@
   .clarity div:first-child, .clarity div:nth-child(3) { border-left: 0; }
   .dayRhythm ol { grid-template-columns: 1fr 1fr; }
   .dayRhythm li { min-height: 9rem; padding: 1.1rem; }
-  .dayImage { min-height: 15rem; aspect-ratio: 4 / 3; object-position: 58% center; }
+  .dayImage { height: 12rem; min-height: 0; aspect-ratio: auto; object-position: 58% center; }
+  .practitioner { width: min(100%, 20rem); }
+  .hideoutImage { width: min(100%, 20rem); justify-self: start; aspect-ratio: 1; }
+  .final { min-height: 78svh; }
+  .finalImage { object-position: 62% center; }
   .dayRhythm strong { font-size: 2.25rem; }
   .apply { padding-bottom: 7.5rem; }
   .stickyAction { position: fixed; z-index: 40; left: calc(.75rem + env(safe-area-inset-left)); right: calc(.75rem + env(safe-area-inset-right)); bottom: calc(.75rem + env(safe-area-inset-bottom)); min-height: 50px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.72); border-radius: .9rem; background: linear-gradient(112deg, #eaa43f, #ffd45f 52%, #fff0ad); box-shadow: 0 8px 28px rgba(16,41,50,.32); color: #102932; font: 700 .66rem/1.2 var(--utility); letter-spacing: .1em; text-align: center; text-decoration: none; text-transform: uppercase; opacity: 0; transform: translateY(calc(100% + 2rem)); pointer-events: none; transition: opacity .25s ease, transform .35s var(--ease-out); }
