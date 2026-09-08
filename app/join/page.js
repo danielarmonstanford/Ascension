@@ -6,7 +6,8 @@ import StickyInterestAction from "./sticky-interest-action";
 const HERO_POSTER = "/assets/funnel/da-nang-dusk.png";
 const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1200/v1788887674/dien-chan-circle_amacjw.png";
-const MORNING_MOVEMENT = "/assets/funnel/morning-movement.png";
+const MORNING_MOVEMENT =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1800/v1788887673/morning-movement_cqsgnn.png";
 
 export const metadata = {
   title: "Join ASCENSION SENSES | Da Nang 2027",
