@@ -162,7 +162,9 @@ export default function JoinPage() {
           </p>
         </div>
         <div className={styles.practitioner}>
-          <Image src={DIEN_CHAN_VISUAL} alt="A small group observing a gentle Vietnamese facial reflexology demonstration" width={1122} height={1402} sizes="(max-width: 820px) 100vw, 32vw" />
+          <div className={styles.practitionerImage}>
+            <Image src={DIEN_CHAN_VISUAL} alt="A small group observing a gentle Vietnamese facial reflexology demonstration" fill sizes="(max-width: 520px) 20rem, (max-width: 1050px) 27rem, 27rem" />
+          </div>
           <p>Led daily by</p>
           <h3>Y sĩ Huỳnh<br />Bảo Loan</h3>
           <p>Licensed Traditional Medicine Practitioner<br />Licensed Acupressure &amp; Massage Therapist</p>
