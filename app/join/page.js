@@ -4,7 +4,8 @@ import InterestForm from "./interest-form";
 import StickyInterestAction from "./sticky-interest-action";
 
 const HERO_POSTER = "/assets/funnel/da-nang-dusk.png";
-const DIEN_CHAN_VISUAL = "/assets/funnel/dien-chan-circle.png";
+const DIEN_CHAN_VISUAL =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1200/v1788887674/dien-chan-circle_amacjw.png";
 const MORNING_MOVEMENT = "/assets/funnel/morning-movement.png";
 
 export const metadata = {
