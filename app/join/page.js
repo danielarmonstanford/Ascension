@@ -1,8 +1,11 @@
 import styles from "./join.module.css";
-import { RESERVATION_URL } from "../seo";
+import InterestForm from "./interest-form";
+import StickyInterestAction from "./sticky-interest-action";
 
 const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1800/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
+const DIEN_CHAN_VISUAL =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1200/v1787672842/hf_20260825_154036_0f54f781-11e4-4fd2-bc2e-b20f07766ac2_tuvnzo.png";
 
 export const metadata = {
   title: "Join ASCENSION SENSES | Da Nang 2027",
@@ -20,31 +23,26 @@ const details = [
 
 const faq = [
   [
-    "What does my reservation cover?",
-    "The checkout takes a USD $300 deposit toward your chosen program. Accommodation, flights and local transfers are separate.",
+    "What is included?",
+    "Your selected ASCENSION program includes confirmed shared programming built around daily Diện Chẩn. The final inclusion schedule is supplied before any non-refundable payment.",
   ],
   [
     "Do I need experience?",
     "No. You do not need previous experience with movement, meditation, bodywork or creative practice. Participate in your own way.",
   ],
   [
-    "What is confirmed?",
-    "Diện Chẩn is led daily by Y sĩ Huỳnh Bảo Loan, a licensed traditional medicine and healthcare practitioner and licensed acupressure and massage therapist. Additional planned experiences and facilitators are announced only as agreements are confirmed.",
+    "What is booked separately?",
+    "Flights, accommodation, visas, personal insurance, most transportation and meals not explicitly listed. Guests choose and book their own accommodation.",
   ],
   [
-    "What is the cancellation policy?",
-    "Cancel 60 or more days before the program for a full refund less a $25 administration fee; 30–60 days before for a 50% refund. Under 30 days, payments are non-refundable. Private sessions are non-refundable once booked.",
+    "Is this medical care?",
+    "No. ASCENSION is a wellness, cultural and educational experience. It does not replace medical advice, diagnosis, treatment or professional healthcare.",
   ],
 ];
 
-function ReserveAction({ label = "Reserve your place" }) {
+function InterestAction({ label = "Request the private overview" }) {
   return (
-    <a
-      className={styles.reserve}
-      href={RESERVATION_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a className={styles.reserve} href="#apply">
       {label}<span aria-hidden="true">→</span>
     </a>
   );
@@ -55,7 +53,7 @@ export default function JoinPage() {
     <main className={styles.page}>
       <a className={styles.skip} href="#offer">Skip to program options</a>
 
-      <header className={styles.hero}>
+      <header className={styles.hero} id="funnel-hero">
         <div className={styles.media} aria-hidden="true">
           <img src={HERO_POSTER} alt="" />
         </div>
@@ -73,9 +71,10 @@ export default function JoinPage() {
             Seven or fourteen days between the city, sea and mountains of Da Nang.
           </p>
           <div className={styles.heroAction}>
-            <ReserveAction />
-            <p>USD $300 deposit</p>
+            <InterestAction />
+            <a className={styles.secondaryAction} href="#experience">See the experience</a>
           </div>
+          <p className={styles.microcopy}>A short expression of interest—not a payment or commitment.</p>
         </div>
 
         <dl className={styles.heroFacts}>
@@ -85,12 +84,18 @@ export default function JoinPage() {
         </dl>
       </header>
 
-      <section className={styles.orientation} aria-labelledby="orientation-title">
+      <section className={styles.clarity} aria-label="Program at a glance">
+        {details.map(([term, value]) => (
+          <div key={term}><strong>{value}</strong><span>{term}</span></div>
+        ))}
+      </section>
+
+      <section className={styles.orientation} id="experience" aria-labelledby="orientation-title">
         <p className={styles.sectionNumber}>01</p>
         <div>
-          <h2 id="orientation-title">Come back to what you can feel.</h2>
+          <h2 id="orientation-title">A living curation, not a rigid itinerary.</h2>
           <p className={styles.largeCopy}>
-            ASCENSION is an immersive wellness and cultural happening shaped by Vietnamese practice, movement, sound, food, creativity and place.
+            ASCENSION is for curious people who want depth without dogma: daily anchors, room for discovery and access to a Vietnamese practice rooted in place.
           </p>
         </div>
         <dl className={styles.factList}>
@@ -136,8 +141,8 @@ export default function JoinPage() {
           </article>
         </div>
         <div className={styles.offerAction}>
-          <ReserveAction />
-          <p>Secure either program with a USD $300 deposit.</p>
+          <InterestAction />
+          <p>No charge today. Accommodation and travel are separate.</p>
         </div>
       </section>
 
@@ -150,16 +155,31 @@ export default function JoinPage() {
           </p>
         </div>
         <div className={styles.practitioner}>
+          <img src={DIEN_CHAN_VISUAL} alt="Needle-free Diện Chẩn reflexology and acupressure practice" loading="lazy" />
           <p>Led daily by</p>
           <h3>Y sĩ Huỳnh<br />Bảo Loan</h3>
           <p>Licensed Traditional Medicine Practitioner<br />Licensed Acupressure &amp; Massage Therapist</p>
         </div>
       </section>
 
-      <section className={styles.questions} aria-labelledby="questions-title">
+      <section className={styles.dayRhythm} aria-labelledby="day-title">
         <div>
           <p className={styles.sectionNumber}>05</p>
-          <h2 id="questions-title">Before you reserve.</h2>
+          <h2 id="day-title">Enough structure to arrive.<br />Enough freedom to breathe.</h2>
+        </div>
+        <p className={styles.dayLead}>No two days need to feel identical. The program balances dependable daily anchors with selected cultural experiences and unprogrammed space.</p>
+        <ol>
+          <li><strong>Morning</strong><span>Breath, mobility and embodied practice.</span></li>
+          <li><strong>Midday</strong><span>Vietnamese wellness, food and rest.</span></li>
+          <li><strong>Afternoon</strong><span>Creative or cultural immersion.</span></li>
+          <li><strong>Evening</strong><span>Sound, movement, conversation—or space.</span></li>
+        </ol>
+      </section>
+
+      <section className={styles.questions} aria-labelledby="questions-title">
+        <div>
+          <p className={styles.sectionNumber}>06</p>
+          <h2 id="questions-title">Before you decide.</h2>
         </div>
         <div className={styles.disclosures}>
           {faq.map(([question, answer]) => (
@@ -171,14 +191,26 @@ export default function JoinPage() {
         </div>
       </section>
 
+      <section className={styles.apply} id="apply" aria-labelledby="apply-title">
+        <div className={styles.applyCopy}>
+          <p className={styles.sectionNumber}>Private overview</p>
+          <h2 id="apply-title">Could this be your January?</h2>
+          <p>Tell us what draws you to ASCENSION. We will send the concise program overview, current logistics and an invitation to a short fit conversation.</p>
+          <p className={styles.applyPrice}>7 days · USD $1,200<br />14 days · USD $2,000</p>
+          <p className={styles.microcopy}>Accommodation and travel are separate. No charge today.</p>
+        </div>
+        <InterestForm styles={styles} />
+      </section>
+
       <footer className={styles.final}>
-        <p>Da Nang · January 12–26, 2027</p>
-        <h2>Ready to feel<br />the difference?</h2>
-        <ReserveAction />
+        <p>ASCENSION · A MODUS SERIES</p>
+        <h2>Heal your soul.<br />Revive your senses.</h2>
+        <InterestAction />
         <div className={styles.legal}>
           <a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="mailto:daniel@stanfordemporium.com">Ask a question</a>
         </div>
       </footer>
+      <StickyInterestAction styles={styles} />
     </main>
   );
 }
