@@ -180,9 +180,22 @@ export default function JoinPage() {
         </ol>
       </section>
 
+      <section className={styles.hideout} aria-labelledby="hideout-title">
+        <p className={styles.sectionNumber}>06</p>
+        <div>
+          <p className={styles.hideoutLabel}>Planned featured venue</p>
+          <h2 id="hideout-title">Hideout<br />Wellness</h2>
+        </div>
+        <div className={styles.hideoutCopy}>
+          <p>ASCENSION moves through Da Nang. Alongside our primary host setting, selected recovery experiences are planned at Hideout Wellness—bringing contrast therapy, sauna and deep rest into the fortnight’s rhythm.</p>
+          <p>Subject to final venue confirmation and availability.</p>
+          <a href="https://hideoutwellness.com/" target="_blank" rel="noopener noreferrer">Explore Hideout Wellness</a>
+        </div>
+      </section>
+
       <section className={styles.questions} aria-labelledby="questions-title">
         <div>
-          <p className={styles.sectionNumber}>06</p>
+          <p className={styles.sectionNumber}>07</p>
           <h2 id="questions-title">Before you decide.</h2>
         </div>
         <div className={styles.disclosures}>
