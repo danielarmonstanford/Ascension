@@ -2,8 +2,9 @@ export const en = {
   language: "en",
   status: "approved",
   hero: {
-    mobile: "Seven or fourteen days of Vietnamese wellness, movement, sound, food and creative renewal.",
-    desktop: "A seven- or fourteen-day journey through Vietnamese wellness, movement, sound, food, culture and creativity—between the city, sea and mountains of Da Nang.",
+    subheading: "A different way to experience wellness—and Vietnam.",
+    mobile: "Reconnect with your body through an intimate 7- or 14-day experience bringing together Vietnamese wellness, movement, recovery, sound, creativity, food and cultural discovery.",
+    desktop: "Reconnect with your body through an intimate 7- or 14-day experience bringing together Vietnamese wellness, movement, recovery, sound, creativity, food and cultural discovery.",
   },
   introduction: {
     title: "Not a retreat from life. A return to it.",
@@ -12,7 +13,14 @@ export const en = {
       "ASCENSION brings together Vietnamese traditional wellness, movement, sound, food, culture and creativity within one carefully curated experience.",
       "Follow a shared rhythm without losing your freedom. Participate in what serves you. Rest when you need to. Explore Da Nang and leave space for what surprises you.",
     ],
-    progression: ["Arrive in the body.", "Open the senses.", "Experience the place.", "Return renewed."],
+    progression: [
+      { label: "ARRIVE", copy: "Settle into Da Nang and the rhythm of the cohort." },
+      { label: "RELEASE", copy: "Explore touch, recovery and accumulated tension." },
+      { label: "MOVE", copy: "Reconnect breath, mobility and embodied awareness." },
+      { label: "CREATE", copy: "Engage observation, intuition and expression." },
+      { label: "DISCOVER", copy: "Experience Vietnamese place, food and culture." },
+      { label: "INTEGRATE", copy: "Leave with practices and perspectives that can continue at home." },
+    ],
   },
   foundation: {
     eyebrow: "The foundation of ASCENSION",
@@ -39,7 +47,7 @@ export const en = {
       name: "EMBODY",
       title: "Feel more. Move more. Touch deeper.",
       keywords: "ACUPRESSURE · BODYWORK · MOVEMENT",
-      mobileSummary: "Receive the work. Breathe, soften and move again.",
+      mobileSummary: "EMBODY explores the body as an interconnected system. Vietnamese Diện Chẩn, acupressure, assisted stretching, breath, mobility, restorative movement and guided release practices invite participants to notice how tension, posture and habitual movement influence the way they feel and move.",
       mobile: "Reconnect with your body through Diện Chẩn, conscious movement and restorative touch. No pressure to perform. Begin where you are and listen to what your body has been waiting to tell you.",
       mobileDetails: [
         {
@@ -58,14 +66,8 @@ export const en = {
         },
         { closing: "Hands restore. Breath opens. Movement begins again." },
       ],
-      desktop: [
-        "The body is not a collection of separate parts. ASCENSION approaches it as an interconnected system—something to listen to, care for and move with greater awareness.",
-        "At the foundation are complementary Vietnamese body-care practices. Depending on the individual, sessions may combine Diện Chẩn, Thập Thủ Đạo acupressure, assisted stretching, warm herbal applications, reflexology and focused work around areas of muscular tension or discomfort.",
-        "The work may extend across the face, head, hands, feet, neck, shoulders, back and limbs. It is not a standardized sequence applied identically to every participant. Techniques and areas of attention are selected according to the person receiving them.",
-        "Hands-on care is complemented by breath-led mobility and gentle movement. Practices may draw from Qigong and soft martial-arts principles to encourage coordination, joint movement, grounded strength and a more attentive relationship with the body.",
-        "Receive the work. Learn the movement. Continue the practice.",
-        "Hands restore. Breath opens. Movement begins again.",
-      ],
+      desktop: "EMBODY explores the body as an interconnected system. Vietnamese Diện Chẩn, acupressure, assisted stretching, breath, mobility, restorative movement and guided release practices invite participants to notice how tension, posture and habitual movement influence the way they feel and move.",
+      progression: ["Release tension.", "Restore breath and mobility.", "Reorganize movement.", "Integrate what the body has learned."],
       cta: "Discover Diện Chẩn",
       href: "/dien-chan",
     },

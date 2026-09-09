@@ -10,6 +10,7 @@ import { en, faqItems, passportCategories } from "../content/en";
 import { vi, viFaqItems, viPassportCategories, viUi } from "../content/vi";
 import { translatedContent, translatedFaq, translatedLower, translatedPassport, translatedUi } from "../content/other-locales";
 import { JsonLd, homeStructuredData } from "./seo";
+import { track } from "@vercel/analytics";
 
 const HERO_POSTER =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
@@ -697,6 +698,28 @@ function MobileSenseDisclosure({ storyId, details, labels }) {
   );
 }
 
+function EmbodyApproach({ story }) {
+  return (
+    <aside className="embody-approach" aria-label="The ASCENSION embodied approach">
+      <ol>
+        {story.progression.map((step) => <li key={step}>{step}</li>)}
+      </ol>
+      <details data-analytics-event="embody_expand">
+        <summary>Read the approach <span aria-hidden="true">+</span></summary>
+        <div className="embody-approach-details">
+          <p>ASCENSION’s embodied approach sits within a broader history of whole-body structural thinking while remaining grounded in its own multidisciplinary and Vietnamese context. It brings contemporary awareness of fascia, posture and movement into conversation with Diện Chẩn, touch, breath and restorative practices.</p>
+          <p>Creator and curator Daniel Stanford’s understanding of this field is also informed by more than two decades of personal experience receiving Rolfing and Structural Integration work. This is lived experience and curatorial context—not a claim of professional certification or medical practice.</p>
+          <div className="embody-reading">
+            <p>Further reading on fascia, structural wellbeing and whole-body movement.</p>
+            <a href="https://www.modus.gallery/figures" target="_blank" rel="noopener noreferrer" data-analytics-event="modus_oscar_article_click">Explore Figures on MODUS <span aria-hidden="true">→</span></a>
+          </div>
+          <p className="embody-disclaimer">ASCENSION offers educational, experiential and general wellness programming. It does not diagnose or treat medical conditions, and individual experiences will vary.</p>
+        </div>
+      </details>
+    </aside>
+  );
+}
+
 function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, onCanPlay, onPlaying, onWaiting, onSeeking, onSeeked, onError }) {
   const reduceMotion = useReducedMotion();
 
@@ -751,6 +774,7 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
   const canPlayReady = useRef(false);
   const seekInFlight = useRef(false);
   const pendingSeekTime = useRef(null);
+  const videoMilestones = useRef(new Set());
   const [motionReady, setMotionReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -814,6 +838,14 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
       }
 
       const progress = renderedProgress.current;
+      if (progress >= .25 && !videoMilestones.current.has(25)) {
+        videoMilestones.current.add(25);
+        track("video_play_25", { source_path: window.location.pathname, media: "hero" });
+      }
+      if (progress >= .75 && !videoMilestones.current.has(75)) {
+        videoMilestones.current.add(75);
+        track("video_play_75", { source_path: window.location.pathname, media: "hero" });
+      }
       const mediaOpacity = Math.min(1, Math.max(0, (progress - 0.02) / 0.14));
       stageRef.current?.style.setProperty("--hero-progress", progress.toFixed(4));
       stageRef.current?.style.setProperty("--hero-media-opacity", mediaOpacity.toFixed(4));
@@ -977,16 +1009,17 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
         </div>
 
         <div className="hero-frame">
-          <p className="hero-series-eyebrow entrance entrance-place">{ui.series}</p>
-          <h1 className="hero-title entrance entrance-title">ASCENSION</h1>
-          <p className="hero-proposition entrance entrance-proposition"><span>{ui.slogan[0]}</span><span>{ui.slogan[1]}</span></p>
+          <p className="hero-series-eyebrow entrance entrance-place">ASCENSION · DA NANG · JANUARY 12–26, 2027</p>
+          <p className="hero-title entrance entrance-title" aria-hidden="true">ASCENSION</p>
+          <h1 className="hero-proposition entrance entrance-proposition"><span>{ui.slogan[0]}</span><span>{ui.slogan[1]}</span></h1>
           <div className="hero-offer entrance entrance-place">
-            <p className="hero-place">{ui.place}<br />{ui.dates}</p>
+            <p className="hero-place">ASCENSION · {ui.place} · {ui.dates}</p>
+            <p className="hero-subheading">{copy.hero.subheading || "A different way to experience wellness—and Vietnam."}</p>
             <p className="hero-description">{isMobile === false ? copy.hero.desktop : copy.hero.mobile}</p>
           </div>
           <div className="hero-actions entrance entrance-controls">
-            <a className="hero-primary radiant-action" href="#senses">{ui.embody}</a>
-            <a className="hero-explore" href="#awaken">{ui.explore} <span aria-hidden="true">↓</span></a>
+            <Link className="hero-primary radiant-action" href="/join" data-analytics-event="homepage_cohort_cta">Explore the January Cohort</Link>
+            <a className="hero-explore" href="#awaken">Discover ASCENSION <span aria-hidden="true">↓</span></a>
           </div>
         </div>
 
@@ -1206,7 +1239,11 @@ export default function HomePage({ locale = "en" }) {
             </div>
           </div>
           <ol className="introduction-progression" aria-label="The ASCENSION progression">
-            {copy.introduction.progression.map((step) => <li key={step}>{step}</li>)}
+            {copy.introduction.progression.map((step) => (
+              <li key={typeof step === "string" ? step : step.label}>
+                {typeof step === "string" ? step : <><strong>{step.label}</strong><span>{step.copy}</span></>}
+              </li>
+            ))}
           </ol>
         </section>
 
@@ -1217,6 +1254,20 @@ export default function HomePage({ locale = "en" }) {
         <section className="wider-program" aria-labelledby="wider-program-title">
           <h2 id="wider-program-title">{copy.widerProgram.title}</h2>
           <p>{isMobile === false ? copy.widerProgram.desktop : copy.widerProgram.mobile}</p>
+        </section>
+
+        <section className="cohort-bridge" aria-labelledby="cohort-bridge-title">
+          <div>
+            <p>January 2027 · Founding edition</p>
+            <h2 id="cohort-bridge-title">Join the founding Da Nang cohort.</h2>
+          </div>
+          <div>
+            <p>Choose a 7- or 14-day pathway through Vietnamese wellness, movement, creative practice and cultural discovery.</p>
+            <div>
+              <Link className="radiant-action" href="/join#offer" data-analytics-event="homepage_cohort_cta">Explore Dates and Participation <span aria-hidden="true">→</span></Link>
+              <a href="#senses">Continue Exploring ASCENSION <span aria-hidden="true">↓</span></a>
+            </div>
+          </div>
         </section>
 
         <section className="sensory-framework" id="senses" aria-labelledby="senses-title">
@@ -1253,7 +1304,7 @@ export default function HomePage({ locale = "en" }) {
                   <div className="sensory-story-copy">
                     {story.quote ? <blockquote>{story.quote}</blockquote> : null}
                     {isMobile === false ? <SenseNarrative content={story.desktop} /> : <p>{senseCopy.mobileSummary}</p>}
-                    {isMobile !== false ? (
+                    {isMobile !== false && story.id !== "embody" ? (
                       <MobileSenseDisclosure storyId={story.id} details={senseCopy.details} labels={ui.senseDisclosure} />
                     ) : null}
                     {story.href ? (
@@ -1266,6 +1317,7 @@ export default function HomePage({ locale = "en" }) {
                     )}
                     {story.id === "create" ? <CreateArtistVoice /> : null}
                   </div>
+                  {story.id === "embody" && story.progression ? <EmbodyApproach story={story} /> : null}
                   {story.id === "embody" ? <EcstaticDanceExperience isMobile={isMobile} copy={copy} /> : null}
                 </article>
                 {index === 2 ? (

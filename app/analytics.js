@@ -15,19 +15,34 @@ function classifyLink(link) {
 
 export default function SiteAnalytics() {
   useEffect(() => {
+    if (window.location.pathname === "/join") {
+      track("funnel_view", { source_path: window.location.pathname });
+    }
+
     const onClick = (event) => {
-      const link = event.target.closest("a[href]");
-      if (!link) return;
-      const eventName = classifyLink(link);
+      const target = event.target.closest("a[href], button[data-analytics-event]");
+      if (!target) return;
+      const eventName = target.matches("a[href]") ? classifyLink(target) : target.dataset.analyticsEvent;
       if (!eventName) return;
       track(eventName, {
         source_path: window.location.pathname,
-        plan: link.dataset.plan || "unspecified",
+        plan: target.dataset.plan || "unspecified",
       });
     };
 
+    const onToggle = (event) => {
+      const disclosure = event.target;
+      if (!(disclosure instanceof HTMLDetailsElement) || !disclosure.open) return;
+      const eventName = disclosure.dataset.analyticsEvent;
+      if (eventName) track(eventName, { source_path: window.location.pathname });
+    };
+
     document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    document.addEventListener("toggle", onToggle, true);
+    return () => {
+      document.removeEventListener("click", onClick);
+      document.removeEventListener("toggle", onToggle, true);
+    };
   }, []);
 
   return <Analytics />;
