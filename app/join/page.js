@@ -43,6 +43,10 @@ function InterestAction({ label = "Request Your Place", event = "funnel_primary_
   return <a className={styles.reserve} href="#apply" data-analytics-event={event}>{label}<span aria-hidden="true">→</span></a>;
 }
 
+function ProfileAction() {
+  return <Link className={styles.reserve} href="/profile" data-analytics-event="profile_cta_click">Discover Your Pathway<span aria-hidden="true">→</span></Link>;
+}
+
 export default function JoinPage() {
   return (
     <main className={styles.page}>
@@ -57,7 +61,7 @@ export default function JoinPage() {
           <p className={styles.heroSubheading}>A different way to experience wellness—and Vietnam.</p>
           <p className={styles.heroLead}>Join an intimate international cohort for seven or fourteen days of Vietnamese wellness, embodied movement, recovery, sound, creativity, food and cultural discovery.</p>
           <p className={styles.brandBridge}>Heal your soul. Revive your senses.</p>
-          <div className={styles.heroAction}><InterestAction /><a className={styles.secondaryAction} href="#pathways">See What’s Included</a></div>
+          <div className={styles.heroAction}><ProfileAction /><a className={styles.secondaryAction} href="#apply" data-analytics-event="funnel_direct_request_cta">Request Your Place</a></div>
           <p className={styles.microcopy}>7 or 14 days · Approximately 20–25 participants · Programme from US$1,200<br />Accommodation and flights are selected and booked separately.</p>
         </div>
       </header>
