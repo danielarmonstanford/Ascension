@@ -149,7 +149,7 @@ export default function ProfileExperience() {
           <input className={styles.honeypot} tabIndex="-1" autoComplete="off" aria-hidden="true" value={lead.website} onChange={(event) => setLead({ ...lead, website: event.target.value })} />
           <label className={styles.consent}><input type="checkbox" checked={lead.consent} onChange={(event) => setLead({ ...lead, consent: event.target.checked })} /><span>I consent to ASCENSION using these answers to respond to my enquiry and help plan the experience.</span></label>
           {message && <p className={styles.error} role="alert">{message}</p>}
-          <button className={styles.primary} disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send my profile"}<span aria-hidden="true">→</span></button>
+          <button className={styles.primary} disabled={status === "sending"}>{status === "sending" ? "Unlocking…" : "Unlock My Experience"}<span aria-hidden="true">→</span></button>
           <p className={styles.privacy}>Body, discomfort and mobility answers are never sent to Meta Pixel or Meta Conversions API.</p>
         </form>
         <button type="button" className={styles.back} onClick={() => setScreen(visibleQuestions.length - 1)}>Back</button>
