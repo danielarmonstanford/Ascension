@@ -1,4 +1,5 @@
 .page { --ink: #173744; --mist: #e7f0ef; --shell: #f4ede1; --copper: #875545; --gold: #ffd45f; min-height: 100svh; overflow: hidden; background: radial-gradient(circle at 84% 16%, rgba(127,183,179,.2), transparent 27rem), var(--mist); color: var(--ink); }
+.answering { background: linear-gradient(90deg, rgba(231,240,239,.96) 0%, rgba(231,240,239,.88) 48%, rgba(231,240,239,.43) 100%), url("/assets/profile/pathway-desktop.jpg") 58% center / cover fixed no-repeat; }
 .header { min-height: 5.5rem; display: flex; align-items: center; justify-content: space-between; padding: calc(.7rem + env(safe-area-inset-top)) calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-right)) .7rem calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-left)); }
 .wordmark { font: 400 1.35rem/1 var(--display); text-decoration: none; }
 .exit, .eyebrow, .supporting span, .privacy { font: 650 .66rem/1.5 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
@@ -52,6 +53,7 @@
 .honeypot { position: absolute; left: -10000px; }
 @keyframes enter { from { opacity: 0; transform: translateY(.6rem); filter: blur(3px); } }
 @media (max-width: 600px) {
+  .answering { background: linear-gradient(rgba(231,240,239,.76), rgba(231,240,239,.84)), url("/assets/profile/pathway-mobile-clean.jpg") center / cover fixed no-repeat; }
   .header { min-height: 4.6rem; }
   .wordmark { font-size: 1.15rem; }
   .intro, .question, .result { min-height: calc(100svh - 4.6rem); justify-content: flex-start; padding-top: clamp(3.5rem, 9vh, 5.5rem); }

@@ -41,10 +41,14 @@ export default function ProfileExperience() {
     const captured = Object.fromEntries(ATTRIBUTION_KEYS.map((key) => [key, params.get(key)]).filter(([, value]) => value));
     setAttribution(captured);
     try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
-      if (saved?.answers) setAnswers(saved.answers);
-      if (Number.isInteger(saved?.screen)) setScreen(saved.screen);
-      if (saved?.lead) setLead((value) => ({ ...value, name: saved.lead.name || "", email: saved.lead.email || "" }));
+      if (params.get("reset") === "1") {
+        localStorage.removeItem(STORAGE_KEY);
+      } else {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+        if (saved?.answers) setAnswers(saved.answers);
+        if (Number.isInteger(saved?.screen)) setScreen(saved.screen);
+        if (saved?.lead) setLead((value) => ({ ...value, name: saved.lead.name || "", email: saved.lead.email || "" }));
+      }
     } catch { /* A damaged draft should never block the profile. */ }
     setHydrated(true);
   }, []);
@@ -127,7 +131,7 @@ export default function ProfileExperience() {
   if (!hydrated) return <main className={styles.page} aria-busy="true" />;
 
   return (
-    <main className={styles.page}>
+    <main className={`${styles.page} ${screen >= 0 ? styles.answering : ""}`}>
       <header className={styles.header}>
         <Link className={styles.wordmark} href="/en">ASCENSION</Link>
         <Link className={styles.exit} href="/join">Exit profile</Link>
