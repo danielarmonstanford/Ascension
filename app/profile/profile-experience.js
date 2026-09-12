@@ -24,7 +24,7 @@ export default function ProfileExperience() {
   const [lead, setLead] = useState({ name: "", email: "", consent: false, website: "" });
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
-  const [visualVariant, setVisualVariant] = useState("default");
+  const [visualVariant, setVisualVariant] = useState("clean");
   const started = useRef(false);
   const completed = useRef(false);
 
@@ -37,7 +37,7 @@ export default function ProfileExperience() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    setVisualVariant(params.get("visual") === "female" ? "female" : "default");
+    setVisualVariant(["poster", "female-poster"].includes(params.get("visual")) ? params.get("visual") : "clean");
     const captured = Object.fromEntries(ATTRIBUTION_KEYS.map((key) => [key, params.get(key)]).filter(([, value]) => value));
     setAttribution(captured);
     try {
@@ -143,7 +143,7 @@ export default function ProfileExperience() {
           <p className={styles.disclaimer}>This profile supports experience planning only. It is not medical diagnosis, medical advice or treatment. You may skip body-related details.</p>
         </div>
         <picture className={styles.profileArt}>
-          <source media="(max-width: 600px)" srcSet={visualVariant === "female" ? "/assets/profile/pathway-mobile-female.jpg" : "/assets/profile/pathway-mobile.jpg"} />
+          <source media="(max-width: 600px)" srcSet={visualVariant === "poster" ? "/assets/profile/pathway-mobile.jpg" : visualVariant === "female-poster" ? "/assets/profile/pathway-mobile-female.jpg" : "/assets/profile/pathway-mobile-clean.jpg"} />
           <img src="/assets/profile/pathway-desktop.jpg" alt="A movement figure overlooking the coast of Da Nang" />
         </picture>
       </section>}

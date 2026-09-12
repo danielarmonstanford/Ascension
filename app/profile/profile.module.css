@@ -56,12 +56,15 @@
   .wordmark { font-size: 1.15rem; }
   .intro, .question, .result { min-height: calc(100svh - 4.6rem); justify-content: flex-start; padding-top: clamp(3.5rem, 9vh, 5.5rem); }
   .intro h1, .question h1 { font-size: clamp(3.3rem, 15.5vw, 5.2rem); }
-  .introWithArt { min-height: calc(100svh - 4.6rem); display: flex; flex-direction: column-reverse; justify-content: flex-end; padding: 0 0 calc(2rem + env(safe-area-inset-bottom)); }
-  .introWithArt .introCopy { padding: 2rem calc(1.25rem + env(safe-area-inset-right)) 0 calc(1.25rem + env(safe-area-inset-left)); }
-  .introWithArt .introCopy h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
-  .introWithArt .lead { margin-top: 0; }
-  .profileArt { order: 1; width: 100%; min-height: 0; aspect-ratio: 1122 / 1402; border-radius: 0; box-shadow: none; background: var(--shell); }
-  .profileArt img { width: 100%; height: auto; min-height: 0; object-fit: contain; }
+  .introWithArt { min-height: calc(100svh - 4.6rem); display: grid; grid-template: 1fr / 1fr; padding: 0; }
+  .introWithArt .introCopy { z-index: 2; grid-area: 1 / 1; min-height: inherit; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(3rem, 8vh, 4.5rem) calc(1.25rem + env(safe-area-inset-right)) calc(1.5rem + env(safe-area-inset-bottom)) calc(1.25rem + env(safe-area-inset-left)); color: var(--shell); text-shadow: 0 2px 22px rgba(8,29,39,.52); }
+  .introWithArt .introCopy h1 { max-width: 7ch; font-size: clamp(3.4rem, 15vw, 4.25rem); }
+  .introWithArt .lead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  .introWithArt .primary { margin-top: auto; text-shadow: none; }
+  .introWithArt .disclaimer { max-width: 34rem; color: rgba(255,250,240,.92); }
+  .profileArt { grid-area: 1 / 1; width: 100%; height: 100%; min-height: inherit; border-radius: 0; box-shadow: none; background: #78afd9; }
+  .profileArt::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,35,48,.35) 0%, transparent 36%, transparent 59%, rgba(8,35,48,.73) 100%); }
+  .profileArt img { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 100%; object-fit: cover; object-position: center; }
   .planning { grid-template-columns: 1fr; margin-top: 1.5rem; }
   .planning fieldset { grid-column: auto; }
   .question:has(.planning) { padding-top: 2rem; }
