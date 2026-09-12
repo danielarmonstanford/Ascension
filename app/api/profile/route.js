@@ -11,7 +11,11 @@ function cleanText(value, max = 240) {
 
 function cleanAnswers(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) return {};
-  return Object.fromEntries(Object.entries(input).filter(([key]) => allowedQuestionIds.has(key)).map(([key, value]) => [key, Array.isArray(value) ? value.slice(0, 12).map((item) => cleanText(item, 120)) : cleanText(value, 240)]));
+  return Object.fromEntries(Object.entries(input).filter(([key]) => allowedQuestionIds.has(key)).map(([key, value]) => {
+    if (Array.isArray(value)) return [key, value.slice(0, 12).map((item) => cleanText(item, 120))];
+    if (value && typeof value === "object") return [key, Object.fromEntries(Object.entries(value).slice(0, 12).map(([field, fieldValue]) => [cleanText(field, 80), Array.isArray(fieldValue) ? fieldValue.slice(0, 12).map((item) => cleanText(item, 120)) : cleanText(fieldValue, 240)]))];
+    return [key, cleanText(value, 240)];
+  }));
 }
 
 export async function POST(request) {
@@ -47,4 +51,3 @@ export async function POST(request) {
     return NextResponse.json({ ok: false, message: "We could not safely store your profile. Your draft remains on this device; please try again." }, { status: 502, headers: { "Cache-Control": "no-store" } });
   }
 }
-

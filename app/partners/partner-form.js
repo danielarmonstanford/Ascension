@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { track } from "@vercel/analytics";
 
 const ATTRIBUTION_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "ref"];
@@ -8,14 +8,13 @@ const initialForm = { name: "", organization: "", email: "", website: "", catego
 
 export default function PartnerForm({ styles }) {
   const [form, setForm] = useState(initialForm);
-  const [attribution, setAttribution] = useState({});
+  const [attribution, setAttribution] = useState(() => {
+    if (typeof window === "undefined") return {};
+    const params = new URLSearchParams(window.location.search);
+    return Object.fromEntries(ATTRIBUTION_KEYS.map((key) => [key, params.get(key)]).filter(([, value]) => value));
+  });
   const [status, setStatus] = useState("idle");
   const [feedback, setFeedback] = useState("");
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    setAttribution(Object.fromEntries(ATTRIBUTION_KEYS.map((key) => [key, params.get(key)]).filter(([, value]) => value)));
-  }, []);
 
   function update(field, value) { setForm((current) => ({ ...current, [field]: value })); }
 
@@ -54,4 +53,3 @@ export default function PartnerForm({ styles }) {
     <p className={styles.formNote}>No payment or commitment. Partnership fit and scope are discussed personally.</p>
   </form>;
 }
-

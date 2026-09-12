@@ -71,7 +71,7 @@ export default function DeckExperience() {
         {current.sequence && <ol className={styles.sequence}>{current.sequence.map((item) => <li key={item}>{item}</li>)}</ol>}
         {current.investments && <div className={styles.investments}>{current.investments.map(([name,amount]) => <p key={name}><span>{name}</span><strong>{amount}</strong></p>)}</div>}
         {current.note && <p className={styles.note}>{current.note}</p>}
-        {index === deckSlides.length - 1 && <div className={styles.finalActions}><Link href="/partners#conversation">Request a Partnership Conversation</Link><a href="/partners/download" data-analytics-event="partners_pdf_downloaded">Download PDF</a></div>}
+        {index === deckSlides.length - 1 && <div className={styles.finalActions}><Link href="/partners#conversation">Request a Partnership Conversation</Link><Link href="/partners/download" data-analytics-event="partners_pdf_downloaded">Download PDF</Link></div>}
       </div>
     </section>
 
@@ -82,4 +82,3 @@ export default function DeckExperience() {
     </footer>
   </main>;
 }
-

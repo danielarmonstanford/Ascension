@@ -87,7 +87,7 @@ export default function PartnersPage() {
     </section>
 
     <section className={styles.conversation} id="conversation">
-      <div><p className={styles.sectionMark}>The invitation</p><h2>Help shape the founding edition.</h2><p>Tell us what your organization wants to make possible. Partnership fit, scope and deliverables are considered personally.</p><p><a href={`mailto:${partnerEmail}`}>{partnerEmail}</a></p><div className={styles.documentActions}><Link href="/partners/deck">View the presentation</Link><a href="/partners/download" data-analytics-event="partners_pdf_downloaded">Download the PDF</a></div></div>
+      <div><p className={styles.sectionMark}>The invitation</p><h2>Help shape the founding edition.</h2><p>Tell us what your organization wants to make possible. Partnership fit, scope and deliverables are considered personally.</p><p><a href={`mailto:${partnerEmail}`}>{partnerEmail}</a></p><div className={styles.documentActions}><Link href="/partners/deck">View the presentation</Link><Link href="/partners/download" data-analytics-event="partners_pdf_downloaded">Download the PDF</Link></div></div>
       <PartnerForm styles={styles} />
     </section>
 

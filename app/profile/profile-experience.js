@@ -1,9 +1,12 @@
 "use client";
 
+/* Draft restoration intentionally hydrates browser-only storage after mount. */
+/* eslint-disable react-hooks/set-state-in-effect */
+
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
-import { calculatePathways, pathwayCopy, profileQuestions, questionIsVisible } from "../../content/profile";
+import { accommodationStyles, calculatePathways, destinations, hotelBudgets, pathwayCopy, profileQuestions, questionIsVisible, travelParties } from "../../content/profile";
 import styles from "./profile.module.css";
 
 const STORAGE_KEY = "ascension-profile-v1";
@@ -49,12 +52,14 @@ export default function ProfileExperience() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, screen, lead: { name: lead.name, email: lead.email } }));
   }, [answers, screen, lead.name, lead.email, hydrated]);
 
-  useEffect(() => {
-    if (screen >= visibleQuestions.length && !isResult) setScreen(visibleQuestions.length);
-  }, [screen, visibleQuestions.length, isResult]);
-
   const value = current ? answers[current.id] : undefined;
-  const valid = !current || !current.required || (Array.isArray(value) ? value.length > 0 : Boolean(String(value || "").trim()));
+  const planningValid = current?.type !== "planning" || Boolean(value?.accommodationStyle && value?.budget && value?.travelParty && value?.destinations?.length);
+  const valid = !current || !current.required || (current.type === "planning" ? planningValid : (Array.isArray(value) ? value.length > 0 : Boolean(String(value || "").trim())));
+  const firstName = String(answers.first_name || "").trim();
+
+  function personalize(copy) {
+    return copy?.replaceAll("{{firstName}}", firstName || "you");
+  }
 
   function begin() {
     if (!started.current) { emit("profile_started"); started.current = true; }
@@ -63,7 +68,20 @@ export default function ProfileExperience() {
 
   function updateValue(nextValue) {
     setAnswers((previous) => ({ ...previous, [current.id]: nextValue }));
+    if (current.id === "first_name") setLead((previous) => ({ ...previous, name: nextValue }));
     setMessage("");
+  }
+
+  function updatePlanning(key, nextValue) {
+    const planning = value && typeof value === "object" && !Array.isArray(value) ? value : {};
+    updateValue({ ...planning, [key]: nextValue });
+  }
+
+  function toggleDestination(destination) {
+    const planning = value && typeof value === "object" && !Array.isArray(value) ? value : {};
+    const selected = Array.isArray(planning.destinations) ? planning.destinations : [];
+    const next = selected.includes(destination) ? selected.filter((item) => item !== destination) : destination === "none-yet" ? [destination] : [...selected.filter((item) => item !== "none-yet"), destination];
+    updatePlanning("destinations", next);
   }
 
   function toggle(valueToToggle) {
@@ -114,19 +132,32 @@ export default function ProfileExperience() {
       </header>
       <div className={styles.progress} aria-label={`Profile progress: ${Math.round(progress)}%`}><span style={{ width: `${progress}%` }} /></div>
 
-      {screen === -1 && <section className={styles.intro}>
-        <p className={styles.eyebrow}>Your ASCENSION profile</p>
-        <h1>Discover your pathway.</h1>
-        <p className={styles.lead}>A short, private conversation to understand what draws you toward Da Nang—and which parts of ASCENSION may matter most.</p>
-        <button className={styles.primary} onClick={begin}>Begin <span aria-hidden="true">→</span></button>
-        <p className={styles.disclaimer}>This profile supports experience planning only. It is not medical diagnosis, medical advice or treatment. You may skip optional body-related questions.</p>
+      {screen === -1 && <section className={`${styles.intro} ${styles.introWithArt}`}>
+        <div className={styles.introCopy}>
+          <p className={styles.eyebrow}>Your ASCENSION profile · 6 questions</p>
+          <h1>Discover your pathway.</h1>
+          <p className={styles.lead}>A short, private conversation to understand what draws you toward Da Nang—and which parts of ASCENSION may matter most.</p>
+          <button className={styles.primary} onClick={begin}>Begin <span aria-hidden="true">→</span></button>
+          <p className={styles.disclaimer}>This profile supports experience planning only. It is not medical diagnosis, medical advice or treatment. You may skip body-related details.</p>
+        </div>
+        <picture className={styles.profileArt}>
+          <source media="(max-width: 600px)" srcSet="/assets/profile/pathway-mobile.jpg" />
+          <img src="/assets/profile/pathway-desktop.jpg" alt="A movement figure overlooking the coast of Da Nang" />
+        </picture>
       </section>}
 
       {current && <section className={styles.question} key={current.id}>
         <p className={styles.eyebrow}>{current.eyebrow}</p>
-        <h1>{current.question}</h1>
+        <h1>{personalize(current.question)}</h1>
         {current.help && <p className={styles.help}>{current.help}</p>}
-        {current.type === "text" ? <input className={styles.textInput} autoFocus value={value || ""} onChange={(event) => updateValue(event.target.value)} placeholder={current.placeholder} onKeyDown={(event) => { if (event.key === "Enter") forward(); }} /> :
+        {current.type === "text" ? <input className={styles.textInput} autoFocus value={value || ""} onChange={(event) => updateValue(event.target.value)} placeholder={current.placeholder} autoComplete="given-name" onKeyDown={(event) => { if (event.key === "Enter") forward(); }} /> : current.type === "planning" ?
+          <div className={styles.planning}>
+            <label>Accommodation style<select value={value?.accommodationStyle || ""} onChange={(event) => updatePlanning("accommodationStyle", event.target.value)}><option value="">Choose one</option>{accommodationStyles.map((entry) => <option key={entry.value} value={entry.value}>{entry.label}</option>)}</select></label>
+            <label>Nightly budget<select value={value?.budget || ""} onChange={(event) => updatePlanning("budget", event.target.value)}><option value="">Choose one</option>{hotelBudgets.map((entry) => <option key={entry.value} value={entry.value}>{entry.label}</option>)}</select></label>
+            <label>Travelling<select value={value?.travelParty || ""} onChange={(event) => updatePlanning("travelParty", event.target.value)}><option value="">Choose one</option>{travelParties.map((entry) => <option key={entry.value} value={entry.value}>{entry.label}</option>)}</select></label>
+            <fieldset><legend>Future places you would consider</legend><div className={styles.destinationOptions}>{destinations.map((entry) => <label key={entry.value}><input type="checkbox" checked={(value?.destinations || []).includes(entry.value)} onChange={() => toggleDestination(entry.value)} />{entry.label}</label>)}</div></fieldset>
+            {(value?.destinations || []).includes("other") && <label>Your suggested city or country<input value={value?.suggestedMarket || ""} onChange={(event) => updatePlanning("suggestedMarket", event.target.value)} placeholder="City, country" /></label>}
+          </div> :
           <div className={styles.options} role={current.type === "single" ? "radiogroup" : "group"} aria-label={current.question}>
             {current.options.map((entry, index) => {
               const selected = current.type === "multi" ? (value || []).includes(entry.value) : value === entry.value;
@@ -143,8 +174,8 @@ export default function ProfileExperience() {
         <p className={styles.lead}>{pathwayCopy[results[0]]}</p>
         <div className={styles.supporting}><span>Supporting pathways</span><strong>{results[1]}</strong><strong>{results[2]}</strong></div>
         <form className={styles.form} onSubmit={submit}>
-          <h2>Keep the conversation moving.</h2>
-          <label>Name<input value={lead.name} onChange={(event) => setLead({ ...lead, name: event.target.value })} autoComplete="name" /></label>
+          <h2>{firstName ? `${firstName}, your pathway is ready.` : "Your pathway is ready."}</h2>
+          <label>First name<input value={lead.name} onChange={(event) => { setLead({ ...lead, name: event.target.value }); setAnswers((previous) => ({ ...previous, first_name: event.target.value })); }} autoComplete="given-name" /></label>
           <label>Email<input type="email" value={lead.email} onChange={(event) => setLead({ ...lead, email: event.target.value })} autoComplete="email" /></label>
           <input className={styles.honeypot} tabIndex="-1" autoComplete="off" aria-hidden="true" value={lead.website} onChange={(event) => setLead({ ...lead, website: event.target.value })} />
           <label className={styles.consent}><input type="checkbox" checked={lead.consent} onChange={(event) => setLead({ ...lead, consent: event.target.checked })} /><span>I consent to ASCENSION using these answers to respond to my enquiry and help plan the experience.</span></label>
