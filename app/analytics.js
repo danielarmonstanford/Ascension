@@ -10,6 +10,7 @@ function classifyLink(link) {
   if (href.includes("Practitioner%20Application")) return "practitioner_application_click";
   if (href === "/about" || href.endsWith("/about")) return "about_page_link_click";
   if (href === "/dien-chan" || href.endsWith("/dien-chan")) return "dien_chan_deep_dive_click";
+  if (href === "/partners/download" || href.endsWith("/partners/download")) return "partners_pdf_downloaded";
   return link.dataset.analyticsEvent || null;
 }
 

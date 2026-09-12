@@ -2,7 +2,6 @@
 const nextConfig = {
   async rewrites() {
     return [
-      { source: "/partners", destination: "/partners/index.html" },
       { source: "/partners/venues", destination: "/partners/venues.html" },
       { source: "/partners/sponsorship", destination: "/partners/sponsorship.html" },
       { source: "/partners/practitioners", destination: "/partners/practitioners.html" },
@@ -30,6 +29,7 @@ const nextConfig = {
     ];
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
