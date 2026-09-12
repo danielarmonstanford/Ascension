@@ -90,6 +90,8 @@ button { font: inherit; }
 .hero-place { margin: 0; font: 550 clamp(.78rem, 1vw, .94rem)/1.55 var(--utility); letter-spacing: .13em; text-transform: uppercase; }
 .hero-subheading { margin: .7rem 0 0; color: var(--moon-ivory); font: 400 clamp(1.2rem, 1.8vw, 1.75rem)/1.1 var(--display); }
 .hero-description { margin: .75rem 0 0; max-width: 31rem; font-size: clamp(.86rem, 1vw, 1rem); line-height: 1.45; }
+.hero-photo-credit { margin: .75rem 0 0; color: rgba(241, 230, 213, .72); font: 500 .56rem/1.5 var(--utility); letter-spacing: .08em; text-transform: uppercase; text-shadow: 0 1px .8rem rgba(4, 19, 27, .75); }
+.hero-photo-credit a { color: inherit; text-underline-offset: .25rem; }
 .hero-proposition {
   position: absolute;
   right: var(--gutter);
@@ -640,6 +642,7 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .hero-offer { left: var(--gutter); right: var(--gutter); bottom: calc(7.4rem + env(safe-area-inset-bottom)); max-width: 21rem; translate: none; }
   .hero-place { font-size: .72rem; }
   .hero-description { margin-top: .55rem; max-width: 20rem; font-size: .78rem; line-height: 1.4; }
+  .hero-photo-credit { max-width: 24rem; margin-top: .55rem; font-size: .49rem; line-height: 1.45; }
   .hero-subheading { margin-top: .45rem; max-width: 20rem; font-size: 1.1rem; }
   .hero-actions { left: var(--gutter); right: var(--gutter); bottom: calc(1rem + env(safe-area-inset-bottom)); align-items: stretch; gap: .75rem; }
   .hero-primary, .hero-explore { justify-content: center; font-size: .62rem; }

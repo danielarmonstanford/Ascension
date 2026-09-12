@@ -1016,6 +1016,7 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
             <p className="hero-place">ASCENSION · {ui.place} · {ui.dates}</p>
             <p className="hero-subheading">{copy.hero.subheading || "A different way to experience wellness—and Vietnam."}</p>
             <p className="hero-description">{isMobile === false ? copy.hero.desktop : copy.hero.mobile}</p>
+            <p className="hero-photo-credit">Fine Art Photography by Daniel A Stanford · Featuring a <a href="https://budokon.com/" target="_blank" rel="noopener noreferrer">Budokon Instructor</a></p>
           </div>
           <div className="hero-actions entrance entrance-controls">
             <Link className="hero-primary radiant-action" href="/join" data-analytics-event="homepage_cohort_cta">Explore the January Cohort</Link>
