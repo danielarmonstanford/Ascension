@@ -32,8 +32,9 @@ export function proxy(request) {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-ascension-locale", locale);
   const response = NextResponse.next({ request: { headers: requestHeaders } });
-  const isSponsorshipRoute = request.nextUrl.pathname.startsWith("/partners/sponsorship");
-  const isPrivateRoute = request.nextUrl.pathname === "/access" || (request.nextUrl.pathname.startsWith("/partners") && !isSponsorshipRoute);
+  const publicPartnerRoutes = ["/partners", "/partners/deck", "/partners/download", "/partners/sponsorship", "/partners/sponsorship.html"];
+  const isPublicPartnerRoute = publicPartnerRoutes.includes(request.nextUrl.pathname);
+  const isPrivateRoute = request.nextUrl.pathname === "/access" || (request.nextUrl.pathname.startsWith("/partners") && !isPublicPartnerRoute);
   const isProductionHost = hostname === PRODUCTION_HOST;
   const isDraftLocale = isSupportedLocale(firstSegment) && !isPublishedLocale(firstSegment);
 

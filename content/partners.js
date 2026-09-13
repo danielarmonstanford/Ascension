@@ -23,21 +23,21 @@ export const deliverables = [
   "Named experience integration",
   "Direct cohort engagement",
   "Selected public touchpoints",
-  "Approved recognition across ASCENSION and MODUS",
+  "Approved recognition across ASCENSION",
   "Professional photography and short-form video",
   "Agreed content usage rights",
-  "Editorial storytelling",
+  "MODUS editorial consideration",
   "Hospitality and guest access where appropriate",
-  "Post-edition documentation and reporting",
-  "First consideration for future editions",
+  "Post-edition reporting",
+  "First consideration for future ASCENSION editions, subject to fit and agreement",
 ];
 
 export const investmentPathways = [
   ["Founding Presenting Partner", "$25,000–50,000"],
   ["Principal Experience Partner", "$15,000–25,000"],
   ["Activation Partner", "$7,500–15,000"],
-  ["Supporting Partner", "$3,500–7,500"],
-  ["Product and Hospitality Partners", "Cash and/or in-kind"],
+  ["Supporting Partner", "$2,500–7,500"],
+  ["Product & Hospitality Partner", "Cash and/or in-kind"],
 ];
 
 export const deckSlides = [
@@ -142,4 +142,3 @@ export const deckSlides = [
     theme: "closing",
   },
 ];
-

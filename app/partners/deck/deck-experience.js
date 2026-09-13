@@ -34,8 +34,8 @@ export default function DeckExperience() {
         <Link href="/partners" aria-label="Return to ASCENSION partnership opportunities">ASCENSION</Link>
         <p>Partnership Invitation · Da Nang 2027</p>
         <div className={styles.actions}>
-          <a href="/partners/download" data-analytics-event="partner_deck_download">Download PDF</a>
-          <a href={CONTACT_URL} data-analytics-event="partner_contact_click">Request a Conversation</a>
+          <Link href="/partners/download" data-analytics-event="partner_deck_download">Download Partnership Deck</Link>
+          <a href={CONTACT_URL} data-analytics-event="partner_contact_click">Request a Partnership Conversation</a>
         </div>
       </header>
 
@@ -56,8 +56,8 @@ export default function DeckExperience() {
             <p>Da Nang, Vietnam · January 12–26, 2027</p>
             <a className={styles.primary} href={PDF_URL} data-analytics-event="partner_deck_view">Open Partnership Deck <span aria-hidden="true">↗</span></a>
             <div className={styles.mobileActions}>
-              <a href="/partners/download" data-analytics-event="partner_deck_download">Download PDF</a>
-              <a href={CONTACT_URL} data-analytics-event="partner_contact_click">Request a Conversation</a>
+              <Link href="/partners/download" data-analytics-event="partner_deck_download">Download Partnership Deck</Link>
+              <a href={CONTACT_URL} data-analytics-event="partner_contact_click">Request a Partnership Conversation</a>
             </div>
           </div>
         </section>
