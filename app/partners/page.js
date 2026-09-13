@@ -6,34 +6,36 @@ import styles from "./partners.module.css";
 import { activationCategories, deliverables, investmentPathways, partnerEmail, partnerPathways } from "../../content/partners";
 
 const ORIGIN = "https://www.ascensionsenses.com";
-const HERO = "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_2000/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
+const COVER = "/assets/partners/partnership-deck-cover.webp";
 const MOVEMENT = "/assets/funnel/morning-movement.png";
 const DANIEL = "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_1000/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
+const CONTACT = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%202027%20%E2%80%94%20Partnership%20Conversation";
 
 export const metadata = {
-  title: "ASCENSION Partnership Invitation | Da Nang 2027",
-  description: "Help shape the founding ASCENSION edition in Da Nang, Vietnam, January 12–26, 2027.",
+  title: "ASCENSION Partnership Opportunities · Da Nang 2027",
+  description: "Partner with ASCENSION for its founding Da Nang edition—an intimate wellness and cultural programme connecting body, place, creativity and Southeast Asia.",
   alternates: { canonical: `${ORIGIN}/partners` },
-  openGraph: { title: "ASCENSION Partnership Invitation", description: "Help shape the founding edition in Da Nang.", url: `${ORIGIN}/partners`, images: [{ url: HERO }] },
+  robots: { index: true, follow: true },
+  openGraph: { title: "ASCENSION Partnership Opportunities · Da Nang 2027", description: "Partner with ASCENSION for its founding Da Nang edition—an intimate wellness and cultural programme connecting body, place, creativity and Southeast Asia.", url: `${ORIGIN}/partners`, images: [{ url: COVER }] },
 };
-
-function ConversationLink({ children = "Request a Partnership Conversation", className = styles.radiant }) {
-  return <a className={className} href="#conversation" data-analytics-event="partners_conversation_cta">{children}<span aria-hidden="true">→</span></a>;
-}
 
 export default function PartnersPage() {
   return <main className={styles.page}>
     <PartnerTracking />
     <header className={styles.hero}>
-      <Image className={styles.heroImage} src={HERO} alt="A movement study on the Da Nang coast" fill priority sizes="100vw" />
-      <div className={styles.heroScrim} />
       <nav className={styles.nav}><Link href="/en">ASCENSION</Link><span>Partnership invitation</span></nav>
       <div className={styles.heroCopy}>
-        <p className={styles.kicker}>Da Nang, Vietnam · January 12–26, 2027</p>
-        <h1>ASCENSION<br />Partnership Invitation</h1>
+        <p className={styles.kicker}>ASCENSION · Partnership invitation</p>
+        <h1>Enter the<br />experience.</h1>
         <p className={styles.heroStatement}>Help shape the founding edition.</p>
-        <div className={styles.actions}><ConversationLink /><Link className={styles.textAction} href="/partners/deck" data-analytics-event="partners_deck_cta">View the Presentation <span aria-hidden="true">→</span></Link></div>
+        <p className={styles.heroIntro}>ASCENSION brings Vietnamese wellness knowledge into conversation with movement, breath, sound, creativity, food and cultural discovery. We are inviting selected partners to help shape the founding Da Nang edition.</p>
+        <p className={styles.eventLine}>Da Nang, Vietnam · January 12–26, 2027</p>
+        <div className={styles.actions}><Link className={styles.radiant} href="/partners/deck" data-analytics-event="partner_deck_view">View Partnership Deck <span aria-hidden="true">→</span></Link><Link className={styles.textAction} href="/partners/download" data-analytics-event="partner_deck_download">Download PDF <span aria-hidden="true">↓</span></Link><a className={styles.textAction} href={CONTACT} data-analytics-event="partner_contact_click">Request a Partnership Conversation <span aria-hidden="true">→</span></a></div>
       </div>
+      <Link className={styles.coverPreview} href="/partners/deck" aria-label="View the ASCENSION Da Nang 2027 partnership deck" data-analytics-event="partner_deck_view">
+        <Image src={COVER} alt="Cover of the ASCENSION Da Nang 2027 partnership deck" width={1500} height={844} priority sizes="(max-width: 900px) 92vw, 47vw" />
+        <span>Open the 14-page presentation <b aria-hidden="true">↗</b></span>
+      </Link>
     </header>
 
     <section className={styles.proposition}>
@@ -53,7 +55,7 @@ export default function PartnersPage() {
     </section>
 
     <section className={styles.activationSection}>
-      <div className={styles.sectionHeading}><p className={styles.sectionMark}>Proposed activations</p><h2>Integration, not interruption.</h2></div>
+      <div className={styles.sectionHeading}><p className={styles.sectionMark}>Partnership categories</p><h2>Brands become part of the experience.</h2></div>
       <div className={styles.activationList}>{activationCategories.map(([name, copy], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{copy}</p></article>)}</div>
       <p className={styles.disclaimer}>Categories are open. No partner is confirmed, and no example represents an existing agreement.</p>
     </section>
@@ -87,7 +89,7 @@ export default function PartnersPage() {
     </section>
 
     <section className={styles.conversation} id="conversation">
-      <div><p className={styles.sectionMark}>The invitation</p><h2>Help shape the founding edition.</h2><p>Tell us what your organization wants to make possible. Partnership fit, scope and deliverables are considered personally.</p><p><a href={`mailto:${partnerEmail}`}>{partnerEmail}</a></p><div className={styles.documentActions}><Link href="/partners/deck">View the presentation</Link><Link href="/partners/download" data-analytics-event="partners_pdf_downloaded">Download the PDF</Link></div></div>
+      <div><p className={styles.sectionMark}>The invitation</p><h2>Help shape the founding edition.</h2><p>Tell us what your organization wants to make possible. Partnership fit, scope and deliverables are considered personally.</p><p>Daniel A. Stanford<br /><a href={CONTACT} data-analytics-event="partner_contact_click">{partnerEmail}</a></p><div className={styles.documentActions}><Link href="/partners/deck" data-analytics-event="partner_deck_view">View the presentation</Link><Link href="/partners/download" data-analytics-event="partner_deck_download">Download the PDF</Link></div></div>
       <PartnerForm styles={styles} />
     </section>
 

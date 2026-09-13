@@ -41,7 +41,7 @@ export default function InfoPage({ eyebrow, title, lead, currentPath, children, 
       </main>
       <footer className="info-footer">
         <span>ASCENSION SENSES · Da Nang 2027</span>
-        <nav aria-label="Footer navigation"><Link href={prefix || "/"}>{isVi ? "Trang chủ" : "Home"}</Link><Link href={`${prefix}/about`}>{isVi ? "Giới thiệu" : "About"}</Link><Link href={`${prefix}/attend`}>{isVi ? "Tham dự" : "Attend"}</Link><Link href={`${prefix}/privacy`}>{isVi ? "Quyền riêng tư" : "Privacy"}</Link><Link href={`${prefix}/terms`}>{isVi ? "Điều khoản" : "Terms"}</Link></nav>
+        <nav aria-label="Footer navigation"><Link href={prefix || "/"}>{isVi ? "Trang chủ" : "Home"}</Link><Link href={`${prefix}/about`}>{isVi ? "Giới thiệu" : "About"}</Link><Link href={`${prefix}/attend`}>{isVi ? "Tham dự" : "Attend"}</Link><Link href="/partners">Partners</Link><Link href={`${prefix}/privacy`}>{isVi ? "Quyền riêng tư" : "Privacy"}</Link><Link href={`${prefix}/terms`}>{isVi ? "Điều khoản" : "Terms"}</Link></nav>
       </footer>
     </div>
   );

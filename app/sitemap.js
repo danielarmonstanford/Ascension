@@ -28,6 +28,12 @@ export default function sitemap() {
   return [
     ...localizedRoutes,
     {
+      url: `${PRODUCTION_ORIGIN}/partners`,
+      lastModified: new Date("2026-09-13"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${PRODUCTION_ORIGIN}/partners/sponsorship`,
       lastModified: new Date("2026-09-03"),
       changeFrequency: "monthly",
