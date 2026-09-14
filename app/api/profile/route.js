@@ -151,6 +151,9 @@ export async function POST(request) {
 
   try {
     const columns = await getProfileColumns(config);
+    if (!columns) {
+      return NextResponse.json({ ok: false, message: "The profile database schema could not be verified. Your draft remains on this device; please try again shortly." }, { status: 503, headers: { "Cache-Control": "no-store" } });
+    }
     const missingPersistenceColumns = columns ? requiredProfileColumns.filter((column) => !columns.has(column)) : [];
     if (missingPersistenceColumns.length) {
       console.error("Attendee profile table is missing required persistence columns", missingPersistenceColumns.join(","));
