@@ -6,6 +6,11 @@ const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const allowedQuestionIds = new Set(profileQuestions.map((question) => question.id));
 const allowedAttribution = new Set(["utm_source", "utm_medium", "utm_campaign", "utm_content", "ref"]);
+const requiredProfileColumns = [
+  "name", "email", "consent", "acknowledgement", "answers", "primary_pathway", "supporting_pathways",
+  "source", "attribution", "utm_source", "utm_medium", "utm_campaign", "utm_content", "referral_code",
+  "preferred_destinations", "lead_route",
+];
 let profileColumnsPromise;
 const inMemoryRateHits = new Map();
 
@@ -146,6 +151,11 @@ export async function POST(request) {
 
   try {
     const columns = await getProfileColumns(config);
+    const missingPersistenceColumns = columns ? requiredProfileColumns.filter((column) => !columns.has(column)) : [];
+    if (missingPersistenceColumns.length) {
+      console.error("Attendee profile table is missing required persistence columns", missingPersistenceColumns.join(","));
+      return NextResponse.json({ ok: false, message: "The profile database needs its required secure fields configured before this profile can be stored. Your draft remains on this device." }, { status: 503, headers: { "Cache-Control": "no-store" } });
+    }
     const fingerprint = await rateLimitKey(request, email, config.key);
     if (await isRateLimited(config, fingerprint, columns)) return NextResponse.json({ ok: false, message: "This profile has been submitted several times recently. Please wait before trying again." }, { status: 429, headers: { "Cache-Control": "no-store" } });
 
