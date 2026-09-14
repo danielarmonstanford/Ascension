@@ -14,16 +14,16 @@ export const destinations = [
   { value: "thailand", label: "Thailand" },
   { value: "taiwan", label: "Taiwan" },
   { value: "japan", label: "Japan" },
+  { value: "rio-de-janeiro", label: "Rio de Janeiro" },
   { value: "other", label: "Another city or country" },
-  { value: "none-yet", label: "No future destination yet" },
 ];
 
 export const accommodationStyles = [
-  { value: "quiet-boutique", label: "Quiet boutique hotel" },
-  { value: "wellness-resort", label: "Wellness resort" },
-  { value: "design-hotel", label: "Design-led hotel" },
-  { value: "simple-comfort", label: "Simple, comfortable base" },
-  { value: "undecided", label: "Open to guidance" },
+  { value: "easygoing", label: "Easygoing" },
+  { value: "clean-modern", label: "Clean and modern" },
+  { value: "rustic-boutique", label: "Rustic or boutique" },
+  { value: "five-star", label: "Five-star" },
+  { value: "ultra-luxury", label: "Ultra-luxury" },
 ];
 
 export const hotelBudgets = [
@@ -41,10 +41,24 @@ export const travelParties = [
   { value: "shared", label: "Open to a shared room" },
 ];
 
+export const roomTypes = [
+  { value: "private", label: "Private room" },
+  { value: "shared", label: "Shared room" },
+  { value: "suite", label: "Suite or larger room" },
+  { value: "flexible", label: "Open to guidance" },
+];
+
+export const accommodationPriorities = [
+  { value: "location", label: "Location and easy access" },
+  { value: "quiet", label: "Quiet and restorative atmosphere" },
+  { value: "design", label: "Design and sense of place" },
+  { value: "wellness", label: "Pool, spa or wellness facilities" },
+  { value: "value", label: "Strong value" },
+  { value: "service", label: "High-touch service" },
+];
+
 const option = (value, label, scores = {}) => ({ value, label, scores });
 
-// Exactly six guest-facing screens. Practical details are grouped into one final
-// planning question so the experience stays conversational rather than exhaustive.
 export const profileQuestions = [
   {
     id: "first_name", type: "text", eyebrow: "First, an introduction",
@@ -64,16 +78,57 @@ export const profileQuestions = [
     ],
   },
   {
-    id: "body_experience", type: "multi", eyebrow: "Experience planning",
-    question: "What would you like your body to experience more easily?",
-    help: "Non-diagnostic experience planning only. Choose any that feel relevant.", required: true, sensitive: true,
+    id: "discomfort_frequency", type: "single", eyebrow: "Experience planning",
+    question: "How often do discomfort or stiffness affect your day?",
+    help: "Non-diagnostic experience planning only. You may prefer not to answer.", required: true, sensitive: true,
     options: [
-      option("less-discomfort", "Less recurring discomfort or stiffness", { RESTORE: 3, EMBODY: 2 }),
-      option("everyday-movement", "Walking, reaching or moving with more ease", { EMBODY: 3, RESTORE: 1 }),
-      option("energy", "More energy and less fatigue", { BREATHE: 2, RESTORE: 3 }),
-      option("release-stress", "Release stress and switch off", { BREATHE: 3, RESONATE: 2 }),
-      option("comfortable-rest", "Sit, rest and sleep more comfortably", { RESTORE: 2, BREATHE: 1 }),
-      option("prefer-not", "No concern / prefer not to say", {}),
+      option("rarely", "Rarely", { RESTORE: 1 }),
+      option("sometimes", "Sometimes", { RESTORE: 2, EMBODY: 1 }),
+      option("often", "Often", { RESTORE: 3, EMBODY: 2 }),
+      option("most-days", "Most days", { RESTORE: 4, EMBODY: 2 }),
+      option("none", "Not currently", {}),
+      option("prefer-not", "Prefer not to say", {}),
+    ],
+  },
+  {
+    id: "body_areas", type: "multi", eyebrow: "Where you feel it",
+    question: "Which areas would you like us to consider, {{firstName}}?",
+    help: "Choose only what feels useful for experience planning.", required: true, sensitive: true,
+    options: [
+      option("neck-shoulders", "Neck or shoulders", { RESTORE: 2, EMBODY: 1 }),
+      option("back", "Back", { RESTORE: 2, EMBODY: 2 }),
+      option("hips", "Hips", { EMBODY: 2, RESTORE: 1 }),
+      option("knees-legs", "Knees or legs", { EMBODY: 2 }),
+      option("hands-arms", "Hands or arms", { EMBODY: 1 }),
+      option("whole-body", "General or whole-body", { RESTORE: 2, BREATHE: 1 }),
+      option("prefer-not", "Prefer not to say", {}),
+    ],
+  },
+  {
+    id: "movement_limitations", type: "multi", eyebrow: "Everyday movement",
+    question: "Which everyday movements currently feel less easy?",
+    help: "This is not a medical assessment.", required: true, sensitive: true,
+    options: [
+      option("walking-stairs", "Walking or climbing stairs", { EMBODY: 3 }),
+      option("bending-reaching", "Bending or reaching", { EMBODY: 3, RESTORE: 1 }),
+      option("sitting-standing", "Sitting or standing for a while", { RESTORE: 2, EMBODY: 1 }),
+      option("balance", "Balance or steadiness", { EMBODY: 2, BREATHE: 1 }),
+      option("sleep-rest", "Settling into sleep or rest", { RESTORE: 3, BREATHE: 1 }),
+      option("none", "None currently", {}),
+      option("prefer-not", "Prefer not to say", {}),
+    ],
+  },
+  {
+    id: "desired_changes", type: "multi", eyebrow: "What may change",
+    question: "What would you most like to feel different?",
+    help: "Choose up to three intentions—not promised outcomes.", required: true, max: 3,
+    options: [
+      option("movement", "More ease and confidence in movement", { EMBODY: 4 }),
+      option("energy", "More steady energy", { BREATHE: 2, RESTORE: 2 }),
+      option("rest", "Deeper rest and recovery", { RESTORE: 4 }),
+      option("calm", "More calm and spaciousness", { BREATHE: 3, RESONATE: 2 }),
+      option("connection", "A stronger connection with my body", { EMBODY: 2, BREATHE: 2 }),
+      option("wellbeing", "A renewed sense of wellbeing", { RESTORE: 2, CREATE: 1 }),
     ],
   },
   {
@@ -90,23 +145,69 @@ export const profileQuestions = [
     ],
   },
   {
-    id: "edition_plan", type: "single", eyebrow: "Edition 01 · Da Nang",
-    question: "How does Da Nang in January 2027 fit your world?", required: true,
+    id: "travel_readiness", type: "single", eyebrow: "Travel readiness",
+    question: "How ready are you for Southeast Asia travel in 2027?", required: true,
     options: [
-      option("14-ready", "I’m ready for 14 days · January 12–26"),
-      option("7-ready", "I’m ready for 7 days · January 12–19"),
-      option("considering", "It’s possible—I need the right details"),
-      option("partial", "I could join for part of those dates"),
-      option("future", "Not this edition, but keep me close"),
+      option("ready", "Ready to plan"),
+      option("researching", "Interested and researching"),
+      option("details", "Possible with the right details"),
+      option("not-2027", "Not ready for Southeast Asia in 2027"),
     ],
   },
   {
-    id: "travel_planning", type: "planning", eyebrow: "Shape your stay",
-    question: "A few practical preferences, then your pathway is ready.", required: true,
+    id: "da_nang_availability", type: "single", eyebrow: "Edition 01 · Da Nang",
+    question: "Could you be in Da Nang between January 12 and 26, 2027?", required: true,
+    options: [
+      option("yes", "Yes"), option("likely", "Likely"), option("partial", "For part of those dates"),
+      option("unsure", "I’m not sure yet"), option("unavailable", "Not for this edition"),
+    ],
+  },
+  {
+    id: "duration_preference", type: "single", eyebrow: "Time in Da Nang",
+    question: "Which experience length feels right?", required: true,
+    options: [
+      option("7-day", "7 days · January 12–19"),
+      option("14-day", "14 days · January 12–26"),
+      option("either", "Either—help me choose"),
+      option("future-only", "A future edition instead"),
+    ],
+  },
+  {
+    id: "future_destinations", type: "multi", eyebrow: "Where ASCENSION travels",
+    question: "Which future destinations would you consider?", required: true,
+    options: destinations.map((entry) => option(entry.value, entry.label)),
+  },
+  {
+    id: "suggested_destination", type: "text", eyebrow: "Your suggested place",
+    question: "Where should ASCENSION travel next?", placeholder: "City, country", required: true,
+  },
+  {
+    id: "accommodation_style", type: "single", eyebrow: "Shape your stay",
+    question: "Which accommodation style feels most like you?", required: true,
+    options: accommodationStyles.map((entry) => option(entry.value, entry.label)),
+  },
+  {
+    id: "room_type", type: "single", eyebrow: "Your room",
+    question: "What room arrangement would you prefer?", required: true,
+    options: roomTypes.map((entry) => option(entry.value, entry.label)),
+  },
+  {
+    id: "accommodation_priorities", type: "multi", eyebrow: "What matters most",
+    question: "What should your accommodation prioritize?", help: "Choose up to three.", required: true, max: 3,
+    options: accommodationPriorities.map((entry) => option(entry.value, entry.label)),
+  },
+  {
+    id: "nightly_budget", type: "single", eyebrow: "Approximate nightly budget",
+    question: "What nightly range should we plan around?", required: true,
+    options: hotelBudgets.map((entry) => option(entry.value, entry.label)),
   },
 ];
 
-export function questionIsVisible() { return true; }
+export function questionIsVisible(question, answers) {
+  if (question.id === "body_areas") return !["none", "prefer-not"].includes(answers.discomfort_frequency);
+  if (question.id === "suggested_destination") return Array.isArray(answers.future_destinations) && answers.future_destinations.includes("other");
+  return true;
+}
 
 export function calculatePathways(answers) {
   const totals = Object.fromEntries(pathwayOrder.map((pathway) => [pathway, 0]));

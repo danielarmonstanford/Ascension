@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
-import { pathwayOrder, profileQuestions } from "../../../content/profile";
+import { calculatePathways, pathwayOrder, profileQuestions, questionIsVisible } from "../../../content/profile";
 
 const MAX_BODY_BYTES = 50_000;
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const allowedQuestionIds = new Set(profileQuestions.map((question) => question.id));
 const allowedAttribution = new Set(["utm_source", "utm_medium", "utm_campaign", "utm_content", "ref"]);
+let profileColumnsPromise;
+const inMemoryRateHits = new Map();
 
 function cleanText(value, max = 240) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
@@ -12,10 +16,103 @@ function cleanText(value, max = 240) {
 function cleanAnswers(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) return {};
   return Object.fromEntries(Object.entries(input).filter(([key]) => allowedQuestionIds.has(key)).map(([key, value]) => {
-    if (Array.isArray(value)) return [key, value.slice(0, 12).map((item) => cleanText(item, 120))];
-    if (value && typeof value === "object") return [key, Object.fromEntries(Object.entries(value).slice(0, 12).map(([field, fieldValue]) => [cleanText(field, 80), Array.isArray(fieldValue) ? fieldValue.slice(0, 12).map((item) => cleanText(item, 120)) : cleanText(fieldValue, 240)]))];
+    if (Array.isArray(value)) return [key, value.slice(0, 12).map((item) => cleanText(item, 120)).filter(Boolean)];
     return [key, cleanText(value, 240)];
   }));
+}
+
+function answersAreValid(answers) {
+  return profileQuestions.every((question) => {
+    if (!questionIsVisible(question, answers)) return true;
+    const value = answers[question.id];
+    if (question.required && (Array.isArray(value) ? value.length === 0 : !value)) return false;
+    if (question.type === "text") return !value || typeof value === "string";
+    const allowed = new Set((question.options || []).map((option) => option.value));
+    if (question.type === "multi") return Array.isArray(value) && (!question.max || value.length <= question.max) && value.every((entry) => allowed.has(entry));
+    return typeof value === "string" && allowed.has(value);
+  });
+}
+
+function supabaseConfig() {
+  const url = process.env.SUPABASE_URL?.replace(/\/$/, "");
+  const key = process.env.SUPABASE_SECRET_KEY;
+  return url && key ? { url, key } : null;
+}
+
+function supabaseHeaders(key, extras = {}) {
+  return { apikey: key, Authorization: `Bearer ${key}`, "Content-Type": "application/json", ...extras };
+}
+
+async function getProfileColumns(config) {
+  if (!profileColumnsPromise) {
+    profileColumnsPromise = fetch(`${config.url}/rest/v1/`, {
+      headers: { apikey: config.key, Authorization: `Bearer ${config.key}`, Accept: "application/openapi+json" },
+      signal: AbortSignal.timeout(10_000),
+      cache: "no-store",
+    })
+      .then(async (response) => {
+        if (!response.ok) return null;
+        const schema = await response.json();
+        const properties = schema?.definitions?.attendee_profiles?.properties
+          || schema?.components?.schemas?.attendee_profiles?.properties;
+        return properties ? new Set(Object.keys(properties)) : null;
+      })
+      .catch(() => null);
+  }
+  return profileColumnsPromise;
+}
+
+async function rateLimitKey(request, email, secret) {
+  const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const bytes = new TextEncoder().encode(`${secret}:${forwarded}:${email}`);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+async function isRateLimited(config, key, columns) {
+  if (columns && !columns.has("rate_limit_key")) {
+    const cutoff = Date.now() - RATE_LIMIT_WINDOW_MS;
+    const hits = (inMemoryRateHits.get(key) || []).filter((time) => time >= cutoff);
+    inMemoryRateHits.set(key, hits);
+    return hits.length >= RATE_LIMIT_MAX;
+  }
+  const since = new Date(Date.now() - RATE_LIMIT_WINDOW_MS).toISOString();
+  const query = new URLSearchParams({ select: "id", rate_limit_key: `eq.${key}`, created_at: `gte.${since}`, limit: String(RATE_LIMIT_MAX) });
+  const response = await fetch(`${config.url}/rest/v1/attendee_profiles?${query}`, {
+    headers: supabaseHeaders(config.key), signal: AbortSignal.timeout(10_000), cache: "no-store",
+  });
+  if (!response.ok) throw new Error(`Rate-limit lookup failed (${response.status})`);
+  const rows = await response.json();
+  return Array.isArray(rows) && rows.length >= RATE_LIMIT_MAX;
+}
+
+function recordRateHit(key, columns) {
+  if (columns && !columns.has("rate_limit_key")) {
+    const cutoff = Date.now() - RATE_LIMIT_WINDOW_MS;
+    const hits = (inMemoryRateHits.get(key) || []).filter((time) => time >= cutoff);
+    hits.push(Date.now());
+    inMemoryRateHits.set(key, hits);
+  }
+}
+
+async function storeProfile(config, profile, columns) {
+  const payload = columns
+    ? Object.fromEntries(Object.entries(profile).filter(([key]) => columns.has(key)))
+    : profile;
+  const response = await fetch(`${config.url}/rest/v1/attendee_profiles`, {
+    method: "POST",
+    headers: supabaseHeaders(config.key, { Prefer: "return=representation" }),
+    body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(10_000),
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    const detail = await response.text();
+    console.error("Attendee profile insert failed", response.status, detail.slice(0, 300));
+    throw new Error("Profile storage failed");
+  }
+  const rows = await response.json();
+  return rows[0]?.id;
 }
 
 export async function POST(request) {
@@ -26,28 +123,56 @@ export async function POST(request) {
   let input;
   try { input = await request.json(); } catch { return NextResponse.json({ ok: false, message: "The profile data is not valid." }, { status: 400 }); }
   if (JSON.stringify(input).length > MAX_BODY_BYTES) return NextResponse.json({ ok: false, message: "This profile is too large to submit." }, { status: 413 });
+  if (input?.lead?.website) return NextResponse.json({ ok: true });
+
+  const startedAt = Number(input?.startedAt || 0);
+  if (!Number.isFinite(startedAt) || Date.now() - startedAt < 2_500) return NextResponse.json({ ok: false, message: "Please take a moment to review your profile before sending." }, { status: 429 });
 
   const name = cleanText(input?.lead?.name, 120);
   const email = cleanText(input?.lead?.email, 254).toLowerCase();
-  if (input?.lead?.website) return NextResponse.json({ ok: true });
-  if (!name || !/^\S+@\S+\.\S+$/.test(email) || input?.lead?.consent !== true) return NextResponse.json({ ok: false, message: "A valid name, email and consent are required." }, { status: 400 });
+  if (!name || !/^\S+@\S+\.\S+$/.test(email) || input?.lead?.consent !== true || input?.lead?.acknowledgement !== true) return NextResponse.json({ ok: false, message: "A valid name, email, consent and acknowledgement are required." }, { status: 400 });
 
-  const webhook = process.env.ASCENSION_PROFILE_WEBHOOK_URL;
-  if (!webhook) return NextResponse.json({ ok: false, code: "testing_mode", message: "Testing mode: no profile destination is configured, so your answers were not stored. Please return after the local review." }, { status: 503, headers: { "Cache-Control": "no-store" } });
+  const answers = cleanAnswers(input.answers);
+  if (!answersAreValid(answers)) return NextResponse.json({ ok: false, message: "Complete each profile question with a valid selection before sending." }, { status: 400 });
 
-  const payload = {
-    event: "ascension_profile_submitted", version: 1, submittedAt: new Date().toISOString(),
-    lead: { name, email, consent: true },
-    pathways: Array.isArray(input.pathways) ? input.pathways.filter((pathway) => pathwayOrder.includes(pathway)).slice(0, 3) : [],
-    answers: cleanAnswers(input.answers),
-    attribution: Object.fromEntries(Object.entries(input.attribution || {}).filter(([key]) => allowedAttribution.has(key)).map(([key, value]) => [key, cleanText(value, 180)])),
-  };
+  const config = supabaseConfig();
+  if (!config) return NextResponse.json({ ok: false, code: "testing_mode", message: "Testing mode: the profile database is not configured, so your answers were not stored. Your draft remains on this device." }, { status: 503, headers: { "Cache-Control": "no-store" } });
+
+  const pathways = calculatePathways(answers).filter((pathway) => pathwayOrder.includes(pathway)).slice(0, 3);
+  const attribution = Object.fromEntries(Object.entries(input.attribution || {}).filter(([key]) => allowedAttribution.has(key)).map(([key, value]) => [key, cleanText(value, 180)]));
+  const qualifiedForDaNang = ["ready", "researching", "details"].includes(answers.travel_readiness)
+    && ["yes", "likely", "partial", "unsure"].includes(answers.da_nang_availability)
+    && ["7-day", "14-day", "either"].includes(answers.duration_preference);
 
   try {
-    const response = await fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json", "User-Agent": "ASCENSION-Profile/1.0" }, body: JSON.stringify(payload), signal: AbortSignal.timeout(10_000), cache: "no-store" });
-    if (!response.ok) throw new Error("Webhook rejected submission");
-    return NextResponse.json({ ok: true }, { headers: { "Cache-Control": "no-store" } });
-  } catch {
+    const columns = await getProfileColumns(config);
+    const fingerprint = await rateLimitKey(request, email, config.key);
+    if (await isRateLimited(config, fingerprint, columns)) return NextResponse.json({ ok: false, message: "This profile has been submitted several times recently. Please wait before trying again." }, { status: 429, headers: { "Cache-Control": "no-store" } });
+
+    const profileId = await storeProfile(config, {
+      name,
+      email,
+      consent: true,
+      acknowledgement: true,
+      answers,
+      primary_pathway: pathways[0],
+      supporting_pathways: pathways.slice(1),
+      source: cleanText(input.source, 180) || "/profile",
+      attribution,
+      utm_source: attribution.utm_source || null,
+      utm_medium: attribution.utm_medium || null,
+      utm_campaign: attribution.utm_campaign || null,
+      utm_content: attribution.utm_content || null,
+      referral_code: attribution.ref || null,
+      preferred_destinations: Array.isArray(answers.future_destinations) ? answers.future_destinations : [],
+      lead_route: qualifiedForDaNang ? "da-nang-cohort" : "future-city-waitlist",
+      rate_limit_key: fingerprint,
+    }, columns);
+    recordRateHit(fingerprint, columns);
+
+    return NextResponse.json({ ok: true, profileId, pathways, leadRoute: qualifiedForDaNang ? "da-nang-cohort" : "future-city-waitlist" }, { headers: { "Cache-Control": "no-store" } });
+  } catch (error) {
+    console.error("Attendee profile submission failed", error instanceof Error ? error.message : "Unknown error");
     return NextResponse.json({ ok: false, message: "We could not safely store your profile. Your draft remains on this device; please try again." }, { status: 502, headers: { "Cache-Control": "no-store" } });
   }
 }

@@ -41,6 +41,9 @@
 .error { max-width: 42rem; margin: 1rem 0 0; color: #8d392d; font-weight: 600; line-height: 1.45; }
 .supporting { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-top: 1.5rem; }
 .supporting strong { color: var(--copper); font: 400 clamp(1.6rem, 3vw, 2.7rem)/1 var(--display); font-weight: 400; }
+.resultActions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1rem; }
+.resultActions .primary { margin-top: 1rem; }
+.secondary { min-height: 48px; display: inline-flex; align-items: center; gap: .75rem; margin-top: 1rem; color: var(--ink); font: 650 .67rem/1.35 var(--utility); letter-spacing: .1em; text-decoration: underline; text-underline-offset: .45rem; text-transform: uppercase; }
 .form { width: min(100%, 48rem); margin-top: 2.5rem; padding: clamp(1.25rem, 3vw, 2.5rem); background: var(--shell); }
 .form h2 { margin: 0 0 1.5rem; font: 400 clamp(2rem, 4vw, 3.5rem)/.95 var(--display); }
 .form label { display: block; margin: 1.25rem 0 .4rem; font: 650 .64rem/1.4 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
@@ -76,5 +79,7 @@
   .controls { margin-top: auto; padding-top: 1.5rem; }
   .controls .primary { min-height: 52px; }
   .result > h1 { font-size: clamp(4.7rem, 21vw, 7rem); }
+  .resultActions { align-items: stretch; flex-direction: column; }
+  .resultActions .primary, .resultActions .secondary { width: 100%; justify-content: center; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) { .progress span, .primary, .options button { transition: none; } .intro, .question, .result { animation: none; } }
