@@ -22,11 +22,12 @@ export default function ProfileExperience() {
   const [attribution, setAttribution] = useState({});
   const [screen, setScreen] = useState(-1);
   const [hydrated, setHydrated] = useState(false);
-  const [lead, setLead] = useState({ name: "", email: "", consent: false, acknowledgement: false, website: "" });
+  const [lead, setLead] = useState({ name: "", email: "", consent: false, marketingConsent: false, acknowledgement: false, website: "" });
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
   const [deliveryWarning, setDeliveryWarning] = useState(false);
   const [visualVariant, setVisualVariant] = useState("clean");
+  const [captureLocale, setCaptureLocale] = useState("en");
   const started = useRef(false);
   const completed = useRef(false);
   const startedAt = useRef(0);
@@ -42,6 +43,7 @@ export default function ProfileExperience() {
     startedAt.current = Date.now();
     const params = new URLSearchParams(window.location.search);
     setVisualVariant(["poster", "female-poster"].includes(params.get("visual")) ? params.get("visual") : "clean");
+    setCaptureLocale(params.get("lang") === "fr" ? "fr" : "en");
     const captured = Object.fromEntries(ATTRIBUTION_KEYS.map((key) => [key, params.get(key)]).filter(([, value]) => value));
     setAttribution(captured);
     try {
@@ -51,7 +53,7 @@ export default function ProfileExperience() {
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
         if (saved?.answers) setAnswers(saved.answers);
         if (Number.isInteger(saved?.screen)) setScreen(saved.screen);
-        if (saved?.lead) setLead((value) => ({ ...value, name: saved.lead.name || "", email: saved.lead.email || "" }));
+        if (saved?.lead) setLead((value) => ({ ...value, name: saved.lead.name || "", email: saved.lead.email || "", marketingConsent: saved.lead.marketingConsent === true }));
       }
     } catch { /* A damaged draft should never block the profile. */ }
     setHydrated(true);
@@ -59,12 +61,13 @@ export default function ProfileExperience() {
 
   useEffect(() => {
     if (!hydrated) return;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, screen, lead: { name: lead.name, email: lead.email } }));
-  }, [answers, screen, lead.name, lead.email, hydrated]);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, screen, lead: { name: lead.name, email: lead.email, marketingConsent: lead.marketingConsent } }));
+  }, [answers, screen, lead.name, lead.email, lead.marketingConsent, hydrated]);
 
   const value = current ? answers[current.id] : undefined;
   const valid = !current || !current.required || (Array.isArray(value) ? value.length > 0 : Boolean(String(value || "").trim()));
   const firstName = String(answers.first_name || "").trim();
+  const deliveryCopy = profileDeliveryCopy[captureLocale] || profileDeliveryCopy.en;
   const qualifiedForDaNang = ["ready", "researching", "details"].includes(answers.travel_readiness)
     && ["yes", "likely", "partial", "unsure"].includes(answers.da_nang_availability)
     && ["7-day", "14-day", "either"].includes(answers.duration_preference);
@@ -164,15 +167,17 @@ export default function ProfileExperience() {
 
       {isResult && status !== "sent" && <section className={styles.result}>
         <p className={styles.eyebrow}>Your pathway constellation</p>
-        <h1 className={styles.emailHeading}>{profileDeliveryCopy.en.emailHeading}</h1>
-        <p className={styles.lead}>{profileDeliveryCopy.en.emailSupportingCopy}</p>
+        <h1 className={styles.emailHeading}>{deliveryCopy.emailHeading}</h1>
+        <p className={styles.lead}>{deliveryCopy.emailSupportingCopy}</p>
         <form className={styles.form} onSubmit={submit}>
           <h2>{firstName ? `${firstName}, your pathway is ready.` : "Your pathway is ready."}</h2>
           <label>First name<input name="name" required value={lead.name} onChange={(event) => { setLead({ ...lead, name: event.target.value }); setAnswers((previous) => ({ ...previous, first_name: event.target.value })); }} autoComplete="given-name" /></label>
-          <label>Email<input name="email" required type="email" value={lead.email} onChange={(event) => setLead({ ...lead, email: event.target.value })} autoComplete="email" /></label>
+          <label>{deliveryCopy.emailLabel}<input name="email" required type="email" value={lead.email} onChange={(event) => setLead({ ...lead, email: event.target.value })} autoComplete="email" /></label>
+          <p className={styles.emailAssurance}>{deliveryCopy.emailAssurance}</p>
           <input name="website" className={styles.honeypot} tabIndex="-1" autoComplete="off" aria-hidden="true" value={lead.website} onChange={(event) => setLead({ ...lead, website: event.target.value })} />
           <label className={styles.consent}><input name="acknowledgement" required type="checkbox" checked={lead.acknowledgement} onChange={(event) => setLead({ ...lead, acknowledgement: event.target.checked })} /><span>This profile supports experience personalisation only. ASCENSION does not provide medical diagnosis, advice or treatment.</span></label>
-          <label className={styles.consent}><input name="consent" required type="checkbox" checked={lead.consent} onChange={(event) => setLead({ ...lead, consent: event.target.checked })} /><span>I consent to ASCENSION using these answers to respond to my enquiry and help plan the experience. <Link href="/privacy">Privacy Policy</Link>.</span></label>
+          <label className={styles.consent}><input name="consent" required type="checkbox" checked={lead.consent} onChange={(event) => setLead({ ...lead, consent: event.target.checked })} /><span>{deliveryCopy.transactionalConsent} <Link href="/privacy">Privacy Policy</Link>.</span></label>
+          <label className={styles.consent}><input name="marketing-consent" type="checkbox" checked={lead.marketingConsent} onChange={(event) => setLead({ ...lead, marketingConsent: event.target.checked })} /><span>{deliveryCopy.marketingConsent}</span></label>
           {message && <p className={styles.error} role="alert">{message}</p>}
           <button className={styles.primary} disabled={status === "sending"}>{status === "sending" ? "Unlocking…" : "Unlock My Experience"}<span aria-hidden="true">→</span></button>
           <p className={styles.privacy}>Body, discomfort and mobility answers are never sent to Meta Pixel or Meta Conversions API.</p>

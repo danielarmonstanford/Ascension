@@ -187,7 +187,7 @@ export async function POST(request) {
       first_name: name,
       email,
       privacy_consent: true,
-      marketing_consent: false,
+      marketing_consent: input?.lead?.marketingConsent === true,
       consent_recorded_at: new Date().toISOString(),
       questionnaire_answers: {
         version: 2,
