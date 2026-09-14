@@ -19,6 +19,6 @@ export default async function BodySensesGuide({ searchParams }) {
     <section className={styles.intro}><h2>Six ways into the present.</h2><p>ASCENSION brings restorative practice, movement, breath, sound, creativity and food into one connected experience. Your pathway is a place to begin—not a diagnosis or a fixed track.</p></section>
     <section className={styles.pathways}>{pathwayOrder.map((pathway, index) => <article key={pathway} className={pathway === primary ? styles.primaryPathway : ""}><span>{String(index + 1).padStart(2, "0")}</span><h2>{pathway}</h2><p>{pathwayCopy[pathway]}</p></article>)}</section>
     <section className={styles.next}><p>Da Nang · January 12–26, 2027</p><h2>Carry the guide into the experience.</h2><Link href="/join#apply">Request Your Cohort Invitation <span aria-hidden="true">→</span></Link></section>
-    <footer><p>This guide supports experience personalization only. ASCENSION does not provide medical diagnosis, advice or treatment.</p><Link href="/profile?reset=1">Start a new profile</Link></footer>
+    <footer><p>This guide supports experience personalisation only. ASCENSION does not provide medical diagnosis, advice or treatment.</p><Link href="/profile?reset=1">Start a new profile</Link></footer>
   </main>;
 }

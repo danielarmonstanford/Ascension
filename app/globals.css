@@ -477,6 +477,9 @@ section { position: relative; }
 .join-copy { align-self: center; position: relative; z-index: 3; padding: var(--section-space) var(--gutter) clamp(12rem, 18vw, 16rem); }
 .join-copy h2 { margin: 0; font: 400 clamp(5rem, 12vw, 11rem)/.8 var(--display); letter-spacing: -.035em; }
 .join-copy > p { max-width: 43rem; margin: 2rem 0 0; color: rgba(241, 230, 213, .9); font-size: clamp(1rem, 1.4vw, 1.2rem); line-height: 1.65; }
+.join-take-home { max-width: 44rem; display: grid; gap: .55rem; margin-top: 1.75rem; padding: 1rem 0 0; border-top: 1px solid rgba(241, 230, 213, .35); }
+.join-take-home strong { color: var(--sunlight); font: 650 .65rem/1.4 var(--utility); letter-spacing: .13em; text-transform: uppercase; }
+.join-take-home span { color: rgba(241, 230, 213, .82); font-size: clamp(.88rem, 1.15vw, 1.02rem); line-height: 1.55; }
 .join-actions { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: center; }
 .join-copy .radiant-action { margin-top: 2.5rem; }
 .join-copy .join-question { display: inline-flex; align-items: center; gap: 1.25rem; min-height: 44px; margin-top: 2.5rem; color: var(--moon-ivory); font: 650 .72rem/1.4 var(--utility); letter-spacing: .1em; text-transform: uppercase; text-underline-offset: .4rem; }

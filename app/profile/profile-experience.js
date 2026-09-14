@@ -6,7 +6,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
-import { calculatePathways, pathwayCopy, profileQuestions, questionIsVisible } from "../../content/profile";
+import { calculatePathways, pathwayCopy, profileDeliveryCopy, profileQuestions, questionIsVisible } from "../../content/profile";
 import PathwayShare from "./pathway-share";
 import styles from "./profile.module.css";
 
@@ -25,6 +25,7 @@ export default function ProfileExperience() {
   const [lead, setLead] = useState({ name: "", email: "", consent: false, acknowledgement: false, website: "" });
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
+  const [deliveryWarning, setDeliveryWarning] = useState(false);
   const [visualVariant, setVisualVariant] = useState("clean");
   const started = useRef(false);
   const completed = useRef(false);
@@ -115,6 +116,7 @@ export default function ProfileExperience() {
       if (!response.ok) throw new Error(data.message || "The profile could not be sent.");
       emit("profile_lead_submitted");
       localStorage.removeItem(STORAGE_KEY);
+      setDeliveryWarning(data?.delivery?.participant !== "sent");
       setStatus("sent");
     } catch (error) {
       setStatus("error"); setMessage(error.message);
@@ -137,7 +139,7 @@ export default function ProfileExperience() {
           <h1>Discover your pathway.</h1>
           <p className={styles.lead}>A short, private conversation to understand what draws you toward Da Nang—and which parts of ASCENSION may matter most.</p>
           <button className={styles.primary} onClick={begin}>Begin <span aria-hidden="true">→</span></button>
-          <p className={styles.disclaimer}>This profile supports experience personalization only. ASCENSION does not provide medical diagnosis, advice or treatment.</p>
+          <p className={styles.disclaimer}>This profile supports experience personalisation only. ASCENSION does not provide medical diagnosis, advice or treatment.</p>
         </div>
         <picture className={styles.profileArt}>
           <source media="(max-width: 600px)" srcSet={visualVariant === "poster" ? "/assets/profile/pathway-mobile.jpg" : visualVariant === "female-poster" ? "/assets/profile/pathway-mobile-female.jpg" : "/assets/profile/pathway-mobile-clean.jpg"} />
@@ -162,14 +164,14 @@ export default function ProfileExperience() {
 
       {isResult && status !== "sent" && <section className={styles.result}>
         <p className={styles.eyebrow}>Your pathway constellation</p>
-        <h1>Your profile is ready.</h1>
-        <p className={styles.lead}>Confirm where to send your personalized result and unlock the ASCENSION Body &amp; Senses Guide.</p>
+        <h1 className={styles.emailHeading}>{profileDeliveryCopy.en.emailHeading}</h1>
+        <p className={styles.lead}>{profileDeliveryCopy.en.emailSupportingCopy}</p>
         <form className={styles.form} onSubmit={submit}>
           <h2>{firstName ? `${firstName}, your pathway is ready.` : "Your pathway is ready."}</h2>
           <label>First name<input name="name" required value={lead.name} onChange={(event) => { setLead({ ...lead, name: event.target.value }); setAnswers((previous) => ({ ...previous, first_name: event.target.value })); }} autoComplete="given-name" /></label>
           <label>Email<input name="email" required type="email" value={lead.email} onChange={(event) => setLead({ ...lead, email: event.target.value })} autoComplete="email" /></label>
           <input name="website" className={styles.honeypot} tabIndex="-1" autoComplete="off" aria-hidden="true" value={lead.website} onChange={(event) => setLead({ ...lead, website: event.target.value })} />
-          <label className={styles.consent}><input name="acknowledgement" required type="checkbox" checked={lead.acknowledgement} onChange={(event) => setLead({ ...lead, acknowledgement: event.target.checked })} /><span>This profile supports experience personalization only. ASCENSION does not provide medical diagnosis, advice or treatment.</span></label>
+          <label className={styles.consent}><input name="acknowledgement" required type="checkbox" checked={lead.acknowledgement} onChange={(event) => setLead({ ...lead, acknowledgement: event.target.checked })} /><span>This profile supports experience personalisation only. ASCENSION does not provide medical diagnosis, advice or treatment.</span></label>
           <label className={styles.consent}><input name="consent" required type="checkbox" checked={lead.consent} onChange={(event) => setLead({ ...lead, consent: event.target.checked })} /><span>I consent to ASCENSION using these answers to respond to my enquiry and help plan the experience. <Link href="/privacy">Privacy Policy</Link>.</span></label>
           {message && <p className={styles.error} role="alert">{message}</p>}
           <button className={styles.primary} disabled={status === "sending"}>{status === "sending" ? "Unlocking…" : "Unlock My Experience"}<span aria-hidden="true">→</span></button>
@@ -178,7 +180,7 @@ export default function ProfileExperience() {
         <button type="button" className={styles.back} onClick={() => setScreen(visibleQuestions.length - 1)}>Back</button>
       </section>}
 
-      {status === "sent" && <section className={styles.result}><p className={styles.eyebrow}>Your primary pathway</p><h1>{results[0]}</h1><p className={styles.lead}>{pathwayCopy[results[0]]}</p><div className={styles.supporting}><span>Supporting pathways</span><strong>{results[1]}</strong><strong>{results[2]}</strong></div><div className={styles.resultActions}><Link className={styles.primary} href={`/profile/guide?pathway=${results[0].toLowerCase()}`}>Open the Body &amp; Senses Guide <span aria-hidden="true">→</span></Link><Link className={styles.secondary} href="/profile/guide/download">Download the Guide PDF <span aria-hidden="true">↓</span></Link>{qualifiedForDaNang ? <Link className={styles.secondary} href="/join#apply">Request Your Cohort Invitation <span aria-hidden="true">→</span></Link> : <a className={styles.secondary} href={`mailto:daniel@stanfordemporium.com?subject=${encodeURIComponent("ASCENSION future-city waitlist")}`}>Join Your Future-City Waitlist <span aria-hidden="true">→</span></a>}</div><PathwayShare pathway={results[0]} attribution={attribution} /></section>}
+      {status === "sent" && <section className={styles.result}><p className={styles.eyebrow}>Your primary pathway</p><h1>{results[0]}</h1><p className={styles.lead}>{pathwayCopy[results[0]]}</p>{deliveryWarning ? <p className={styles.deliveryWarning} role="status">Your result is saved, but we could not send the email. Please download your guide now.</p> : <p className={styles.deliveryStatus} role="status">Your personalised result and guide are on their way to your inbox.</p>}<div className={styles.supporting}><span>Supporting pathways</span><strong>{results[1]}</strong><strong>{results[2]}</strong></div><section className={styles.takeHome} aria-labelledby="take-home-title"><h2 id="take-home-title">{profileDeliveryCopy.en.takeHomeHeading}</h2><p>{profileDeliveryCopy.en.takeHomeCopy}</p></section><div className={styles.resultActions}><a className={styles.primary} href="/profile/guide/download" target="_blank" rel="noopener noreferrer">Download My Guide <span aria-hidden="true">↓</span></a><Link className={styles.secondary} href={`/profile/guide?pathway=${results[0].toLowerCase()}`}>View Your Personalised Guide <span aria-hidden="true">→</span></Link>{qualifiedForDaNang ? <Link className={styles.secondary} href="/join#apply">Request Your Cohort Invitation <span aria-hidden="true">→</span></Link> : <a className={styles.secondary} href={`mailto:daniel@stanfordemporium.com?subject=${encodeURIComponent("ASCENSION future-city waitlist")}`}>Join Your Future-City Waitlist <span aria-hidden="true">→</span></a>}</div><PathwayShare pathway={results[0]} attribution={attribution} /></section>}
     </main>
   );
 }

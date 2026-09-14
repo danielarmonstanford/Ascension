@@ -9,6 +9,21 @@ export const pathwayCopy = {
   TASTE: "Experience Da Nang through flavour, markets and shared tables.",
 };
 
+export const profileDeliveryCopy = {
+  en: {
+    emailHeading: "WHERE SHOULD WE SEND YOUR GUIDE AND PERSONALISED RESULTS?",
+    emailSupportingCopy: "Enter your email to receive your ASCENSION pathway, complimentary Body & Senses Guide and relevant experience recommendations.",
+    takeHomeHeading: "What you take home",
+    takeHomeCopy: "Move with greater ease. Breathe with greater awareness. Rest more deeply. Feel more present. Leave with a clearer understanding of what your body needs—and practices you can continue at home.",
+  },
+  fr: {
+    emailHeading: "OÙ DEVONS-NOUS ENVOYER VOTRE GUIDE ET VOS RÉSULTATS PERSONNALISÉS ?",
+    emailSupportingCopy: "Indiquez votre adresse e-mail pour recevoir votre parcours ASCENSION, le guide Body & Senses offert et des recommandations d’expériences pertinentes.",
+    takeHomeHeading: "Ce que vous emportez avec vous",
+    takeHomeCopy: "Bougez avec plus d’aisance. Respirez avec plus de conscience. Reposez-vous plus profondément. Sentez-vous plus présent. Repartez avec une compréhension plus claire de ce dont votre corps a besoin—et de pratiques que vous pouvez poursuivre chez vous.",
+  },
+};
+
 export const pathwayShareCopy = {
   RESTORE: { tagline: "Make space for recovery.", message: "My ASCENSION pathway is RESTORE. What does your body need more of? Discover yours and receive the complimentary guide:" },
   EMBODY: { tagline: "Move with more ease.", message: "My ASCENSION pathway is EMBODY. What does your body need more of? Discover yours and receive the complimentary guide:" },

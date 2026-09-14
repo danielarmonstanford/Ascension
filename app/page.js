@@ -1184,6 +1184,11 @@ export default function HomePage({ locale = "en" }) {
   const localizedFaqItems = isVi ? viFaqItems : translatedFaq[locale] || faqItems;
   const localizedPassportCategories = isVi ? viPassportCategories : translatedPassport[locale] || passportCategories;
   const lower = translatedLower[locale];
+  const takeHome = locale === "fr"
+    ? { title: "Ce que vous emportez avec vous", copy: "Bougez avec plus d’aisance. Respirez avec plus de conscience. Reposez-vous plus profondément. Sentez-vous plus présent. Repartez avec une compréhension plus claire de ce dont votre corps a besoin—et de pratiques que vous pouvez poursuivre chez vous." }
+    : isVi
+      ? { title: "Điều bạn mang về", copy: "Vận động dễ dàng hơn. Hít thở với nhận thức sâu hơn. Nghỉ ngơi sâu hơn. Cảm thấy hiện diện hơn. Rời đi với sự hiểu biết rõ hơn về điều cơ thể bạn cần—và những thực hành bạn có thể tiếp tục tại nhà." }
+      : { title: "What you take home", copy: "Move with greater ease. Breathe with greater awareness. Rest more deeply. Feel more present. Leave with a clearer understanding of what your body needs—and practices you can continue at home." };
   const ui = isVi ? viUi : translatedUi[locale] || {
     nav:{experience:"Experience",about:"About",attend:"Attend",facilitate:"Facilitate",menu:"Menu",close:"Close"}, reserve:"Reserve your place", ask:"Ask a question", embody:"Embody it", explore:"Explore the experience", day:"DAY", dusk:"DUSK", slogan:["Heal your soul.","Revive your senses."], place:"Da Nang, Vietnam", dates:"January 12–26, 2027", series:"A MODUS SERIES", glanceTitle:"Da Nang,\nVietnam", glanceSub:"The experience,\nat a glance.", glanceLead:"Choose seven days or the full fourteen between city, sea and mountain.", seven:"7 days", fourteen:"14 days", small:"Small, intimate cohort. Accommodation and travel are separate.", compare:"Compare 7 and 14 days", included:"See what’s included", entity:"ASCENSION is a seven- or fourteen-day immersive wellness and cultural happening in Da Nang, Vietnam, taking place January 12–26, 2027. It is built around Diện Chẩn, a needle-free Vietnamese system incorporating reflexology, acupressure, heat, stretching and individualized full-body therapeutic work. The wider program combines confirmed programming with planned movement, breathwork, guided meditation, sound baths, Ecstatic Dance, Vietnamese food, cultural discovery and creative expression.", sixWays:"Six ways into\nthe present.", passport:"Your Ascension Passport", experienceRhythm:"Your experience.\nYour rhythm.", curatedFreedom:"Follow a curated program without losing your freedom.", passportBody:"Your ASCENSION Passport opens confirmed shared experiences while leaving room to rest, explore Da Nang and choose optional private sessions. Planned programming is identified separately until facilitators and schedules are confirmed.", faqKicker:"Before you arrive", faqTitle:"Questions,\nanswered.", facilitator:"Facilitators", apply:"Apply to facilitate", senseDisclosure:{more:"Go deeper",less:"Show less"}, midSenseCta:"Apply to Join"
   };
@@ -1484,6 +1489,10 @@ export default function HomePage({ locale = "en" }) {
           <div className="join-copy">
             <h2 id="join-title">{lower?.waiting || (isVi ? "Đà Nẵng đang chờ." : "Da Nang is waiting.")}</h2>
             <p>{isMobile === false ? copy.finalCta.desktop : copy.finalCta.mobile}</p>
+            <aside className="join-take-home" aria-label={takeHome.title}>
+              <strong>{takeHome.title}</strong>
+              <span>{takeHome.copy}</span>
+            </aside>
             <div className="join-actions">
               <a className="radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">{ui.reserve} <span aria-hidden="true">→</span></a>
               <a className="join-question" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">{ui.ask} <span aria-hidden="true">→</span></a>

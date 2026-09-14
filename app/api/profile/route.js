@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { calculatePathways, pathwayOrder, profileQuestions, questionIsVisible } from "../../../content/profile";
+import { sendProfileDelivery } from "../../../lib/profile-email";
 
 const MAX_BODY_BYTES = 50_000;
 const RATE_LIMIT_MAX = 5;
@@ -181,6 +182,7 @@ export async function POST(request) {
       return NextResponse.json({ ok: false, message: "This profile has been submitted several times recently. Please wait before trying again." }, { status: 429, headers: { "Cache-Control": "no-store" } });
     }
 
+    const leadRoute = qualifiedForDaNang ? "da-nang-cohort" : "future-city-waitlist";
     const profileId = await storeProfile(config, {
       first_name: name,
       email,
@@ -215,12 +217,23 @@ export async function POST(request) {
       utm_content: attribution.utm_content || null,
       utm_term: attribution.utm_term || null,
       preferred_destinations: Array.isArray(answers.future_destinations) ? answers.future_destinations : [],
-      recommended_route: qualifiedForDaNang ? "da-nang-cohort" : "future-city-waitlist",
+      recommended_route: leadRoute,
       rate_limit_key: fingerprint,
     }, columns);
     recordRateHit(fingerprint, columns);
 
-    return NextResponse.json({ ok: true, profileId, pathways, leadRoute: qualifiedForDaNang ? "da-nang-cohort" : "future-city-waitlist" }, { headers: { "Cache-Control": "no-store" } });
+    const delivery = await sendProfileDelivery({
+      profileId,
+      firstName: name,
+      participantEmail: email,
+      pathway: pathways[0],
+      supportingPathways: pathways.slice(1),
+      leadRoute,
+      sourcePath: source.sourcePath,
+      attribution,
+    });
+
+    return NextResponse.json({ ok: true, profileId, pathways, leadRoute, delivery }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     console.error("Attendee profile submission failed", error instanceof Error ? error.message : "Unknown error");
     return NextResponse.json({ ok: false, message: "We could not safely store your profile. Your draft remains on this device; please try again." }, { status: 502, headers: { "Cache-Control": "no-store" } });

@@ -14,6 +14,7 @@
 .eyebrow { margin: 0 0 1.5rem; color: var(--copper); }
 .intro h1, .question h1, .result > h1 { max-width: 12ch; margin: 0; font: 400 clamp(3.7rem, 8vw, 8rem)/.84 var(--display); letter-spacing: -.035em; font-synthesis: none; text-wrap: balance; }
 .result > h1 { color: var(--copper); font-size: clamp(5.5rem, 13vw, 12rem); }
+.result > h1.emailHeading { max-width: 100%; font-size: clamp(2.7rem, 6.4vw, 6.7rem); line-height: .86; letter-spacing: -.055em; overflow-wrap: anywhere; }
 .lead, .help { max-width: 42rem; color: #45656e; font-size: clamp(1.05rem, 1.7vw, 1.4rem); line-height: 1.6; }
 .help { margin: 1.4rem 0 0; font-size: clamp(.95rem, 1.3vw, 1.1rem); }
 .disclaimer { max-width: 44rem; margin: 1.25rem 0 0; color: #526d74; font-size: .78rem; line-height: 1.6; }
@@ -41,6 +42,11 @@
 .error { max-width: 42rem; margin: 1rem 0 0; color: #8d392d; font-weight: 600; line-height: 1.45; }
 .supporting { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-top: 1.5rem; }
 .supporting strong { color: var(--copper); font: 400 clamp(1.6rem, 3vw, 2.7rem)/1 var(--display); font-weight: 400; }
+.deliveryStatus, .deliveryWarning { max-width: 42rem; margin: 1.2rem 0 0; padding: .9rem 1rem; border-left: 3px solid var(--copper); background: rgba(244,237,225,.72); color: #36565f; font-size: .95rem; line-height: 1.55; }
+.deliveryWarning { border-left-color: #a65f45; color: #743d30; }
+.takeHome { max-width: 48rem; margin-top: 2rem; padding: 1.5rem; border-top: 1px solid rgba(23,55,68,.24); border-bottom: 1px solid rgba(23,55,68,.24); }
+.takeHome h2 { margin: 0 0 .8rem; color: var(--copper); font: 400 clamp(2.15rem, 4vw, 3.5rem)/.92 var(--display); letter-spacing: -.025em; }
+.takeHome p { max-width: 42rem; margin: 0; color: #45656e; font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.65; }
 .resultActions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1rem; }
 .resultActions .primary { margin-top: 1rem; }
 .sharePanel { display:grid; grid-template-columns:minmax(15rem,.8fr) minmax(16rem,1fr); gap:clamp(1.2rem,3vw,2.5rem); align-items:center; width:min(100%,48rem); margin-top:clamp(2.5rem,5vw,4rem); padding-top:clamp(1.5rem,3vw,2.5rem); border-top:1px solid rgba(23,55,68,.2); }
@@ -61,6 +67,7 @@
 .honeypot { position: absolute; left: -10000px; }
 @keyframes enter { from { opacity: 0; transform: translateY(.6rem); filter: blur(3px); } }
 @media (max-width: 600px) {
+  .result > h1.emailHeading { font-size: clamp(2.25rem, 10vw, 3.7rem); }
   .answering { background: linear-gradient(rgba(231,240,239,.76), rgba(231,240,239,.84)), url("/assets/profile/pathway-mobile-clean.jpg") center / cover fixed no-repeat; }
   .header { min-height: 4.6rem; }
   .wordmark { font-size: 1.15rem; }
