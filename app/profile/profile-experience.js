@@ -7,10 +7,11 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import { calculatePathways, pathwayCopy, profileQuestions, questionIsVisible } from "../../content/profile";
+import PathwayShare from "./pathway-share";
 import styles from "./profile.module.css";
 
 const STORAGE_KEY = "ascension-profile-v2";
-const ATTRIBUTION_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "ref"];
+const ATTRIBUTION_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "ref"];
 
 function emit(eventName) {
   track(eventName, { source_path: "/profile" });
@@ -108,7 +109,7 @@ export default function ProfileExperience() {
     try {
       const response = await fetch("/api/profile", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ version: 2, answers, pathways: results, attribution, lead, startedAt: startedAt.current, source: "/profile" }),
+        body: JSON.stringify({ version: 2, answers, pathways: results, attribution, lead, startedAt: startedAt.current, source: { path: window.location.pathname, url: window.location.href } }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "The profile could not be sent.");
@@ -177,7 +178,7 @@ export default function ProfileExperience() {
         <button type="button" className={styles.back} onClick={() => setScreen(visibleQuestions.length - 1)}>Back</button>
       </section>}
 
-      {status === "sent" && <section className={styles.result}><p className={styles.eyebrow}>Your primary pathway</p><h1>{results[0]}</h1><p className={styles.lead}>{pathwayCopy[results[0]]}</p><div className={styles.supporting}><span>Supporting pathways</span><strong>{results[1]}</strong><strong>{results[2]}</strong></div><div className={styles.resultActions}><Link className={styles.primary} href={`/profile/guide?pathway=${results[0].toLowerCase()}`}>Open the Body &amp; Senses Guide <span aria-hidden="true">→</span></Link>{qualifiedForDaNang ? <Link className={styles.secondary} href="/join#apply">Request Your Cohort Invitation <span aria-hidden="true">→</span></Link> : <a className={styles.secondary} href={`mailto:daniel@stanfordemporium.com?subject=${encodeURIComponent("ASCENSION future-city waitlist")}`}>Join Your Future-City Waitlist <span aria-hidden="true">→</span></a>}</div></section>}
+      {status === "sent" && <section className={styles.result}><p className={styles.eyebrow}>Your primary pathway</p><h1>{results[0]}</h1><p className={styles.lead}>{pathwayCopy[results[0]]}</p><div className={styles.supporting}><span>Supporting pathways</span><strong>{results[1]}</strong><strong>{results[2]}</strong></div><div className={styles.resultActions}><Link className={styles.primary} href={`/profile/guide?pathway=${results[0].toLowerCase()}`}>Open the Body &amp; Senses Guide <span aria-hidden="true">→</span></Link><Link className={styles.secondary} href="/profile/guide/download">Download the Guide PDF <span aria-hidden="true">↓</span></Link>{qualifiedForDaNang ? <Link className={styles.secondary} href="/join#apply">Request Your Cohort Invitation <span aria-hidden="true">→</span></Link> : <a className={styles.secondary} href={`mailto:daniel@stanfordemporium.com?subject=${encodeURIComponent("ASCENSION future-city waitlist")}`}>Join Your Future-City Waitlist <span aria-hidden="true">→</span></a>}</div><PathwayShare pathway={results[0]} attribution={attribution} /></section>}
     </main>
   );
 }

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { track } from "@vercel/analytics";
 
-const ATTRIBUTION_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "ref"];
+const ATTRIBUTION_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "ref"];
 const initialForm = { name: "", organization: "", email: "", website: "", category: "", interest: "", message: "", consent: false, company: "" };
 
 export default function PartnerForm({ styles }) {
@@ -22,7 +22,8 @@ export default function PartnerForm({ styles }) {
     event.preventDefault();
     setStatus("sending"); setFeedback("");
     try {
-      const response = await fetch("/api/partners", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ form, attribution }) });
+      const source = { path: window.location.pathname, url: window.location.href };
+      const response = await fetch("/api/partners", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ form, attribution, source }) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message || "Your request could not be sent.");
       track("partners_conversation_requested", { source_path: "/partners", category: form.category || "unspecified", interest: form.interest || "unspecified" });

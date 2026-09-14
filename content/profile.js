@@ -9,6 +9,15 @@ export const pathwayCopy = {
   TASTE: "Experience Da Nang through flavour, markets and shared tables.",
 };
 
+export const pathwayShareCopy = {
+  RESTORE: { tagline: "Make space for recovery.", message: "My ASCENSION pathway is RESTORE. What does your body need more of? Discover yours and receive the complimentary guide:" },
+  EMBODY: { tagline: "Move with more ease.", message: "My ASCENSION pathway is EMBODY. What does your body need more of? Discover yours and receive the complimentary guide:" },
+  BREATHE: { tagline: "Return to spaciousness.", message: "My ASCENSION pathway is BREATHE. What does your body need more of? Discover yours and receive the complimentary guide:" },
+  RESONATE: { tagline: "Listen more deeply.", message: "My ASCENSION pathway is RESONATE. What does your body need more of? Discover yours and receive the complimentary guide:" },
+  CREATE: { tagline: "Follow your intuition.", message: "My ASCENSION pathway is CREATE. What does your body need more of? Discover yours and receive the complimentary guide:" },
+  TASTE: { tagline: "Experience the place.", message: "My ASCENSION pathway is TASTE. What does your body need more of? Discover yours and receive the complimentary guide:" },
+};
+
 export const destinations = [
   { value: "montreal", label: "Montréal" },
   { value: "thailand", label: "Thailand" },

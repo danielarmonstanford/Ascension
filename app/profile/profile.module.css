@@ -43,6 +43,11 @@
 .supporting strong { color: var(--copper); font: 400 clamp(1.6rem, 3vw, 2.7rem)/1 var(--display); font-weight: 400; }
 .resultActions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; margin-top: 1rem; }
 .resultActions .primary { margin-top: 1rem; }
+.sharePanel { display:grid; grid-template-columns:minmax(15rem,.8fr) minmax(16rem,1fr); gap:clamp(1.2rem,3vw,2.5rem); align-items:center; width:min(100%,48rem); margin-top:clamp(2.5rem,5vw,4rem); padding-top:clamp(1.5rem,3vw,2.5rem); border-top:1px solid rgba(23,55,68,.2); }
+.shareCard { min-height:15rem; display:flex; flex-direction:column; justify-content:flex-end; gap:.8rem; padding:1.25rem; background:linear-gradient(145deg,rgba(12,40,53,.7),rgba(12,40,53,.04) 64%),url("/assets/profile/pathway-desktop.jpg") 68% center / cover; color:var(--shell); box-shadow:0 1rem 2.5rem rgba(23,55,68,.14); }
+.shareCard[data-pathway="RESTORE"] { background-position:55% center; }.shareCard[data-pathway="EMBODY"] { background-position:63% center; }.shareCard[data-pathway="BREATHE"] { background-position:50% center; }.shareCard[data-pathway="RESONATE"] { background-position:72% center; }.shareCard[data-pathway="CREATE"] { background-position:42% center; }.shareCard[data-pathway="TASTE"] { background-position:58% center; }
+.shareCard span { font:650 .58rem/1.3 var(--utility); letter-spacing:.13em; text-transform:uppercase; }.shareCard strong { font:400 clamp(2.6rem,5vw,4rem)/.84 var(--display); letter-spacing:-.03em; }.shareCard p { max-width:18ch; margin:0; font-size:.9rem; line-height:1.4; }
+.shareCopy h2 { margin:0; font:400 clamp(2rem,4vw,3rem)/.92 var(--display); }.shareCopy p { max-width:30rem; margin:.7rem 0 0; color:#45656e; line-height:1.5; }.shareCopy .secondary { margin-top:1.1rem; }.shareFeedback { color:var(--copper)!important; font-size:.85rem; }
 .secondary { min-height: 48px; display: inline-flex; align-items: center; gap: .75rem; margin-top: 1rem; color: var(--ink); font: 650 .67rem/1.35 var(--utility); letter-spacing: .1em; text-decoration: underline; text-underline-offset: .45rem; text-transform: uppercase; }
 .form { width: min(100%, 48rem); margin-top: 2.5rem; padding: clamp(1.25rem, 3vw, 2.5rem); background: var(--shell); }
 .form h2 { margin: 0 0 1.5rem; font: 400 clamp(2rem, 4vw, 3.5rem)/.95 var(--display); }
@@ -81,5 +86,6 @@
   .result > h1 { font-size: clamp(4.7rem, 21vw, 7rem); }
   .resultActions { align-items: stretch; flex-direction: column; }
   .resultActions .primary, .resultActions .secondary { width: 100%; justify-content: center; text-align: center; }
+  .sharePanel { grid-template-columns:1fr; }.shareCard { min-height:13rem; }.shareCopy .secondary { width:100%; justify-content:center; }
 }
 @media (prefers-reduced-motion: reduce) { .progress span, .primary, .options button { transition: none; } .intro, .question, .result { animation: none; } }

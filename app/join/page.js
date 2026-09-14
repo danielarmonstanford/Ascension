@@ -3,14 +3,30 @@ import Link from "next/link";
 import styles from "./join.module.css";
 import InterestForm from "./interest-form";
 import StickyInterestAction from "./sticky-interest-action";
+import ProfileAction from "./profile-action";
 import { sensoryMedia } from "../sensory-media";
 
 const HERO_POSTER = "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_2000/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
 const DUSK_GROUP = "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto,w_2000/v1788887672/da-nang-dusk_il93gv.png";
 
 export const metadata = {
-  title: "Join ASCENSION SENSES | Da Nang 2027",
-  description: "Request a place in the seven- or fourteen-day ASCENSION cohort in Da Nang, January 12–26, 2027.",
+  title: "What Does Your Body Need More Of? | ASCENSION",
+  description: "Discover your ASCENSION pathway and receive your complimentary Body & Senses Guide.",
+  alternates: { canonical: "https://www.ascensionsenses.com/join" },
+  openGraph: {
+    title: "What Does Your Body Need More Of? | ASCENSION",
+    description: "Discover your ASCENSION pathway and receive your complimentary Body & Senses Guide.",
+    url: "https://www.ascensionsenses.com/join",
+    siteName: "ASCENSION SENSES",
+    images: [{ url: "/join/opengraph-image", width: 1200, height: 630, alt: "ASCENSION pathway discovery above the Da Nang coastline" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "What Does Your Body Need More Of? | ASCENSION",
+    description: "Discover your ASCENSION pathway and receive your complimentary Body & Senses Guide.",
+    images: ["/join/opengraph-image"],
+  },
   robots: { index: false, follow: false, noarchive: true },
 };
 
@@ -43,11 +59,11 @@ function InterestAction({ label = "Request Your Place", event = "funnel_primary_
   return <a className={styles.reserve} href="#apply" data-analytics-event={event}>{label}<span aria-hidden="true">→</span></a>;
 }
 
-function ProfileAction() {
-  return <Link className={styles.reserve} href="/profile" data-analytics-event="profile_cta_click">Discover Your Pathway<span aria-hidden="true">→</span></Link>;
-}
+export default async function JoinPage({ searchParams }) {
+  const params = await searchParams;
+  const profileQuery = new URLSearchParams(Object.entries(params || {}).flatMap(([key, value]) => Array.isArray(value) ? value.map((entry) => [key, entry]) : typeof value === "string" ? [[key, value]] : [])).toString();
+  const profileHref = `/profile${profileQuery ? `?${profileQuery}` : ""}`;
 
-export default function JoinPage() {
   return (
     <main className={styles.page}>
       <a className={styles.skip} href="#offer">Skip to participation options</a>
@@ -61,7 +77,7 @@ export default function JoinPage() {
           <p className={styles.heroSubheading}>A different way to experience wellness—and Vietnam.</p>
           <p className={styles.heroLead}>Join an intimate international cohort for seven or fourteen days of Vietnamese wellness, embodied movement, recovery, sound, creativity, food and cultural discovery.</p>
           <p className={styles.brandBridge}>Heal your soul. Revive your senses.</p>
-          <div className={styles.heroAction}><ProfileAction /><a className={styles.secondaryAction} href="#apply" data-analytics-event="funnel_direct_request_cta">Request Your Place</a></div>
+          <div className={styles.heroAction}><ProfileAction className={styles.reserve} href={profileHref} /><a className={styles.secondaryAction} href="#apply" data-analytics-event="funnel_direct_request_cta">Request Your Place</a></div>
           <p className={styles.microcopy}>7 or 14 days · Approximately 20–25 participants · Programme from US$1,200<br />Accommodation and flights are selected and booked separately.</p>
         </div>
       </header>
