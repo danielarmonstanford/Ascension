@@ -16,10 +16,10 @@
 .media { position: absolute; inset: 0; }
 .media img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 52% 42%; }
 .scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6, 29, 40, .74) 0%, rgba(6, 29, 40, .18) 58%, rgba(6, 29, 40, .56) 100%), linear-gradient(0deg, rgba(6, 29, 40, .6), transparent 48%); }
-.nav { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: calc(1.5rem + env(safe-area-inset-top)) clamp(1.25rem, 4.7vw, 5.25rem); }
+.nav { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: calc(1.5rem + env(safe-area-inset-top)) calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-right)) 1.5rem calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-left)); }
 .wordmark { font: 400 1.35rem/1 var(--display); text-decoration: none; }
 .returnLink { min-height: 44px; display: inline-flex; align-items: center; font: 600 .67rem/1 var(--utility); letter-spacing: .12em; text-transform: uppercase; text-underline-offset: .45rem; }
-.heroCopy { position: relative; z-index: 1; align-self: end; padding: 9rem clamp(1.25rem, 4.7vw, 5.25rem) calc(3.5rem + env(safe-area-inset-bottom)); }
+.heroCopy { position: relative; z-index: 1; align-self: end; padding: 9rem calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-right)) calc(3.5rem + env(safe-area-inset-bottom)) calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-left)); }
 .series { margin: 0 0 2rem; color: var(--funnel-gold); font: 600 .67rem/1.4 var(--utility); letter-spacing: .2em; }
 .hero h1 { margin: 0; max-width: 8.5ch; font: 400 clamp(4.8rem, 9.7vw, 10rem)/.8 var(--display); letter-spacing: -.045em; font-synthesis: none; }
 .hero h1 span { display: block; }
@@ -34,7 +34,7 @@
 .reserve { position: relative; display: inline-flex; min-height: 58px; align-items: center; justify-content: center; gap: 1.5rem; padding: 1rem 1.65rem; overflow: hidden; border: 1px solid rgba(255,255,255,.6); border-radius: 1rem; background: linear-gradient(112deg, #eaa43f 0%, #ffd45f 45%, #fff0ad 73%, #ffd45f 100%); background-size: 180% 100%; box-shadow: 0 8px 30px rgba(234,164,63,.25), inset 0 1px 0 rgba(255,255,255,.5); color: #102932; font: 700 .72rem/1.3 var(--utility); letter-spacing: .1em; text-decoration: none; text-transform: uppercase; transition: transform .35s var(--ease-out), background-position .55s var(--ease-out), box-shadow .4s ease; }
 .reserve:hover { transform: translateY(-2px); background-position: 100% 0; box-shadow: 0 12px 42px rgba(255,212,95,.52), 0 0 55px rgba(255,212,95,.2); }
 .reserve span { font-size: 1rem; }
-.heroFacts { position: relative; z-index: 1; align-self: end; margin: 0; padding: 3.5rem clamp(1.25rem, 4.7vw, 5.25rem) calc(3.5rem + env(safe-area-inset-bottom)) 0; }
+.heroFacts { position: relative; z-index: 1; align-self: end; margin: 0; padding: 3.5rem calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-right)) calc(3.5rem + env(safe-area-inset-bottom)) 0; }
 .heroFacts div, .factList div { display: grid; grid-template-columns: 5rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid rgba(244,237,225,.42); }
 .heroFacts dt, .heroFacts dd, .factList dt, .factList dd { margin: 0; font: 600 .65rem/1.45 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
 .heroFacts dt { opacity: .68; }
@@ -156,7 +156,7 @@
 .success h3 { margin: 1rem 0; font: 400 clamp(2.5rem, 4vw, 4rem)/.95 var(--display); font-weight: 400; }
 .success > p:last-child { color: #496970; line-height: 1.6; }
 
-.final { position: relative; z-index: auto; inset: auto; min-height: 86svh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; overflow: hidden; padding: clamp(6rem, 11vw, 11rem) clamp(1.25rem, 4.7vw, 5.25rem) calc(3rem + env(safe-area-inset-bottom)); border-top: 0; background: #102932; color: #f1e6d5; }
+.final { position: relative; z-index: auto; inset: auto; min-height: 86svh; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0; overflow: hidden; padding: clamp(6rem, 11vw, 11rem) calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-right)) calc(3rem + env(safe-area-inset-bottom)) calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-left)); border-top: 0; background: #102932; color: #f1e6d5; }
 .final::after { content: ""; position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgba(6,29,40,.82) 0%, rgba(6,29,40,.4) 58%, rgba(6,29,40,.3) 100%), linear-gradient(0deg, rgba(6,29,40,.72), transparent 58%); }
 .finalImage { z-index: 0; object-fit: cover; object-position: center; }
 .final > :not(.finalImage) { position: relative; z-index: 2; }
