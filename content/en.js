@@ -41,6 +41,31 @@ export const en = {
     mobile: "Diện Chẩn is supported by movement, breath, guided meditation, sound baths, creative practice, food, culture and complementary wellness experiences.",
     desktop: "Diện Chẩn provides the therapeutic foundation. Around it, ASCENSION brings together movement, breath, guided meditation, sound baths, bodywork, creativity, food and cultural discovery. Participating facilitators will be announced as agreements are confirmed.",
   },
+  homepageAdditions: {
+    returnHome: {
+      title: "Return home differently.",
+      outcomes: "Move with greater ease. Breathe with greater awareness. Rest more deeply. Feel more present.",
+      body: [
+        "ASCENSION brings restorative touch, adaptive movement, breath, sound, creativity, Vietnamese food and place into one personalised 7- or 14-day experience.",
+        "The return is not simply how you feel while you are here. It is what you understand about your body—and what you know how to continue when you return home.",
+      ],
+      cta: "Discover your pathway",
+      support: "Take the two-minute Body & Senses Profile and receive your personalised results and complimentary guide.",
+    },
+    takeHome: {
+      title: "What you take home",
+      intro: "ASCENSION is not a collection of disconnected wellness appointments. It is a sustained opportunity to notice how your body responds when movement, touch, breath, sound, food and place begin working together.",
+      outcomes: [
+        "Greater awareness of where you hold unnecessary effort",
+        "More confidence exploring movement at your own level",
+        "Practices supporting mobility, strength, flexibility and recovery",
+        "A more intentional relationship with rest and breath",
+        "New ways of approaching food, creativity and sensory wellbeing",
+        "A personalised integration plan to continue at home",
+      ],
+      closing: "You may arrive wanting relief from the pace and pressure of everyday life. You leave knowing more about what helps you feel present, capable and at home in your body.",
+    },
+  },
   sensoryStories: [
     {
       id: "embody",
