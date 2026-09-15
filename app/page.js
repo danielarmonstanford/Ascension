@@ -1141,6 +1141,7 @@ function ReturnHomeSection({ content }) {
   const [hasStarted, setHasStarted] = useState(false);
   const [hasCompleted, setHasCompleted] = useState(false);
   const [phase, setPhase] = useState(0);
+  const sequenceLockedRef = useRef(false);
   const reducedMotion = hasHydrated && reduceMotion;
   const showFinalComposition = reducedMotion || hasCompleted;
 
@@ -1168,17 +1169,25 @@ function ReturnHomeSection({ content }) {
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || reducedMotion || hasCompleted) return;
+    if (!video || reducedMotion) return;
 
     if (isInView && shouldLoad) {
       video.play().catch(() => {});
     } else if (!video.paused) {
       video.pause();
     }
-  }, [hasCompleted, isInView, reducedMotion, shouldLoad]);
+  }, [isInView, reducedMotion, shouldLoad]);
 
   const updatePhase = (time) => {
-    const nextPhase = time >= 10.5 ? 5 : time >= 8.5 ? 4 : time >= 6.5 ? 3 : time >= 4.5 ? 2 : time >= 2.5 ? 1 : 0;
+    if (time >= 10.5) {
+      sequenceLockedRef.current = true;
+      setHasCompleted(true);
+      setPhase(5);
+      return;
+    }
+
+    if (sequenceLockedRef.current) return;
+    const nextPhase = time >= 8.5 ? 4 : time >= 6.5 ? 3 : time >= 4.5 ? 2 : time >= 2.5 ? 1 : 0;
     setPhase((current) => current === nextPhase ? current : nextPhase);
   };
 
@@ -1198,13 +1207,10 @@ function ReturnHomeSection({ content }) {
           className="return-home-video"
           muted
           playsInline
+          loop
           preload="none"
           onPlaying={() => setHasStarted(true)}
           onTimeUpdate={(event) => updatePhase(event.currentTarget.currentTime)}
-          onEnded={() => {
-            setHasCompleted(true);
-            setPhase(5);
-          }}
         >
           {shouldLoad && !reducedMotion ? (
             <>
