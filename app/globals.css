@@ -143,11 +143,11 @@ button { font: inherit; }
 main { overflow: clip; }
 section { position: relative; }
 
-.awaken { display: grid; grid-template-columns: minmax(0, 3fr) minmax(20rem, 2fr); grid-template-areas: "heading links" "media facts"; column-gap: clamp(3rem, 7vw, 8rem); row-gap: clamp(3rem, 7vw, 6.875rem); align-items: start; padding: var(--section-space) var(--gutter); background: var(--ground); }
+.awaken { display: grid; grid-template-columns: minmax(0, 3fr) minmax(20rem, 2fr); grid-template-areas: "heading links" "media facts"; column-gap: clamp(3rem, 7vw, 8rem); row-gap: clamp(3rem, 4vw, 5rem); align-items: start; padding: var(--section-space) var(--gutter); background: var(--ground); }
 .awaken:not(:has(.awaken-media)) { grid-template-areas: "heading links" "facts facts"; }
 .awaken-heading { grid-area: heading; }
 .awaken-heading h2 { margin: 0; max-width: 10ch; color: var(--burnt-sand); font: 400 clamp(5.5rem, 10.5vw, 10rem)/.82 var(--display); letter-spacing: -.04em; font-synthesis: none; }
-.awaken-subtitle { width: fit-content; margin: clamp(2rem, 4vw, 3.5rem) 0 0 auto; color: var(--ink); font: 400 clamp(2.4rem, 4.5vw, 4.5rem)/.94 var(--display); letter-spacing: -.025em; text-align: right; }
+.awaken-subtitle { width: fit-content; margin: clamp(1.5rem, 2.5vw, 2.5rem) 0 0 auto; color: var(--ink); font: 400 clamp(2.4rem, 4.5vw, 4.5rem)/.94 var(--display); letter-spacing: -.025em; text-align: right; }
 .awaken-links { grid-area: links; align-self: start; justify-content: flex-start; }
 .awaken-media { grid-area: media; position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: transparent; }
 .awaken-media img { object-fit: cover; }
