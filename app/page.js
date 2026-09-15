@@ -979,7 +979,7 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
         />
         <div className="hero-atmosphere" aria-hidden="true" />
         <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
-          <Link className="wordmark" href={locale === "vi" ? "/vi" : "/"}>ASCENSION</Link>
+          <Link className="wordmark" href={locale === "vi" ? "/vi" : "/en"}>ASCENSION</Link>
           <div className="nav-links">
             <a href="#experience">{ui.nav.experience}</a>
             <Link href={locale === "vi" ? "/vi/dien-chan" : "/dien-chan"}>Diện Chẩn</Link>
@@ -1008,7 +1008,6 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
             <Link href={locale === "vi" ? "/vi/facilitate" : "/facilitate"} onClick={() => setMenuOpen(false)}>{ui.nav.facilitate}</Link>
           </nav>
           <LanguageSelector className="language-selector-mobile" />
-          <a className="radiant-action mobile-menu-reserve" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">{ui.reserve} <span aria-hidden="true">→</span></a>
         </div>
 
         <div className="hero-frame">
@@ -1022,8 +1021,8 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
             <p className="hero-photo-credit">Fine-art photography by Daniel A. Stanford · Movement study featuring a <a href="https://budokon.com/" target="_blank" rel="noopener noreferrer">Budokon® instructor</a>.</p>
           </div>
           <div className="hero-actions entrance entrance-controls">
-            <Link className="hero-primary radiant-action" href="/join" data-analytics-event="homepage_cohort_cta">Explore the January Cohort</Link>
-            <a className="hero-explore" href="#awaken">Discover ASCENSION <span aria-hidden="true">↓</span></a>
+            <Link className="hero-primary radiant-action" href="/profile" data-analytics-event="homepage_pathway_cta">Discover your pathway <span aria-hidden="true">→</span></Link>
+            <p className="hero-pathway-support">Take the two-minute Body &amp; Senses Profile and receive your personalised results and complimentary guide.</p>
           </div>
         </div>
 
@@ -1032,43 +1031,6 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
         </div>
       </div>
     </header>
-  );
-}
-
-function MobileReserveBar({ label = "Reserve your place" }) {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const hero = document.querySelector("#top");
-    const exclusionZones = ["#awaken", "#comparison", "#attendance", "#join", ".return-home", ".take-home", ".practitioner-perspective", "#facilitate"]
-      .map((selector) => document.querySelector(selector))
-      .filter(Boolean);
-    if (!hero) return;
-
-    let heroVisible = true;
-    const excluded = new Set();
-    const update = () => setVisible(!heroVisible && excluded.size === 0);
-    const heroObserver = new IntersectionObserver(([entry]) => {
-      heroVisible = entry.isIntersecting;
-      update();
-    });
-    const exclusionObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => entry.isIntersecting ? excluded.add(entry.target) : excluded.delete(entry.target));
-      update();
-    }, { rootMargin: "0px 0px -10% 0px" });
-
-    heroObserver.observe(hero);
-    exclusionZones.forEach((zone) => exclusionObserver.observe(zone));
-    return () => {
-      heroObserver.disconnect();
-      exclusionObserver.disconnect();
-    };
-  }, []);
-
-  return (
-    <a className={`mobile-reserve radiant-action ${visible ? "is-visible" : ""}`} href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">
-      {label}
-    </a>
   );
 }
 
@@ -1179,8 +1141,6 @@ function ReturnHomeSection({ content }) {
       <div className="return-home-copy">
         <p className="return-home-outcomes">{content.outcomes}</p>
         {content.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-        <Link className="radiant-action" href="/join" data-analytics-event="homepage_pathway_cta">{content.cta} <span aria-hidden="true">→</span></Link>
-        <p className="return-home-support">{content.support}</p>
       </div>
     </section>
   );
@@ -1322,7 +1282,6 @@ export default function HomePage({ locale = "en" }) {
       <JsonLd data={homeStructuredData} />
       <a className="skip-link" href="#main">Skip to main content</a>
       <Hero theme={theme} setTheme={setTheme} copy={copy} ui={ui} locale={locale} />
-      <MobileReserveBar label={ui.reserve} />
 
       <main id="main">
         <ReturnHomeSection content={homepageAdditions.returnHome} />
