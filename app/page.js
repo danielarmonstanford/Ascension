@@ -27,6 +27,7 @@ const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787672842/hf_20260825_154036_0f54f781-11e4-4fd2-bc2e-b20f07766ac2_tuvnzo.png";
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
+const LOAN_PORTRAIT = "/images/huynh-bao-loan-da-nang.jpg";
 
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
@@ -1037,7 +1038,7 @@ function MobileReserveBar({ label = "Reserve your place" }) {
 
   useEffect(() => {
     const hero = document.querySelector("#top");
-    const exclusionZones = ["#comparison", "#attendance", "#join"]
+    const exclusionZones = ["#comparison", "#attendance", "#join", ".return-home", ".take-home", ".practitioner-perspective", "#facilitate"]
       .map((selector) => document.querySelector(selector))
       .filter(Boolean);
     if (!hero) return;
@@ -1110,15 +1111,21 @@ function FoundationSection({ isMobile, copy, isVi }) {
       <div className="foundation-copy">
         <p className="foundation-kicker">{foundation.eyebrow}</p>
         <h2 id="foundation-title">{foundation.title}</h2>
-        <p>{isMobile === false ? foundation.desktop : foundation.mobile}</p>
+        <p>{isMobile === false ? "ASCENSION begins with a simple principle: the body is not experienced as a collection of separate parts. It is one interconnected whole. Diện Chẩn provides one foundation for this exploration. Restorative touch, adaptive movement, breath, sound, creativity, food and place broaden the conversation." : "ASCENSION begins with a simple principle: the body is one interconnected whole. Diện Chẩn, touch, movement, breath, sound, creativity, food and place broaden the conversation."}</p>
+        <p className="foundation-integrated-note">ASCENSION is holistic and experiential. It does not diagnose, treat or replace medical care.</p>
         <div className="foundation-practitioner" aria-label="Confirmed Diện Chẩn practitioner">
-          <span>{isVi ? "Người thực hành đã xác nhận · Diện Chẩn hằng ngày" : "Confirmed practitioner · Daily Diện Chẩn"}</span>
-          <strong>Y sĩ Huỳnh Bảo Loan</strong>
-          <small>{isVi ? "Đà Nẵng, Việt Nam" : "Da Nang, Vietnam"}</small>
-          <ul className="foundation-credentials" aria-label="Professional credentials">
-            <li>Y sĩ — Physician-level credential in Vietnam</li>
-            {(foundation.credentials || []).map((credential) => <li key={credential}>{credential}</li>)}
-          </ul>
+          <div className="foundation-practitioner-portrait">
+            <Image src={LOAN_PORTRAIT} alt="Y sĩ Huỳnh Bảo Loan in Da Nang" fill sizes="(max-width: 767px) 7rem, 10rem" />
+          </div>
+          <div className="foundation-practitioner-details">
+            <span>{isVi ? "Người thực hành đã xác nhận · Diện Chẩn hằng ngày" : "Confirmed practitioner · Daily Diện Chẩn"}</span>
+            <strong>Y sĩ Huỳnh Bảo Loan</strong>
+            <small>{isVi ? "Đà Nẵng, Việt Nam" : "Da Nang, Vietnam"}</small>
+            <ul className="foundation-credentials" aria-label="Professional credentials">
+              <li>Y sĩ — Physician-level credential in Vietnam</li>
+              {(foundation.credentials || []).map((credential) => <li key={credential}>{credential}</li>)}
+            </ul>
+          </div>
         </div>
         <details>
           <summary>{isVi ? "Tìm hiểu sâu hơn" : "Go deeper"} <span aria-hidden="true">→</span></summary>
@@ -1128,6 +1135,54 @@ function FoundationSection({ isMobile, copy, isVi }) {
           </div>
         </details>
       </div>
+    </section>
+  );
+}
+
+function ReturnHomeSection({ content }) {
+  return (
+    <section className="return-home" aria-labelledby="return-home-title">
+      <div>
+        <p className="return-home-kicker">ASCENSION</p>
+        <h2 id="return-home-title">{content.title}</h2>
+      </div>
+      <div className="return-home-copy">
+        <p className="return-home-outcomes">{content.outcomes}</p>
+        {content.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        <Link className="radiant-action" href="/join" data-analytics-event="homepage_pathway_cta">{content.cta} <span aria-hidden="true">→</span></Link>
+        <p className="return-home-support">{content.support}</p>
+      </div>
+    </section>
+  );
+}
+
+function TakeHomeSection({ content }) {
+  return (
+    <section className="take-home" aria-labelledby="take-home-title">
+      <div>
+        <p className="take-home-kicker">ASCENSION</p>
+        <h2 id="take-home-title">{content.title}</h2>
+      </div>
+      <div className="take-home-copy">
+        <p className="take-home-intro">{content.intro}</p>
+        <ul>
+          {content.outcomes.map((outcome) => <li key={outcome}>{outcome}</li>)}
+        </ul>
+        <p className="take-home-closing">{content.closing}</p>
+      </div>
+    </section>
+  );
+}
+
+function PractitionerPerspective() {
+  return (
+    <section className="practitioner-perspective" aria-labelledby="perspective-title">
+      <p className="perspective-kicker">A practitioner’s perspective</p>
+      <blockquote id="perspective-title">“ASCENSION feels like a thoughtfully curated journey—a space where art and living come together to help us reset our bodies, energy and minds. Da Nang’s balance of ocean and mountains creates the perfect environment to release rigid ideas about training, reconnect organically, and learn, grow and rejuvenate.”</blockquote>
+      <footer>
+        <strong>Xuan Sung Spring</strong>
+        <span>Yoga Teacher · Practitioner feedback</span>
+      </footer>
     </section>
   );
 }
@@ -1148,13 +1203,35 @@ function ParticipationPrinciples({ copy }) {
   );
 }
 
-function PractitionerInvitation({ isMobile, copy, ui }) {
-  const practitioner = copy.practitioner;
+function PractitionerInvitation({ ui }) {
   return (
     <section className="practitioner-invitation" id="facilitate" aria-labelledby="practitioner-title">
       <h2 id="practitioner-title">{ui.facilitator}</h2>
-      <p className="practitioner-subtitle">{practitioner.title}</p>
-      <p className="practitioner-description">{isMobile === false ? practitioner.desktop : practitioner.mobile}</p>
+      <p className="practitioner-subtitle">A circle in formation.</p>
+      <p className="practitioner-description">ASCENSION is assembling a carefully selected circle of practitioners. Each is considered for experience, integrity, cultural fit and meaningful contribution to a small international cohort. Confirmed practitioners will be announced as agreements are finalised.</p>
+      <div className="facilitator-status-key" aria-label="Facilitator status key">
+        <span>Confirmed</span><span>Planned—pending final confirmation</span><span>Invited</span>
+      </div>
+      <div className="facilitator-circle">
+        <article className="facilitator-card is-confirmed">
+          <p>Confirmed</p>
+          <h3>Y sĩ Huỳnh Bảo Loan</h3>
+          <span>Daily Diện Chẩn · Da Nang</span>
+        </article>
+        <article className="facilitator-card is-planned">
+          <p>Planned facilitator — pending final confirmation</p>
+          <h3>Yael Hayes</h3>
+          <span>Holistic Leadership &amp; Wellness Facilitator</span>
+          <p>Yael Hayes is a deep-focus specialist and retreat facilitator with more than ten years of experience creating highly personalised experiences for leaders, entrepreneurs and groups. Her work brings together deep rest, guided meditation, body-intelligent movement, fascia release and bespoke journey design to support reconnection, clarity and renewed capacity.</p>
+          <p>Proposed ASCENSION sessions may explore deep-rest facilitation, guided meditation, body-intelligent movement, fascia awareness and personalised integration.</p>
+          <small>Yael’s participation is planned, subject to final travel, accommodation, scheduling and programme confirmation.</small>
+        </article>
+        <article className="facilitator-card is-invited">
+          <p>Invited</p>
+          <h3>More voices, carefully selected.</h3>
+          <span>Confirmed practitioners will be announced as agreements are finalised.</span>
+        </article>
+      </div>
       <a className="practitioner-action radiant-action" href={PRACTITIONER_APPLICATION}>{ui.apply} <span aria-hidden="true">→</span></a>
     </section>
   );
@@ -1184,6 +1261,7 @@ export default function HomePage({ locale = "en" }) {
   const localizedFaqItems = isVi ? viFaqItems : translatedFaq[locale] || faqItems;
   const localizedPassportCategories = isVi ? viPassportCategories : translatedPassport[locale] || passportCategories;
   const lower = translatedLower[locale];
+  const homepageAdditions = copy.homepageAdditions || en.homepageAdditions;
   const takeHome = locale === "fr"
     ? { title: "Ce que vous emportez avec vous", copy: "Bougez avec plus d’aisance. Respirez avec plus de conscience. Reposez-vous plus profondément. Sentez-vous plus présent. Repartez avec une compréhension plus claire de ce dont votre corps a besoin—et de pratiques que vous pouvez poursuivre chez vous." }
     : isVi
@@ -1217,6 +1295,7 @@ export default function HomePage({ locale = "en" }) {
       <MobileReserveBar label={ui.reserve} />
 
       <main id="main">
+        <ReturnHomeSection content={homepageAdditions.returnHome} />
         <section className="awaken" id="awaken" aria-labelledby="awaken-title">
           <div className="awaken-heading">
             <h2 id="awaken-title">{ui.glanceTitle.split("\n").map((line, index) => <span key={line}>{line}{index === 0 ? <br /> : null}</span>)}</h2>
@@ -1339,6 +1418,9 @@ export default function HomePage({ locale = "en" }) {
           </div>
         </section>
 
+        <TakeHomeSection content={homepageAdditions.takeHome} />
+        <PractitionerPerspective />
+
         <ParticipationPrinciples copy={copy} />
 
         <section className="model" aria-labelledby="model-title">
@@ -1424,7 +1506,7 @@ export default function HomePage({ locale = "en" }) {
 
         <HostHotel />
 
-        <PractitionerInvitation isMobile={isMobile} copy={copy} ui={ui} />
+        <PractitionerInvitation ui={ui} />
 
         <FrequentlyAskedQuestions items={localizedFaqItems} ui={ui} />
 
