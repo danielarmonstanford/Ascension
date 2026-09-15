@@ -46,11 +46,8 @@ export const en = {
       title: "Return home differently.",
       outcomes: "Move with greater ease. Breathe with greater awareness. Rest more deeply. Feel more present.",
       body: [
-        "ASCENSION brings restorative touch, adaptive movement, breath, sound, creativity, Vietnamese food and place into one personalised 7- or 14-day experience.",
-        "The return is not simply how you feel while you are here. It is what you understand about your body—and what you know how to continue when you return home.",
+        "Touch, movement, breath, sound, food and place come together in one fourteen-day rhythm—so you leave knowing more about what supports you.",
       ],
-      cta: "Discover your pathway",
-      support: "Take the two-minute Body & Senses Profile and receive your personalised results and complimentary guide.",
     },
     takeHome: {
       title: "What you take home",
