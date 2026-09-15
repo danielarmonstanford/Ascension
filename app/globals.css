@@ -571,6 +571,16 @@ section { position: relative; }
 .info-cta p { flex: 1 1 100%; margin: 0; font: 400 clamp(2.2rem, 5vw, 5rem)/.95 var(--display); }
 .info-cta > a:not(.radiant-action) { min-height: 44px; display: inline-flex; align-items: center; font: 650 .72rem/1.4 var(--utility); letter-spacing: .1em; text-transform: uppercase; text-underline-offset: .35rem; }
 .info-footer { position: static; display: flex; justify-content: space-between; gap: 2rem; padding: 2rem var(--gutter); background: var(--night-sea); color: var(--moon-ivory); font: 600 .64rem/1.5 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
+
+/* Facilitate keeps the shared information-page structure, with the ASCENSION
+   reading scale applied only to practitioner recruitment. */
+.facilitate-page .info-header nav a, .facilitate-page .info-footer a { font-size: .8125rem; line-height: 1.5; letter-spacing: .09em; }
+.facilitate-page .info-breadcrumb, .facilitate-page .info-eyebrow { font-size: .8125rem; line-height: 1.55; letter-spacing: .11em; }
+.facilitate-page .info-lead { max-width: 38rem; font-size: clamp(1.75rem, 2.6vw, 2.65rem); line-height: 1.22; }
+.facilitate-page .info-content h2 { font-size: clamp(2.5rem, 4.7vw, 5rem); line-height: .94; }
+.facilitate-page .info-content p { color: #405f68; font-size: clamp(1.125rem, 1.35vw, 1.25rem); line-height: 1.72; }
+.facilitate-page .info-cta > a:not(.radiant-action) { font-size: .8125rem; line-height: 1.5; }
+.facilitate-page .info-footer { font-size: .8125rem; line-height: 1.55; letter-spacing: .09em; }
 .radiant-action:active { transform: translateY(0); }
 footer { position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; gap: 2rem; padding: 1.5rem calc(var(--gutter) + env(safe-area-inset-right)) calc(1.5rem + env(safe-area-inset-bottom)) calc(var(--gutter) + env(safe-area-inset-left)); border-top: 1px solid rgba(241, 230, 213, .28); font: 500 .65rem/1.4 var(--utility); letter-spacing: .1em; text-transform: uppercase; }
 footer div { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .8rem 1.25rem; max-width: 62rem; }
@@ -673,6 +683,10 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .info-hero h1, .info-lead, .info-content p { grid-column: 1; }
   .info-hero h1 { font-size: clamp(4.2rem, 21vw, 7rem); overflow-wrap: anywhere; }
   .info-options { grid-template-columns: 1fr !important; }
+
+  .facilitate-page .info-header nav a, .facilitate-page .info-footer a, .facilitate-page .info-breadcrumb, .facilitate-page .info-eyebrow, .facilitate-page .info-cta > a:not(.radiant-action) { font-size: .8125rem; }
+  .facilitate-page .info-content h2 { font-size: clamp(2.4rem, 12vw, 4rem); }
+  .facilitate-page .info-content p { font-size: 1.0625rem; line-height: 1.7; }
   .info-footer { flex-direction: column; }
   .hero-scroll, .hero-mobile { min-height: 100svh; }
   .hero-stage { position: relative; min-height: 100svh; }

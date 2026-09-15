@@ -8,8 +8,8 @@
 }
 
 body {
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.68;
   text-rendering: optimizeLegibility;
 }
 
@@ -26,19 +26,19 @@ tbody td,
 .tier-features li,
 .deliv-table td {
   color: var(--partner-reading);
-  font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);
-  line-height: 1.72;
+  font-size: clamp(1.125rem, 1.25vw, 1.25rem);
+  line-height: 1.7;
 }
 
 .hero-sub {
   max-width: 44rem;
-  font-size: clamp(1.125rem, 1.5vw, 1.3rem);
+  font-size: clamp(1.1875rem, 1.5vw, 1.35rem);
   line-height: 1.62;
 }
 
 h2 {
-  font-size: clamp(2.15rem, 4vw, 3.35rem);
-  line-height: 1;
+  font-size: clamp(2.4rem, 4vw, 3.55rem);
+  line-height: .98;
 }
 
 .path-title,
@@ -68,7 +68,7 @@ h2 {
 thead th,
 .deliv-table th,
 .editorial-band-caption {
-  font-size: .875rem;
+  font-size: .9375rem;
   line-height: 1.55;
   letter-spacing: .11em;
 }
@@ -291,6 +291,10 @@ body.collaborator-detail {
 
 @media (max-width: 900px) {
   .collaborator-detail .tier-amount {
-    font-size: clamp(3.75rem, 14vw, 6rem);
+    font-size: clamp(2.75rem, 10.5vw, 4rem);
+    letter-spacing: -.045em;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 }

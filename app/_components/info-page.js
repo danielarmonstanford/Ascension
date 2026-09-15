@@ -3,7 +3,7 @@ import { CONTACT_EMAIL, RESERVATION_URL } from "../seo";
 import LanguageSelector from "./language-selector";
 import { translatedUi } from "../../content/other-locales";
 
-export default function InfoPage({ eyebrow, title, lead, currentPath, children, primaryLabel, primaryHref = RESERVATION_URL, locale = "en" }) {
+export default function InfoPage({ eyebrow, title, lead, currentPath, children, primaryLabel, primaryHref = RESERVATION_URL, locale = "en", pageClassName = "" }) {
   const isVi = locale === "vi";
   const isLocalized = locale !== "en";
   const prefix = isLocalized ? `/${locale}` : "";
@@ -11,7 +11,7 @@ export default function InfoPage({ eyebrow, title, lead, currentPath, children, 
   const resolvedPrimaryLabel = primaryLabel || (isVi ? "Đặt chỗ" : localeUi?.reserve || "Reserve your place");
   const nav = isVi ? { about:"Giới thiệu", attend:"Tham dự", facilitate:"Hướng dẫn" } : localeUi?.nav || { about:"About", attend:"Attend", facilitate:"Facilitate" };
   return (
-    <div className="info-page">
+    <div className={`info-page ${pageClassName}`.trim()}>
       <a className="skip-link" href="#content">{isVi ? "Bỏ qua để đến nội dung chính" : "Skip to main content"}</a>
       <header className="info-header">
         <Link className="wordmark" href={prefix || "/"}>ASCENSION</Link>

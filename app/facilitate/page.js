@@ -10,7 +10,7 @@ export default function FacilitatePage() {
   return (
     <>
       <JsonLd data={breadcrumbStructuredData([{ name: "ASCENSION", path: "/" }, { name: "Facilitate", path: "/facilitate" }])} />
-      <InfoPage eyebrow="Facilitate" title="Bring your practice to Da Nang." lead="Practitioner applications are open for the founding ASCENSION experience in Da Nang, January 12–26, 2027." primaryLabel="Apply to facilitate" primaryHref={PRACTITIONER_APPLICATION}>
+      <InfoPage pageClassName="facilitate-page" eyebrow="Facilitate" title="Bring your practice to Da Nang." lead="Practitioner applications are open for the founding ASCENSION experience in Da Nang, January 12–26, 2027." primaryLabel="Apply to facilitate" primaryHref={PRACTITIONER_APPLICATION}>
         <section>
           <h2>Who ASCENSION is inviting</h2>
           <p>ASCENSION welcomes applications from experienced practitioners in movement, breathwork, guided meditation, sound baths, bodywork, creativity and complementary wellness practices.</p>
