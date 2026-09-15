@@ -28,6 +28,8 @@ const DIEN_CHAN_VISUAL =
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
 const LOAN_PORTRAIT = "/images/huynh-bao-loan-da-nang.jpg";
+const PATHWAY_DESKTOP_IMAGE = "/assets/profile/pathway-desktop.jpg";
+const PATHWAY_MOBILE_IMAGE = "/assets/profile/pathway-mobile-clean.jpg";
 
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
@@ -1038,7 +1040,7 @@ function MobileReserveBar({ label = "Reserve your place" }) {
 
   useEffect(() => {
     const hero = document.querySelector("#top");
-    const exclusionZones = ["#comparison", "#attendance", "#join", ".return-home", ".take-home", ".practitioner-perspective", "#facilitate"]
+    const exclusionZones = ["#awaken", "#comparison", "#attendance", "#join", ".return-home", ".take-home", ".practitioner-perspective", "#facilitate"]
       .map((selector) => document.querySelector(selector))
       .filter(Boolean);
     if (!hero) return;
@@ -1067,6 +1069,34 @@ function MobileReserveBar({ label = "Reserve your place" }) {
     <a className={`mobile-reserve radiant-action ${visible ? "is-visible" : ""}`} href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">
       {label}
     </a>
+  );
+}
+
+function AwakenMovementMedia() {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
+
+  return (
+    <div className="awaken-media" aria-label="Movement practice overlooking the Da Nang coastline">
+      <Image
+        src={PATHWAY_DESKTOP_IMAGE}
+        alt="Movement practice overlooking the Da Nang coastline."
+        fill
+        sizes="(max-width: 767px) 1px, (max-width: 1200px) 60vw, 55vw"
+        quality={75}
+        className="awaken-media-desktop"
+        onError={() => setFailed(true)}
+      />
+      <Image
+        src={PATHWAY_MOBILE_IMAGE}
+        alt="Movement practice overlooking the Da Nang coastline."
+        fill
+        sizes="(max-width: 767px) calc(100vw - 2.5rem), 1px"
+        quality={75}
+        className="awaken-media-mobile"
+        onError={() => setFailed(true)}
+      />
+    </div>
   );
 }
 
@@ -1301,6 +1331,11 @@ export default function HomePage({ locale = "en" }) {
             <h2 id="awaken-title">{ui.glanceTitle.split("\n").map((line, index) => <span key={line}>{line}{index === 0 ? <br /> : null}</span>)}</h2>
             <p className="awaken-subtitle">{ui.glanceSub.split("\n").map((line, index) => <span key={line}>{line}{index === 0 ? <br /> : null}</span>)}</p>
           </div>
+          <div className="fact-actions awaken-links">
+            <a href="#comparison">{ui.compare} <span aria-hidden="true">→</span></a>
+            <a href="#inclusions">{ui.included} <span aria-hidden="true">→</span></a>
+          </div>
+          <AwakenMovementMedia />
           <div className="awaken-facts">
             <p className="awaken-lead">{ui.glanceLead}</p>
             <dl>
@@ -1308,10 +1343,6 @@ export default function HomePage({ locale = "en" }) {
               <div><dt>{ui.fourteen}</dt><dd>{isVi ? "12–26 tháng 1, 2027" : "January 12–26, 2027"} · USD $2,000</dd></div>
             </dl>
             <p>{ui.small}</p>
-            <div className="fact-actions">
-              <a href="#comparison">{ui.compare} <span aria-hidden="true">→</span></a>
-              <a href="#inclusions">{ui.included} <span aria-hidden="true">→</span></a>
-            </div>
           </div>
         </section>
 

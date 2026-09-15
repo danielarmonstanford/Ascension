@@ -143,10 +143,17 @@ button { font: inherit; }
 main { overflow: clip; }
 section { position: relative; }
 
-.awaken { min-height: 82svh; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(20rem, .75fr); gap: clamp(3rem, 9vw, 10rem); align-items: center; padding: var(--section-space) var(--gutter); background: var(--ground); }
+.awaken { display: grid; grid-template-columns: minmax(0, 3fr) minmax(20rem, 2fr); grid-template-areas: "heading links" "media facts"; column-gap: clamp(3rem, 7vw, 8rem); row-gap: clamp(3rem, 7vw, 6.875rem); align-items: start; padding: var(--section-space) var(--gutter); background: var(--ground); }
+.awaken:not(:has(.awaken-media)) { grid-template-areas: "heading links" "facts facts"; }
+.awaken-heading { grid-area: heading; }
 .awaken-heading h2 { margin: 0; max-width: 10ch; color: var(--burnt-sand); font: 400 clamp(5.5rem, 10.5vw, 10rem)/.82 var(--display); letter-spacing: -.04em; font-synthesis: none; }
 .awaken-subtitle { width: fit-content; margin: clamp(2rem, 4vw, 3.5rem) 0 0 auto; color: var(--ink); font: 400 clamp(2.4rem, 4.5vw, 4.5rem)/.94 var(--display); letter-spacing: -.025em; text-align: right; }
-.awaken-facts { max-width: 34rem; }
+.awaken-links { grid-area: links; align-self: start; justify-content: flex-start; }
+.awaken-media { grid-area: media; position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: transparent; }
+.awaken-media img { object-fit: cover; }
+.awaken-media-desktop { display: block; object-position: 66% 52%; }
+.awaken-media-mobile { display: none; }
+.awaken-facts { grid-area: facts; align-self: center; max-width: 34rem; }
 .awaken-facts > p { margin: 0 0 1.25rem; color: var(--quiet); line-height: 1.65; }
 .awaken-facts .awaken-lead { color: var(--ink); font-size: clamp(1.45rem, 2.2vw, 2.1rem); line-height: 1.25; }
 .awaken-facts dl { margin: 2.25rem 0; border-top: 1px solid var(--rule); }
@@ -636,7 +643,7 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .hero-stage .progressive-media video { object-position: 52% 44%; }
   .hero-title { top: 17svh; font-size: clamp(5rem, 13.5vw, 8.6rem); }
   .hero-proposition { right: var(--gutter); top: 43%; font-size: clamp(2rem, 4.5vw, 3rem); }
-  .awaken { grid-template-columns: minmax(0, 1.1fr) minmax(19rem, .9fr); gap: 3.5rem; }
+  .awaken { grid-template-columns: minmax(0, 3fr) minmax(19rem, 2fr); column-gap: 3.5rem; row-gap: clamp(3rem, 7vw, 5rem); }
   .destination-copy h2 span:nth-child(2) { margin-left: 8vw; }
   .destination-copy h2 span:nth-child(3) { margin-left: 16vw; }
   .model { grid-template-columns: 1.2fr .8fr; }
@@ -691,9 +698,15 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .hero-primary { flex: 0 0 auto; }
   .hero-explore { flex: 1; text-align: center; }
 
-  .awaken { min-height: auto; grid-template-columns: 1fr; gap: 3.5rem; padding-top: 6rem; padding-bottom: 6rem; }
+  .awaken { grid-template-columns: 1fr; grid-template-areas: "heading" "links" "media" "facts"; row-gap: clamp(1.5rem, 7vw, 2.75rem); padding-top: 6rem; padding-bottom: 6rem; }
+  .awaken:not(:has(.awaken-media)) { grid-template-areas: "heading" "links" "facts"; }
   .awaken-heading h2 { font-size: clamp(4.5rem, 22vw, 7rem); }
   .awaken-subtitle { margin-top: 1.75rem; font-size: clamp(2rem, 10vw, 3.2rem); }
+  .awaken-links { flex-direction: column; align-items: flex-start; gap: .4rem; }
+  .awaken-media { aspect-ratio: 4 / 5; }
+  .awaken-media-desktop { display: none; }
+  .awaken-media-mobile { display: block; object-position: 50% 52%; }
+  .awaken-facts { max-width: none; }
   .awaken-facts dl div { grid-template-columns: 4.5rem 1fr; }
   .fact-actions { flex-direction: column; align-items: flex-start; }
 
