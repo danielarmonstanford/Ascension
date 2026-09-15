@@ -3,8 +3,8 @@ export const en = {
   status: "approved",
   hero: {
     subheading: "A different way to experience wellness—and Vietnam.",
-    mobile: "Reconnect with your body through an intimate 7- or 14-day experience bringing together Vietnamese wellness, movement, recovery, sound, creativity, food and cultural discovery.",
-    desktop: "Reconnect with your body through an intimate 7- or 14-day experience bringing together Vietnamese wellness, movement, recovery, sound, creativity, food and cultural discovery.",
+    mobile: "Reconnect with your body through an intimate 7- or 14-day experience bringing together Vietnamese wellness, movement, touch-led bodywork, breath, sound, creativity, food and cultural discovery.",
+    desktop: "Reconnect with your body through an intimate 7- or 14-day experience bringing together Vietnamese wellness, movement, touch-led bodywork, breath, sound, creativity, food and cultural discovery.",
   },
   introduction: {
     title: "Not a retreat from life. A return to it.",

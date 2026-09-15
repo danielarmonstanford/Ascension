@@ -1011,11 +1011,11 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
         </div>
 
         <div className="hero-frame">
-          <p className="hero-series-eyebrow entrance entrance-place">ASCENSION · DA NANG · JANUARY 12–26, 2027</p>
           <p className="hero-title entrance entrance-title" aria-hidden="true">ASCENSION</p>
+          <p className="hero-event entrance entrance-place">{ui.place} · {ui.dates}</p>
           <h1 className="hero-proposition entrance entrance-proposition"><span>{ui.slogan[0]}</span><span>{ui.slogan[1]}</span></h1>
           <div className="hero-offer entrance entrance-place">
-            <p className="hero-place">ASCENSION · {ui.place} · {ui.dates}</p>
+            <p className="hero-movement">MOVE · TOUCH · BREATHE · RESTORE</p>
             <p className="hero-subheading">{copy.hero.subheading || "A different way to experience wellness—and Vietnam."}</p>
             <p className="hero-description">{isMobile === false ? copy.hero.desktop : copy.hero.mobile}</p>
             <p className="hero-photo-credit">Fine-art photography by Daniel A. Stanford · Movement study featuring a <a href="https://budokon.com/" target="_blank" rel="noopener noreferrer">Budokon® instructor</a>.</p>
