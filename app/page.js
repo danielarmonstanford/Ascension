@@ -1107,7 +1107,7 @@ function FoundationSection({ isMobile, copy, isVi }) {
         <p className="foundation-integrated-note">ASCENSION is holistic and experiential. It does not diagnose, treat or replace medical care.</p>
         <div className="foundation-practitioner" aria-label="Confirmed Diện Chẩn practitioner">
           <div className="foundation-practitioner-portrait">
-            <Image src={LOAN_PORTRAIT} alt="Y sĩ Huỳnh Bảo Loan in Da Nang" fill sizes="(max-width: 767px) 7rem, 10rem" />
+            <Image src={LOAN_PORTRAIT} alt="Y sĩ Huỳnh Bảo Loan in Da Nang" fill sizes="(max-width: 767px) calc(100vw - 2.5rem), (max-width: 1024px) 32vw, 18vw" />
           </div>
           <div className="foundation-practitioner-details">
             <span>{isVi ? "Người thực hành đã xác nhận · Diện Chẩn hằng ngày" : "Confirmed practitioner · Daily Diện Chẩn"}</span>

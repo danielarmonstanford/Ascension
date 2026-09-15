@@ -195,22 +195,34 @@ section { position: relative; }
 .foundation-kicker, .participation-kicker, .host-kicker, .practitioner-kicker, .faq-kicker { margin: 0 0 1.25rem; color: var(--burnt-sand); font: 500 .7rem/1 var(--utility); letter-spacing: .15em; text-transform: uppercase; }
 .foundation-copy h2 { margin: 0 0 2rem; font: 400 clamp(3.8rem, 7vw, 7rem)/.86 var(--display); letter-spacing: -.035em; }
 .foundation-copy > p { margin: 0; max-width: 35rem; color: var(--quiet); line-height: 1.68; }
-.foundation-integrated-note { margin-top: 1rem !important; padding-top: 1rem; border-top: 1px solid rgba(23, 55, 68, .22); font-size: .84rem; }
-.foundation-practitioner { display: grid; grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr); gap: clamp(1rem, 2vw, 1.75rem); align-items: start; margin-top: 1.75rem; padding: 1.4rem 0; border-top: 1px solid rgba(23, 55, 68, .25); border-bottom: 1px solid rgba(23, 55, 68, .25); }
-.foundation-practitioner-portrait { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--twilight); }
-.foundation-practitioner-portrait img { object-fit: cover; object-position: 50% 42%; }
-.foundation-practitioner-details { display: grid; gap: .45rem; }
-.foundation-practitioner span, .foundation-practitioner small { color: var(--burnt-sand); font: 600 .64rem/1.4 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
-.foundation-practitioner strong { color: var(--deep-ocean); font: 400 clamp(2rem, 3.25vw, 3.4rem)/.95 var(--display); letter-spacing: -.025em; }
-.foundation-practitioner small { color: #5e7579; }
-.foundation-credentials { display: grid; gap: .35rem; margin: .65rem 0 0; padding: 0; list-style: none; }
-.foundation-credentials li { color: #405d65; font-size: clamp(.72rem, .9vw, .82rem); line-height: 1.45; }
-.foundation-copy details, .host-story details { margin-top: 2rem; border-top: 1px solid rgba(23, 55, 68, .25); border-bottom: 1px solid rgba(23, 55, 68, .25); }
+.foundation-integrated-note { margin-top: 1rem !important; padding-top: 0; border-top: 0; font-size: .84rem; }
+.foundation-practitioner { display: grid; grid-template-columns: minmax(0, 35fr) minmax(0, 65fr); gap: clamp(1.25rem, 2.5vw, 2.25rem); align-items: stretch; margin-top: 1.75rem; padding: 1.5rem 0 0; border-top: 1px solid rgba(23, 55, 68, .25); }
+.foundation-practitioner-portrait { position: relative; min-height: 100%; overflow: hidden; background: var(--twilight); }
+.foundation-practitioner-portrait img { object-fit: cover; object-position: 50% 28%; }
+.foundation-practitioner-details { display: grid; align-content: start; gap: .65rem; min-width: 0; }
+.foundation-practitioner span { color: var(--burnt-sand); font: 500 clamp(.9375rem, 1.1vw, 1rem)/1.45 var(--utility); letter-spacing: .07em; text-transform: uppercase; font-synthesis: none; }
+.foundation-practitioner strong { color: var(--deep-ocean); font: 400 clamp(2.25rem, 3.25vw, 3.65rem)/.95 var(--display); letter-spacing: -.025em; font-synthesis: none; }
+.foundation-practitioner small { color: #5e7579; font: 500 clamp(.9375rem, 1.1vw, 1rem)/1.45 var(--utility); letter-spacing: .07em; text-transform: uppercase; font-synthesis: none; }
+.foundation-credentials { display: grid; gap: .55rem; margin: .75rem 0 0; padding: 0; list-style: none; }
+.foundation-credentials li { color: #405d65; font: 400 clamp(1.0625rem, 1.15vw, 1.15rem)/1.5 var(--body); font-synthesis: none; }
+.foundation-copy details { margin-top: 1.5rem; border-top: 0; border-bottom: 1px solid rgba(23, 55, 68, .25); }
+.host-story details { margin-top: 2rem; border-top: 1px solid rgba(23, 55, 68, .25); border-bottom: 1px solid rgba(23, 55, 68, .25); }
 .foundation-copy summary, .host-story summary { min-height: 54px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; font: 650 .72rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .foundation-copy summary::-webkit-details-marker, .host-story summary::-webkit-details-marker { display: none; }
 .foundation-details { padding: .5rem 0 1.5rem; }
 .foundation-details p { margin: 0 0 1rem; line-height: 1.65; }
 .foundation-details .medical-note { padding-top: 1rem; border-top: 1px solid rgba(23, 55, 68, .2); color: #5e7579; font-size: .78rem; }
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .foundation-practitioner { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; margin-top: 1.5rem; padding-top: 1.25rem; }
+  .foundation-practitioner-portrait { width: 100%; min-height: 0; aspect-ratio: 4 / 3; }
+  .foundation-practitioner-portrait img { object-position: 50% 24%; }
+  .foundation-practitioner-details { gap: .6rem; }
+  .foundation-practitioner strong { font-size: clamp(2.2rem, 6vw, 3.1rem); }
+  .foundation-practitioner span, .foundation-practitioner small { font-size: .9375rem; line-height: 1.45; }
+  .foundation-credentials { gap: .6rem; margin-top: .55rem; }
+  .foundation-credentials li { font-size: 1rem; line-height: 1.5; }
+}
 
 .return-home { display: grid; grid-template-columns: minmax(17rem, .8fr) minmax(24rem, 1.2fr); gap: clamp(2rem, 6vw, 6.5rem); align-items: end; padding: clamp(3.25rem, 7vw, 6.5rem) var(--gutter); background: var(--night-sea); color: var(--moon-ivory); }
 .return-home-kicker, .take-home-kicker, .perspective-kicker { margin: 0 0 1.25rem; color: var(--sunlight); font: 600 .68rem/1 var(--utility); letter-spacing: .18em; text-transform: uppercase; }
@@ -725,9 +737,14 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .foundation-visual img { object-position: 50% 50%; }
   .foundation-copy { padding: 5rem var(--gutter) 6rem; }
   .foundation-copy h2 { font-size: clamp(3.5rem, 17vw, 5.5rem); }
-  .foundation-practitioner { grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; }
-  .foundation-practitioner strong { font-size: clamp(1.7rem, 8vw, 2.35rem); }
-  .foundation-credentials { margin-top: .45rem; }
+  .foundation-practitioner { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; margin-top: 1.5rem; padding-top: 1.25rem; }
+  .foundation-practitioner-portrait { width: 100%; min-height: 0; aspect-ratio: 4 / 3; }
+  .foundation-practitioner-portrait img { object-position: 50% 24%; }
+  .foundation-practitioner-details { gap: .6rem; }
+  .foundation-practitioner strong { font-size: clamp(2.2rem, 10vw, 3.1rem); }
+  .foundation-practitioner span, .foundation-practitioner small { font-size: .9375rem; line-height: 1.45; }
+  .foundation-credentials { gap: .6rem; margin-top: .55rem; }
+  .foundation-credentials li { font-size: 1rem; line-height: 1.5; }
   .wider-program { grid-template-columns: 1fr; gap: 2rem; }
   .wider-program h2 { font-size: clamp(3.5rem, 17vw, 5.5rem); }
 
