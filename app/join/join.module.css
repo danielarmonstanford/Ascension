@@ -43,6 +43,13 @@
 .values { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--funnel-shell); }
 .values p { min-height: 12rem; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; margin: 0; padding: clamp(1.5rem, 3vw, 3rem); border-right: 1px solid rgba(23,55,68,.2); color: var(--funnel-ink); font: 400 clamp(1.55rem, 2.4vw, 2.5rem)/1.05 var(--display); }
 .values span { color: var(--funnel-copper); font: 650 .65rem/1 var(--utility); letter-spacing: .12em; }
+.whatCouldChange { display:grid; grid-template-columns:minmax(16rem,.82fr) minmax(20rem,1.18fr); gap:clamp(2.5rem,9vw,10rem); align-items:start; padding:clamp(5rem,10vw,10rem) clamp(1.25rem,4.7vw,5.25rem); background:#f1e6d5; color:#173744; }
+.whatCouldChange h2 { max-width:8ch; margin:0; font:400 clamp(4rem,7.5vw,8rem)/.82 var(--display); letter-spacing:-.04em; }
+.whatCouldChangeCopy { max-width:42rem; }
+.whatCouldChangeCopy > p { max-width:39rem; margin:0 0 1.25rem; color:#315a67; font-size:clamp(1.1rem,1.6vw,1.38rem); line-height:1.55; }
+.whatCouldChangeCopy ul { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem 1.5rem; margin:clamp(2rem,4vw,3rem) 0; padding:1.2rem 0; border-top:1px solid rgba(23,55,68,.24); border-bottom:1px solid rgba(23,55,68,.24); list-style:none; }
+.whatCouldChangeCopy li { color:#173744; font:400 clamp(1.25rem,1.85vw,1.65rem)/1.25 var(--display); }
+.whatCouldChangeCopy .whatCouldChangeCta { margin-bottom:1.5rem; color:#173744; font-size:1rem; }
 .sectionIntro { display: grid; grid-template-columns: 5rem 1fr; gap: clamp(2rem, 5vw, 6rem); }
 .sectionIntro h2 { margin: 0; font: 400 clamp(4rem, 7.5vw, 8rem)/.82 var(--display); letter-spacing: -.04em; }
 .pathways { padding: clamp(6rem, 11vw, 11rem) clamp(1.25rem, 4.7vw, 5.25rem); background: #315a67; color: #f1e6d5; }
@@ -234,6 +241,8 @@
   .values { grid-template-columns: 1fr; }
   .values p { min-height: 8rem; }
   .sectionIntro, .embodySpotlight { grid-template-columns: 1fr; gap: 1.5rem; }
+  .whatCouldChange { grid-template-columns:1fr; gap:2rem; }
+  .whatCouldChangeCopy ul { grid-template-columns:1fr; gap:.55rem; }
   .pathwayGrid { grid-template-columns: 1fr 1fr; }
   .pathwayGrid article { padding: .8rem; }
   .pathwayGrid h3 { font-size: clamp(2.1rem, 11vw, 3.2rem); }

@@ -82,6 +82,17 @@ export default async function JoinPage({ searchParams }) {
         </div>
       </header>
 
+      <section className={styles.whatCouldChange} aria-labelledby="what-could-change-title">
+        <div><p className={styles.sectionNumber}>Body &amp; senses</p><h2 id="what-could-change-title">What could change?</h2></div>
+        <div className={styles.whatCouldChangeCopy}>
+          <p>Most of us experience the body through separate signals: stiffness, fatigue, tension or disconnection.</p>
+          <p>ASCENSION asks what becomes possible when touch, movement, breath, sound, food, creativity and place work together.</p>
+          <ul><li>Move with greater ease.</li><li>Breathe with greater awareness.</li><li>Rest with greater intention.</li><li>Feel more fully present.</li></ul>
+          <p className={styles.whatCouldChangeCta}>Take the two-minute Body &amp; Senses Profile to discover your ASCENSION pathway and receive your complimentary guide.</p>
+          <ProfileAction className={styles.reserve} href={profileHref} label="Begin my profile" />
+        </div>
+      </section>
+
       <section className={styles.values} aria-label="What ASCENSION offers">{values.map((value, index) => <p key={value}><span>0{index + 1}</span>{value}</p>)}</section>
 
       <section className={styles.pathways} id="pathways" aria-labelledby="pathways-title">
