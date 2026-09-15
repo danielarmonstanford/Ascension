@@ -57,6 +57,30 @@ const shared = {
 
 export const translatedContent = shared;
 
+export const translatedHomepageAdditions = {
+  fr: {
+    returnHome: {
+      title: "RENTREZ CHEZ VOUS AUTREMENT.",
+      benefits: ["Bougez avec plus d’aisance.", "Respirez avec plus de conscience.", "Reposez-vous plus profondément.", "Sentez-vous plus présent."],
+      body: "Le toucher, le mouvement, le souffle, le son, la cuisine et le lieu se rejoignent—pour que vous repartiez en comprenant mieux ce qui vous soutient véritablement.",
+    },
+  },
+  ko: {
+    returnHome: {
+      title: "다른 방식으로 돌아가세요.",
+      benefits: ["더 편안하게 움직이세요.", "더 깊이 인식하며 호흡하세요.", "더 깊이 쉬세요.", "더 충만히 현존하세요."],
+      body: "터치, 움직임, 호흡, 소리, 음식과 장소가 어우러져, 진정으로 자신을 지지하는 것이 무엇인지 더 잘 알고 돌아가게 됩니다.",
+    },
+  },
+  "zh-hans": {
+    returnHome: {
+      title: "以不同的方式回家。",
+      benefits: ["更自如地活动。", "更有觉知地呼吸。", "更深地休息。", "更充分地感受当下。"],
+      body: "触碰、运动、呼吸、声音、食物与地方汇聚在一起——让你离开时更明白真正支持自己的是什么。",
+    },
+  },
+};
+
 export const translatedUi = {
   fr:{nav:{experience:"Expérience",about:"À propos",attend:"Participer",facilitate:"Animer",menu:"Menu",close:"Fermer"},reserve:"Réserver votre place",ask:"Poser une question",embody:"L’incarner",explore:"Explorer l’expérience",day:"JOUR",dusk:"CRÉPUSCULE",slogan:["Guérir l’âme.","Réveiller les sens."],place:"Da Nang, Vietnam",dates:"12–26 janvier 2027",series:"UNE SÉRIE MODUS",glanceTitle:"Da Nang,\nVietnam",glanceSub:"L’expérience,\nen bref.",glanceLead:"Choisissez sept jours ou les quatorze jours complets entre ville, mer et montagne.",seven:"7 jours",fourteen:"14 jours",small:"Petit groupe intime. Hébergement et transport séparés.",compare:"Comparer 7 et 14 jours",included:"Voir ce qui est inclus",entity:"ASCENSION est une expérience immersive de bien-être et de culture de sept ou quatorze jours à Da Nang, au Vietnam, du 12 au 26 janvier 2027, fondée sur le Diện Chẩn, méthode vietnamienne sans aiguilles.",sixWays:"Six chemins vers\nle présent.",passport:"Votre Passeport ASCENSION",experienceRhythm:"Votre expérience.\nVotre rythme.",curatedFreedom:"Suivez un programme conçu sans perdre votre liberté.",passportBody:"Votre Passeport ASCENSION ouvre les expériences communes confirmées tout en laissant du temps pour se reposer, explorer Da Nang et choisir des séances privées.",faqKicker:"Avant votre arrivée",faqTitle:"Vos questions,\nnos réponses.",facilitator:"Intervenants",apply:"Proposer votre pratique",senseDisclosure:{more:"Approfondir",less:"Réduire"},midSenseCta:"Demander à participer"},
   ko:{nav:{experience:"경험",about:"소개",attend:"참가",facilitate:"진행",menu:"메뉴",close:"닫기"},reserve:"자리 예약",ask:"문의하기",embody:"몸으로 느끼기",explore:"경험 둘러보기",day:"낮",dusk:"해질녘",slogan:["영혼을 치유하세요.","감각을 되살리세요."],place:"베트남 다낭",dates:"2027년 1월 12–26일",series:"MODUS 시리즈",glanceTitle:"다낭,\n베트남",glanceSub:"경험을\n한눈에.",glanceLead:"도시와 바다, 산 사이에서 7일 또는 14일 전체 여정을 선택하세요.",seven:"7일",fourteen:"14일",small:"작고 친밀한 그룹. 숙박과 교통은 별도입니다.",compare:"7일과 14일 비교",included:"포함 사항 보기",entity:"ASCENSION은 2027년 1월 12일부터 26일까지 베트남 다낭에서 열리는 7일 또는 14일의 몰입형 웰니스·문화 경험으로, 바늘을 사용하지 않는 베트남 디엔쩐을 중심으로 합니다.",sixWays:"현재로 들어가는\n여섯 가지 길.",passport:"당신의 ASCENSION 패스포트",experienceRhythm:"당신의 경험.\n당신의 리듬.",curatedFreedom:"자유를 잃지 않고 큐레이션된 프로그램을 따르세요.",passportBody:"ASCENSION 패스포트는 확정된 공동 경험을 열어주면서 휴식, 다낭 탐험과 선택형 개인 세션을 위한 여백을 남깁니다.",faqKicker:"도착하기 전에",faqTitle:"질문과\n답변.",facilitator:"진행자",apply:"진행자로 지원",senseDisclosure:{more:"더 알아보기",less:"접기"},midSenseCta:"참가 신청"},

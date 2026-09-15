@@ -43,11 +43,14 @@ export const en = {
   },
   homepageAdditions: {
     returnHome: {
-      title: "Return home differently.",
-      outcomes: "Move with greater ease. Breathe with greater awareness. Rest more deeply. Feel more present.",
-      body: [
-        "Touch, movement, breath, sound, food and place come together in one fourteen-day rhythm—so you leave knowing more about what supports you.",
+      title: "RETURN HOME DIFFERENTLY.",
+      benefits: [
+        "Move with greater ease.",
+        "Breathe with greater awareness.",
+        "Rest more deeply.",
+        "Feel more present.",
       ],
+      body: "Touch, movement, breath, sound, food and place come together—so you leave knowing more about what genuinely supports you.",
     },
     takeHome: {
       title: "What you take home",

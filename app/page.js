@@ -8,7 +8,7 @@ import HostHotel from "./_components/host-hotel";
 import { sensoryMedia } from "./sensory-media";
 import { en, faqItems, passportCategories } from "../content/en";
 import { vi, viFaqItems, viPassportCategories, viUi } from "../content/vi";
-import { translatedContent, translatedFaq, translatedLower, translatedPassport, translatedUi } from "../content/other-locales";
+import { translatedContent, translatedFaq, translatedHomepageAdditions, translatedLower, translatedPassport, translatedUi } from "../content/other-locales";
 import { JsonLd, homeStructuredData } from "./seo";
 import { track } from "@vercel/analytics";
 
@@ -1132,15 +1132,100 @@ function FoundationSection({ isMobile, copy, isVi }) {
 }
 
 function ReturnHomeSection({ content }) {
+  const sectionRef = useRef(null);
+  const videoRef = useRef(null);
+  const reduceMotion = useReducedMotion();
+  const [hasHydrated, setHasHydrated] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [hasCompleted, setHasCompleted] = useState(false);
+  const [phase, setPhase] = useState(0);
+  const reducedMotion = hasHydrated && reduceMotion;
+  const showFinalComposition = reducedMotion || hasCompleted;
+
+  useEffect(() => setHasHydrated(true), []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || reducedMotion) return undefined;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      const meaningfulEntry = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+      setIsInView(meaningfulEntry);
+      if (meaningfulEntry) setShouldLoad(true);
+    }, { threshold: [0, 0.35, 0.6] });
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [reducedMotion]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldLoad || reducedMotion) return;
+    video.load();
+  }, [shouldLoad, reducedMotion]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || reducedMotion || hasCompleted) return;
+
+    if (isInView && shouldLoad) {
+      video.play().catch(() => {});
+    } else if (!video.paused) {
+      video.pause();
+    }
+  }, [hasCompleted, isInView, reducedMotion, shouldLoad]);
+
+  const updatePhase = (time) => {
+    const nextPhase = time >= 10.5 ? 5 : time >= 8.5 ? 4 : time >= 6.5 ? 3 : time >= 4.5 ? 2 : time >= 2.5 ? 1 : 0;
+    setPhase((current) => current === nextPhase ? current : nextPhase);
+  };
+
   return (
-    <section className="return-home" aria-labelledby="return-home-title">
-      <div>
-        <p className="return-home-kicker">ASCENSION</p>
-        <h2 id="return-home-title">{content.title}</h2>
+    <section
+      ref={sectionRef}
+      className={`return-home return-home-film ${hasStarted ? "is-playing" : ""} ${showFinalComposition ? "is-complete" : ""} ${reducedMotion ? "is-reduced-motion" : ""}`}
+      aria-labelledby="return-home-title"
+    >
+      <div className="return-home-media" aria-hidden="true">
+        <picture className="return-home-poster">
+          <source media="(max-width: 767px)" srcSet="/media/ascension-return-home-v1-mobile-poster.webp" type="image/webp" />
+          <img src="/media/ascension-return-home-v1-poster.webp" alt="" />
+        </picture>
+        <video
+          ref={videoRef}
+          className="return-home-video"
+          muted
+          playsInline
+          preload="none"
+          onPlaying={() => setHasStarted(true)}
+          onTimeUpdate={(event) => updatePhase(event.currentTarget.currentTime)}
+          onEnded={() => {
+            setHasCompleted(true);
+            setPhase(5);
+          }}
+        >
+          {shouldLoad && !reducedMotion ? (
+            <>
+              <source media="(min-width: 768px)" src="/media/ascension-return-home-v1.webm" type="video/webm" />
+              <source media="(min-width: 768px)" src="/media/ascension-return-home-v1.mp4" type="video/mp4" />
+              <source media="(max-width: 767px)" src="/media/ascension-return-home-v1-mobile.webm" type="video/webm" />
+              <source media="(max-width: 767px)" src="/media/ascension-return-home-v1-mobile.mp4" type="video/mp4" />
+            </>
+          ) : null}
+        </video>
+        <div className="return-home-gradient" />
       </div>
-      <div className="return-home-copy">
-        <p className="return-home-outcomes">{content.outcomes}</p>
-        {content.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+      <div className="return-home-content">
+        <h2 id="return-home-title">{content.title}</h2>
+        <div className="return-home-benefits">
+          {content.benefits.map((benefit, index) => {
+            const isVisible = showFinalComposition || phase >= index + 1;
+            return <p key={benefit} className={isVisible ? "is-visible" : ""} aria-hidden={!isVisible}>{benefit}</p>;
+          })}
+        </div>
+        <p className={`return-home-support ${showFinalComposition || phase >= 5 ? "is-visible" : ""}`} aria-hidden={!showFinalComposition && phase < 5}>{content.body}</p>
       </div>
     </section>
   );
@@ -1251,7 +1336,10 @@ export default function HomePage({ locale = "en" }) {
   const localizedFaqItems = isVi ? viFaqItems : translatedFaq[locale] || faqItems;
   const localizedPassportCategories = isVi ? viPassportCategories : translatedPassport[locale] || passportCategories;
   const lower = translatedLower[locale];
-  const homepageAdditions = copy.homepageAdditions || en.homepageAdditions;
+  const homepageAdditions = {
+    ...en.homepageAdditions,
+    ...(isVi ? vi.homepageAdditions : translatedHomepageAdditions[locale]),
+  };
   const takeHome = locale === "fr"
     ? { title: "Ce que vous emportez avec vous", copy: "Bougez avec plus d’aisance. Respirez avec plus de conscience. Reposez-vous plus profondément. Sentez-vous plus présent. Repartez avec une compréhension plus claire de ce dont votre corps a besoin—et de pratiques que vous pouvez poursuivre chez vous." }
     : isVi
