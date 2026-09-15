@@ -624,6 +624,11 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
 .about-placeholder span { position: absolute; z-index: 1; left: 1.4rem; bottom: 1.4rem; color: var(--moon-ivory); font: 500 .62rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .about-long-copy h2, .about-collective h2, .about-values h2, .about-foundation h2 { margin: .9rem 0 2rem; max-width: 11ch; font: 400 clamp(3.5rem, 6.8vw, 6.7rem)/.86 var(--display); letter-spacing: -.035em; }
 .about-long-copy > p { max-width: 42rem; margin: 0 0 1rem; color: var(--quiet); line-height: 1.7; }
+.personal-documentation { width: min(76%, 34rem); margin: clamp(2rem, 4vw, 3rem) auto; }
+.personal-documentation-label { margin: 0 0 .7rem; color: var(--burnt-sand); font: 650 .64rem/1.4 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
+.personal-documentation img { display: block; width: 100%; height: auto; border: 1px solid rgba(155, 109, 75, .3); border-radius: .4rem; background: var(--deep-ocean); box-shadow: 0 .65rem 1.5rem rgba(10, 30, 37, .1); }
+.personal-documentation figcaption { margin-top: .8rem; color: var(--quiet); font-size: clamp(.8125rem, 1vw, .875rem); line-height: 1.55; }
+.info-content .personal-documentation { grid-column: 2; }
 .about-role { grid-template-columns: minmax(27rem, 1.1fr) minmax(20rem, .9fr); background: var(--ground); }
 :root[data-theme="dusk"] .about-role .about-long-copy > p { color: var(--quiet); }
 .about-role-media { min-height: clamp(30rem, 58vw, 50rem); }
@@ -693,6 +698,7 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .info-header nav { gap: .85rem 1.25rem; }
   .info-hero, .info-content > section { grid-template-columns: 1fr; }
   .info-hero h1, .info-lead, .info-content p { grid-column: 1; }
+  .personal-documentation, .info-content .personal-documentation { grid-column: 1; width: 100%; margin: clamp(2rem, 9vw, 3rem) 0; }
   .info-hero h1 { font-size: clamp(4.2rem, 21vw, 7rem); overflow-wrap: anywhere; }
   .info-options { grid-template-columns: 1fr !important; }
 

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import LanguageSelector from "../_components/language-selector";
+import PersonalDocumentation from "../_components/personal-documentation";
+import { personalDocumentation } from "../../content/personal-documentation";
 
 const HERO_IMAGE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
@@ -142,7 +144,8 @@ export default function AboutPageClient() {
             <p>Over more than two decades—and across travels through 25 countries—I encountered practitioners, traditions and environments that changed how I understood wellbeing.</p>
             <p>I stopped seeing it as one treatment or one destination. I began seeing it as a relationship between the body, mind, movement, creativity, place and human connection.</p>
             <p>In Da Nang, I experienced Diện Chẩn over several months, including an intensive period of 40 consecutive days.</p>
-            <p>The changes I personally experienced in mobility, alignment and physical awareness are why this practice sits at the foundation of ASCENSION.</p>
+            <p>{personalDocumentation.en.context}</p>
+            <PersonalDocumentation />
             <p>I am bringing together the practices, people and places that changed me most—and inviting others to experience them with openness and curiosity.</p>
           </div>
         </section>
