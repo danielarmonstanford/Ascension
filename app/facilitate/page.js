@@ -3,6 +3,8 @@ import { JsonLd, PRACTITIONER_APPLICATION, breadcrumbStructuredData, createPageM
 
 const title = "Facilitate at ASCENSION Da Nang | Practitioner Applications";
 const description = "Apply to contribute movement, meditation, sound, bodywork, wellness or creative practice to ASCENSION in Da Nang, January 2027.";
+const FACILITATE_HERO =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789567435/ChatGPT_Image_Sep_13_2026_04_16_51_PM_pahkmv.png";
 
 export const metadata = createPageMetadata({ title, description, path: "/facilitate" });
 
@@ -10,7 +12,7 @@ export default function FacilitatePage() {
   return (
     <>
       <JsonLd data={breadcrumbStructuredData([{ name: "ASCENSION", path: "/" }, { name: "Facilitate", path: "/facilitate" }])} />
-      <InfoPage pageClassName="facilitate-page" eyebrow="Facilitate" title="Bring your practice to Da Nang." lead="Practitioner applications are open for the founding ASCENSION experience in Da Nang, January 12–26, 2027." primaryLabel="Apply to facilitate" primaryHref={PRACTITIONER_APPLICATION}>
+      <InfoPage pageClassName="facilitate-page" eyebrow="Facilitate" title="Bring your practice to Da Nang." lead="Practitioner applications are open for the founding ASCENSION experience in Da Nang, January 12–26, 2027." heroMedia={FACILITATE_HERO} primaryLabel="Apply to facilitate" primaryHref={PRACTITIONER_APPLICATION}>
         <section>
           <h2>Who ASCENSION is inviting</h2>
           <p>ASCENSION welcomes applications from experienced practitioners in movement, breathwork, guided meditation, sound baths, bodywork, creativity and complementary wellness practices.</p>

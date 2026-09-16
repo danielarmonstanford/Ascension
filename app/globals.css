@@ -607,6 +607,8 @@ section { position: relative; }
 .facilitate-page .info-header nav a, .facilitate-page .info-footer a { font-size: .8125rem; line-height: 1.5; letter-spacing: .09em; }
 .facilitate-page .info-breadcrumb, .facilitate-page .info-eyebrow { font-size: .8125rem; line-height: 1.55; letter-spacing: .11em; }
 .facilitate-page .info-lead { max-width: 38rem; font-size: clamp(1.75rem, 2.6vw, 2.65rem); line-height: 1.22; }
+.facilitate-page .info-hero-map { object-position: 67% center; opacity: .54; }
+.facilitate-page .info-hero-media-gradient { background: linear-gradient(90deg, color-mix(in srgb, var(--shell) 38%, transparent) 0 32%, transparent 60%, color-mix(in srgb, var(--shell) 28%, transparent) 100%), linear-gradient(180deg, transparent 0 20%, color-mix(in srgb, var(--shell) 18%, transparent) 52%, var(--shell) 92%); }
 .facilitate-page .info-content h2 { font-size: clamp(2.5rem, 4.7vw, 5rem); line-height: .94; }
 .facilitate-page .info-content p { color: #405f68; font-size: clamp(1.125rem, 1.35vw, 1.25rem); line-height: 1.72; }
 .facilitate-page .info-cta > a:not(.radiant-action) { font-size: .8125rem; line-height: 1.5; }
