@@ -721,6 +721,15 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .sensory-story-3 .sensory-story-keywords { align-self: flex-start; max-width: 100%; text-align: left; white-space: normal; }
 }
 
+@media (min-width: 768px) {
+  .about-values-map {
+    object-position: 18% center;
+    opacity: 1;
+    mix-blend-mode: normal;
+    filter: none;
+  }
+}
+
 @media (max-width: 767px) {
   :root { --gutter: 1.25rem; }
   .info-header { align-items: flex-start; flex-direction: column; min-height: auto; padding-top: calc(1.4rem + env(safe-area-inset-top)); padding-bottom: 1.4rem; }
