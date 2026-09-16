@@ -1,8 +1,10 @@
+import Image from "next/image";
 import InfoPage from "../_components/info-page";
 import { JsonLd, breadcrumbStructuredData, createPageMetadata } from "../seo";
 
 const title = "Diện Chẩn in Da Nang | ASCENSION SENSES";
 const description = "Discover Diện Chẩn, the needle-free Vietnamese practice at the foundation of ASCENSION, using reflexology, acupressure, heat, stretching and individualized full-body work.";
+const BODY_PATHWAYS_MAP = "/media/dien-chan-body-pathways.webp";
 
 export const metadata = createPageMetadata({ title, description, path: "/dien-chan" });
 
@@ -11,10 +13,13 @@ export default function DienChanPage() {
     <>
       <JsonLd data={breadcrumbStructuredData([{ name: "ASCENSION", path: "/" }, { name: "Diện Chẩn", path: "/dien-chan" }])} />
       <InfoPage eyebrow="Diện Chẩn" title="One body. Everything connected." lead="Diện Chẩn—or Dien Chan—is the needle-free Vietnamese wellness practice at the therapeutic foundation of ASCENSION.">
-        <section>
+        <section className="info-illustrated-section dien-chan-foundation">
+          <Image className="info-map-visual" src={BODY_PATHWAYS_MAP} alt="" aria-hidden="true" fill sizes="100vw" />
           <h2>What is Diện Chẩn?</h2>
           <p>Diện Chẩn is a modern Vietnamese system rooted in traditional principles. It combines reflexology, needle-free acupressure, therapeutic heat, stretching and individualized full-body work.</p>
           <p>The face may be a starting point, but a session is not limited to facial reflexology. Practitioners may work across the head, hands, feet, limbs and back according to the individual.</p>
+          <p>Within Y sĩ Huỳnh Bảo Loan’s broader Traditional Vietnamese Medicine practice, facial Diện Chẩn may be accompanied by full-body acupressure informed by Kinh Mạch meridian pathways, Cạo Gió treatment routes and Bấm Huyệt points across the neck, shoulders, back, arms, legs and feet. These traditional maps connect surface points with the body’s wider systems and guide a more integrated practitioner-led experience.</p>
+          <p className="traditional-maps-label">Kinh Mạch · Cạo Gió · Bấm Huyệt</p>
           <p><strong>Sessions are led daily by Y sĩ Huỳnh Bảo Loan, Da Nang.</strong></p>
           <p>Licensed Traditional Medicine Practitioner · Licensed Acupressure &amp; Massage Therapist · Licensed Healthcare Practitioner (Acupressure, Traditional Medicine)</p>
         </section>

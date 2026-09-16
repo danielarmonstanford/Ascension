@@ -1,8 +1,10 @@
+import Image from "next/image";
 import InfoPage from "../_components/info-page";
 import { JsonLd, RESERVATION_URL, breadcrumbStructuredData, createPageMetadata } from "../seo";
 
 const title = "Attend ASCENSION Da Nang | January 12–26, 2027";
 const description = "Choose seven or fourteen days of Vietnamese wellness, movement, sound, food, culture and creativity in Da Nang. Programs begin at USD $1,200.";
+const MERIDIAN_MAP = "/media/dien-chan-meridian-map.webp";
 
 export const metadata = createPageMetadata({ title, description, path: "/attend" });
 
@@ -15,7 +17,8 @@ export default function AttendPage() {
           <article id="seven-days"><p className="info-eyebrow">Seven days</p><h2>January 12–19, 2027</h2><p className="info-price">USD $1,200</p><p>Enter the shared ASCENSION rhythm for one week while retaining the freedom to choose what serves you.</p><a className="text-action" data-plan="seven-day" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer">Reserve seven days →</a></article>
           <article id="fourteen-days"><p className="info-eyebrow">Fourteen days</p><h2>January 12–26, 2027</h2><p className="info-price">USD $2,000</p><p>Experience the complete arc across Vietnamese wellness, movement, sound, food, culture and creativity.</p><a className="text-action" data-plan="fourteen-day" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer">Reserve fourteen days →</a></article>
         </section>
-        <section>
+        <section className="info-illustrated-section attend-includes">
+          <Image className="info-map-visual" src={MERIDIAN_MAP} alt="" aria-hidden="true" fill sizes="100vw" />
           <h2>What the experience includes</h2>
           <p>Your ASCENSION Passport opens confirmed shared programming built around Diện Chẩn. The wider program includes movement, breathwork, cultural discovery, creative expression and selected shared food experiences. Ecstatic Dance, sound baths and participating facilitators remain planned until their details are confirmed.</p>
         </section>

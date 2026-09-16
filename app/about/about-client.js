@@ -17,6 +17,7 @@ const DA_NANG_IMAGE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
+const FOUNDATION_MAP = "/media/dien-chan-face-map-attributed.webp";
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
 
@@ -194,6 +195,7 @@ export default function AboutPageClient() {
         </section>
 
         <section className="about-foundation" aria-labelledby="program-foundation-title">
+          <Image className="about-foundation-map" src={FOUNDATION_MAP} alt="" aria-hidden="true" fill sizes="100vw" />
           <div><p className="about-eyebrow">Program foundation</p><h2 id="program-foundation-title">One foundation. Many practices.</h2></div>
           <div className="about-long-copy"><p>Diện Chẩn is the therapeutic foundation of ASCENSION.</p><p>Around it, a modular program brings together movement, breath, guided meditation, sound baths, bodywork, food, cultural discovery and creative practice.</p><p>Facilitators are selected for experience, integrity, cultural fit and the quality of what they can contribute.</p><p>The foundation is clear. The experience remains alive.</p><p className="about-medical-note">Diện Chẩn is presented as a traditional wellness practice and educational experience. Individual responses vary. Participation does not replace medical diagnosis, treatment or professional healthcare.</p><div className="about-actions"><Link className="radiant-action" href="/dien-chan">Learn about Diện Chẩn <span aria-hidden="true">→</span></Link><Link className="about-secondary-action" href="/facilitate">Apply to facilitate <span aria-hidden="true">→</span></Link></div></div>
         </section>
