@@ -140,7 +140,8 @@ export const siteEntityGraph = {
   ],
 };
 
-export const homeStructuredData = {
+export function homeStructuredData(faq = faqItems) {
+  return {
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -184,7 +185,7 @@ export const homeStructuredData = {
     {
       "@type": "FAQPage",
       "@id": `${PRODUCTION_ORIGIN}/#faq`,
-      mainEntity: faqItems.map(([question, answer]) => ({
+      mainEntity: faq.map(([question, answer]) => ({
         "@type": "Question",
         name: question,
         acceptedAnswer: { "@type": "Answer", text: answer },
@@ -231,7 +232,8 @@ export const homeStructuredData = {
       isPartOf: { "@id": `${PRODUCTION_ORIGIN}/#website` },
     },
   ],
-};
+  };
+}
 
 export function breadcrumbStructuredData(items) {
   return {

@@ -3,8 +3,6 @@ import TermsPage from "../../terms/page";
 import LocaleReviewPage from "../../_components/locale-review-page";
 import { createLocalizedPageMetadata } from "../../seo";
 import { isPublishedLocale, isSupportedLocale } from "../../../i18n/config";
-import { VietnameseTermsPage } from "../../_components/vietnamese-pages";
-import TranslatedInfoPage from "../../_components/translated-info-page";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -16,7 +14,5 @@ export default async function LocalizedTermsPage({ params }) {
   const { locale } = await params;
   if (!isSupportedLocale(locale)) notFound();
   if (!isPublishedLocale(locale)) return <LocaleReviewPage locale={locale} />;
-  if (locale === "vi") return <VietnameseTermsPage />;
-  if (locale !== "en") return <TranslatedInfoPage locale={locale} page="terms" />;
-  return <TermsPage />;
+  return <TermsPage locale={locale} />;
 }

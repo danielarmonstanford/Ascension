@@ -17,9 +17,9 @@ export default function DienChanPage() {
         <section className="info-illustrated-section dien-chan-foundation">
           <Image className="info-map-visual" src={BODY_PATHWAYS_MAP} alt="" aria-hidden="true" fill sizes="100vw" />
           <h2>What is Diện Chẩn?</h2>
-          <p>Diện Chẩn is a modern Vietnamese system rooted in traditional principles. It combines reflexology, needle-free acupressure, therapeutic heat, stretching and individualized full-body work.</p>
+          <p>Diện Chẩn is a modern Vietnamese, needle-free reflexology and acupressure approach. Within Y sĩ Huỳnh Bảo Loan’s broader Traditional Vietnamese Medicine practice, it may be complemented by full-body acupressure, therapeutic heat, assisted stretching and manual bodywork, according to individual assessment.</p>
           <p>The face may be a starting point, but a session is not limited to facial reflexology. Practitioners may work across the head, hands, feet, limbs and back according to the individual.</p>
-          <p>Within Y sĩ Huỳnh Bảo Loan’s broader Traditional Vietnamese Medicine practice, facial Diện Chẩn may be accompanied by full-body acupressure informed by Kinh Mạch meridian pathways, Cạo Gió treatment routes and Bấm Huyệt points across the neck, shoulders, back, arms, legs and feet. These traditional maps connect surface points with the body’s wider systems and guide a more integrated practitioner-led experience.</p>
+          <p>Within Loan’s broader practice, Kinh Mạch meridian pathways, Cạo Gió treatment routes and Bấm Huyệt points are traditional frameworks that may inform practitioner-led full-body work. They are not presented as established biological mechanisms.</p>
           <p className="traditional-maps-label">Kinh Mạch · Cạo Gió · Bấm Huyệt</p>
           <p><strong>Sessions are led daily by Y sĩ Huỳnh Bảo Loan, Da Nang.</strong></p>
           <p>Licensed Traditional Medicine Practitioner · Licensed Acupressure &amp; Massage Therapist · Licensed Healthcare Practitioner (Acupressure, Traditional Medicine)</p>

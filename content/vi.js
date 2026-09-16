@@ -65,7 +65,7 @@ export const viPassportCategories = [
 
 export const viFaqItems = [
   ["ASCENSION là gì?","Một trải nghiệm 7 hoặc 14 ngày được tuyển chọn, kết nối chăm sóc sức khỏe Việt Nam, chuyển động, âm thanh, ẩm thực, văn hóa và sáng tạo tại Đà Nẵng."],
-  ["Diện Chẩn là gì?","Một phương pháp hiện đại của Việt Nam, không dùng kim, bắt nguồn từ các nguyên lý truyền thống và kết hợp phản xạ học, day ấn huyệt, nhiệt, kéo giãn cùng trị liệu toàn thân."],
+  ["Diện Chẩn là gì?","Diện Chẩn là phương pháp phản xạ học và day ấn huyệt hiện đại của Việt Nam, không dùng kim. Trong thực hành Y học cổ truyền Việt Nam rộng hơn của Y sĩ Huỳnh Bảo Loan, phương pháp này có thể được bổ trợ bằng day ấn toàn thân, nhiệt trị liệu, kéo giãn có hỗ trợ và thao tác thủ công, tùy theo đánh giá của người thực hành đối với từng cá nhân."],
   ["Diện Chẩn có dùng kim không?","Không. Diện Chẩn không dùng kim."],
   ["Tôi có cần kinh nghiệm chuyển động hoặc thiền không?","Không cần kinh nghiệm trước đó. Bạn sẽ được hướng dẫn và tự quyết định điều gì phù hợp."],
   ["Tôi có thể tham dự một mình không?","Có. Bạn có thể đến một mình hoặc cùng người khác."],
@@ -74,7 +74,7 @@ export const viFaqItems = [
   ["Chỗ ở và chuyến bay có bao gồm không?","Không. Khách tự chọn và đặt chỗ ở, chuyến bay và di chuyển địa phương."],
   ["7 ngày và 14 ngày khác nhau thế nào?","Chương trình 7 ngày diễn ra 12–19 tháng 1 năm 2027, giá 1.200 USD. Chương trình đầy đủ 14 ngày diễn ra 12–26 tháng 1, giá 2.000 USD."],
   ["Ai là người hướng dẫn?","Y sĩ Huỳnh Bảo Loan phụ trách Diện Chẩn hằng ngày. Bà là Licensed Traditional Medicine Practitioner, Licensed Acupressure & Massage Therapist và Licensed Healthcare Practitioner (Acupressure, Traditional Medicine). Các người hướng dẫn khác sẽ được công bố khi thỏa thuận được xác nhận."],
-  ["Chính sách hủy là gì?","Khoản đặt cọc 300 USD giữ chỗ; số dư đến hạn 30 ngày trước 12 tháng 1 năm 2027. Hủy trước từ 60 ngày được hoàn đủ trừ phí hành chính 25 USD; hủy trước 30–60 ngày được hoàn 50%; dưới 30 ngày không hoàn. Buổi riêng không hoàn tiền sau khi đặt."],
+  ["Chính sách hủy là gì?","ASCENSION Đà Nẵng sẽ được xác nhận cuối cùng chậm nhất vào ngày 1 tháng 11 năm 2026. Nếu ASCENSION không xác nhận, hủy hoặc dời lịch sự kiện, bạn có thể chọn hoàn lại toàn bộ khoản thanh toán chương trình hoặc tín dụng toàn giá trị cho kỳ sau. Nếu tự hủy trước khi chương trình bắt đầu, bạn có thể yêu cầu hoàn tiền trừ 10% khi pháp luật cho phép hoặc tín dụng toàn giá trị trong 24 tháng; quyền theo luật định được ưu tiên. Hoàn tiền được xử lý trong 15 ngày. Xem Điều khoản để biết chính sách đầy đủ."],
   ["Làm thế nào để giữ chỗ?","Chọn liên kết Đặt chỗ. Trang thanh toán hiện yêu cầu khoản đặt cọc 300 USD."],
 ];
 

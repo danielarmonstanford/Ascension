@@ -51,8 +51,8 @@ const faq = [
   ["Is accommodation included?", "No. Accommodation and flights are selected and booked separately."],
   ["Do I need previous wellness or movement experience?", "No. Guidance is provided, and you choose what feels appropriate for you."],
   ["Can I attend for seven days?", "Yes. The seven-day experience runs January 12–19, 2027."],
-  ["When will the edition be confirmed?", "Availability, final programming and confirmed practical details will be shared personally before you are asked to make a non-refundable payment."],
-  ["What happens to my payment if the edition does not proceed?", "The current terms provide the applicable payment and cancellation conditions before checkout. Contact us with any question before reserving."],
+  ["When will the edition be confirmed?", "ASCENSION Da Nang will be finally confirmed by November 1, 2026. Wait for written event confirmation before making non-refundable travel arrangements."],
+  ["What is the cancellation policy?", "If ASCENSION does not confirm, cancels or reschedules the event, choose a full programme-payment refund or full-value future-edition credit. If you cancel voluntarily before the programme begins, you may request a refund less 10% where legally permitted or a 24-month full-value credit; statutory rights take precedence. Refunds are processed within 15 days. See the Terms for the complete policy."],
 ];
 
 function InterestAction({ label = "Request Your Place", event = "funnel_primary_cta" }) {

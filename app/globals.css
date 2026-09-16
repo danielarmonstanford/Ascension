@@ -531,6 +531,9 @@ section { position: relative; }
 .attendance-terms li::before { content: "—"; position: absolute; left: 0; color: #93adb0; }
 .reserve-action { margin-top: 3rem; }
 .deposit { max-width: 36rem; margin: 1rem 0 0; color: #93adb0; font-size: .75rem; line-height: 1.55; }
+.booking-policy-summary { max-width: 44rem; margin: 1rem 0 0; color: #58777d; font-size: max(.875rem, 14px); line-height: 1.55; }
+.booking-policy-summary a { color: inherit; font-weight: 700; text-underline-offset: .18em; }
+.attendance-policy-summary { color: #b9d0cc; }
 .attendance-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
 .question-action { display: inline-flex; min-height: 44px; align-items: center; gap: 1rem; margin-top: 3rem; color: var(--moon-ivory); font: 650 .72rem/1.4 var(--utility); letter-spacing: .1em; text-transform: uppercase; text-underline-offset: .4rem; }
 

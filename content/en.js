@@ -209,7 +209,7 @@ export const passportCategories = [
 
 export const faqItems = [
   ["What is ASCENSION?", "A curated 7- or 14-day experience connecting Vietnamese wellness, movement, sound, food, culture and creativity in Da Nang."],
-  ["What is Diện Chẩn?", "A modern Vietnamese, needle-free system rooted in traditional principles and combining reflexology, acupressure, heat, stretching and full-body therapeutic work."],
+  ["What is Diện Chẩn?", "Diện Chẩn is a modern Vietnamese, needle-free reflexology and acupressure approach. Within Y sĩ Huỳnh Bảo Loan’s broader Traditional Vietnamese Medicine practice, it may be complemented by full-body acupressure, therapeutic heat, assisted stretching and manual bodywork, according to individual assessment."],
   ["Does Diện Chẩn use needles?", "No. Diện Chẩn is needle-free."],
   ["Do I need experience with movement or meditation?", "No previous experience is required. Guidance is provided and you decide what feels appropriate."],
   ["Can I attend alone?", "Yes. You may come alone or with someone."],
@@ -220,7 +220,7 @@ export const faqItems = [
   ["Will Ecstatic Dance be included?", "Ecstatic Dance is planned as part of the EMBODY experience. The facilitator, location and final schedule will be announced after confirmation."],
   ["Will sound baths be included?", "Sound baths and guided sound experiences are part of the intended program. Participating sound practitioners and session details will be announced as they are confirmed."],
   ["Who are the facilitators?", "Y sĩ Huỳnh Bảo Loan leads Diện Chẩn daily. She is a Licensed Traditional Medicine Practitioner, Licensed Acupressure & Massage Therapist and Licensed Healthcare Practitioner (Acupressure, Traditional Medicine). Additional facilitators will be announced as agreements are confirmed."],
-  ["What is the cancellation policy?", "A USD $300 deposit reserves your place and the balance is due 30 days before January 12, 2027. Cancel 60 or more days before January 12 for a full refund less a USD $25 administration fee; cancel 30–60 days before for a 50% refund; cancellations under 30 days are non-refundable. Private sessions are non-refundable once booked."],
+  ["What is the cancellation policy?", "ASCENSION Da Nang will be finally confirmed by November 1, 2026. If ASCENSION does not confirm, cancels or reschedules the event, choose a full programme-payment refund or full-value future-edition credit. If you cancel voluntarily before the programme begins, you may request a refund less 10% where legally permitted or a 24-month full-value credit; statutory rights take precedence. Refunds are processed within 15 days. See the Terms for the complete policy."],
   ["Can I choose whether I am photographed?", "Yes. You choose whether you appear in photographs or video."],
   ["What if I have an injury or medical condition?", "Ask questions before participating and consult an appropriate healthcare professional when needed. ASCENSION experiences do not replace medical diagnosis or treatment."],
   ["How do I reserve my place?", "Use a clearly labelled Reserve Your Place link. The active checkout requests a USD $300 reservation deposit."],

@@ -5,10 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import LanguageSelector from "./_components/language-selector";
 import HostHotel from "./_components/host-hotel";
+import { BookingPolicySummary } from "./_components/booking-policy";
 import { sensoryMedia } from "./sensory-media";
 import { en, faqItems, passportCategories } from "../content/en";
 import { vi, viFaqItems, viPassportCategories, viUi } from "../content/vi";
 import { translatedContent, translatedFaq, translatedHomepageAdditions, translatedLower, translatedPassport, translatedUi } from "../content/other-locales";
+import { getFullBodyPractice } from "../content/practice-language";
 import { JsonLd, homeStructuredData } from "./seo";
 import { track } from "@vercel/analytics";
 
@@ -1094,8 +1096,9 @@ function EcstaticDanceExperience({ isMobile, copy }) {
   );
 }
 
-function FoundationSection({ isMobile, copy, isVi }) {
+function FoundationSection({ isMobile, copy, isVi, locale }) {
   const foundation = copy.foundation;
+  const practice = getFullBodyPractice(locale);
   const [isDeeperOpen, setIsDeeperOpen] = useState(false);
   return (
     <section className="foundation" id="dien-chan" aria-labelledby="foundation-title">
@@ -1143,7 +1146,7 @@ function FoundationSection({ isMobile, copy, isVi }) {
       <div className="foundation-copy">
         <p className="foundation-kicker">{foundation.eyebrow}</p>
         <h2 id="foundation-title">{foundation.title}</h2>
-        <p>{isMobile === false ? "ASCENSION begins with a simple principle: the body is not experienced as a collection of separate parts. It is one interconnected whole. Diện Chẩn provides one foundation for this exploration. Restorative touch, adaptive movement, breath, sound, creativity, food and place broaden the conversation. Y sĩ Huỳnh Bảo Loan’s approach may extend from facial Diện Chẩn to full-body work informed by the Vietnamese traditions of Kinh Mạch, Cạo Gió and Bấm Huyệt." : "ASCENSION begins with a simple principle: the body is one interconnected whole. Diện Chẩn, touch, movement, breath, sound, creativity, food and place broaden the conversation. Y sĩ Huỳnh Bảo Loan’s approach may extend from facial Diện Chẩn to full-body work informed by the Vietnamese traditions of Kinh Mạch, Cạo Gió and Bấm Huyệt."}</p>
+        <p>{practice.introduction}</p>
         <p className="foundation-integrated-note">ASCENSION is holistic and experiential. It does not diagnose, treat or replace medical care.</p>
         <div className="foundation-practitioner" aria-label="Confirmed Diện Chẩn practitioner">
           <div className="foundation-practitioner-portrait">
@@ -1162,6 +1165,8 @@ function FoundationSection({ isMobile, copy, isVi }) {
         <details onToggle={(event) => setIsDeeperOpen(event.currentTarget.open)}>
           <summary>{isVi ? "Tìm hiểu sâu hơn" : "Go deeper"} <span aria-hidden="true">→</span></summary>
           <div className="foundation-details">
+            <p>{practice.frameworks}</p>
+            <p className="traditional-maps-label">{practice.label}</p>
             {foundation.details.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <p className="medical-note">{foundation.disclaimer}</p>
           </div>
@@ -1413,7 +1418,7 @@ export default function HomePage({ locale = "en" }) {
 
   return (
     <>
-      <JsonLd data={homeStructuredData} />
+      <JsonLd data={homeStructuredData(localizedFaqItems)} />
       <a className="skip-link" href="#main">Skip to main content</a>
       <Hero theme={theme} setTheme={setTheme} copy={copy} ui={ui} locale={locale} />
 
@@ -1458,7 +1463,7 @@ export default function HomePage({ locale = "en" }) {
 
         <DestinationSection />
 
-        <FoundationSection isMobile={isMobile} copy={copy} isVi={isVi} />
+          <FoundationSection isMobile={isMobile} copy={copy} isVi={isVi} locale={locale} />
 
         <section className="wider-program" aria-labelledby="wider-program-title">
           <h2 id="wider-program-title">{copy.widerProgram.title}</h2>
@@ -1658,6 +1663,7 @@ export default function HomePage({ locale = "en" }) {
             <a className="question-action" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">{ui.ask} <span aria-hidden="true">→</span></a>
           </div>
           <p className="deposit">{lower?.deposit || (isVi ? "Trang thanh toán hiện yêu cầu khoản đặt cọc giữ chỗ 300 USD." : "The active checkout requests a USD $300 reservation deposit.")}</p>
+          <BookingPolicySummary locale={locale} className="attendance-policy-summary" />
         </section>
 
         <section className="series-positioning" aria-labelledby="series-title">

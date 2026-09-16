@@ -1,6 +1,7 @@
 import Image from "next/image";
 import InfoPage from "../_components/info-page";
 import { JsonLd, RESERVATION_URL, breadcrumbStructuredData, createPageMetadata } from "../seo";
+import { BookingPolicySummary } from "../_components/booking-policy";
 
 const title = "Attend ASCENSION Da Nang | January 12–26, 2027";
 const description = "Choose seven or fourteen days of Vietnamese wellness, movement, sound, food, culture and creativity in Da Nang. Programs begin at USD $1,200.";
@@ -14,8 +15,8 @@ export default function AttendPage() {
       <JsonLd data={breadcrumbStructuredData([{ name: "ASCENSION", path: "/" }, { name: "Attend", path: "/attend" }])} />
       <InfoPage eyebrow="Attend" title="Seven days or fourteen." lead="Join the first ASCENSION edition in Da Nang, Vietnam, between January 12 and 26, 2027.">
         <section className="info-options" aria-label="Program options">
-          <article id="seven-days"><p className="info-eyebrow">Seven days</p><h2>January 12–19, 2027</h2><p className="info-price">USD $1,200</p><p>Enter the shared ASCENSION rhythm for one week while retaining the freedom to choose what serves you.</p><a className="text-action" data-plan="seven-day" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer">Reserve seven days →</a></article>
-          <article id="fourteen-days"><p className="info-eyebrow">Fourteen days</p><h2>January 12–26, 2027</h2><p className="info-price">USD $2,000</p><p>Experience the complete arc across Vietnamese wellness, movement, sound, food, culture and creativity.</p><a className="text-action" data-plan="fourteen-day" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer">Reserve fourteen days →</a></article>
+          <article id="seven-days"><p className="info-eyebrow">Seven days</p><h2>January 12–19, 2027</h2><p className="info-price">USD $1,200</p><p>Enter the shared ASCENSION rhythm for one week while retaining the freedom to choose what serves you.</p><BookingPolicySummary /><a className="text-action" data-plan="seven-day" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer">Reserve seven days →</a></article>
+          <article id="fourteen-days"><p className="info-eyebrow">Fourteen days</p><h2>January 12–26, 2027</h2><p className="info-price">USD $2,000</p><p>Experience the complete arc across Vietnamese wellness, movement, sound, food, culture and creativity.</p><BookingPolicySummary /><a className="text-action" data-plan="fourteen-day" href={RESERVATION_URL} target="_blank" rel="noopener noreferrer">Reserve fourteen days →</a></article>
         </section>
         <section className="info-illustrated-section attend-includes">
           <Image className="info-map-visual" src={MERIDIAN_MAP} alt="" aria-hidden="true" fill sizes="100vw" />
@@ -30,6 +31,7 @@ export default function AttendPage() {
         <section id="reserve">
           <h2>Reserve your place</h2>
           <p>The active checkout requests a USD $300 reservation deposit. Confirmed inclusions and applicable booking terms should be reviewed before completing payment.</p>
+          <BookingPolicySummary />
         </section>
       </InfoPage>
     </>
