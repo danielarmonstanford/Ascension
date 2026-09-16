@@ -18,6 +18,7 @@ const DA_NANG_IMAGE =
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
 const FOUNDATION_MAP = "/media/dien-chan-face-map-attributed.webp";
+const VALUES_MERIDIAN_MAP = "/media/dien-chan-meridian-map.webp";
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
 
@@ -188,7 +189,13 @@ export default function AboutPageClient() {
         </section>
 
         <section className="about-values" aria-labelledby="values-title">
-          <div className="about-values-heading"><p className="about-eyebrow">What we hold</p><h2 id="values-title">The principles beneath the experience.</h2></div>
+          <div className="about-values-heading">
+            <p className="about-eyebrow">What we hold</p>
+            <h2 id="values-title">The principles beneath the experience.</h2>
+            <div className="about-values-media" aria-hidden="true">
+              <Image className="about-values-map" src={VALUES_MERIDIAN_MAP} alt="" fill sizes="(max-width: 767px) 100vw, 34vw" />
+            </div>
+          </div>
           <ol>
             {values.map(([title, copy], index) => <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{copy}</p></div></li>)}
           </ol>

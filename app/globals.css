@@ -662,6 +662,9 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
 .about-values { display: grid; grid-template-columns: minmax(18rem, .68fr) minmax(27rem, 1.32fr); gap: clamp(3rem, 8vw, 9rem); padding: var(--section-space) var(--gutter); background: var(--night-sea); color: var(--moon-ivory); }
 .about-values .about-eyebrow { color: var(--sunset); }
 .about-values h2 { font-size: clamp(3.2rem, 6vw, 6rem); }
+.about-values-heading { display: flex; flex-direction: column; min-height: 0; }
+.about-values-media { position: relative; flex: 1 1 auto; min-height: clamp(18rem, 28vw, 34rem); margin-top: clamp(2rem, 4vw, 4rem); overflow: hidden; pointer-events: none; }
+.about-values-map { object-fit: cover; object-position: 27% center; opacity: .68; mix-blend-mode: screen; filter: saturate(.86) contrast(1.05); }
 .about-values ol { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(241, 230, 213, .28); }
 .about-values li { display: grid; grid-template-columns: 3rem 1fr; gap: 1.25rem; padding: 1.6rem 0; border-bottom: 1px solid rgba(241, 230, 213, .28); }
 .about-values li > span { color: var(--sunset); font: 500 .68rem/1.5 var(--utility); letter-spacing: .1em; }
@@ -964,6 +967,8 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .about-actions { align-items: flex-start; }
   .about-secondary-action { margin-top: .6rem; }
   .about-editorial, .about-role, .about-collective, .about-values, .about-foundation { grid-template-columns: 1fr; gap: 2.75rem; }
+  .about-values-media { flex: none; min-height: 0; height: min(70vw, 23rem); margin-top: 1.75rem; }
+  .about-values-map { object-position: 27% center; opacity: .58; }
   .about-foundation-map { object-fit: cover; object-position: 24% center; opacity: .2; }
   .about-placeholder, .about-role-media { min-height: 66svh; order: -1; }
   .about-long-copy h2, .about-collective h2, .about-values h2, .about-foundation h2 { font-size: clamp(3.5rem, 17vw, 5.5rem); }
