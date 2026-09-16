@@ -192,7 +192,11 @@ section { position: relative; }
 .foundation-visual { position: relative; min-height: 90svh; overflow: hidden; background: var(--shell); }
 .foundation-visual img { object-fit: cover; object-position: 50% 50%; transition: opacity .38s ease; }
 .foundation-visual .foundation-primary-visual { z-index: 0; }
-.foundation-visual .foundation-deeper-visual { z-index: 1; object-fit: contain; object-position: center; opacity: 0; pointer-events: none; }
+.foundation-visual .foundation-deeper-visual { position: absolute; inset: 0; z-index: 1; display: grid; grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); opacity: 0; pointer-events: none; background: var(--shell); transition: opacity .38s ease; }
+.foundation-visual .foundation-deeper-panel { position: relative; min-height: 0; overflow: hidden; }
+.foundation-visual .foundation-deeper-panel + .foundation-deeper-panel { border-top: 1px solid rgba(23, 55, 68, .18); }
+.foundation-visual .foundation-deeper-panel img { object-fit: contain; object-position: center; transition: none; }
+.foundation-deeper-credit { position: absolute; z-index: 2; bottom: .65rem; left: .8rem; margin: 0; color: rgba(23, 55, 68, .72); font: 600 .48rem/1.2 var(--utility); letter-spacing: .07em; text-transform: uppercase; }
 .foundation-visual.is-deeper .foundation-primary-visual { opacity: 0; }
 .foundation-visual.is-deeper .foundation-deeper-visual { opacity: 1; }
 .foundation-copy { align-self: center; padding: var(--section-space) var(--gutter); }
@@ -789,7 +793,7 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .foundation { display: block; min-height: auto; }
   .foundation-visual { min-height: 72svh; }
   .foundation-visual img { object-position: 50% 50%; }
-  .foundation-visual .foundation-deeper-visual { object-fit: contain; object-position: center; }
+  .foundation-deeper-credit { bottom: .5rem; left: .65rem; font-size: .43rem; }
   .foundation-copy { padding: 5rem var(--gutter) 6rem; }
   .foundation-copy h2 { font-size: clamp(3.5rem, 17vw, 5.5rem); }
   .foundation-practitioner { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; margin-top: 1.5rem; padding-top: 1.25rem; }

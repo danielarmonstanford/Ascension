@@ -25,7 +25,10 @@ const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
 const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787672842/hf_20260825_154036_0f54f781-11e4-4fd2-bc2e-b20f07766ac2_tuvnzo.png";
-const DIEN_CHAN_DEEPER_VISUAL = "/media/dien-chan-face-map-attributed.webp";
+const DIEN_CHAN_DEEPER_FACE =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789566654/nano-banana-2_put_Vietnamese_Face_reflexology_remove_other_type_words_and_credits_leave_number-0_itmjhp.jpg";
+const DIEN_CHAN_DEEPER_BODY =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789566724/hf_20260916_032551_8ff43f58-d874-4a5a-bbe9-8b4103c63350_lpmwil.png";
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
 const LOAN_PORTRAIT = "/images/huynh-bao-loan-da-nang.jpg";
@@ -1102,14 +1105,29 @@ function FoundationSection({ isMobile, copy, isVi }) {
           fill
           sizes="(max-width: 767px) 100vw, 52vw"
         />
-        <Image
-          className="foundation-deeper-visual"
-          src={DIEN_CHAN_DEEPER_VISUAL}
-          alt=""
-          aria-hidden="true"
-          fill
-          sizes="(max-width: 767px) 100vw, 52vw"
-        />
+        <div className="foundation-deeper-visual">
+          <div className="foundation-deeper-panel foundation-deeper-face">
+            <Image
+              src={DIEN_CHAN_DEEPER_FACE}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 767px) 100vw, 52vw"
+            />
+          </div>
+          <div className="foundation-deeper-panel foundation-deeper-body">
+            <Image
+              src={DIEN_CHAN_DEEPER_BODY}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 767px) 100vw, 52vw"
+            />
+          </div>
+          <p className="foundation-deeper-credit">
+            Illustrations © Bùi Quốc Châu · 1983 · hoiquandienchanqc.com
+          </p>
+        </div>
       </div>
       <div className="foundation-copy">
         <p className="foundation-kicker">{foundation.eyebrow}</p>
