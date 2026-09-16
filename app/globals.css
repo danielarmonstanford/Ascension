@@ -192,7 +192,7 @@ section { position: relative; }
 .foundation-visual { position: relative; min-height: 90svh; overflow: hidden; background: var(--shell); }
 .foundation-visual img { object-fit: cover; object-position: 50% 50%; transition: opacity .38s ease; }
 .foundation-visual .foundation-primary-visual { z-index: 0; }
-.foundation-visual .foundation-deeper-visual { position: absolute; inset: 0; z-index: 1; display: grid; grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); opacity: 0; pointer-events: none; background: var(--shell); transition: opacity .38s ease; }
+.foundation-visual .foundation-deeper-visual { position: absolute; inset: 0; z-index: 1; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); opacity: 0; pointer-events: none; background: var(--shell); transition: opacity .38s ease; }
 .foundation-visual .foundation-deeper-panel { position: relative; min-height: 0; overflow: hidden; }
 .foundation-visual .foundation-deeper-panel + .foundation-deeper-panel { border-top: 1px solid rgba(23, 55, 68, .18); }
 .foundation-visual .foundation-deeper-panel img { object-fit: contain; object-position: center; transition: none; }

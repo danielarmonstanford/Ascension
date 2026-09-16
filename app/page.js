@@ -29,6 +29,8 @@ const DIEN_CHAN_DEEPER_FACE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789566654/nano-banana-2_put_Vietnamese_Face_reflexology_remove_other_type_words_and_credits_leave_number-0_itmjhp.jpg";
 const DIEN_CHAN_DEEPER_BODY =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789566724/hf_20260916_032551_8ff43f58-d874-4a5a-bbe9-8b4103c63350_lpmwil.png";
+const DIEN_CHAN_DEEPER_MERIDIANS =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789568560/hf_20260916_031147_198b5511-9660-4400-891a-bc74f8a2e3c3_hehc8t.png";
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
 const LOAN_PORTRAIT = "/images/huynh-bao-loan-da-nang.jpg";
@@ -1118,6 +1120,15 @@ function FoundationSection({ isMobile, copy, isVi }) {
           <div className="foundation-deeper-panel foundation-deeper-body">
             <Image
               src={DIEN_CHAN_DEEPER_BODY}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(max-width: 767px) 100vw, 52vw"
+            />
+          </div>
+          <div className="foundation-deeper-panel foundation-deeper-meridians">
+            <Image
+              src={DIEN_CHAN_DEEPER_MERIDIANS}
               alt=""
               aria-hidden="true"
               fill
