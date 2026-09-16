@@ -189,8 +189,12 @@ section { position: relative; }
 .destination-sound[aria-pressed="true"] .destination-sound-indicator { background: currentColor; }
 
 .foundation { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(24rem, .95fr); min-height: 90svh; background: var(--shell); color: var(--deep-ocean); }
-.foundation-visual { position: relative; min-height: 90svh; overflow: hidden; }
-.foundation-visual img { object-fit: cover; object-position: 50% 50%; }
+.foundation-visual { position: relative; min-height: 90svh; overflow: hidden; background: var(--shell); }
+.foundation-visual img { object-fit: cover; object-position: 50% 50%; transition: opacity .38s ease; }
+.foundation-visual .foundation-primary-visual { z-index: 0; }
+.foundation-visual .foundation-deeper-visual { z-index: 1; object-fit: contain; object-position: center; opacity: 0; pointer-events: none; }
+.foundation-visual.is-deeper .foundation-primary-visual { opacity: 0; }
+.foundation-visual.is-deeper .foundation-deeper-visual { opacity: 1; }
 .foundation-copy { align-self: center; padding: var(--section-space) var(--gutter); }
 .foundation-kicker, .participation-kicker, .host-kicker, .practitioner-kicker, .faq-kicker { margin: 0 0 1.25rem; color: var(--burnt-sand); font: 500 .7rem/1 var(--utility); letter-spacing: .15em; text-transform: uppercase; }
 .foundation-copy h2 { margin: 0 0 2rem; font: 400 clamp(3.8rem, 7vw, 7rem)/.86 var(--display); letter-spacing: -.035em; }
@@ -777,6 +781,7 @@ footer div a { font-size: clamp(.66rem, .75vw, .78rem); font-weight: 650; letter
   .foundation { display: block; min-height: auto; }
   .foundation-visual { min-height: 72svh; }
   .foundation-visual img { object-position: 50% 50%; }
+  .foundation-visual .foundation-deeper-visual { object-fit: contain; object-position: center; }
   .foundation-copy { padding: 5rem var(--gutter) 6rem; }
   .foundation-copy h2 { font-size: clamp(3.5rem, 17vw, 5.5rem); }
   .foundation-practitioner { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; margin-top: 1.5rem; padding-top: 1.25rem; }

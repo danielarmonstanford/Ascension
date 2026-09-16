@@ -25,6 +25,7 @@ const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
 const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787672842/hf_20260825_154036_0f54f781-11e4-4fd2-bc2e-b20f07766ac2_tuvnzo.png";
+const DIEN_CHAN_DEEPER_VISUAL = "/media/dien-chan-face-map-attributed.webp";
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
 const LOAN_PORTRAIT = "/images/huynh-bao-loan-da-nang.jpg";
@@ -1090,12 +1091,22 @@ function EcstaticDanceExperience({ isMobile, copy }) {
 
 function FoundationSection({ isMobile, copy, isVi }) {
   const foundation = copy.foundation;
+  const [isDeeperOpen, setIsDeeperOpen] = useState(false);
   return (
     <section className="foundation" id="dien-chan" aria-labelledby="foundation-title">
-      <div className="foundation-visual">
+      <div className={`foundation-visual${isDeeperOpen ? " is-deeper" : ""}`}>
         <Image
+          className="foundation-primary-visual"
           src={DIEN_CHAN_VISUAL}
           alt="Needle-free Diện Chẩn reflexology and acupressure treatment"
+          fill
+          sizes="(max-width: 767px) 100vw, 52vw"
+        />
+        <Image
+          className="foundation-deeper-visual"
+          src={DIEN_CHAN_DEEPER_VISUAL}
+          alt=""
+          aria-hidden="true"
           fill
           sizes="(max-width: 767px) 100vw, 52vw"
         />
@@ -1119,7 +1130,7 @@ function FoundationSection({ isMobile, copy, isVi }) {
             </ul>
           </div>
         </div>
-        <details>
+        <details onToggle={(event) => setIsDeeperOpen(event.currentTarget.open)}>
           <summary>{isVi ? "Tìm hiểu sâu hơn" : "Go deeper"} <span aria-hidden="true">→</span></summary>
           <div className="foundation-details">
             {foundation.details.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
