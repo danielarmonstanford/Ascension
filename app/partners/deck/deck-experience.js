@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { track } from "@vercel/analytics";
 import styles from "./deck.module.css";
 
-const PDF_URL = "/downloads/ascension-da-nang-2027-partnership-deck.pdf";
+const PDF_URL = "/downloads/ascension-da-nang-2027-partnership-deck.pdf?v=2026-09-16";
 const CONTACT_URL = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%202027%20%E2%80%94%20Partnership%20Conversation";
 
 export default function DeckExperience() {
