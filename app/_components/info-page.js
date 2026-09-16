@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CONTACT_EMAIL, RESERVATION_URL } from "../seo";
 import LanguageSelector from "./language-selector";
 import { translatedUi } from "../../content/other-locales";
 
-export default function InfoPage({ eyebrow, title, lead, currentPath, children, primaryLabel, primaryHref = RESERVATION_URL, locale = "en", pageClassName = "" }) {
+export default function InfoPage({ eyebrow, title, lead, currentPath, children, primaryLabel, primaryHref = RESERVATION_URL, locale = "en", pageClassName = "", heroMedia, heroMediaCredit }) {
   const isVi = locale === "vi";
   const isLocalized = locale !== "en";
   const prefix = isLocalized ? `/${locale}` : "";
@@ -27,7 +28,8 @@ export default function InfoPage({ eyebrow, title, lead, currentPath, children, 
         <nav className="info-breadcrumb" aria-label="Breadcrumb">
           <Link href={prefix || "/"}>ASCENSION</Link><span aria-hidden="true">/</span><span aria-current="page">{eyebrow}</span>
         </nav>
-        <section className="info-hero">
+        <section className={`info-hero${heroMedia ? " info-hero-with-media" : ""}`}>
+          {heroMedia ? <><Image className="info-hero-map" src={heroMedia} alt="" aria-hidden="true" fill sizes="100vw" /><div className="info-hero-media-gradient" aria-hidden="true" />{heroMediaCredit ? <small className="info-hero-media-credit">{heroMediaCredit}</small> : null}</> : null}
           <p className="info-eyebrow">{eyebrow}</p>
           <h1>{title}</h1>
           <p className="info-lead">{lead}</p>

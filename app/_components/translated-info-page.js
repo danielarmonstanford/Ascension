@@ -30,9 +30,11 @@ const pages = {
   }
 };
 
+const DIEN_CHAN_HERO_MAP = "/media/dien-chan-full-body-map.webp";
+
 export default function TranslatedInfoPage({ locale, page }) {
   const [eyebrow,title,lead,sections] = pages[locale][page];
   const isFacilitate = page === "facilitate";
   const isTerms = page === "terms";
-  return <InfoPage pageClassName={isFacilitate ? "facilitate-page" : ""} locale={locale} eyebrow={eyebrow} title={title} lead={lead} primaryLabel={isFacilitate ? ({fr:"Proposer votre pratique",ko:"진행자로 지원","zh-hans":"申请带领"}[locale]) : undefined} primaryHref={isFacilitate ? PRACTITIONER_APPLICATION : isTerms ? `/${locale}/attend` : RESERVATION_URL}>{sections.map(([heading,copy], index)=><section key={heading}><h2>{heading}</h2><p>{copy}</p>{page === "about" && index === 0 ? <><p>{personalDocumentation[locale].context}</p><PersonalDocumentation locale={locale} /></> : null}</section>)}</InfoPage>;
+  return <InfoPage pageClassName={isFacilitate ? "facilitate-page" : ""} locale={locale} eyebrow={eyebrow} title={title} lead={lead} heroMedia={page === "dien-chan" ? DIEN_CHAN_HERO_MAP : undefined} heroMediaCredit={page === "dien-chan" ? "Illustration © Bùi Quốc Châu · 1983 · hoiquandienchanqc.com" : undefined} primaryLabel={isFacilitate ? ({fr:"Proposer votre pratique",ko:"진행자로 지원","zh-hans":"申请带领"}[locale]) : undefined} primaryHref={isFacilitate ? PRACTITIONER_APPLICATION : isTerms ? `/${locale}/attend` : RESERVATION_URL}>{sections.map(([heading,copy], index)=><section key={heading}><h2>{heading}</h2><p>{copy}</p>{page === "about" && index === 0 ? <><p>{personalDocumentation[locale].context}</p><PersonalDocumentation locale={locale} /></> : null}</section>)}</InfoPage>;
 }

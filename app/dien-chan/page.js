@@ -5,6 +5,7 @@ import { JsonLd, breadcrumbStructuredData, createPageMetadata } from "../seo";
 const title = "Diện Chẩn in Da Nang | ASCENSION SENSES";
 const description = "Discover Diện Chẩn, the needle-free Vietnamese practice at the foundation of ASCENSION, using reflexology, acupressure, heat, stretching and individualized full-body work.";
 const BODY_PATHWAYS_MAP = "/media/dien-chan-body-pathways.webp";
+const DIEN_CHAN_HERO_MAP = "/media/dien-chan-full-body-map.webp";
 
 export const metadata = createPageMetadata({ title, description, path: "/dien-chan" });
 
@@ -12,7 +13,7 @@ export default function DienChanPage() {
   return (
     <>
       <JsonLd data={breadcrumbStructuredData([{ name: "ASCENSION", path: "/" }, { name: "Diện Chẩn", path: "/dien-chan" }])} />
-      <InfoPage eyebrow="Diện Chẩn" title="One body. Everything connected." lead="Diện Chẩn—or Dien Chan—is the needle-free Vietnamese wellness practice at the therapeutic foundation of ASCENSION.">
+      <InfoPage eyebrow="Diện Chẩn" title="One body. Everything connected." lead="Diện Chẩn—or Dien Chan—is the needle-free Vietnamese wellness practice at the therapeutic foundation of ASCENSION." heroMedia={DIEN_CHAN_HERO_MAP} heroMediaCredit="Illustration © Bùi Quốc Châu · 1983 · hoiquandienchanqc.com">
         <section className="info-illustrated-section dien-chan-foundation">
           <Image className="info-map-visual" src={BODY_PATHWAYS_MAP} alt="" aria-hidden="true" fill sizes="100vw" />
           <h2>What is Diện Chẩn?</h2>
