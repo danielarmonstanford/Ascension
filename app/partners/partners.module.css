@@ -1,6 +1,6 @@
 .page { --ink:#173744; --night:#102932; --twilight:#315a67; --cream:#f4ede1; --ivory:#f1e6d5; --copper:#875545; --sunset:#d79a72; --gold:#ffd45f; overflow:clip; background:var(--cream); color:var(--ink); }
 .hero { position:relative; min-height:100svh; display:grid; grid-template-columns:minmax(0,.9fr) minmax(24rem,1.1fr); align-items:center; gap:clamp(3rem,7vw,8rem); overflow:hidden; padding:9rem var(--gutter) clamp(4rem,7vw,6rem); background:var(--cream); color:var(--ink); }
-.nav { position:absolute; z-index:2; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:calc(1.5rem + env(safe-area-inset-top)) var(--gutter); }
+.nav { position:fixed; z-index:40; top:0; left:0; right:0; display:flex; justify-content:space-between; align-items:center; padding:calc(1.15rem + env(safe-area-inset-top)) var(--gutter) 1.15rem; border-bottom:1px solid rgba(23,55,68,.14); background:rgba(250,247,242,.68); box-shadow:0 .5rem 2rem rgba(16,41,50,.05); -webkit-backdrop-filter:blur(18px) saturate(105%); backdrop-filter:blur(18px) saturate(105%); }
 .nav a { font:400 1.35rem/1 var(--display); text-decoration:none; }
 .nav span,.kicker,.sectionMark { font:650 .66rem/1.5 var(--utility); letter-spacing:.14em; text-transform:uppercase; }
 .nav span { color:rgba(23,55,68,.7); }

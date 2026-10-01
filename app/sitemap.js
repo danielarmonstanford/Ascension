@@ -34,6 +34,12 @@ export default function sitemap() {
       priority: 0.7,
     },
     {
+      url: `${PRODUCTION_ORIGIN}/teams`,
+      lastModified: new Date("2026-09-30"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${PRODUCTION_ORIGIN}/partners/sponsorship`,
       lastModified: new Date("2026-09-03"),
       changeFrequency: "monthly",

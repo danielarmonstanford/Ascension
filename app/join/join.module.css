@@ -16,7 +16,7 @@
 .media { position: absolute; inset: 0; }
 .media img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 52% 42%; }
 .scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6, 29, 40, .74) 0%, rgba(6, 29, 40, .18) 58%, rgba(6, 29, 40, .56) 100%), linear-gradient(0deg, rgba(6, 29, 40, .6), transparent 48%); }
-.nav { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: calc(1.5rem + env(safe-area-inset-top)) calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-right)) 1.5rem calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-left)); }
+.nav { position: fixed; z-index: 40; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: calc(1.15rem + env(safe-area-inset-top)) calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-right)) 1.15rem calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-left)); border-bottom: 1px solid rgba(255,255,255,.28); background: rgba(250,247,242,.14); box-shadow: 0 .5rem 2rem rgba(16,41,50,.06); -webkit-backdrop-filter: blur(18px) saturate(105%); backdrop-filter: blur(18px) saturate(105%); }
 .wordmark { font: 400 1.35rem/1 var(--display); text-decoration: none; }
 .returnLink { min-height: 44px; display: inline-flex; align-items: center; font: 600 .67rem/1 var(--utility); letter-spacing: .12em; text-transform: uppercase; text-underline-offset: .45rem; }
 .heroCopy { position: relative; z-index: 1; align-self: end; padding: 9rem calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-right)) calc(3.5rem + env(safe-area-inset-bottom)) calc(clamp(1.25rem, 4.7vw, 5.25rem) + env(safe-area-inset-left)); }

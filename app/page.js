@@ -25,8 +25,15 @@ const DA_NANG_FILM =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
 const DIEN_CHAN_VISUAL =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787672842/hf_20260825_154036_0f54f781-11e4-4fd2-bc2e-b20f07766ac2_tuvnzo.png";
+const DIEN_CHAN_DEEPER_FACE =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789566654/nano-banana-2_put_Vietnamese_Face_reflexology_remove_other_type_words_and_credits_leave_number-0_itmjhp.jpg";
+const DIEN_CHAN_DEEPER_BODY =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789566724/hf_20260916_032551_8ff43f58-d874-4a5a-bbe9-8b4103c63350_lpmwil.png";
+const DIEN_CHAN_DEEPER_MERIDIANS =
+  "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1789568560/hf_20260916_031147_198b5511-9660-4400-891a-bc74f8a2e3c3_hehc8t.png";
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
+const YAEL_PORTRAIT = "/assets/images/yael-hayes-portrait.jpg";
 const LOAN_PORTRAIT = "/images/huynh-bao-loan-da-nang.jpg";
 const PATHWAY_DESKTOP_IMAGE = "/assets/profile/pathway-desktop.jpg";
 const PATHWAY_MOBILE_IMAGE = "/assets/profile/pathway-mobile-clean.jpg";
@@ -358,7 +365,7 @@ function DestinationSection() {
 
   return (
     <section ref={sectionRef} className="destination" aria-labelledby="destination-title">
-      <div className="destination-stage">
+      <div className="destination-stage" data-immersive-video>
         <ProgressiveMedia
           poster={DA_NANG_VIDEO_POSTER}
           alt="A bright Pacific beach and mountain coastline in Da Nang"
@@ -765,7 +772,7 @@ function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, on
   );
 }
 
-function Hero({ theme, setTheme, copy, ui, locale }) {
+function Hero({ theme, setTheme, copy, ui, locale, immersiveNavHidden = false }) {
   const scrollRef = useRef(null);
   const stageRef = useRef(null);
   const videoRef = useRef(null);
@@ -789,6 +796,10 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [menuOpen]);
+
+  useEffect(() => {
+    if (immersiveNavHidden) setMenuOpen(false);
+  }, [immersiveNavHidden]);
 
   const enableMotionWhenReady = () => {
     if (metadataReady.current && canPlayReady.current) {
@@ -978,19 +989,20 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
           }}
         />
         <div className="hero-atmosphere" aria-hidden="true" />
-        <nav className="hero-nav entrance entrance-nav" aria-label="Primary navigation">
+        <nav className={`hero-nav entrance entrance-nav${immersiveNavHidden ? " is-immersive-hidden" : ""}`} aria-label="Primary navigation" aria-hidden={immersiveNavHidden} inert={immersiveNavHidden}>
           <Link className="wordmark" href={locale === "vi" ? "/vi" : "/en"}>ASCENSION</Link>
           <div className="nav-links">
             <a href="#experience">{ui.nav.experience}</a>
             <Link href={locale === "vi" ? "/vi/dien-chan" : "/dien-chan"}>Diện Chẩn</Link>
             <Link href={locale === "vi" ? "/vi/about" : "/about"}>{ui.nav.about}</Link>
             <Link href={locale === "vi" ? "/vi/attend" : "/attend"}>{ui.nav.attend}</Link>
+            {locale === "en" ? <Link href="/teams">Private + Teams</Link> : null}
           </div>
           <LanguageSelector className="language-selector-desktop" />
         </nav>
 
         <button
-          className="mobile-menu-toggle entrance entrance-nav"
+          className={`mobile-menu-toggle entrance entrance-nav${immersiveNavHidden ? " is-immersive-hidden" : ""}`}
           type="button"
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
@@ -1006,6 +1018,7 @@ function Hero({ theme, setTheme, copy, ui, locale }) {
             <Link href={locale === "vi" ? "/vi/about" : "/about"} onClick={() => setMenuOpen(false)}>{ui.nav.about}</Link>
             <Link href={locale === "vi" ? "/vi/attend" : "/attend"} onClick={() => setMenuOpen(false)}>{ui.nav.attend}</Link>
             <Link href={locale === "vi" ? "/vi/facilitate" : "/facilitate"} onClick={() => setMenuOpen(false)}>{ui.nav.facilitate}</Link>
+            {locale === "en" ? <Link href="/teams" onClick={() => setMenuOpen(false)}>Private + Teams</Link> : null}
           </nav>
           <LanguageSelector className="language-selector-mobile" />
         </div>
@@ -1090,15 +1103,29 @@ function EcstaticDanceExperience({ isMobile, copy }) {
 
 function FoundationSection({ isMobile, copy, isVi }) {
   const foundation = copy.foundation;
+  const [isDeeperOpen, setIsDeeperOpen] = useState(false);
   return (
     <section className="foundation" id="dien-chan" aria-labelledby="foundation-title">
-      <div className="foundation-visual">
+      <div className={`foundation-visual${isDeeperOpen ? " is-deeper" : ""}`}>
         <Image
+          className="foundation-primary-visual"
           src={DIEN_CHAN_VISUAL}
           alt="Needle-free Diện Chẩn reflexology and acupressure treatment"
           fill
           sizes="(max-width: 767px) 100vw, 52vw"
         />
+        <div className="foundation-deeper-visual" aria-hidden="true">
+          <div className="foundation-deeper-panel">
+            <Image src={DIEN_CHAN_DEEPER_FACE} alt="" fill sizes="(max-width: 767px) 100vw, 52vw" />
+          </div>
+          <div className="foundation-deeper-panel">
+            <Image src={DIEN_CHAN_DEEPER_BODY} alt="" fill sizes="(max-width: 767px) 100vw, 52vw" />
+          </div>
+          <div className="foundation-deeper-panel">
+            <Image src={DIEN_CHAN_DEEPER_MERIDIANS} alt="" fill sizes="(max-width: 767px) 100vw, 52vw" />
+          </div>
+          <p className="foundation-deeper-credit">Illustrations © Bùi Quốc Châu · 1983 · hoiquandienchanqc.com</p>
+        </div>
       </div>
       <div className="foundation-copy">
         <p className="foundation-kicker">{foundation.eyebrow}</p>
@@ -1119,7 +1146,7 @@ function FoundationSection({ isMobile, copy, isVi }) {
             </ul>
           </div>
         </div>
-        <details>
+        <details onToggle={(event) => setIsDeeperOpen(event.currentTarget.open)}>
           <summary>{isVi ? "Tìm hiểu sâu hơn" : "Go deeper"} <span aria-hidden="true">→</span></summary>
           <div className="foundation-details">
             {foundation.details.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -1193,6 +1220,25 @@ function ParticipationPrinciples({ copy }) {
   );
 }
 
+function PrivateTeamsSection() {
+  return (
+    <section className="private-teams" aria-labelledby="private-teams-title">
+      <div className="private-teams-heading">
+        <p>Private + Teams</p>
+        <h2 id="private-teams-title">ASCENSION, shaped around your group.</h2>
+      </div>
+      <div className="private-teams-copy">
+        <p>Private and team editions adapt the ASCENSION framework into focused 1–7+ day experiences in Da Nang — moving between restoration, the sea, culture, creativity and meaningful time together.</p>
+        <p>Designed initially around intimate groups of up to 10.<br />Larger and bespoke groups by arrangement.</p>
+        <Link className="text-action" href="/teams">Explore Private + Teams <span aria-hidden="true">→</span></Link>
+      </div>
+      <ul className="private-teams-environments" aria-label="Private and team experience environments">
+        {['Body', 'Sea', 'Place', 'Together'].map((environment) => <li key={environment}>{environment}</li>)}
+      </ul>
+    </section>
+  );
+}
+
 function PractitionerInvitation({ ui }) {
   return (
     <section className="practitioner-invitation" id="facilitate" aria-labelledby="practitioner-title">
@@ -1209,12 +1255,23 @@ function PractitionerInvitation({ ui }) {
           <span>Daily Diện Chẩn · Da Nang</span>
         </article>
         <article className="facilitator-card is-planned">
-          <p>Planned facilitator — pending final confirmation</p>
-          <h3>Yael Hayes</h3>
-          <span>Holistic Leadership &amp; Wellness Facilitator</span>
-          <p>Yael Hayes is a deep-focus specialist and retreat facilitator with more than ten years of experience creating highly personalised experiences for leaders, entrepreneurs and groups. Her work brings together deep rest, guided meditation, body-intelligent movement, fascia release and bespoke journey design to support reconnection, clarity and renewed capacity.</p>
-          <p>Proposed ASCENSION sessions may explore deep-rest facilitation, guided meditation, body-intelligent movement, fascia awareness and personalised integration.</p>
-          <small>Yael’s participation is planned, subject to final travel, accommodation, scheduling and programme confirmation.</small>
+          <div className="facilitator-portrait-reserved">
+            <Image
+              src={YAEL_PORTRAIT}
+              alt="Portrait of planned ASCENSION facilitator Yael Hayes"
+              fill
+              sizes="(max-width: 767px) calc(100vw - 5rem), 18vw"
+            />
+          </div>
+          <div className="facilitator-profile-copy">
+            <p>Planned facilitator — pending final confirmation</p>
+            <h3>Yael Hayes</h3>
+            <span>Holistic Leadership &amp; Wellness Facilitator</span>
+            <p>Yael Hayes is a deep-focus specialist, holistic leadership advisor and retreat facilitator with more than ten years of experience working with leaders, entrepreneurs and groups.</p>
+            <p>Her multidisciplinary practice includes bespoke journey design, deep-rest facilitation, guided meditation, nervous-system regulation, body-intelligent movement, fascia release, leadership and team development.</p>
+            <p>For ASCENSION, her proposed contribution may span individual restoration, guided group experiences and the development of bespoke private and team journeys.</p>
+            <small>Yael’s participation is planned, subject to final travel, accommodation, scheduling and programme confirmation.</small>
+          </div>
         </article>
         <article className="facilitator-card is-invited">
           <p>Invited</p>
@@ -1261,7 +1318,39 @@ export default function HomePage({ locale = "en" }) {
     nav:{experience:"Experience",about:"About",attend:"Attend",facilitate:"Facilitate",menu:"Menu",close:"Close"}, reserve:"Reserve your place", ask:"Ask a question", embody:"Embody it", explore:"Explore the experience", day:"DAY", dusk:"DUSK", slogan:["Heal your soul.","Revive your senses."], place:"Da Nang, Vietnam", dates:"January 12–26, 2027", series:"A MODUS SERIES", glanceTitle:"Da Nang,\nVietnam", glanceSub:"The experience,\nat a glance.", glanceLead:"Choose seven days or the full fourteen between city, sea and mountain.", seven:"7 days", fourteen:"14 days", small:"Small, intimate cohort. Accommodation and travel are separate.", compare:"Compare 7 and 14 days", included:"See what’s included", entity:"ASCENSION is a seven- or fourteen-day immersive wellness and cultural happening in Da Nang, Vietnam, taking place January 12–26, 2027. It is built around Diện Chẩn, a needle-free Vietnamese system incorporating reflexology, acupressure, heat, stretching and individualized full-body therapeutic work. The wider program combines confirmed programming with planned movement, breathwork, guided meditation, sound baths, Ecstatic Dance, Vietnamese food, cultural discovery and creative expression.", sixWays:"Six ways into\nthe present.", passport:"Your Ascension Passport", experienceRhythm:"Your experience.\nYour rhythm.", curatedFreedom:"Follow a curated program without losing your freedom.", passportBody:"Your ASCENSION Passport opens confirmed shared experiences while leaving room to rest, explore Da Nang and choose optional private sessions. Planned programming is identified separately until facilitators and schedules are confirmed.", faqKicker:"Before you arrive", faqTitle:"Questions,\nanswered.", facilitator:"Facilitators", apply:"Apply to facilitate", senseDisclosure:{more:"Go deeper",less:"Show less"}, midSenseCta:"Apply to Join"
   };
   const [theme, setTheme] = useState("day");
+  const [immersiveNavHidden, setImmersiveNavHidden] = useState(false);
   const isMobile = useMobileLayout();
+
+  useEffect(() => {
+    const immersiveStage = document.querySelector("[data-immersive-video]");
+    if (!immersiveStage) return;
+
+    let frame = 0;
+    const updateNavigation = () => {
+      frame = 0;
+      const viewportHeight = window.visualViewport?.height || window.innerHeight || 1;
+      const bounds = immersiveStage.getBoundingClientRect();
+      const visibleHeight = Math.max(0, Math.min(bounds.bottom, viewportHeight) - Math.max(bounds.top, 0));
+      const viewportCoverage = visibleHeight / viewportHeight;
+      setImmersiveNavHidden(viewportCoverage >= .6);
+    };
+    const requestNavigationUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateNavigation);
+    };
+
+    updateNavigation();
+    window.addEventListener("scroll", requestNavigationUpdate, { passive: true });
+    window.addEventListener("resize", requestNavigationUpdate);
+    window.visualViewport?.addEventListener("resize", requestNavigationUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestNavigationUpdate);
+      window.removeEventListener("resize", requestNavigationUpdate);
+      window.visualViewport?.removeEventListener("resize", requestNavigationUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+      setImmersiveNavHidden(false);
+    };
+  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -1281,7 +1370,7 @@ export default function HomePage({ locale = "en" }) {
     <>
       <JsonLd data={homeStructuredData} />
       <a className="skip-link" href="#main">Skip to main content</a>
-      <Hero theme={theme} setTheme={setTheme} copy={copy} ui={ui} locale={locale} />
+      <Hero theme={theme} setTheme={setTheme} copy={copy} ui={ui} locale={locale} immersiveNavHidden={immersiveNavHidden} />
 
       <main id="main">
         <ReturnHomeSection content={homepageAdditions.returnHome} />
@@ -1442,6 +1531,8 @@ export default function HomePage({ locale = "en" }) {
           </div>
           <p className="rhythm-note">{lower?.note || (isVi ? "ASCENSION được tuyển chọn, không áp đặt." : "ASCENSION is curated, not prescribed.")}</p>
         </section>
+
+        {locale === "en" ? <PrivateTeamsSection /> : null}
 
         <section className="host-story" aria-labelledby="host-title">
           <div className="host-story-media">

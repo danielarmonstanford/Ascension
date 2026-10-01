@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import LanguageSelector from "../_components/language-selector";
+import PersonalDocumentation from "../_components/personal-documentation";
+import { personalDocumentation } from "../../content/personal-documentation";
 
 const HERO_IMAGE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787491510/Screen_Shot_2026-08-23_at_9.24.02_AM_finbe7.png";
@@ -15,6 +17,7 @@ const DA_NANG_IMAGE =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/v1788060868/Screen_Shot_2026-08-29_at_11.33.44_PM_dyhsom.png";
 const DANIEL_PORTRAIT =
   "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788490840/Daniel_A_S_portrait_Aug_22_D80_8451_crop_mqftfl.jpg";
+const VALUES_MERIDIAN_MAP = "/media/dien-chan-meridian-map.webp";
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
 
@@ -142,7 +145,8 @@ export default function AboutPageClient() {
             <p>Over more than two decades—and across travels through 25 countries—I encountered practitioners, traditions and environments that changed how I understood wellbeing.</p>
             <p>I stopped seeing it as one treatment or one destination. I began seeing it as a relationship between the body, mind, movement, creativity, place and human connection.</p>
             <p>In Da Nang, I experienced Diện Chẩn over several months, including an intensive period of 40 consecutive days.</p>
-            <p>The changes I personally experienced in mobility, alignment and physical awareness are why this practice sits at the foundation of ASCENSION.</p>
+            <p>{personalDocumentation.en.context}</p>
+            <PersonalDocumentation />
             <p>I am bringing together the practices, people and places that changed me most—and inviting others to experience them with openness and curiosity.</p>
           </div>
         </section>
@@ -184,7 +188,13 @@ export default function AboutPageClient() {
         </section>
 
         <section className="about-values" aria-labelledby="values-title">
-          <div className="about-values-heading"><p className="about-eyebrow">What we hold</p><h2 id="values-title">The principles beneath the experience.</h2></div>
+          <div className="about-values-heading">
+            <p className="about-eyebrow">What we hold</p>
+            <h2 id="values-title">The principles beneath the experience.</h2>
+            <div className="about-values-media" aria-hidden="true">
+              <Image className="about-values-map" src={VALUES_MERIDIAN_MAP} alt="" fill sizes="(max-width: 767px) 100vw, 34vw" />
+            </div>
+          </div>
           <ol>
             {values.map(([title, copy], index) => <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{copy}</p></div></li>)}
           </ol>
