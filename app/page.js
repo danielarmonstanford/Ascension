@@ -88,6 +88,22 @@ function useMobileLayout() {
   return isMobile;
 }
 
+function useTouchMediaPlayback() {
+  const [touchPlayback, setTouchPlayback] = useState(false);
+
+  useEffect(() => {
+    const coarsePointer = window.matchMedia("(hover: none) and (pointer: coarse)");
+    const isIPadOS = /iPad/.test(navigator.userAgent)
+      || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+    const update = () => setTouchPlayback(coarsePointer.matches || isIPadOS);
+    update();
+    coarsePointer.addEventListener("change", update);
+    return () => coarsePointer.removeEventListener("change", update);
+  }, []);
+
+  return touchPlayback;
+}
+
 function ThemeControl({ theme, onChange, labels = { day: "DAY", dusk: "DUSK" } }) {
   return (
     <div className="theme-control" role="group" aria-label="Choose time of day">
@@ -107,6 +123,7 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
   const [posterLoaded, setPosterLoaded] = useState(false);
   const [inView, setInView] = useState(priority);
   const reduceMotion = useReducedMotion();
+  const touchPlayback = useTouchMediaPlayback();
 
   useEffect(() => {
     onVimeoLoadRef.current = onVimeoLoad;
@@ -123,9 +140,9 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (inView && ready && !reduceMotion) video.play().catch(() => {});
+    if (inView && !reduceMotion) video.play().catch(() => {});
     else video.pause();
-  }, [inView, ready, reduceMotion]);
+  }, [inView, reduceMotion]);
 
   useEffect(() => {
     if (!vimeoId) return;
@@ -159,9 +176,16 @@ function ProgressiveMedia({ poster, alt, priority = false, className = "", video
           className="media-motion"
           muted
           playsInline
+          autoPlay={touchPlayback}
           loop
-          preload={priority ? "auto" : "metadata"}
+          preload={priority || touchPlayback ? "auto" : "metadata"}
           poster={poster}
+          onLoadedData={(event) => {
+            if (inView && !reduceMotion) event.currentTarget.play().catch(() => {});
+          }}
+          onCanPlay={(event) => {
+            if (inView && !reduceMotion) event.currentTarget.play().catch(() => {});
+          }}
           onPlaying={() => setReady(true)}
           onWaiting={() => setReady(false)}
           onStalled={() => setReady(false)}
@@ -618,6 +642,7 @@ function SensoryMedia({ media, chapter }) {
   const frameRef = useRef(null);
   const videoRef = useRef(null);
   const reduceMotion = useReducedMotion();
+  const touchPlayback = useTouchMediaPlayback();
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
@@ -656,7 +681,23 @@ function SensoryMedia({ media, chapter }) {
     >
       <Image className="sense-art sense-poster" src={imageSource} alt={media.alt} fill sizes="(max-width: 767px) 100vw, 50vw" />
       {media.type === "video" && inView && !reduceMotion ? (
-        <video ref={videoRef} className="sense-art sense-motion" poster={media.poster} muted loop playsInline preload="metadata" aria-hidden="true">
+        <video
+          ref={videoRef}
+          className="sense-art sense-motion"
+          poster={media.poster}
+          muted
+          loop
+          playsInline
+          autoPlay={touchPlayback}
+          preload={touchPlayback ? "auto" : "metadata"}
+          aria-hidden="true"
+          onLoadedData={(event) => {
+            if (inView && !reduceMotion) event.currentTarget.play().catch(() => {});
+          }}
+          onCanPlay={(event) => {
+            if (inView && !reduceMotion) event.currentTarget.play().catch(() => {});
+          }}
+        >
           <source src={media.src} type="video/mp4" />
         </video>
       ) : null}
@@ -730,11 +771,11 @@ function EmbodyApproach({ story }) {
   );
 }
 
-function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, onCanPlay, onPlaying, onWaiting, onSeeking, onSeeked, onError }) {
+function ScrollHeroMedia({ videoRef, touchPlayback, motionReady, onLoadedMetadata, onCanPlay, onPlaying, onWaiting, onSeeking, onSeeked, onError }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className={`progressive-media hero-progressive-media ${motionReady ? "motion-ready" : ""}`}>
+    <div className={`progressive-media hero-progressive-media${touchPlayback ? " touch-playback" : ""} ${motionReady ? "motion-ready" : ""}`}>
       <Image
         src={HERO_POSTER}
         alt="A woman in a yoga wheel pose on a Pacific beach in Da Nang"
@@ -749,8 +790,8 @@ function ScrollHeroMedia({ videoRef, isMobile, motionReady, onLoadedMetadata, on
           className="media-motion hero-orbit"
           muted
           playsInline
-          autoPlay={isMobile}
-          loop={isMobile}
+          autoPlay={touchPlayback}
+          loop={touchPlayback}
           preload="auto"
           poster={HERO_POSTER}
           aria-hidden="true"
@@ -777,6 +818,7 @@ function Hero({ theme, setTheme, copy, ui, locale, immersiveNavHidden = false })
   const stageRef = useRef(null);
   const videoRef = useRef(null);
   const isMobile = useMobileLayout();
+  const touchPlayback = useTouchMediaPlayback();
   const targetProgress = useRef(0);
   const renderedProgress = useRef(0);
   const animationFrame = useRef(0);
@@ -830,7 +872,7 @@ function Hero({ theme, setTheme, copy, ui, locale, immersiveNavHidden = false })
   };
 
   useEffect(() => {
-    if (isMobile !== false) return;
+    if (isMobile !== false || touchPlayback) return;
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let observedScrollY = window.scrollY;
     let scrollPoll = 0;
@@ -912,10 +954,10 @@ function Hero({ theme, setTheme, copy, ui, locale, immersiveNavHidden = false })
       animationFrame.current = 0;
       window.clearTimeout(scrollPoll);
     };
-  }, [isMobile, motionReady]);
+  }, [isMobile, motionReady, touchPlayback]);
 
   useEffect(() => {
-    if (!isMobile) return;
+    if (!touchPlayback) return;
 
     let unlockInFlight = false;
 
@@ -948,14 +990,14 @@ function Hero({ theme, setTheme, copy, ui, locale, immersiveNavHidden = false })
     window.addEventListener("scroll", unlockMobileVideo, { passive: true });
 
     return removeUnlockListeners;
-  }, [isMobile]);
+  }, [touchPlayback]);
 
   return (
     <header className={`hero-scroll ${isMobile ? "hero-mobile" : "hero-desktop"}`} id="top" ref={scrollRef}>
       <div className="hero-stage" ref={stageRef}>
         <ScrollHeroMedia
           videoRef={videoRef}
-          isMobile={isMobile}
+          touchPlayback={touchPlayback}
           motionReady={motionReady}
           onLoadedMetadata={() => {
             metadataReady.current = true;
@@ -963,8 +1005,8 @@ function Hero({ theme, setTheme, copy, ui, locale, immersiveNavHidden = false })
           }}
           onCanPlay={() => {
             canPlayReady.current = true;
-            if (!isMobile) enableMotionWhenReady();
-            if (isMobile) videoRef.current?.play().catch(() => {});
+            if (!touchPlayback) enableMotionWhenReady();
+            if (touchPlayback) videoRef.current?.play().catch(() => {});
           }}
           onPlaying={() => {
             if (metadataReady.current && canPlayReady.current) setMotionReady(true);

@@ -72,6 +72,8 @@ button { font: inherit; }
 .hero-stage .progressive-media video { object-position: 50% 42%; }
 .hero-progressive-media.motion-ready .hero-orbit { opacity: var(--hero-media-opacity); transition: none; }
 .hero-progressive-media.motion-ready .media-poster { opacity: calc(1 - var(--hero-media-opacity)); transition: none; }
+.hero-progressive-media.touch-playback.motion-ready .hero-orbit { opacity: 1; transition: opacity .8s ease; }
+.hero-progressive-media.touch-playback.motion-ready .media-poster { opacity: 0; transition: opacity .8s ease; }
 .hero-atmosphere { position: absolute; inset: 0; z-index: 3; background: linear-gradient(180deg, rgba(9, 31, 42, .58) 0%, rgba(9, 31, 42, .06) 35%, rgba(9, 31, 42, .18) 58%, rgba(9, 31, 42, .74) 100%); pointer-events: none; }
 :root[data-theme="dusk"] .hero-atmosphere {
   background:
