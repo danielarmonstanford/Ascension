@@ -65,6 +65,7 @@ button { font: inherit; }
 .media-vimeo { top: 50%; left: 50%; width: max(100%, 177.78vh); height: max(100%, 56.25vw); border: 0; transform: translate(-50%, -50%); pointer-events: none; }
 .motion-ready .media-motion { opacity: 1; }
 .motion-ready .media-poster { opacity: 0; }
+.media-playback-fallback { position: fixed; z-index: 70; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); min-height: 2.75rem; padding-inline: 1.15rem; font-size: .65rem; }
 
 .hero-scroll { position: relative; min-height: 115svh; background: var(--deep-ocean); }
 .hero-stage { --hero-progress: 0; --hero-media-opacity: 0; position: sticky; top: 0; min-height: 100svh; overflow: clip; color: var(--moon-ivory); background: var(--deep-ocean); }

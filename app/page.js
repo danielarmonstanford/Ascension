@@ -104,6 +104,74 @@ function useTouchMediaPlayback() {
   return touchPlayback;
 }
 
+function requestInlineMediaPlayback() {
+  document.querySelectorAll("video").forEach((video) => {
+    video.muted = true;
+    video.playsInline = true;
+    video.play().catch(() => {});
+  });
+
+  document.querySelectorAll("iframe[src*='youtube-nocookie.com']").forEach((frame) => {
+    frame.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "mute", args: [] }), "https://www.youtube-nocookie.com");
+    frame.contentWindow?.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: [] }), "https://www.youtube-nocookie.com");
+  });
+
+  document.querySelectorAll("iframe[src*='player.vimeo.com']").forEach((frame) => {
+    frame.contentWindow?.postMessage({ method: "setMuted", value: true }, "https://player.vimeo.com");
+    frame.contentWindow?.postMessage({ method: "play" }, "https://player.vimeo.com");
+  });
+}
+
+function MotionPlaybackFallback() {
+  const touchPlayback = useTouchMediaPlayback();
+  const [showControl, setShowControl] = useState(false);
+
+  useEffect(() => {
+    if (!touchPlayback) return;
+
+    const retryPlayback = () => requestInlineMediaPlayback();
+    const retryWhenVisible = () => {
+      if (document.visibilityState === "visible") retryPlayback();
+    };
+    const checkPlayback = () => {
+      const videos = [...document.querySelectorAll("video")];
+      setShowControl(videos.length > 0 && videos.every((video) => video.paused));
+    };
+    const timer = window.setTimeout(checkPlayback, 4000);
+
+    window.addEventListener("touchstart", retryPlayback, { passive: true, once: true });
+    window.addEventListener("pointerdown", retryPlayback, { passive: true, once: true });
+    window.addEventListener("scroll", retryPlayback, { passive: true, once: true });
+    document.addEventListener("visibilitychange", retryWhenVisible);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("touchstart", retryPlayback);
+      window.removeEventListener("pointerdown", retryPlayback);
+      window.removeEventListener("scroll", retryPlayback);
+      document.removeEventListener("visibilitychange", retryWhenVisible);
+    };
+  }, [touchPlayback]);
+
+  if (!touchPlayback || !showControl) return null;
+
+  return (
+    <button
+      className="media-playback-fallback radiant-action"
+      type="button"
+      onClick={() => {
+        requestInlineMediaPlayback();
+        window.setTimeout(() => {
+          const videos = [...document.querySelectorAll("video")];
+          setShowControl(videos.length > 0 && videos.every((video) => video.paused));
+        }, 500);
+      }}
+    >
+      Play motion <span aria-hidden="true">→</span>
+    </button>
+  );
+}
+
 function ThemeControl({ theme, onChange, labels = { day: "DAY", dusk: "DUSK" } }) {
   return (
     <div className="theme-control" role="group" aria-label="Choose time of day">
@@ -1413,6 +1481,7 @@ export default function HomePage({ locale = "en" }) {
       <JsonLd data={homeStructuredData} />
       <a className="skip-link" href="#main">Skip to main content</a>
       <Hero theme={theme} setTheme={setTheme} copy={copy} ui={ui} locale={locale} immersiveNavHidden={immersiveNavHidden} />
+      <MotionPlaybackFallback />
 
       <main id="main">
         <ReturnHomeSection content={homepageAdditions.returnHome} />
