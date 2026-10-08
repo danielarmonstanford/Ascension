@@ -24,7 +24,7 @@ export default function StickyInterestAction({ styles }) {
 
   return (
     <a className={`${styles.stickyAction} ${visible ? styles.stickyVisible : ""}`} href="#apply">
-      Request the private overview
+      Choose your pathway
     </a>
   );
 }
