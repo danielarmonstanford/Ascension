@@ -5,13 +5,12 @@
 export const sensoryMedia = {
   embody: {
     type: "video",
-    src: "https://res.cloudinary.com/dno3ruh4b/video/upload/w_622,h_368,c_scale/v1788096436/hf_20260830_041430_e38407f9-d6d0-4bfd-8bc7-4635dc83c4a4_dbe2og.mp4",
-    poster: "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787809245/hf_20260826_211528_f5a526bc-fb5d-4b35-bce6-9c5f6777d724_jmqpoi.png",
-    alt: "An illustration of restorative touch and bodywork",
+    src: "/media/embody-beach-massage.mp4",
+    poster: "/media/embody-beach-massage-still.webp",
+    alt: "A bodywork experience on the beach at sunset",
     focalPointMobile: "50% 50%",
     focalPointDesktop: "50% 50%",
-    status: "temporary",
-    productionLabel: "EMBODY — FINAL MOVEMENT MEDIA PENDING",
+    status: "approved",
   },
   see: {
     type: "youtube",

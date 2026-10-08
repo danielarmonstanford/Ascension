@@ -711,8 +711,10 @@ function SensoryMedia({ media, chapter }) {
   const frameRef = useRef(null);
   const videoRef = useRef(null);
   const reduceMotion = useReducedMotion();
+  const isMobile = useMobileLayout();
   const touchPlayback = useTouchMediaPlayback();
   const [inView, setInView] = useState(false);
+  const canPlayMotion = media.type === "video" && isMobile === false && inView && !reduceMotion;
 
   useEffect(() => {
     const node = frameRef.current;
@@ -725,9 +727,9 @@ function SensoryMedia({ media, chapter }) {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (inView && !reduceMotion) video.play().catch(() => {});
+    if (canPlayMotion) video.play().catch(() => {});
     else video.pause();
-  }, [inView, reduceMotion]);
+  }, [canPlayMotion]);
 
   if (media.type === "placeholder") {
     return <MediaPlaceholder label={media.productionLabel} alt={media.alt} />;
@@ -749,7 +751,7 @@ function SensoryMedia({ media, chapter }) {
       style={{ "--focal-mobile": media.focalPointMobile, "--focal-desktop": media.focalPointDesktop }}
     >
       <Image className="sense-art sense-poster" src={imageSource} alt={media.alt} fill sizes="(max-width: 767px) 100vw, 50vw" />
-      {media.type === "video" && inView && !reduceMotion ? (
+      {canPlayMotion ? (
         <video
           ref={videoRef}
           className="sense-art sense-motion"
