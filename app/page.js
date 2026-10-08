@@ -40,7 +40,6 @@ const PATHWAY_MOBILE_IMAGE = "/assets/profile/pathway-mobile-clean.jpg";
 const HIDEOUT_BATH_IMAGE = "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788050463/Hideout_Bath_scene_qwpu7q.jpg";
 const HIDEOUT_RAIN_IMAGE = "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787834698/Screen_Shot_2026-08-25_at_7.25.12_AM_fxlzni.png";
 
-const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
 
 const destinationTypographyTiming = {
@@ -1563,8 +1562,9 @@ export default function HomePage({ locale = "en" }) {
             <Image className="restore-bridge-media-mobile" src={HIDEOUT_RAIN_IMAGE} alt="A rain-led recovery experience in Da Nang" fill sizes="(max-width: 767px) 100vw, 0px" />
           </div>
           <div className="restore-bridge-copy">
-            <p>RESTORE · PLANNED FEATURED EXPERIENCE</p>
-            <h2 id="cohort-bridge-title">Go below the surface.</h2>
+            <p>PLANNED FEATURED EXPERIENCE</p>
+            <h2 id="cohort-bridge-title">RESTORE.</h2>
+            <p className="restore-bridge-support">Go below the surface.</p>
             <p><strong>RESTORE at Hideout Wellness.</strong> Selected off-property recovery experiences are planned during the ASCENSION fortnight: thermal contrast, sauna, water and space to rest.</p>
             <p className="restore-bridge-rhythm">HEAT · COOL · WATER · REST</p>
             <small>Subject to final venue confirmation and availability.</small>
@@ -1640,9 +1640,9 @@ export default function HomePage({ locale = "en" }) {
                 </article>
                 {index === 2 ? (
                   <div className="mobile-mid-senses-cta">
-                    <a className="radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">
+                    <Link className="radiant-action" href="/join#apply">
                       {ui.midSenseCta} <span aria-hidden="true">→</span>
-                    </a>
+                    </Link>
                   </div>
                 ) : null}
                 </Fragment>
@@ -1778,21 +1778,21 @@ export default function HomePage({ locale = "en" }) {
             <div className="attendance-included">
               <p className="terms-label">{lower?.included || (isVi ? "Bao gồm" : "Included")}</p>
               <ul>
-                {(lower?.includedItems || (isVi ? ["Quyền tham gia chương trình ASCENSION được tuyển chọn qua chuyển động, phục hồi, âm thanh, vị giác, khám phá và sáng tạo","Tham gia nhóm khách chung của ASCENSION"] : ["Access to the curated ASCENSION program across movement, restoration, sound, taste, discovery and creative sessions","Participation in the shared ASCENSION cohort"])).map(item => <li key={item}>{item}</li>)}
+                {(lower?.includedItems || (isVi ? ["Quyền tham gia chương trình ASCENSION được tuyển chọn qua chuyển động, phục hồi, âm thanh, vị giác, khám phá và sáng tạo","Các buổi Diện Chẩn theo lịch được xác nhận trong chương trình chung","Tham gia nhóm khách chung của ASCENSION"] : ["Access to the curated ASCENSION program across movement, restoration, sound, taste, discovery and creative sessions","Scheduled Diện Chẩn sessions confirmed within the shared programme","Participation in the shared ASCENSION cohort"])).map(item => <li key={item}>{item}</li>)}
               </ul>
             </div>
             <div className="attendance-optional">
               <p className="terms-label">{lower?.optional || (isVi ? "Tùy chọn · Đặt riêng" : "Optional · Book Separately")}</p>
               <ul>
-                {(lower?.optionalItems || (isVi ? ["Chỗ ở — khách tự chọn và đặt khách sạn","Chuyến bay và di chuyển địa phương","Trị liệu riêng và dịch vụ spa bổ sung","Chuyến đi, bữa ăn hoặc trải nghiệm đặc biệt bổ sung"] : ["Accommodation — guests choose and book their own hotel","Flights and local transfers","Private treatments and additional spa services","Additional excursions, meals or special experiences"])).map(item => <li key={item}>{item}</li>)}
+                {(lower?.optionalItems || (isVi ? ["Chỗ ở — khách tự chọn và đặt khách sạn","Chuyến bay và di chuyển địa phương","Các trị liệu riêng, trị liệu cơ thể mở rộng và dịch vụ spa bổ sung","Chuyến đi, bữa ăn hoặc trải nghiệm đặc biệt bổ sung"] : ["Accommodation — guests choose and book their own hotel","Flights and local transfers","Additional private treatments, extended bodywork and spa services","Additional excursions, meals or special experiences"])).map(item => <li key={item}>{item}</li>)}
               </ul>
             </div>
           </div>
           <div className="attendance-actions">
-            <a className="reserve-action radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">{ui.reserve} <span aria-hidden="true">→</span></a>
+            <Link className="reserve-action radiant-action" href="/join#apply">{ui.reserve} <span aria-hidden="true">→</span></Link>
             <a className="question-action" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">{ui.ask} <span aria-hidden="true">→</span></a>
           </div>
-          <p className="deposit">{lower?.deposit || (isVi ? "Trang thanh toán hiện yêu cầu khoản đặt cọc giữ chỗ 300 USD." : "The active checkout requests a USD $300 reservation deposit.")}</p>
+          <p className="deposit">{isVi ? "Yêu cầu trước. ASCENSION sẽ xác nhận tình trạng còn chỗ, các hạng mục bao gồm và các bước thanh toán bằng văn bản trước khi yêu cầu đặt cọc." : "Enquire first. ASCENSION will confirm availability, inclusions and payment steps in writing before any deposit is requested."}</p>
         </section>
 
         <section className="series-positioning" aria-labelledby="series-title">
@@ -1835,7 +1835,7 @@ export default function HomePage({ locale = "en" }) {
               <span>{takeHome.copy}</span>
             </aside>
             <div className="join-actions">
-              <a className="radiant-action" href={STRIPE_RESERVATION} target="_blank" rel="noopener noreferrer">{ui.reserve} <span aria-hidden="true">→</span></a>
+              <Link className="radiant-action" href="/join#apply">{ui.reserve} <span aria-hidden="true">→</span></Link>
               <a className="join-question" href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">{ui.ask} <span aria-hidden="true">→</span></a>
             </div>
           </div>

@@ -47,12 +47,13 @@ const pathways = [
 ];
 
 const faq = [
-  ["What is included?", "Your selected experience includes confirmed shared ASCENSION programming and participation in the cohort. Final inclusions are supplied before booking."],
-  ["Is accommodation included?", "No. Accommodation and flights are selected and booked separately."],
+  ["What is included?", "Pathway-only participation includes confirmed shared ASCENSION programming and the cohort experience. Final programme inclusions are confirmed in writing before payment."],
+  ["What Diện Chẩn is included?", "Scheduled Diện Chẩn sessions confirmed within the shared programme are included. Any additional private treatment, extended bodywork or spa service is optional, subject to availability and booked separately."],
+  ["Is accommodation included?", "Pathway-only participation does not include accommodation or flights. Design Stay and VIP options are available by enquiry; occupancy, nights, pricing basis and confirmed inclusions are provided in a written offer."],
   ["Do I need previous wellness or movement experience?", "No. Guidance is provided, and you choose what feels appropriate for you."],
   ["Can I attend for seven days?", "Yes. The seven-day experience runs January 12–19, 2027."],
-  ["When will the edition be confirmed?", "Availability, final programming and confirmed practical details will be shared personally before you are asked to make a non-refundable payment."],
-  ["What happens to my payment if the edition does not proceed?", "The current terms provide the applicable payment and cancellation conditions before checkout. Contact us with any question before reserving."],
+  ["How do I reserve?", "Start with an enquiry. We will confirm the selected programme, availability, inclusions and payment terms in writing before any deposit is requested."],
+  ["What happens if the edition does not proceed?", "The current Terms page explains the applicable payment, cancellation and rescheduling conditions. Contact us with any question before paying a deposit."],
 ];
 
 function InterestAction({ label = "Request Your Place", event = "funnel_primary_cta" }) {
@@ -78,7 +79,7 @@ export default async function JoinPage({ searchParams }) {
           <p className={styles.heroLead}>Join an intimate international cohort for seven or fourteen days of Vietnamese wellness, embodied movement, recovery, sound, creativity, food and cultural discovery.</p>
           <p className={styles.brandBridge}>Heal your soul. Revive your senses.</p>
           <div className={styles.heroAction}><ProfileAction className={styles.reserve} href={profileHref} /><a className={styles.secondaryAction} href="#apply" data-analytics-event="funnel_direct_request_cta">Request Your Place</a></div>
-          <p className={styles.microcopy}>7 or 14 days · Approximately 20–25 participants · Programme from US$1,200<br />Accommodation and flights are selected and booked separately.</p>
+          <p className={styles.microcopy}>7 or 14 days · An intimate founding cohort · Programme from US$1,200<br />Pathway-only participation is separate from accommodation and flights.</p>
         </div>
       </header>
 
@@ -113,14 +114,14 @@ export default async function JoinPage({ searchParams }) {
       <section className={styles.offer} id="offer" aria-labelledby="offer-title">
         <div className={styles.offerIntro}><p className={styles.sectionNumber}>Participation</p><h2 id="offer-title">Choose your time in Da Nang.</h2><p>Two clear ways to enter the founding edition.</p></div>
         <div className={styles.options}>
-          <article><p>7-Day Experience</p><h3>January 12–19</h3><strong>US$1,200</strong><span>Programme access for one seven-day pathway. Accommodation and flights booked separately.</span><a href="#apply" data-analytics-event="seven_day_interest" data-plan="7-day">Request seven days →</a></article>
-          <article><p>14-Day Experience</p><h3>January 12–26</h3><strong>US$2,000</strong><span>The complete ASCENSION fortnight. Accommodation and flights booked separately.</span><a href="#apply" data-analytics-event="fourteen_day_interest" data-plan="14-day">Request fourteen days →</a></article>
+          <article><p>7-Day Pathway</p><h3>January 12–19</h3><strong>US$1,200</strong><span>Seven programme days with confirmed shared ASCENSION programming, including scheduled Diện Chẩn sessions. Accommodation, flights and additional private treatments are separate.</span><a href="#apply" data-analytics-event="seven_day_interest" data-plan="7-day">Request seven days →</a></article>
+          <article><p>14-Day Pathway</p><h3>January 12–26</h3><strong>US$2,000</strong><span>Fourteen programme days with confirmed shared ASCENSION programming, including scheduled Diện Chẩn sessions. Accommodation, flights and additional private treatments are separate.</span><a href="#apply" data-analytics-event="fourteen_day_interest" data-plan="14-day">Request fourteen days →</a></article>
         </div>
       </section>
 
       <section className={styles.questions} aria-labelledby="questions-title"><div><p className={styles.sectionNumber}>Essential FAQ</p><h2 id="questions-title">Before you decide.</h2></div><div className={styles.disclosures}>{faq.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
 
-      <section className={styles.apply} id="apply" aria-labelledby="apply-title"><div className={styles.applyCopy}><p className={styles.sectionNumber}>Private enquiry</p><h2 id="apply-title">Begin the conversation.</h2><p>Tell us what you are looking for and whether seven or fourteen days feels right. We will respond personally with availability and next steps.</p><p className={styles.microcopy}>Accommodation and travel are separate. No charge today.</p><a className={styles.askQuestion} href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a Question →</a></div><InterestForm styles={styles} /></section>
+      <section className={styles.apply} id="apply" aria-labelledby="apply-title"><div className={styles.applyCopy}><p className={styles.sectionNumber}>Private enquiry</p><h2 id="apply-title">Begin the conversation.</h2><p>Tell us what you are looking for and whether seven or fourteen days feels right. We will respond personally with availability and next steps.</p><p className={styles.microcopy}>An enquiry is not a reservation. A deposit is requested only after your programme, accommodation option if relevant, inclusions and payment terms are confirmed in writing.</p><a className={styles.askQuestion} href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20Question">Ask a Question →</a></div><InterestForm styles={styles} /></section>
 
       <footer className={styles.final}><Image className={styles.finalImage} src={DUSK_GROUP} alt="An ASCENSION group walking along the Da Nang coast at dusk" fill sizes="100vw" /><p>ASCENSION · A MODUS SERIES</p><h2>Heal your soul.<br />Revive your senses.</h2><InterestAction /><div className={styles.legal}><Link href="/terms">Terms</Link><Link href="/privacy">Privacy</Link><a href="mailto:daniel@stanfordemporium.com">Ask a question</a></div></footer>
       <StickyInterestAction styles={styles} />

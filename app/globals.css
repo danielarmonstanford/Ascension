@@ -251,6 +251,7 @@ section { position: relative; }
 .cohort-bridge.restore-bridge > .restore-bridge-copy > p:first-child { margin-bottom: 1.25rem; }
 .cohort-bridge.restore-bridge h2 { max-width: 8ch; }
 .cohort-bridge.restore-bridge > .restore-bridge-copy > p:not(:first-child) { max-width: 32rem; margin: 0 0 1.15rem; color: var(--quiet); font-size: 1rem; line-height: 1.65; }
+.cohort-bridge.restore-bridge > .restore-bridge-copy > .restore-bridge-support { margin: .9rem 0 1.8rem; color: var(--deep-ocean); font: 400 clamp(1.5rem, 2.5vw, 2.35rem)/1.08 var(--display); }
 .cohort-bridge.restore-bridge > .restore-bridge-copy > p strong { color: var(--deep-ocean); font-weight: 600; }
 .cohort-bridge.restore-bridge .restore-bridge-rhythm { padding: 1rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); color: var(--burnt-sand); font: 650 .65rem/1.4 var(--utility); letter-spacing: .12em; text-transform: uppercase; }
 .restore-bridge-copy small { display: block; max-width: 32rem; color: var(--quiet); font: 500 .65rem/1.5 var(--utility); letter-spacing: .07em; }

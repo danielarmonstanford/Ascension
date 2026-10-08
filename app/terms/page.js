@@ -13,14 +13,13 @@ export default function TermsPage() {
       <InfoPage eyebrow="Terms" title="Clear terms before you reserve." lead="These terms apply to ASCENSION SENSES · Da Nang, January 12–26, 2027." primaryLabel="View attendance options" primaryHref="/attend">
         <section>
           <h2>Reservation and payment</h2>
-          <p>A USD $300 deposit reserves your place. The remaining program balance is due 30 days before January 12, 2027.</p>
+          <p>Start with an enquiry. An enquiry does not reserve a place. ASCENSION will confirm availability, the selected programme or stay option, included elements, payment steps and the applicable terms in writing before any payment or deposit is requested.</p>
         </section>
         <section>
           <h2>Cancellation policy</h2>
-          <p>Cancellations received 60 or more days before January 12, 2027 receive a full refund less a USD $25 administration fee.</p>
-          <p>Cancellations received between 30 and 60 days before January 12, 2027 receive a 50% refund of amounts paid.</p>
-          <p>Cancellations received fewer than 30 days before January 12, 2027 are non-refundable.</p>
-          <p>Private sessions are non-refundable once booked.</p>
+          <p>ASCENSION Da Nang is scheduled for January 12–26, 2027, with final confirmation by November 1, 2026. If the event is not confirmed by that deadline, cancelled or rescheduled by ASCENSION, guests may choose a full refund of programme payments or an optional full-value credit toward a future edition.</p>
+          <p>Guests who voluntarily cancel before their programme begins may request a refund less 10% of programme payments received, where legally permitted, or choose full-value credit toward a future edition within 24 months. Any price difference applies when rebooking. Statutory cancellation rights take precedence, and no administration fee will be deducted where a full refund is legally required.</p>
+          <p>Requests may be emailed to <a href="mailto:daniel@stanfordemporium.com">daniel@stanfordemporium.com</a>. Refunds will be processed within 15 days to the original payment method. Credits require the guest’s agreement. Flights, accommodation, transfers and separately booked services follow their providers’ own terms. Wait for written event confirmation before making non-refundable travel arrangements.</p>
         </section>
         <section>
           <h2>Travel and accommodation</h2>

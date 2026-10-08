@@ -54,7 +54,7 @@ export const deckSlides = [
     kicker: "01 · The proposition",
     title: "A different way to experience wellness—and Vietnam.",
     body: "ASCENSION is a two-week living programme in Da Nang: Vietnamese wellness knowledge in conversation with movement, breath, sound, creativity, food and cultural discovery.",
-    stats: [["14", "Days · Jan 12–26"], ["20–25", "Founding cohort"], ["7 / 14", "Day participation"]],
+    stats: [["14", "Days · Jan 12–26"], ["Intimate", "Founding cohort"], ["7 / 14", "Day participation"]],
     image: "/assets/funnel/da-nang-dusk.png",
     imageAlt: "An ASCENSION group walking along the Da Nang coast at dusk",
   },
@@ -90,7 +90,7 @@ export const deckSlides = [
     kicker: "06 · Scale",
     title: "An intimate cohort. A wider cultural platform.",
     body: "Depth is deliberately small. Visibility is not. Partners gain intimacy with the cohort and potential reach through the layers around it.",
-    stats: [["20–25", "Founding cohort"], ["200+", "Potential hotel guests"], ["100+", "Potential public programming"], ["30K", "Creative network"]],
+    stats: [["Intimate", "Founding cohort"], ["200+", "Potential hotel guests"], ["100+", "Potential public programming"], ["30K", "Creative network"]],
     note: "All figures beyond the founding cohort are potential or projected reach. They are not guaranteed impressions or a booked audience.",
   },
   {

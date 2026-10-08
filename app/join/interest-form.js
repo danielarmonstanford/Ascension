@@ -5,6 +5,8 @@ import { track } from "@vercel/analytics";
 
 export default function InterestForm({ styles }) {
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [feedback, setFeedback] = useState("");
   const started = useRef(false);
 
   function markStarted() {
@@ -13,10 +15,30 @@ export default function InterestForm({ styles }) {
     track("enquiry_started", { source_path: "/join" });
   }
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault();
-    track("enquiry_submitted", { source_path: "/join" });
-    setSubmitted(true);
+    setStatus("sending");
+    setFeedback("");
+    const formData = new FormData(event.currentTarget);
+    const enquiry = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/join-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          enquiry,
+          source: { path: window.location.pathname, url: window.location.href },
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Your enquiry could not be sent.");
+      track("enquiry_submitted", { source_path: "/join", duration: enquiry.duration || "unspecified" });
+      setSubmitted(true);
+    } catch (error) {
+      setStatus("error");
+      setFeedback(error instanceof Error ? error.message : "Your enquiry could not be sent.");
+    }
   }
 
   return (
@@ -25,7 +47,7 @@ export default function InterestForm({ styles }) {
         <div className={styles.success} role="status">
           <p>Interest received</p>
           <h3>Thank you. This is the beginning of the conversation.</h3>
-          <p>This preview does not transmit or store your entry. Please use “Ask a Question” to contact ASCENSION directly while the secure enquiry connection is completed.</p>
+          <p>Your enquiry has been received. We will respond personally with availability, confirmed inclusions and the appropriate reservation steps.</p>
         </div>
       ) : (
         <>
@@ -53,12 +75,18 @@ export default function InterestForm({ styles }) {
           <textarea id="join-accessibility" name="accessibility" placeholder="Share only what would help us make the experience accessible." />
 
           <label className={styles.consent} htmlFor="join-consent">
-            <input id="join-consent" name="marketingConsent" type="checkbox" />
+            <input id="join-consent" name="enquiryConsent" type="checkbox" required />
+            <span>I agree that ASCENSION may use these details to respond to this enquiry.</span>
+          </label>
+
+          <label className={styles.consent} htmlFor="join-marketing">
+            <input id="join-marketing" name="marketingConsent" type="checkbox" />
             <span>I would like occasional ASCENSION updates. This is optional.</span>
           </label>
 
-          <button type="submit" data-analytics-event="funnel_primary_cta">Request Your Place</button>
-          <p className={styles.formNote}>Submitting this preview does not transmit or store your entry. The optional marketing checkbox is separate from your enquiry.</p>
+          {feedback && <p className={styles.formError} role="alert">{feedback}</p>}
+          <button type="submit" disabled={status === "sending"} data-analytics-event="funnel_primary_cta">{status === "sending" ? "Sending…" : "Request Your Place"}</button>
+          <p className={styles.formNote}>This enquiry is not a reservation or a payment. The optional marketing checkbox is separate from your enquiry.</p>
         </>
       )}
     </form>

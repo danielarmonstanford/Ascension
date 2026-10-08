@@ -41,7 +41,7 @@ export default function PartnersPage() {
     <section className={styles.proposition}>
       <p className={styles.sectionMark}>The proposition</p>
       <div><h2>A living programme—not a placement.</h2><p>ASCENSION brings Vietnamese wellness knowledge into conversation with movement, breath, sound, creativity, food and cultural discovery. For fourteen days, practice, city, kitchen and studio become one continuous experience shared by an intimate international cohort.</p></div>
-      <dl><div><dt>14</dt><dd>Days · January 12–26</dd></div><div><dt>20–25</dt><dd>Founding cohort</dd></div><div><dt>7 / 14</dt><dd>Day participation</dd></div></dl>
+      <dl><div><dt>14</dt><dd>Days · January 12–26</dd></div><div><dt>Intimate</dt><dd>Founding cohort</dd></div><div><dt>7 / 14</dt><dd>Day participation</dd></div></dl>
     </section>
 
     <section className={styles.travelSeries}>
@@ -75,7 +75,7 @@ export default function PartnersPage() {
 
     <section className={styles.audience}>
       <div><p className={styles.sectionMark}>Audience and projected reach</p><h2>An intimate cohort.<br />A wider cultural platform.</h2></div>
-      <div className={styles.audienceFigures}><p><strong>20–25</strong><span>Founding cohort · direct experience</span></p><p><strong>200+</strong><span>Potential hotel touchpoints</span></p><p><strong>100+</strong><span>Potential public programming</span></p><p><strong>30K</strong><span>Daniel Stanford / Stanford Emporium creative network</span></p></div>
+      <div className={styles.audienceFigures}><p><strong>Intimate</strong><span>Founding cohort · direct experience</span></p><p><strong>200+</strong><span>Potential hotel touchpoints</span></p><p><strong>100+</strong><span>Potential public programming</span></p><p><strong>30K</strong><span>Daniel Stanford / Stanford Emporium creative network</span></p></div>
       <p className={styles.disclaimer}>All figures beyond the founding cohort are potential or projected reach. They are not guaranteed impressions or a booked audience. MODUS readership will be stated only when measured.</p>
     </section>
 

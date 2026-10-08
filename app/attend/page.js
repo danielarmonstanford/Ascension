@@ -26,7 +26,7 @@ export default function AttendPage() {
         </section>
         <section id="reserve">
           <h2>Reserve your place</h2>
-          <p>The active checkout requests a USD $300 reservation deposit. Confirmed inclusions and applicable booking terms should be reviewed before completing payment.</p>
+          <p>Start with an enquiry. ASCENSION confirms availability, inclusions, payment steps and applicable booking terms in writing before any deposit is requested.</p>
         </section>
       </InfoPage>
     </>
