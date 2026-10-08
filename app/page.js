@@ -37,6 +37,8 @@ const YAEL_PORTRAIT = "/assets/images/yael-hayes-portrait.jpg";
 const LOAN_PORTRAIT = "/images/huynh-bao-loan-da-nang.jpg";
 const PATHWAY_DESKTOP_IMAGE = "/assets/profile/pathway-desktop.jpg";
 const PATHWAY_MOBILE_IMAGE = "/assets/profile/pathway-mobile-clean.jpg";
+const HIDEOUT_BATH_IMAGE = "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1788050463/Hideout_Bath_scene_qwpu7q.jpg";
+const HIDEOUT_RAIN_IMAGE = "https://res.cloudinary.com/dno3ruh4b/image/upload/f_auto,q_auto/v1787834698/Screen_Shot_2026-08-25_at_7.25.12_AM_fxlzni.png";
 
 const STRIPE_RESERVATION = "https://buy.stripe.com/dRm8wQ2FR5tr9vL0izcfK00";
 const PRACTITIONER_APPLICATION = "mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%20%E2%80%94%20Practitioner%20Application&body=Name%3A%0ALocation%3A%0APractice%20or%20modality%3A%0ATraining%20and%20years%20of%20experience%3A%0AWebsite%20or%20professional%20profile%3A%0AProposed%20ASCENSION%20contribution%3A%0AGroup%20sessions%2C%20private%20sessions%20or%20both%3A%0AAvailability%20between%20January%2012%E2%80%9326%2C%202027%3A%0AEquipment%20or%20space%20required%3A%0ALanguages%20spoken%3A%0AWhy%20would%20your%20practice%20fit%20ASCENSION%3F%3A";
@@ -1283,6 +1285,30 @@ function ReturnHomeSection({ content }) {
   );
 }
 
+function SevenWaysSection() {
+  const days = [
+    ["01", "Arrive", "Land. Exhale. Begin."],
+    ["02", "Restore", "Heat. Cool. Release."],
+    ["03", "Embody", "Move. Breathe. Feel."],
+    ["04", "Discover", "Step outside the retreat."],
+    ["05", "Deepen", "Return to the body."],
+    ["06", "Resonate", "Listen. Create. Connect."],
+    ["07", "Integrate", "Take something with you."],
+  ];
+  return (
+    <section className="seven-ways" aria-labelledby="seven-ways-title">
+      <div className="seven-ways-heading">
+        <p>THE FOUNDING PATHWAY</p>
+        <h2 id="seven-ways-title">Seven days.<br />Seven ways back in.</h2>
+      </div>
+      <ol>
+        {days.map(([number, title, copy]) => <li key={number}><span>{number}</span><strong>{title}</strong><p>{copy}</p></li>)}
+      </ol>
+      <Link className="text-action" href="/join#offer" data-analytics-event="seven_day_join">See the 7-day experience <span aria-hidden="true">→</span></Link>
+    </section>
+  );
+}
+
 function TakeHomeSection({ content }) {
   return (
     <section className="take-home" aria-labelledby="take-home-title">
@@ -1531,7 +1557,23 @@ export default function HomePage({ locale = "en" }) {
           <p>{isMobile === false ? copy.widerProgram.desktop : copy.widerProgram.mobile}</p>
         </section>
 
-        <section className="cohort-bridge" aria-labelledby="cohort-bridge-title">
+        {locale === "en" ? <section className="cohort-bridge restore-bridge" aria-labelledby="cohort-bridge-title">
+          <div className="restore-bridge-media">
+            <Image className="restore-bridge-media-desktop" src={HIDEOUT_BATH_IMAGE} alt="A restorative bathing experience in Da Nang" fill sizes="(max-width: 767px) 0px, 52vw" />
+            <Image className="restore-bridge-media-mobile" src={HIDEOUT_RAIN_IMAGE} alt="A rain-led recovery experience in Da Nang" fill sizes="(max-width: 767px) 100vw, 0px" />
+          </div>
+          <div className="restore-bridge-copy">
+            <p>RESTORE · PLANNED FEATURED EXPERIENCE</p>
+            <h2 id="cohort-bridge-title">Go below the surface.</h2>
+            <p><strong>RESTORE at Hideout Wellness.</strong> Selected off-property recovery experiences are planned during the ASCENSION fortnight: thermal contrast, sauna, water and space to rest.</p>
+            <p className="restore-bridge-rhythm">HEAT · COOL · WATER · REST</p>
+            <small>Subject to final venue confirmation and availability.</small>
+            <div>
+              <Link className="radiant-action" href="/join#offer" data-analytics-event="experience_join">Explore RESTORE <span aria-hidden="true">→</span></Link>
+              <a href="#senses">Continue exploring ASCENSION <span aria-hidden="true">↓</span></a>
+            </div>
+          </div>
+        </section> : <section className="cohort-bridge" aria-labelledby="cohort-bridge-title">
           <div>
             <p>January 2027 · Founding edition</p>
             <h2 id="cohort-bridge-title">Join the founding Da Nang cohort.</h2>
@@ -1543,10 +1585,11 @@ export default function HomePage({ locale = "en" }) {
               <a href="#senses">Continue Exploring ASCENSION <span aria-hidden="true">↓</span></a>
             </div>
           </div>
-        </section>
+        </section>}
 
         <section className="sensory-framework" id="senses" aria-labelledby="senses-title">
           <div className="sense-intro">
+            {locale === "en" ? <p className="sense-kicker">RESTORE IS ONE WAY IN.</p> : null}
             <h2 id="senses-title">{ui.sixWays.split("\n").map((line, index) => <span key={line}>{line}{index === 0 ? <br /> : null}</span>)}</h2>
           </div>
           <div className="sensory-stories" role="group" aria-label="The six senses of ASCENSION">
@@ -1634,14 +1677,18 @@ export default function HomePage({ locale = "en" }) {
 
         <section className="rhythm" id="program" aria-labelledby="rhythm-title">
           <div className="rhythm-heading">
-            <h2 id="rhythm-title">{lower?.rhythmTitle || (isVi ? "Một nhịp điệu, không phải lịch trình cứng nhắc." : "A rhythm, not a rigid schedule.")}</h2>
-            <p>{lower?.rhythm || (isVi ? "Buổi sáng có thể bắt đầu bằng chuyển động, hơi thở hoặc Diện Chẩn. Ban ngày mở ra ẩm thực, văn hóa, sáng tạo và phục hồi. Buổi tối có thể là âm thanh, khiêu vũ, cộng đồng hoặc sự yên tĩnh." : "Mornings may begin with movement, breath or Diện Chẩn. Days open into food, culture, creativity and restoration. Evenings may bring sound, dance, community or quiet.")}</p>
+            <p className="rhythm-kicker">{locale === "en" ? "A day at ASCENSION" : ""}</p>
+            <h2 id="rhythm-title">{locale === "en" ? "A rhythm, not an itinerary." : lower?.rhythmTitle || (isVi ? "Một nhịp điệu, không phải lịch trình cứng nhắc." : "A rhythm, not a rigid schedule.")}</h2>
+            <p>{locale === "en" ? "A shared rhythm that leaves room for your own pace." : lower?.rhythm || (isVi ? "Buổi sáng có thể bắt đầu bằng chuyển động, hơi thở hoặc Diện Chẩn. Ban ngày mở ra ẩm thực, văn hóa, sáng tạo và phục hồi. Buổi tối có thể là âm thanh, khiêu vũ, cộng đồng hoặc sự yên tĩnh." : "Mornings may begin with movement, breath or Diện Chẩn. Days open into food, culture, creativity and restoration. Evenings may bring sound, dance, community or quiet.")}</p>
           </div>
           <div className="rhythm-list" role="group" aria-label="An illustrative daily rhythm">
-            {(lower?.times || (isVi ? [["Buổi sáng","Chuyển động · Hơi thở · Đại dương"],["Buổi trưa","Phục hồi · Khám phá · Sáng tạo"],["Hoàng hôn","Âm thanh · Bàn ăn chung · Kết nối"],["Thời gian của bạn","Biển · Spa · Thành phố · Nghỉ ngơi · Buổi riêng"]] : [["Morning","Movement · Breath · Ocean"],["Midday","Restore · Explore · Create"],["Sunset","Sound · Shared Table · Connection"],["Your Time","Beach · Spa · City · Rest · Private Sessions"]])).map(([time,detail]) => <article key={time}><p className="rhythm-time">{time}</p><p className="rhythm-detail">{detail}</p></article>)}
+            {(locale === "en" ? [["07:00 · Awaken","Beach movement · yoga · mobility · breath · optional sea"],["08:30 · Nourish","Breakfast · coffee · slow morning"],["10:00 · Restore","Private thermal experience · sauna · bathing · hot + cold"],["11:30 · Treat","Rotating individual experiences · Diện Chẩn · acupressure · bodywork"],["13:00 · Pause","Lunch · beach · rest · free time"],["15:30 · Breathe / Resonate","Breathwork · meditation · sound · deep rest"],["17:00 · Your time","Swim · spa · sleep · explore · do absolutely nothing"],["19:00 · Taste / Connect","Food · Da Nang · Hội An · conversation · culture"]] : lower?.times || (isVi ? [["Buổi sáng","Chuyển động · Hơi thở · Đại dương"],["Buổi trưa","Phục hồi · Khám phá · Sáng tạo"],["Hoàng hôn","Âm thanh · Bàn ăn chung · Kết nối"],["Thời gian của bạn","Biển · Spa · Thành phố · Nghỉ ngơi · Buổi riêng"]] : [["Morning","Movement · Breath · Ocean"],["Midday","Restore · Explore · Create"],["Sunset","Sound · Shared Table · Connection"],["Your Time","Beach · Spa · City · Rest · Private Sessions"]])).map(([time,detail]) => <article key={time}><p className="rhythm-time">{time}</p><p className="rhythm-detail">{detail}</p></article>)}
           </div>
-          <p className="rhythm-note">{lower?.note || (isVi ? "ASCENSION được tuyển chọn, không áp đặt." : "ASCENSION is curated, not prescribed.")}</p>
+          <p className="rhythm-note">{locale === "en" ? "This is a sample rhythm, not a compulsory timetable. Experiences vary according to the day, group, weather, practitioner availability and individual choice." : lower?.note || (isVi ? "ASCENSION được tuyển chọn, không áp đặt." : "ASCENSION is curated, not prescribed.")}</p>
+          {locale === "en" ? <Link className="text-action rhythm-action" href="/join#offer" data-analytics-event="seven_day_join">Experience the full pathway <span aria-hidden="true">→</span></Link> : null}
         </section>
+
+        {locale === "en" ? <SevenWaysSection /> : null}
 
         {locale === "en" ? <PrivateTeamsSection /> : null}
 
@@ -1687,13 +1734,33 @@ export default function HomePage({ locale = "en" }) {
               <p className="dates">{isVi ? "12–26 tháng 1, 2027" : "January 12–26, 2027"}</p>
               <p className="price">$2,000 <small>USD · {lower?.program || (isVi ? "chương trình" : "program")}</small></p>
             </article>
+            {locale === "en" ? <>
+              <article className="proposed-package">
+                <p className="duration">7 DAYS · DESIGN STAY</p>
+                <p className="dates">January 12–19, 2027</p>
+                <p className="price">$2,100 <small>USD · proposed package</small></p>
+              </article>
+              <article className="proposed-package">
+                <p className="duration">14 DAYS · DESIGN STAY</p>
+                <p className="dates">January 12–26, 2027</p>
+                <p className="price">$3,500 <small>USD · proposed package</small></p>
+              </article>
+            </> : null}
           </div>
+          {locale === "en" ? <div className="pricing-context">
+            <p><strong>VIP WELLNESS VILLA</strong> · from $4,500 for 7 days / from $7,500 for 14 days.</p>
+            <p>Design Stay and VIP references are proposed package pricing, subject to availability, final inclusions and written confirmation.</p>
+            <div>
+              <Link className="radiant-action" href="/join#offer" data-analytics-event="pricing_join">Explore inclusions and availability <span aria-hidden="true">→</span></Link>
+              <a href="mailto:daniel@stanfordemporium.com?subject=ASCENSION%20Da%20Nang%202027%20%E2%80%94%20Design%20Stay%20Availability">Request Design Stay availability <span aria-hidden="true">→</span></a>
+            </div>
+          </div> : null}
         </section>
 
         <section className="travel-note" aria-labelledby="travel-title">
           <p className="travel-kicker">{lower?.stay || (isVi ? "Kỳ nghỉ theo cách của bạn" : "Your stay, your way")}</p>
-          <h2 id="travel-title">{lower?.travelTitle || (isVi ? "Chương trình và nơi chốn. Chỗ ở tính riêng." : "Program and place. Accommodation is separate.")}</h2>
-          <p>{lower?.travel || (isVi ? "Tự chọn và đặt khách sạn phù hợp tại Đà Nẵng. Chuyến bay, chỗ ở và di chuyển địa phương không bao gồm trong giá chương trình ASCENSION." : "Choose and book the Da Nang hotel that suits you. Flights, accommodation and local transfers are not included in the ASCENSION program price.")}</p>
+          <h2 id="travel-title">{lower?.travelTitle || (isVi ? "Chương trình và nơi chốn. Chỗ ở tính riêng." : locale === "en" ? "Choose your way to stay." : "Program and place. Accommodation is separate.")}</h2>
+          <p>{lower?.travel || (isVi ? "Tự chọn và đặt khách sạn phù hợp tại Đà Nẵng. Chuyến bay, chỗ ở và di chuyển địa phương không bao gồm trong giá chương trình ASCENSION." : locale === "en" ? "Choose the founding Pathway on its own, or enquire about a proposed Design Stay or VIP Wellness Villa package. Flights and local transfers remain separate. Selected stays, inclusions and availability are confirmed in writing before booking." : "Choose and book the Da Nang hotel that suits you. Flights, accommodation and local transfers are not included in the ASCENSION program price.")}</p>
         </section>
 
         <HostHotel />
